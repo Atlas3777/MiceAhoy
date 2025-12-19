@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33ba9bd26156c6642871026e2c0b6602, type: 3}
+  m_Name: PlacementObjects_DB
+  m_EditorClassIdentifier: Assembly-CSharp::PlacementObjectsDB
+  furnitures:
+  - {fileID: 11400000, guid: 0582f5fbaf36c314ba3d6732decce5a4, type: 2}
+  - {fileID: 11400000, guid: f00dfe18e4e7bae459aec6e2f963c877, type: 2}
+  - {fileID: 11400000, guid: 6172ac206e7f7b84eacca99f7d2a99d0, type: 2}
+  - {fileID: 11400000, guid: 8945a5036fbc2d04b85bbc39dfc74af6, type: 2}
+  - {fileID: 11400000, guid: 27c41246504f39849b19fa10e20bb877, type: 2}
+  - {fileID: 11400000, guid: 6d184cc09bc46b44cbfc33da1f301f06, type: 2}
+  - {fileID: 11400000, guid: dd3eb506d4ad44549ba2b0a18529843c, type: 2}
+  - {fileID: 11400000, guid: 0e77c970e3f077648b092f12aac078ed, type: 2}

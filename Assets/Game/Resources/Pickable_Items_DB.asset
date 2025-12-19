@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d944c1b24ccbcc4e98ebb6ff15d61f0, type: 3}
+  m_Name: Pickable_Items_DB
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Script.PickableItemsDB
+  processors:
+  - {fileID: 11400000, guid: 28f6975ef2e09254c9885ab9d9112ed1, type: 2}
+  - {fileID: 11400000, guid: 947b198bb7136b54994605089ea40825, type: 2}
+  - {fileID: 11400000, guid: 8ca98e9909d2c1b468abcb1439eb2908, type: 2}
+  - {fileID: 11400000, guid: 5b37f97f09e7edf4e88eaefdeb5b5653, type: 2}
+  - {fileID: 11400000, guid: 8ee0e7cc7b9ab3147b908dc642ae55a7, type: 2}
+  - {fileID: 11400000, guid: 353f7a67836433641842a0122fa38b18, type: 2}
+  - {fileID: 11400000, guid: 90a470249b21abf4c9326a19d5e5018f, type: 2}

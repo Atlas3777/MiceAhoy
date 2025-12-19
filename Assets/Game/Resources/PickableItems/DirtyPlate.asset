@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c53bc166abe24032beb849173501ddc9, type: 3}
+  m_Name: DirtyPlate
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Script.PickableItemSO
+  PickableItem:
+    rid: 7346997453272383578
+  references:
+    version: 2
+    RefIds:
+    - rid: 7346997453272383578
+      type: {class: DirtyPlate, ns: Game.Script, asm: Assembly-CSharp}
+      data:
+        PickupItemSprite:
+          PickableItemSpriteRenderer: {fileID: 0}
+          PlateItemSpriteRenderer: {fileID: 0}
+          PickableItemSprite: {fileID: -3877705869567704825, guid: f236eb621a88cb44a86ce4e8425005f3, type: 3}
+          PlateItemSprite: {fileID: 0}

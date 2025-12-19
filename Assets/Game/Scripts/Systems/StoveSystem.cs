@@ -1,0 +1,103 @@
+﻿using Leopotam.EcsProto;
+using Leopotam.EcsProto.QoL;
+using UnityEngine;
+
+public class StoveSystem : IProtoInitSystem, IProtoRunSystem
+{
+    [DI] readonly WorkstationsAspect _workstationsAspect;
+    [DI] readonly PlayerAspect _playerAspect;
+    [DI] readonly ItemAspect _itemAspect;
+    [DI] readonly BaseAspect _baseAspect;
+    [DI] readonly ViewAspect _viewAspect;
+    [DI] readonly ProtoWorld _world;
+
+    private ProtoIt _startIt;
+    private ProtoIt _completedIt;
+    private ProtoIt _abortIt;
+    private readonly RecipeService _recipeService;
+    private readonly PickableService _pickableService;
+
+    public StoveSystem(RecipeService recipeService, PickableService pickableService)
+    {
+        _recipeService = recipeService;
+        _pickableService = pickableService;
+    }
+
+    public void Init(IProtoSystems systems)
+    {
+        _startIt = new(new[]
+        {
+            typeof(WorkstationsTypeComponent),
+            typeof(InteractableComponent),
+            typeof(HolderComponent),
+            typeof(ReceiptProcessorComponent),
+            typeof(ItemPlaceEvent),
+        });
+        _completedIt = new(new[]
+        {
+            typeof(WorkstationsTypeComponent),
+            typeof(InteractableComponent),
+            typeof(ReceiptProcessorComponent),
+            typeof(TimerCompletedEvent),
+        });
+        _abortIt = new(new[]
+        {
+            typeof(WorkstationsTypeComponent),
+            typeof(InteractableComponent),
+            typeof(ReceiptProcessorComponent),
+            typeof(ItemPickEvent),
+            typeof(TimerComponent)
+        });
+        _abortIt.Init(_world);
+        _startIt.Init(_world);
+        _completedIt.Init(_world);
+    }
+
+    public void Run()
+    {
+        foreach (var stoveEntity in _startIt)
+        {
+            ref var works = ref _workstationsAspect.WorkstationsTypePool.Get(stoveEntity);
+            ref var holder = ref _playerAspect.HolderPool.Get(stoveEntity);
+
+            if (holder.Item is null)
+            {
+                Debug.Log("Item type is None");
+                continue;
+            }
+
+            if (!_recipeService.TryGetRecipe(holder.Item, works.workstationType.GetType(), out var recipe))
+            {
+                Debug.Log("Recipe not found");
+                continue;
+            }
+
+            ref var timer = ref _baseAspect.TimerPool.Add(stoveEntity);
+            timer.Duration = recipe.Duration;
+        }
+
+        foreach (var stoveEntity in _completedIt)
+        {
+            ref var holder = ref _playerAspect.HolderPool.Get(stoveEntity);
+            ref var works = ref _workstationsAspect.WorkstationsTypePool.Get(stoveEntity);
+
+            if (_recipeService.TryGetRecipe(holder.Item, works.workstationType.GetType(), out var recipe))
+            {
+                if (_pickableService.TryGetPickable(recipe.outputItemType.GetType(), out var pickableItem))
+                {
+                    Helper.CreateItem(stoveEntity, ref holder, _playerAspect, pickableItem);
+                    Debug.Log("Приготовили!");
+                }
+                else
+                {
+                    Debug.Log($"Не удалось найти PickableItem для {recipe.outputItemType.GetType().Name}");
+                }
+            }
+        }
+
+        foreach (var stoveEntity in _abortIt)
+        {
+            _baseAspect.TimerCompletedPool.Add(stoveEntity);
+        }
+    }
+}
