@@ -19,13 +19,13 @@ public class ItemSourceGeneratorSystem : IProtoInitSystem, IProtoRunSystem, IPro
     {
         _generatorIt = new(new[]
         {
-            typeof(ItemSourceComponent),
-            typeof(ItemGenerationAvailableTag), typeof(HolderComponent)
+            typeof(ItemSourceComponent), typeof(PlaceWorkstationEvent),
+            typeof(HolderComponent)
         });
         _pickFromGeneratorIt = new(new[]
         {
-            typeof(ItemSourceComponent), typeof(PickPlaceEvent),
-            typeof(ItemGenerationAvailableTag), typeof(HolderComponent)
+            typeof(ItemSourceComponent), typeof(ItemPickEvent),
+            typeof(HolderComponent)
         });
         _generatorIt.Init(_world);
         _pickFromGeneratorIt.Init(_world);
@@ -36,16 +36,16 @@ public class ItemSourceGeneratorSystem : IProtoInitSystem, IProtoRunSystem, IPro
         foreach (var generatorEntity in _generatorIt)
         {
             ref var generatorHolder = ref _playerAspect.HolderPool.Get(generatorEntity);
-            if (!generatorHolder.PickableItemVisual.PickableItemSprite)
+            if (!generatorHolder.PickableItemVisual)
             {
                 ref var itemSource = ref _workstationsAspect.ItemSourcePool.Get(generatorEntity);
                 var resourceType = itemSource.resourceItemType.GetType();
+                Debug.Log("обработка");
                 if (_pickableService.TryGetPickable(resourceType, out var pickableItem))
                 {
+                    Debug.Log("взял");
                     generatorHolder.Item = pickableItem.GetType();
-                    generatorHolder.PickableItemVisual.PickableItemSprite = pickableItem.PickupItemSprite.PickableItemSprite;
-                    generatorHolder.PickableItemVisual.PickableItemSpriteRenderer.sprite
-                        = pickableItem.PickupItemSprite.PickableItemSprite;
+                    generatorHolder.PickableItemVisual = pickableItem.PickableItemGO;
                     _playerAspect.HasItemTagPool.GetOrAdd(generatorEntity);
                 }
             }
@@ -55,7 +55,7 @@ public class ItemSourceGeneratorSystem : IProtoInitSystem, IProtoRunSystem, IPro
             ref var itemSource = ref _workstationsAspect.ItemSourcePool.Get(generatorEntity);
             ref var interacted = ref _workstationsAspect.PickPlaceEventPool.Get(generatorEntity);
 
-            if (!interacted.Invoker.TryUnpack(out _, out var playerEntity)) 
+            if (!interacted.Invoker.TryUnpack(out _, out var playerEntity))
                 continue;
             
             if (!_playerAspect.HolderPool.Has(playerEntity)) 
@@ -70,11 +70,15 @@ public class ItemSourceGeneratorSystem : IProtoInitSystem, IProtoRunSystem, IPro
             }
             
             var resourceType = itemSource.resourceItemType.GetType();
-            
-             // if (_pickableService.TryGetPickable(resourceType, out var pickableItem))
-             //    Helper.CreateItem(playerEntity, ref playerHolder, _playerAspect, pickableItem);
-            if (generatorHolder.Item is not null)
-                _workstationsAspect.ItemPickEventPool.Add(generatorEntity);
+
+            if (_pickableService.TryGetPickable(resourceType, out var pickableItem))
+            {
+                Helper.CreateItem(playerEntity, ref playerHolder, _playerAspect, pickableItem);
+                Debug.Log($"Предмет {pickableItem} создан!");
+            }
+
+            // if (generatorHolder.Item is not null)
+            //     _workstationsAspect.ItemPickEventPool.Add(generatorEntity);
             else
                 Debug.LogError($"Не удалось найти PickableItem для типа {resourceType.Name}!");
         }

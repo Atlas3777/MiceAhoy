@@ -22,6 +22,11 @@ public class GameResources
         public PickableItemSO Meat => Resources.Load<PickableItemSO>("PickableItems/Meat");
         public PickableItemSO Plate => Resources.Load<PickableItemSO>("PickableItems/Plate");
     }
+    public PickeableItemsGO PickeableItemsGOLink;
+    public class PickeableItemsGO
+    {
+        public GameObject Fish0GO => Resources.Load<GameObject>("PickeableItemsGO/Fish0GO");
+    }
     public PlacementObjects PlacementObjectsLink;
     public class PlacementObjects
     {
@@ -73,6 +78,7 @@ public class GameResources
     {
         LevelConfigsLink = new LevelConfigs();
         PickableItemsLink = new PickableItems();
+        PickeableItemsGOLink = new PickeableItemsGO();
         PlacementObjectsLink = new PlacementObjects();
         RecipesLink = new Recipes();
         UIPrefabsLink = new UIPrefabs();

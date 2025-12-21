@@ -11,7 +11,6 @@ public class WorkstationsAspect : ProtoAspectInject
     public ProtoPool<ItemSourceComponent> ItemSourcePool;
     public ProtoPool<ReceiptProcessorComponent> StovePool;
     public ProtoPool<GuestTableComponent> GuestTablePool;
-    public ProtoPool<PlatesOnWorkstationComponent> PlatesOnTablePool;
     
     public ProtoPool<ItemGenerationAvailableTag> ItemGenerationAvailablePool;
     
@@ -71,17 +70,10 @@ public struct GuestTableComponent : IComponent
 {
     public Vector2[] guestPlaces;
     public ProtoPackedEntityWithWorld GuestGroup;
-    // public GameObject Plates;
 }
 
 [Serializable]
 public struct WorkstationsTypeComponent : IComponent
 {
     [SerializeReference, SubclassSelector] public WorkstationItem workstationType;
-}
-
-[Serializable]
-public struct PlatesOnWorkstationComponent : IComponent
-{
-    public int PlatesOnTable;
 }

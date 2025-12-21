@@ -52,7 +52,7 @@ internal class PlayerTargetSystem : IProtoInitSystem, IProtoRunSystem
 
                 //interactable.OutlineController.SetHighlight(false);
 
-                if (Vector2.Distance(interactablePosition.Position, playerPosition.Position) < range)
+                if (Vector3.Distance(interactablePosition.Position, playerPosition.Position) < range)
                 {
                     var vector = interactablePosition.Position - playerPosition.Position;
 
@@ -66,6 +66,7 @@ internal class PlayerTargetSystem : IProtoInitSystem, IProtoRunSystem
                             minAngle = absAngle;
                             //interactableComponent = interactable;
                             targetEntity = entityInteractable;
+                            //Debug.Log($"Вижу {targetEntity}");
                         }
                     }
                 }

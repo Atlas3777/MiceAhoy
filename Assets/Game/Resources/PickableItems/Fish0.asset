@@ -20,8 +20,4 @@ MonoBehaviour:
     - rid: 7346997319901118543
       type: {class: Fish0, ns: Game.Script, asm: Assembly-CSharp}
       data:
-        PickupItemSprite:
-          PickableItemSpriteRenderer: {fileID: 0}
-          PlateItemSpriteRenderer: {fileID: 0}
-          PickableItemSprite: {fileID: -4064437852567397324, guid: a0c78662eae617e46873f31d82980195, type: 3}
-          PlateItemSprite: {fileID: -4795573259988461060, guid: 321135aa99c5aa34ab1f362fe85a077c, type: 3}
+        PickableItemGO: {fileID: 4949581644060774540, guid: 3602724711db5f84799bfc136256b72f, type: 3}

@@ -48,9 +48,15 @@ namespace Game.Script.Systems
                         break;
 
                     case (false, true):
-                        Debug.Log("Берем со стола!");
-                        Helper.TransferItem(from: interactedEntity, to: playerEntity, ref interactedHolder, ref playerHolder,
-                            _playerAspect);
+                        if (!_workstationsAspect.ItemSourcePool.Has(interactedEntity))
+                        {
+                            Debug.Log("Берем со стола!");
+                            Helper.TransferItem(from: interactedEntity, to: playerEntity, ref interactedHolder,
+                                ref playerHolder,
+                                _playerAspect);
+                        }
+                        else
+                            Debug.Log("Берём новый предмет");
                         _workstationsAspect.ItemPickEventPool.Add(interactedEntity);
                         break;
 
@@ -69,20 +75,8 @@ namespace Game.Script.Systems
                         if (_workstationsAspect.ItemSourcePool.Has(interactedEntity)
                             && playerItem.Item == tableItem.Item
                             && !_workstationsAspect.GuestTablePool.Has(interactedEntity)
-                            && !playerItem.PickableItemVisual.PlateItemSpriteRenderer.enabled)
-                        {
-                            Helper.ReturnItemToGenerator(from: playerEntity, to: interactedEntity,
-                                ref playerHolder, ref interactedHolder, _playerAspect);
-                            break;
-                        }
-                        
-                        if (_workstationsAspect.ItemSourcePool.Has(interactedEntity)
-                            || !(tableItem.Item == typeof(Plate))
-                            || playerItem.Item == typeof(Plate)
-                            || playerItem.Item  == typeof(DirtyPlate))
-                            break;
-                        Helper.PutItemOnPlate(from: playerEntity, to: interactedEntity, ref playerHolder, ref interactedHolder,
-                            _playerAspect);
+                            && playerItem.PickableItemVisual)
+                            Helper.ReturnItemToGenerator(playerEntity, ref playerHolder, _playerAspect);
                         break;
                 }
             }

@@ -15,7 +15,7 @@ namespace Game.Script.Systems
         [DI] private PhysicsAspect _physicsAspect;
         
         private ProtoIt _groupIterator;
-        private ProtoItExc _freeTablesIterator;
+        private ProtoIt _freeTablesIterator;
         
         public void Init(IProtoSystems systems)
         {
@@ -27,9 +27,6 @@ namespace Game.Script.Systems
             _freeTablesIterator = new(new[]
             {
                 typeof(GuestTableComponent), typeof(GuestTableIsFreeTag)
-            }, new[]
-            {
-                typeof(PlatesOnWorkstationComponent)
             });
             _groupIterator.Init(_world);
             _freeTablesIterator.Init(_world);

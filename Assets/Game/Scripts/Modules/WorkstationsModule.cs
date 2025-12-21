@@ -30,7 +30,6 @@ public class WorkstationsModule : IProtoModule
             .AddSystem(new GuestTableSetupSystem())
             .AddSystem(new AcceptOrderSystem())
             .AddSystem(new TableNotificationSystem())
-            .AddSystem(new DirtyPlatePickupSystem())
             .AddSystem(_itemSourceGeneratorSystem)
             .AddSystem(_stoveSystem)
             .AddSystem(new ProgressBarSystem())

@@ -32,19 +32,14 @@ public struct PlayerInitializeEvent : IComponent
 [Serializable]
 public struct HolderComponent : IComponent
 {
+    public Transform HolderTransform;
     public Type Item;
-    public PickableItemWrapper PickableItemVisual;
+    public GameObject PickableItemVisual;
 
     public void Clear()
     {
         Item = null;
-        PickableItemVisual.PickableItemSprite = null;
-        PickableItemVisual.PlateItemSprite = null;
-        PickableItemVisual.PickableItemSpriteRenderer.sprite = null;
-        if (PickableItemVisual.PlateItemSpriteRenderer)
-        {
-            PickableItemVisual.PlateItemSpriteRenderer.enabled = false;
-        }
+        PickableItemVisual = null;
     }
 }
 

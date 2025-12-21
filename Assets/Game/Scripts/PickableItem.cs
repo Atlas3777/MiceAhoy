@@ -6,7 +6,8 @@ namespace Game.Script
     [Serializable]
     public class PickableItem
     {
-        public PickableItemWrapper PickupItemSprite;
+        public GameObject PickableItemGO;
+        // public PickableItemWrapper PickupItemSprite;
 
         public bool Is(Type type)
         {

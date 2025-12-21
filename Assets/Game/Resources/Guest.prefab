@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -151064641
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: 5861493113732606730, guid: a0c78662eae617e46873f31d82980195, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -167,7 +167,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -151064641
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 5
   m_Sprite: {fileID: -4795573259988461060, guid: 321135aa99c5aa34ab1f362fe85a077c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -317,7 +317,6 @@ GameObject:
   - component: {fileID: 1495584803016971051}
   - component: {fileID: 8723051481985674802}
   - component: {fileID: 6300166847442564714}
-  - component: {fileID: -8046312158198675549}
   - component: {fileID: 6188592401123237228}
   - component: {fileID: -5269498893599618243}
   m_Layer: 0
@@ -336,7 +335,7 @@ Transform:
   m_GameObject: {fileID: 9168951379536319562}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.0925, y: -6.07, z: 0}
+  m_LocalPosition: {x: 2.379, y: 0.765, z: -0.236}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -360,7 +359,7 @@ MonoBehaviour:
   _authoringType: 0
   _destroyAfterAuthoring: 0
   Components:
-  - rid: 8223375694890532954
+  - rid: 7346997658554204231
   - rid: 8223375694890532957
   - rid: 8223375694890532955
   - rid: 8223375694890532956
@@ -383,19 +382,15 @@ MonoBehaviour:
     - rid: 7346997319901118548
       type: {class: Fish1, ns: Game.Script, asm: Assembly-CSharp}
       data:
-        PickupItemSprite:
-          PickableItemSpriteRenderer: {fileID: 0}
-          PlateItemSpriteRenderer: {fileID: 0}
-          PickableItemSprite: {fileID: 0}
-          PlateItemSprite: {fileID: 0}
+        PickableItemGO: {fileID: 0}
     - rid: 7346997453272383567
       type: {class: WantedItemVisualizationComponent, ns: Game.Script.Aspects, asm: Assembly-CSharp}
       data:
         Visualization: {fileID: 4182418915176891477}
-    - rid: 8223375694890532954
-      type: {class: Rigidbody2DComponent, ns: , asm: Assembly-CSharp}
+    - rid: 7346997658554204231
+      type: {class: HolderComponent, ns: , asm: Assembly-CSharp}
       data:
-        Rigidbody2D: {fileID: 1495584803016971051}
+        PickableItemVisual: {fileID: 0}
     - rid: 8223375694890532955
       type: {class: PositionComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -595,22 +590,6 @@ MonoBehaviour:
   _outlineColor: {r: 1, g: 1, b: 1, a: 1}
   _outlineWidth: 3
   _isHighlighted: 0
---- !u!114 &-8046312158198675549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9168951379536319562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifier
-  m_OverrideArea: 1
-  m_Area: 1
-  m_IgnoreFromBuild: 0
-  m_AffectedAgents: ffffffff
 --- !u!195 &6188592401123237228
 NavMeshAgent:
   m_ObjectHideFlags: 0
