@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 8709505408249560105}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -159,7 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MyAuthoring
   _worldName: 
   _authoringType: 0
-  _destroyAfterAuthoring: 1
+  _destroyAfterAuthoring: 0
   Components:
   - rid: 6222297960297791562
   - rid: 6222297960297791563
@@ -176,7 +176,7 @@ MonoBehaviour:
     - rid: 6222297960297791562
       type: {class: PositionComponent, ns: , asm: Assembly-CSharp}
       data:
-        Position: {x: 0, y: 0}
+        Position: {x: 0, y: 1}
     - rid: 6222297960297791563
       type: {class: InteractableComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -191,7 +191,7 @@ MonoBehaviour:
       type: {class: FurnitureComponent, ns: , asm: Assembly-CSharp}
       data:
         type:
-          rid: 6709886310357663818
+          rid: 7346997708779421764
     - rid: 6222297960297791569
       type: {class: PlacementTransformComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -204,18 +204,20 @@ MonoBehaviour:
       type: {class: SyncGridPositionEvent, ns: , asm: Assembly-CSharp}
       data:
         entityGridPositions: {x: 0, y: 0}
-    - rid: 6709886310357663818
-      type: {class: Stove, ns: , asm: Assembly-CSharp}
-      data:
-        workstationSprite: {fileID: 0}
     - rid: 7346997658554204232
       type: {class: HolderComponent, ns: , asm: Assembly-CSharp}
       data:
-        PickableItemVisual: {fileID: 4949581644060774540, guid: 3602724711db5f84799bfc136256b72f, type: 3}
+        HolderTransform: {fileID: 532959154327911370}
+        PickableItemVisual: {fileID: 0}
     - rid: 7346997658554204233
       type: {class: Fish0, ns: Game.Script, asm: Assembly-CSharp}
       data:
-        PickableItemGO: {fileID: 0}
+        pickableItemGo: {fileID: 4949581644060774540, guid: 3602724711db5f84799bfc136256b72f, type: 3}
+        satietyRestoration: 20
     - rid: 7346997658554204234
       type: {class: PlaceWorkstationEvent, ns: , asm: Assembly-CSharp}
       data: 
+    - rid: 7346997708779421764
+      type: {class: Fridge, ns: , asm: Assembly-CSharp}
+      data:
+        workstationSprite: {fileID: 0}

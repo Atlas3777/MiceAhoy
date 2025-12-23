@@ -6,6 +6,7 @@ public class ItemSourceGeneratorSystem : IProtoInitSystem, IProtoRunSystem, IPro
 {
     [DI] readonly WorkstationsAspect _workstationsAspect;
     [DI] readonly PlayerAspect _playerAspect;
+    [DI] readonly BaseAspect _baseAspect;
     [DI] private ProtoWorld _world;
 
     private ProtoIt _pickFromGeneratorIt;
@@ -43,9 +44,9 @@ public class ItemSourceGeneratorSystem : IProtoInitSystem, IProtoRunSystem, IPro
                 Debug.Log("обработка");
                 if (_pickableService.TryGetPickable(resourceType, out var pickableItem))
                 {
-                    Debug.Log("взял");
+                    Debug.Log("создал");
                     generatorHolder.Item = pickableItem.GetType();
-                    generatorHolder.PickableItemVisual = pickableItem.PickableItemGO;
+                    generatorHolder.PickableItemVisual = pickableItem.pickableItemGo;
                     _playerAspect.HasItemTagPool.GetOrAdd(generatorEntity);
                 }
             }
@@ -61,7 +62,6 @@ public class ItemSourceGeneratorSystem : IProtoInitSystem, IProtoRunSystem, IPro
             if (!_playerAspect.HolderPool.Has(playerEntity)) 
                 continue;
             
-            ref var generatorHolder = ref _playerAspect.HolderPool.Get(generatorEntity);
             ref var playerHolder = ref _playerAspect.HolderPool.Get(playerEntity);
             if (playerHolder.Item is not null)
             {
@@ -73,7 +73,7 @@ public class ItemSourceGeneratorSystem : IProtoInitSystem, IProtoRunSystem, IPro
 
             if (_pickableService.TryGetPickable(resourceType, out var pickableItem))
             {
-                Helper.CreateItem(playerEntity, ref playerHolder, _playerAspect, pickableItem);
+                Helper.CreateItem(playerEntity, ref playerHolder, _playerAspect, _baseAspect, pickableItem);
                 Debug.Log($"Предмет {pickableItem} создан!");
             }
 

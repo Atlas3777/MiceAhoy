@@ -1,12 +1,14 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.Script
 {
     [Serializable]
     public class PickableItem
     {
-        public GameObject PickableItemGO;
+        public GameObject pickableItemGo;
+        public int satietyRestoration;
         // public PickableItemWrapper PickupItemSprite;
 
         public bool Is(Type type)

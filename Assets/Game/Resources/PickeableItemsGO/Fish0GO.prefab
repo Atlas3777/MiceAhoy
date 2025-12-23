@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6173034450013360008}
   - component: {fileID: -3106337016435838747}
+  - component: {fileID: -7018556360123477561}
   m_Layer: 0
   m_Name: Fish0GO
   m_TagString: Untagged
@@ -90,3 +91,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-7018556360123477561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4949581644060774540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffa461fe76894b90adde11b7597634ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Script.PickableItemInfoWrapper
+  satietyRestoration: 0

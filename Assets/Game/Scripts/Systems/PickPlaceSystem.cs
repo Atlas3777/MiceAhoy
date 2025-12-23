@@ -10,6 +10,7 @@ namespace Game.Script.Systems
         [DI] readonly WorkstationsAspect _workstationsAspect = default;
         [DI] readonly GuestAspect _guestAspect = default;
         [DI] readonly PlayerAspect _playerAspect = default;
+        [DI] readonly BaseAspect _baseAspect = default;
         [DI] readonly ProtoWorld _world = default;
 
         private ProtoIt _iterator;
@@ -53,7 +54,7 @@ namespace Game.Script.Systems
                             Debug.Log("Берем со стола!");
                             Helper.TransferItem(from: interactedEntity, to: playerEntity, ref interactedHolder,
                                 ref playerHolder,
-                                _playerAspect);
+                                _playerAspect, _baseAspect);
                         }
                         else
                             Debug.Log("Берём новый предмет");
@@ -64,7 +65,7 @@ namespace Game.Script.Systems
                         Debug.Log("Кладем на стол!");
                         _workstationsAspect.ItemPlaceEventPool.GetOrAdd(interactedEntity);
                         Helper.TransferItem(from: playerEntity, to: interactedEntity, ref playerHolder, ref interactedHolder,
-                            _playerAspect);
+                            _playerAspect, _baseAspect);
                         break;
 
                     case (true, true):
@@ -76,7 +77,7 @@ namespace Game.Script.Systems
                             && playerItem.Item == tableItem.Item
                             && !_workstationsAspect.GuestTablePool.Has(interactedEntity)
                             && playerItem.PickableItemVisual)
-                            Helper.ReturnItemToGenerator(playerEntity, ref playerHolder, _playerAspect);
+                            Helper.ReturnItemToGenerator(playerEntity, ref playerHolder, _playerAspect, _baseAspect);
                         break;
                 }
             }

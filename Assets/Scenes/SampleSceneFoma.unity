@@ -8459,24 +8459,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4116833319232833429, guid: a69446931e5b334458f248477b2a3e68, type: 3}
-      propertyPath: _destroyAfterAuthoring
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4116833319232833429, guid: a69446931e5b334458f248477b2a3e68, type: 3}
-      propertyPath: managedReferences[6222297960297791562].Position.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4116833319232833429, guid: a69446931e5b334458f248477b2a3e68, type: 3}
-      propertyPath: managedReferences[7346997658554204232].HolderTransform
-      value: 
-      objectReference: {fileID: 1185506237}
-    - target: {fileID: 4116833319232833429, guid: a69446931e5b334458f248477b2a3e68, type: 3}
       propertyPath: managedReferences[7346997658554204232].PickableItemVisual
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7604927328702005173, guid: a69446931e5b334458f248477b2a3e68, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8766884320135700761, guid: a69446931e5b334458f248477b2a3e68, type: 3}
       propertyPath: m_Name
@@ -8487,11 +8471,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a69446931e5b334458f248477b2a3e68, type: 3}
---- !u!4 &1185506237 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 532959154327911370, guid: a69446931e5b334458f248477b2a3e68, type: 3}
-  m_PrefabInstance: {fileID: 1185506236}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1185894616
 GameObject:
   m_ObjectHideFlags: 0

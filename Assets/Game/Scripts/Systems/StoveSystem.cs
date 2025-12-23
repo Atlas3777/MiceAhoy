@@ -85,7 +85,7 @@ public class StoveSystem : IProtoInitSystem, IProtoRunSystem
             {
                 if (_pickableService.TryGetPickable(recipe.outputItemType.GetType(), out var pickableItem))
                 {
-                    Helper.CreateItem(stoveEntity, ref holder, _playerAspect, pickableItem);
+                    Helper.CreateItem(stoveEntity, ref holder, _playerAspect, _baseAspect, pickableItem);
                     Debug.Log("Приготовили!");
                 }
                 else

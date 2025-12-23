@@ -25,7 +25,7 @@ public class GameResources
     public PickeableItemsGO PickeableItemsGOLink;
     public class PickeableItemsGO
     {
-        public GameObject Fish0GO => Resources.Load<GameObject>("PickeableItemsGO/Fish0GO");
+        public PickableItemInfoWrapper Fish0GO => Resources.Load<PickableItemInfoWrapper>("PickeableItemsGO/Fish0GO");
     }
     public PlacementObjects PlacementObjectsLink;
     public class PlacementObjects
