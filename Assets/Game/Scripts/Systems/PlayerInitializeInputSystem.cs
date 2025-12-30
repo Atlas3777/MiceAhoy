@@ -5,15 +5,14 @@ using UnityEngine;
 
 public class PlayerInitializeInputSystem : IProtoInitSystem, IProtoRunSystem
 {
-    private readonly InputService _inputService;
     [DI] private PlayerAspect _playerAspect;
     [DI] private ProtoWorld _world;
     private ProtoIt _playerInitializeIt;
+    private readonly InputService _inputService;
 
     public PlayerInitializeInputSystem(InputService inputService)
-    {
-        _inputService  = inputService;
-    }
+        => _inputService  = inputService;
+    
     public void Init(IProtoSystems systems)
     {
         _playerInitializeIt = new(new[]
@@ -28,7 +27,7 @@ public class PlayerInitializeInputSystem : IProtoInitSystem, IProtoRunSystem
             ref var playerIndexComp = ref _playerAspect.PlayerIndexPool.Get(playerInitEvent);
             
             // Пытаемся забрать индекс из очереди ожидающих
-            if (_inputService.TryGetPendingPlayerIndex(out int newIndex))
+            if (_inputService.TryGetPendingPlayerIndex(out var newIndex))
             {
                 playerIndexComp.PlayerIndex = newIndex;
                 Debug.Log($"ECS Entity {playerInitEvent} assigned to Player Index {newIndex}");

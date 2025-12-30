@@ -15,14 +15,12 @@ namespace Game.Script.Infrastructure
     
     public class GameStateManager : IStartable, ITickable, IDisposable
     {
-        private IProtoSystems _mainSystems;
-        private InputService _inputService;
+        private readonly IProtoSystems _mainSystems;
+        private readonly InputService _inputService;
+        private readonly EndGameSystem  _endGameSystem;
+        private readonly UIController _uiController;
         
-        private EndGameSystem  _endGameSystem;
-        private UIController _uiController;
-        
-        private bool IsPaused = true;
-        
+        public bool IsPaused {get; private set;}
         public Action<GameState> EndGame;
 
         public GameStateManager(
@@ -33,7 +31,6 @@ namespace Game.Script.Infrastructure
         {
             Debug.Log("Starting game state manager");
             _mainSystems = mainSystems;
-            //_physicsSystems = physicsSystems;
             _inputService = inputService;
             _uiController = uiController;
             _endGameSystem = endGameSystem;
@@ -42,7 +39,6 @@ namespace Game.Script.Infrastructure
         public void Start()
         {
             _mainSystems.Init();
-            //_physicsSystems.Init();
 
             _endGameSystem.EndGame += EndGameHandler;
             _inputService.OnPausePressed += OnPausePressed;
@@ -84,16 +80,10 @@ namespace Game.Script.Infrastructure
             _mainSystems.Run();
         }
 
-        // public void FixedTick()
-        // {
-        //     if (IsPaused) return;
-        //     _physicsSystems.Run();
-        // }
 
         public void Dispose()
         {
             _mainSystems.Destroy();
-            //_physicsSystems.Destroy();
             _inputService.OnPausePressed -= OnPausePressed;
             IsPaused = true;
         }

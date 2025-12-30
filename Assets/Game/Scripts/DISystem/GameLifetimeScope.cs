@@ -4,6 +4,7 @@ using Game.Script.Input;
 using Game.Script.Modules;
 using Game.Script.Systems;
 using Leopotam.EcsProto;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Playables;
 using VContainer;
@@ -22,6 +23,7 @@ namespace Game.Script.DISystem
         [SerializeField] private Grid grid;
         [SerializeField] private PlayableDirector playableDirector;
         [SerializeField] private UIController uiController;
+        [SerializeField] private CinemachineTargetGroup cinemachineTargetGroup;
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -30,6 +32,7 @@ namespace Game.Script.DISystem
             builder.RegisterEntryPoint<GameStateManager>();
             builder.Register<ManualPlayerSpawner>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<InputService>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
+            builder.RegisterComponent(cinemachineTargetGroup);
             
             builder.Register<GameResources>(Lifetime.Singleton);
             builder.Register<RecipeService>(Lifetime.Singleton);

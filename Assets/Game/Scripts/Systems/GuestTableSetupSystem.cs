@@ -7,8 +7,8 @@ using UnityEngine;
 // Определяем константы
 public static class GridConstants
 {
-    public const float VERTICAL_RAYCAST_DISTANCE = 1.04f;
-    public const float HORIZONTAL_RAYCAST_DISTANCE = 1.26f;
+    public const float VERTICAL_RAYCAST_DISTANCE = 1f;
+    public const float HORIZONTAL_RAYCAST_DISTANCE = 1f;
 }
 
 public class GuestTableSetupSystem : IProtoInitSystem, IProtoRunSystem
