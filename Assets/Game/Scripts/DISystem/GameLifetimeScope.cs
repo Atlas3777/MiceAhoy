@@ -25,10 +25,10 @@ namespace Game.Script.DISystem
 
         protected override void Configure(IContainerBuilder builder)
         {
-            Debug.Log("1111111111111111");
-            builder.Register<SceneController>(Lifetime.Singleton);
+            Debug.Log("GameLifetimeScope : Configure");
+            
             builder.RegisterEntryPoint<GameStateManager>();
-            Debug.Log("rfrjsfhdsazklfh");
+            
             builder.Register<GameResources>(Lifetime.Singleton);
             builder.Register<RecipeService>(Lifetime.Singleton);
             builder.Register<PickableService>(Lifetime.Singleton);
@@ -48,15 +48,21 @@ namespace Game.Script.DISystem
         
         private void RegisterECSWorldAndSystems(IContainerBuilder builder)
         {
-            builder.Register<MainGameECSWorldFactory>(Lifetime.Singleton);
+            //builder.Register<MainGameECSWorldFactory>(Lifetime.Singleton);
 
+            // builder.Register<IProtoSystems>(container =>
+            //         container.Resolve<MainGameECSWorldFactory>().CreateMainSystems(), Lifetime.Singleton)
+            //     .Keyed(IProtoSystemsType.MainSystem);
+
+            // builder.Register<IProtoSystems>(container =>
+            //         container.Resolve<MainGameECSWorldFactory>().CreatePhysicsSystems(), Lifetime.Singleton)
+            //     .Keyed(IProtoSystemsType.PhysicsSystem);
+            
+            builder.Register<ECSWorldFactory>(Lifetime.Singleton);
+            
             builder.Register<IProtoSystems>(container =>
-                    container.Resolve<MainGameECSWorldFactory>().MainSystemsECSFactory(), Lifetime.Singleton)
+                    container.Resolve<ECSWorldFactory>().CreateMainSystems(), Lifetime.Singleton)
                 .Keyed(IProtoSystemsType.MainSystem);
-
-            builder.Register<IProtoSystems>(container =>
-                    container.Resolve<MainGameECSWorldFactory>().PhysicsSystemsECSFactory(), Lifetime.Singleton)
-                .Keyed(IProtoSystemsType.PhysicsSystem);
         }
         
         private void RegisterModules(IContainerBuilder builder)
@@ -72,7 +78,7 @@ namespace Game.Script.DISystem
             builder.Register<StoveSystemFactory>(Lifetime.Singleton);
             builder.Register<ItemSourceGeneratorSystemFactory>(Lifetime.Singleton);
             builder.Register<SyncUnityPhysicsToEcsSystemFactory>(Lifetime.Singleton);
-            builder.Register<PickPlaceSystemFactory>(Lifetime.Singleton);
+            //builder.Register<PickPlaceSystemFactory>(Lifetime.Singleton);
             builder.Register<ClearSystemFactory>(Lifetime.Singleton);
             builder.Register<PlayerSpawnFurnitureSystemFactory>(Lifetime.Singleton);
             builder.Register<CreateGameObjectsSystemFactory>(Lifetime.Singleton);
@@ -88,7 +94,8 @@ namespace Game.Script.DISystem
         private void RegisterProtoSystems(IContainerBuilder builder)
         {
             builder.Register<EndGameSystem>(Lifetime.Singleton);
-
+            builder.Register<PickPlaceSystem>(Lifetime.Singleton);
+            
             builder.RegisterFactory<ItemSourceGeneratorSystem>(container =>
                 container.Resolve<ItemSourceGeneratorSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
 
@@ -98,11 +105,14 @@ namespace Game.Script.DISystem
             builder.RegisterFactory<SyncUnityPhysicsToEcsSystem>(container =>
                 container.Resolve<SyncUnityPhysicsToEcsSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
 
-            builder.RegisterFactory<PickPlaceSystem>(container =>
-                container.Resolve<PickPlaceSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
+            // builder.RegisterFactory<PickPlaceSystem>(container =>
+            //     container.Resolve<PickPlaceSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
 
             builder.RegisterFactory<ClearSystem>(container =>
                 container.Resolve<ClearSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
+            
+            // builder.RegisterFactory<EndGameSystem>(container =>
+            //     container.Resolve<EndGameSystemSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
 
             builder.RegisterFactory<PlayerSpawnFurnitureSystem>(container =>
                 container.Resolve<PlayerSpawnFurnitureSystemFactory>().CreateProtoSystem, Lifetime.Singleton);

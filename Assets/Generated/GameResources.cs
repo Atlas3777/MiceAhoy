@@ -52,10 +52,15 @@ public class GameResources
         public CanvasScaler HUD => Resources.Load<CanvasScaler>("UIPrefabs/HUD");
         public UIController UIConroller => Resources.Load<UIController>("UIPrefabs/UIConroller");
     }
+    public Workstations WorkstationsLink;
+    public class Workstations
+    {
+        public CustomAuthoring Fridge => Resources.Load<CustomAuthoring>("Workstations/Fridge");
+        public CustomAuthoring Table => Resources.Load<CustomAuthoring>("Workstations/Table");
+    }
     public GameObject barrel => Resources.Load<GameObject>("barrel");
     public AudioClip button_click_clear_soft => Resources.Load<AudioClip>("button-click-clear-soft");
     public AudioClip fonovyy_zvuk_krik_chaek_shum_vody => Resources.Load<AudioClip>("fonovyy-zvuk-krik-chaek-shum-vody");
-    public CustomAuthoring Fridge => Resources.Load<CustomAuthoring>("Fridge");
     public CustomAuthoring FridgeSpawner => Resources.Load<CustomAuthoring>("FridgeSpawner");
     public CustomAuthoring Guest => Resources.Load<CustomAuthoring>("Guest");
     public CustomAuthoring GuestGroup => Resources.Load<CustomAuthoring>("GuestGroup");
@@ -71,7 +76,6 @@ public class GameResources
     public CustomAuthoring Refrigerator => Resources.Load<CustomAuthoring>("Refrigerator");
     public CustomAuthoring Stove => Resources.Load<CustomAuthoring>("Stove");
     public CustomAuthoring StoveSpawner => Resources.Load<CustomAuthoring>("StoveSpawner");
-    public CustomAuthoring Table => Resources.Load<CustomAuthoring>("Table");
     public CustomAuthoring TableSpawner => Resources.Load<CustomAuthoring>("TableSpawner");
 
     public GameResources()
@@ -82,5 +86,6 @@ public class GameResources
         PlacementObjectsLink = new PlacementObjects();
         RecipesLink = new Recipes();
         UIPrefabsLink = new UIPrefabs();
+        WorkstationsLink = new Workstations();
     }
 }

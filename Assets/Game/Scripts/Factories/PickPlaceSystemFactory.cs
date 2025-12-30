@@ -1,4 +1,4 @@
-using Game.Script.Systems;
+﻿using Game.Script.Systems;
 
 namespace Game.Script.Factories
 {

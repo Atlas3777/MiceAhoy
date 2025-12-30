@@ -50,7 +50,6 @@ public struct ItemGenerationAvailableTag : IComponent
 public struct InteractableComponent : IComponent
 {
     public SpriteRenderer SpriteRenderer;
-    public SpriteOutlineController OutlineController;
 }
 
 

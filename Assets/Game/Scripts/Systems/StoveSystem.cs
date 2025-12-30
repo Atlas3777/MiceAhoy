@@ -6,7 +6,6 @@ public class StoveSystem : IProtoInitSystem, IProtoRunSystem
 {
     [DI] readonly WorkstationsAspect _workstationsAspect;
     [DI] readonly PlayerAspect _playerAspect;
-    [DI] readonly ItemAspect _itemAspect;
     [DI] readonly BaseAspect _baseAspect;
     [DI] readonly ViewAspect _viewAspect;
     [DI] readonly ProtoWorld _world;

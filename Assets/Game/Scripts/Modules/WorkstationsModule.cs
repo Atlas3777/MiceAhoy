@@ -38,7 +38,7 @@ public class WorkstationsModule : IProtoModule
 
     public IProtoAspect[] Aspects()
     {
-        return new IProtoAspect[] { new WorkstationsAspect(), new ItemAspect() };
+        return new IProtoAspect[] { new WorkstationsAspect() };
     }
 
     public Type[] Dependencies()

@@ -1,7 +1,7 @@
 ﻿using System;
+using Game.Script.Aspects;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
-using Leopotam.EcsProto.Unity;
 using TMPro;
 using UnityEngine;
 
@@ -10,6 +10,14 @@ public class BaseAspect : ProtoAspectInject
     public ProtoPool<TimerComponent> TimerPool;
     public ProtoPool<TimerCompletedEvent> TimerCompletedPool;
     public ProtoPool<VisualizationInfoComponent> VisualizationInfoComponentPool;
+    
+    public GuestAspect GuestAspect;
+    public GuestGroupAspect  GuestGroupAspect;
+    public WorkstationsAspect  WorkstationsAspect;
+    public ViewAspect  ViewAspect;
+    public PlayerAspect   PlayerAspect;
+    public PlacementAspect PlacementAspect;
+    public PhysicsAspect PhysicsAspect; 
 }
 
 public interface IComponent

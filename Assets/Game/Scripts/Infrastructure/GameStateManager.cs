@@ -13,10 +13,10 @@ namespace Game.Script.Infrastructure
         Win
     }
     
-    public class GameStateManager : IStartable, ITickable, IFixedTickable, IDisposable
+    public class GameStateManager : IStartable, ITickable, IDisposable
     {
         private IProtoSystems _mainSystems;
-        private IProtoSystems _physicsSystems;
+        //private IProtoSystems _physicsSystems;
         private InputService _inputService;
         
         private EndGameSystem  _endGameSystem;
@@ -28,14 +28,14 @@ namespace Game.Script.Infrastructure
 
         public GameStateManager(
             [Key(IProtoSystemsType.MainSystem)] IProtoSystems mainSystems,
-            [Key(IProtoSystemsType.PhysicsSystem)] IProtoSystems physicsSystems,
+            //[Key(IProtoSystemsType.PhysicsSystem)] IProtoSystems physicsSystems,
             InputService inputService,
             UIController uiController,
             EndGameSystem endGameSystem)
         {
             Debug.Log("Starting game state manager");
             _mainSystems = mainSystems;
-            _physicsSystems = physicsSystems;
+            //_physicsSystems = physicsSystems;
             _inputService = inputService;
             _uiController = uiController;
             _endGameSystem = endGameSystem;
@@ -44,7 +44,7 @@ namespace Game.Script.Infrastructure
         public void Start()
         {
             _mainSystems.Init();
-            _physicsSystems.Init();
+            //_physicsSystems.Init();
 
             _endGameSystem.EndGame += EndGameHandler;
             _inputService.OnPausePressed += OnPausePressed;
@@ -86,16 +86,16 @@ namespace Game.Script.Infrastructure
             _mainSystems.Run();
         }
 
-        public void FixedTick()
-        {
-            if (IsPaused) return;
-            _physicsSystems.Run();
-        }
+        // public void FixedTick()
+        // {
+        //     if (IsPaused) return;
+        //     _physicsSystems.Run();
+        // }
 
         public void Dispose()
         {
             _mainSystems.Destroy();
-            _physicsSystems.Destroy();
+            //_physicsSystems.Destroy();
             _inputService.OnPausePressed -= OnPausePressed;
             IsPaused = true;
         }

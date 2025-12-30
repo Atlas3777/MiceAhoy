@@ -2,7 +2,7 @@
 
 [RequireComponent(typeof(SpriteRenderer))]
 [ExecuteInEditMode]
-public class SpriteOutlineController : MonoBehaviour
+public class priteOutlineController : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private Color _outlineColor = Color.white;

@@ -27,8 +27,9 @@ public class MainGameECSWorldFactory
         _workstationsModule = workstationsModule;
         _placementModule = placementModule;
     }
+    
 
-    public IProtoSystems MainSystemsECSFactory()
+    public IProtoSystems CreateMainSystems()
     {
         BuildWorld();
         _mainSystems = new ProtoSystems(_world);
@@ -38,7 +39,7 @@ public class MainGameECSWorldFactory
     }
 
 
-    public IProtoSystems PhysicsSystemsECSFactory()
+    public IProtoSystems CreatePhysicsSystems()
     {
         BuildWorld();
         _physicsSystems = new ProtoSystems(_world);

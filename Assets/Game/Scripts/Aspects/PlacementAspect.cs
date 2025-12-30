@@ -5,7 +5,7 @@ using Leopotam.EcsProto.QoL;
 using Leopotam.EcsProto.Unity;
 using UnityEngine;
 
-internal class PlacementAspect : ProtoAspectInject
+public class PlacementAspect : ProtoAspectInject
 {
     public ProtoPool<FurnitureComponent> FurniturePool;
     public ProtoPool<PlacementTransformComponent> PlacementTransformPool;
@@ -36,13 +36,13 @@ public struct MoveThisFurnitureTag
     public ProtoPackedEntityWithWorld Invoker;
 }
 
-internal struct CreateGameObjectEvent
+public struct CreateGameObjectEvent
 {
     public List<(Type furnitureType, Vector2Int gridPosition)> objects;
     public bool destroyInvoker;
 }
 
-internal struct MoveThisGameObjectEvent
+public struct MoveThisGameObjectEvent
 {
     public Vector2Int newPositionInGrid;
 }
@@ -60,15 +60,15 @@ public struct SpawnerTag : IComponent
     public WorkstationItem spawnObjectType;
 }
 
-internal struct SpawnFurnitureEvent
+public struct SpawnFurnitureEvent
 {
 }
 
-internal struct CreateSpawnersEvent
+public struct CreateSpawnersEvent
 {
 }
 
-internal struct DestroyAllSpawnersEvent
+public struct DestroyAllSpawnersEvent
 {
 
 }

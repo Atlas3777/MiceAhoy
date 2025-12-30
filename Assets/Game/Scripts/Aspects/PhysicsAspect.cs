@@ -1,10 +1,9 @@
 ﻿using System;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
-using Leopotam.EcsProto.Unity;
 using UnityEngine;
 
-internal class PhysicsAspect : ProtoAspectInject
+public class PhysicsAspect : ProtoAspectInject
 {
     public ProtoPool<PositionComponent> PositionPool;
     public ProtoPool<RigidbodyComponent> Rigidbody2DPool;
