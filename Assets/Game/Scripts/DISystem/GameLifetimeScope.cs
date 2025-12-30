@@ -3,10 +3,10 @@ using Game.Script.Infrastructure;
 using Game.Script.Input;
 using Game.Script.Modules;
 using Game.Script.Systems;
+using Game.Scripts;
 using Leopotam.EcsProto;
 using Unity.Cinemachine;
 using UnityEngine;
-using UnityEngine.Playables;
 using VContainer;
 using VContainer.Unity;
 
@@ -20,8 +20,7 @@ namespace Game.Script.DISystem
 
     public class GameLifetimeScope : LifetimeScope
     {
-        [SerializeField] private Grid grid;
-        [SerializeField] private PlayableDirector playableDirector;
+        [SerializeField] private TutorialTaskList tutorialTaskList;
         [SerializeField] private UIController uiController;
         [SerializeField] private CinemachineTargetGroup cinemachineTargetGroup;
 
@@ -30,23 +29,29 @@ namespace Game.Script.DISystem
             Debug.Log("GameLifetimeScope : Configure");
             
             builder.RegisterEntryPoint<GameStateManager>();
+            
             builder.Register<ManualPlayerSpawner>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<InputService>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
-            builder.RegisterComponent(cinemachineTargetGroup);
+            builder.Register<TutorialTaskManager>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
+            
             
             builder.Register<GameResources>(Lifetime.Singleton);
             builder.Register<RecipeService>(Lifetime.Singleton);
             builder.Register<PickableService>(Lifetime.Singleton);
             
-            builder.RegisterComponent(playableDirector).AsSelf();
-            builder.RegisterComponent(uiController).AsSelf();
-            builder.RegisterComponent(grid);
-            
             builder.Register<PlacementGrid>(Lifetime.Singleton);
+            
+            builder.RegisterInstance<TutorialTaskList>(tutorialTaskList);
+            builder.RegisterComponent(cinemachineTargetGroup);
+            builder.RegisterComponent(uiController);
+            
+            
             
             RegisterSystemFactories(builder);
             RegisterProtoSystems(builder);
             RegisterModules(builder);
+            
+            
             RegisterECSWorldAndSystems(builder);
         }
         
@@ -105,6 +110,7 @@ namespace Game.Script.DISystem
             builder.Register<StoveSystem>(Lifetime.Singleton);
             builder.Register<GroupGenerationSystem>(Lifetime.Singleton);
             builder.Register<ClearSystem>(Lifetime.Singleton);
+            builder.Register<PlayerMovementSystem>(Lifetime.Singleton);
             
             // builder.RegisterFactory<ItemSourceGeneratorSystem>(container =>
             //     container.Resolve<ItemSourceGeneratorSystemFactory>().CreateProtoSystem, Lifetime.Singleton);

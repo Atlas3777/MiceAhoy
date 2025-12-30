@@ -1,12 +1,15 @@
-﻿using Leopotam.EcsProto;
+﻿using System;
+using Leopotam.EcsProto;
 using UnityEngine;
 
-class PlayerMovementSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySystem
+public class PlayerMovementSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySystem
 {
     private PlayerAspect _playerAspect;
     private PhysicsAspect _physicsAspect;
         
     private ProtoIt _iterator;
+
+    public event Action PlayerMoved;
 
     public void Init(IProtoSystems systems)
     {
@@ -29,7 +32,10 @@ class PlayerMovementSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySys
             var r = rigidbody.Rigidbody;
 
             var moveDirection = new  Vector3(input.MoveDirection.x, 0, input.MoveDirection.y);
-
+            if (moveDirection != Vector3.zero)
+            {
+                PlayerMoved?.Invoke();
+            }
             
             var desiredVelocity = moveDirection * speed.Value; 
 

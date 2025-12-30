@@ -49,9 +49,16 @@ namespace Game.Script.Infrastructure
         private void EndGameHandler(GameState gameState)
         {
             if (gameState == GameState.Lose)
-                _uiController.ShowLose();
+            {
+                // _uiController.ShowLose();
+                Debug.Log("Game state lost");
+            }
             else if (gameState == GameState.Win)
-                _uiController.ShowWin();
+            {
+                // _uiController.ShowWin();
+                Debug.Log("Game state win");
+                
+            }
         }
 
         private void OnPausePressed()

@@ -36,7 +36,7 @@ namespace Game.Script.Infrastructure
                 
                 .AddSystem(_r.Resolve<PlayerInitializeInputSystem>())
                 .AddSystem(_r.Resolve<UpdateInputSystem>())
-                .AddSystem(new PlayerMovementSystem())
+                .AddSystem(_r.Resolve<PlayerMovementSystem>())
                 .AddSystem(new PlayerTargetSystem())
                 .AddSystem(_r.Resolve<PickPlaceSystem>()) 
                 
