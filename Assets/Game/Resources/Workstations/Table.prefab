@@ -24,13 +24,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1680546510086444260}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.70710653, y: -0, z: -0, w: 0.7071071}
   m_LocalPosition: {x: 0, y: 0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1564977615960006965}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &1682591208383395097
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 1682492821774738684}
   - component: {fileID: 6837691105909070831}
   m_Layer: 0
-  m_Name: SideQ
+  m_Name: FrontQ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -320,12 +320,11 @@ MonoBehaviour:
     - rid: 7346997658554204235
       type: {class: PositionComponent, ns: , asm: Assembly-CSharp}
       data:
-        Position: {x: 5, y: 0.3399986}
+        Position: {x: 0, y: 0}
     - rid: 7346997658554204236
       type: {class: InteractableComponent, ns: , asm: Assembly-CSharp}
       data:
         SpriteRenderer: {fileID: 0}
-        OutlineController: {fileID: 0}
     - rid: 7346997658554204237
       type: {class: HolderComponent, ns: , asm: Assembly-CSharp}
       data:

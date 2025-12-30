@@ -74,10 +74,10 @@ MonoBehaviour:
     AfterOpaque: 0
     Source: 1
     NormalSamples: 1
-    Intensity: 38.71
+    Intensity: 15
     DirectLightingStrength: 0.84
     Radius: 0.4
     Samples: 1
     BlurQuality: 0
-    Falloff: 22.41
+    Falloff: 22
     SampleCount: -1
