@@ -26,7 +26,7 @@ namespace Game.Script.Input
         
         private void Join(InputControl input, InputEventPtr eventPtr)
         {
-            Debug.Log($"ManualPlayerSpawner: join {input.name}");
+            Debug.Log($"ManualPlayerSpawner: join {input.device} {input.displayName}");
             var player = _gameResources.Player.gameObject;
             _objectResolver.Instantiate(player);
         }

@@ -98,12 +98,16 @@ namespace Game.Script.DISystem
             builder.Register<EndGameSystem>(Lifetime.Singleton);
             builder.Register<PickPlaceSystem>(Lifetime.Singleton);
             builder.Register<UpdateInputSystem>(Lifetime.Singleton);
+            builder.Register<ItemSourceGeneratorSystem>(Lifetime.Singleton);
+            builder.Register<StoveSystem>(Lifetime.Singleton);
+            builder.Register<GroupGenerationSystem>(Lifetime.Singleton);
+            builder.Register<ClearSystem>(Lifetime.Singleton);
             
-            builder.RegisterFactory<ItemSourceGeneratorSystem>(container =>
-                container.Resolve<ItemSourceGeneratorSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
+            // builder.RegisterFactory<ItemSourceGeneratorSystem>(container =>
+            //     container.Resolve<ItemSourceGeneratorSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
 
-            builder.RegisterFactory<StoveSystem>(container =>
-                container.Resolve<StoveSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
+            // builder.RegisterFactory<StoveSystem>(container =>
+            //     container.Resolve<StoveSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
 
             builder.RegisterFactory<SyncUnityPhysicsToEcsSystem>(container =>
                 container.Resolve<SyncUnityPhysicsToEcsSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
@@ -114,8 +118,8 @@ namespace Game.Script.DISystem
             // builder.RegisterFactory<PickPlaceSystem>(container =>
             //     container.Resolve<PickPlaceSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
 
-            builder.RegisterFactory<ClearSystem>(container =>
-                container.Resolve<ClearSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
+            // builder.RegisterFactory<ClearSystem>(container =>
+            //     container.Resolve<ClearSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
             
             // builder.RegisterFactory<EndGameSystem>(container =>
             //     container.Resolve<EndGameSystemSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
@@ -135,8 +139,8 @@ namespace Game.Script.DISystem
             builder.RegisterFactory<SyncGridPositionSystem>(container =>
                 container.Resolve<SyncGridPositionSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
 
-            builder.RegisterFactory<GroupGenerationSystem>(container =>
-                container.Resolve<GroupGenerationSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
+            // builder.RegisterFactory<GroupGenerationSystem>(container =>
+            //     container.Resolve<GroupGenerationSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
 
             builder.RegisterFactory<RandomSpawnerPositionSystem>(container =>
                 container.Resolve<RandomSpawnerPositionSystemFactory>().CreateProtoSystem, Lifetime.Singleton);

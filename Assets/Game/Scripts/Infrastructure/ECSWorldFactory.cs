@@ -9,37 +9,24 @@ namespace Game.Script.Infrastructure
 {
     public class ECSWorldFactory
     {
-        private ProtoWorld _world;
-        private ProtoSystems _systems;
-
         private readonly IObjectResolver _r;
-
         public ECSWorldFactory(IObjectResolver resolver)
             => _r = resolver;
-        
 
         public IProtoSystems CreateMainSystems()
         {
-            if (_systems != null)
-                return _systems;
+            var world = new ProtoWorld(new BaseAspect());
+            var systems = BuildMainSystems(world);
 
-            BuildWorld();
-            BuildMainSystems();
-
-            return _systems;
+            return systems;
         }
 
-        private void BuildWorld()
-        {
-            if (_world != null)
-                _world = new ProtoWorld(new BaseAspect());
-        }
 
-        private void BuildMainSystems()
+        private IProtoSystems BuildMainSystems(ProtoWorld world)
         {
-            _systems = new ProtoSystems(_world);
+            var systems = new ProtoSystems(world);
             
-            _systems
+            systems
                 .AddModule(new AutoInjectModule())
                 .AddModule(new UnityModule())
                     
@@ -59,7 +46,7 @@ namespace Game.Script.Infrastructure
                 .AddSystem(_r.Resolve<ItemSourceGeneratorSystem>())
                 .AddSystem(_r.Resolve<StoveSystem>())
                 
-                .AddSystem(_r.Resolve<GroupGenerationSystem>())
+                //.AddSystem(_r.Resolve<GroupGenerationSystem>())
                 .AddSystem(new GuestGroupTableResolveSystem())
                 .AddSystem(new GuestNavigateToTableSystem())
                 .AddSystem(new GuestMovementSystem())
@@ -71,6 +58,7 @@ namespace Game.Script.Infrastructure
                 .AddSystem(_r.Resolve<EndGameSystem>())
                 .AddSystem(new PositionToTransformSystem()) 
                 .AddSystem(_r.Resolve<ClearSystem>(), 999);
+            return systems;
         }
     }
 }
