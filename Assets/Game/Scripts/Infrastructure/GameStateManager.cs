@@ -16,7 +16,6 @@ namespace Game.Script.Infrastructure
     public class GameStateManager : IStartable, ITickable, IDisposable
     {
         private IProtoSystems _mainSystems;
-        //private IProtoSystems _physicsSystems;
         private InputService _inputService;
         
         private EndGameSystem  _endGameSystem;
@@ -28,7 +27,6 @@ namespace Game.Script.Infrastructure
 
         public GameStateManager(
             [Key(IProtoSystemsType.MainSystem)] IProtoSystems mainSystems,
-            //[Key(IProtoSystemsType.PhysicsSystem)] IProtoSystems physicsSystems,
             InputService inputService,
             UIController uiController,
             EndGameSystem endGameSystem)

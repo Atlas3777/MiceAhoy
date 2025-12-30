@@ -603,7 +603,6 @@ MonoBehaviour:
   - {fileID: 986101715}
   grid: {fileID: 0}
   playableDirector: {fileID: 0}
-  inputService: {fileID: 1356073377}
   uiController: {fileID: 1472389985}
 --- !u!4 &100294198
 Transform:
@@ -7250,8 +7249,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1356073379}
   - component: {fileID: 1356073378}
-  - component: {fileID: 1356073377}
-  - component: {fileID: 1356073380}
   m_Layer: 0
   m_Name: PlayerInputSystem
   m_TagString: Untagged
@@ -7259,18 +7256,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1356073377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1356073376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c9d2544440982949932ecaa6debd080, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InputService
 --- !u!114 &1356073378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7285,18 +7270,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInputManager
   m_NotificationBehavior: 3
   m_MaxPlayerCount: -1
-  m_AllowJoining: 1
-  m_JoinBehavior: 0
+  m_AllowJoining: 0
+  m_JoinBehavior: 2
   m_PlayerJoinedEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_PlayerLeftEvent:
     m_PersistentCalls:
       m_Calls: []
   m_JoinAction:
     m_UseReference: 0
     m_Action:
-      m_Name: 
+      m_Name: Join
       m_Type: 0
       m_ExpectedControlType: 
       m_Id: 1a95c3ff-96fe-4d77-b6b3-ff01ed7ab7a7
@@ -7305,7 +7302,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 5505783645829132517, guid: f31b13ab96f8bad43af44b07ecc98850, type: 3}
+  m_PlayerPrefab: {fileID: 0}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1
@@ -7330,21 +7327,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1356073380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1356073376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a950226beaf44d818fca2b2ba7495e5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Leopotam.EcsProto.Unity::Leopotam.EcsProto.Unity.ProtoUnityLink
-  _registrationType: 0
-  _linkName: InputService
-  _inScene: 1
 --- !u!1 &1367352705
 GameObject:
   m_ObjectHideFlags: 0

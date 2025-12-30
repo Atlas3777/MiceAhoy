@@ -5,11 +5,16 @@ using UnityEngine;
 
 class UpdateInputSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySystem    
 {
-    [DIUnity ("InputService")] readonly InputService _inputService = default;
     [DI] readonly ProtoWorld _world = default;
     
     private PlayerAspect _playerAspect;
     private ProtoIt _iterator;
+    private readonly InputService _inputService;
+
+    public UpdateInputSystem(InputService  inputService)
+    {
+        _inputService = inputService;
+    }
 
     public void Init(IProtoSystems systems)
     {

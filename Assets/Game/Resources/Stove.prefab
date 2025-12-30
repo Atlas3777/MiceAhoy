@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 7543198748488558046}
   - component: {fileID: 2738453777984708654}
   - component: {fileID: 2319433236381213680}
-  - component: {fileID: -6836185141013109645}
   m_Layer: 0
   m_Name: Stove
   m_TagString: Untagged
@@ -128,6 +127,8 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 6222298215309639765
       type: {class: PlacementTransformComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -148,7 +149,6 @@ MonoBehaviour:
       type: {class: InteractableComponent, ns: , asm: Assembly-CSharp}
       data:
         SpriteRenderer: {fileID: 0}
-        OutlineController: {fileID: 7543198748488558046}
     - rid: 8223375694890532944
       type: {class: GridPositionComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -164,11 +164,8 @@ MonoBehaviour:
     - rid: 8223375694890532947
       type: {class: HolderComponent, ns: , asm: Assembly-CSharp}
       data:
-        PickableItemVisual:
-          PickableItemSpriteRenderer: {fileID: 1541903302770761854}
-          PlateItemSpriteRenderer: {fileID: 6534712124160355901}
-          PickableItemSprite: {fileID: 0}
-          PlateItemSprite: {fileID: 0}
+        HolderTransform: {fileID: 0}
+        PickableItemVisual: {fileID: 0}
     - rid: 8223375694890532949
       type: {class: ProgressBarComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -301,22 +298,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.26, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-6836185141013109645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 178823374488142866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifier
-  m_OverrideArea: 1
-  m_Area: 1
-  m_IgnoreFromBuild: 0
-  m_AffectedAgents: ffffffff
 --- !u!1 &898031695439570723
 GameObject:
   m_ObjectHideFlags: 0

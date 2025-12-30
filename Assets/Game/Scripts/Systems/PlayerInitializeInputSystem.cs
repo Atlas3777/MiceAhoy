@@ -5,11 +5,15 @@ using UnityEngine;
 
 public class PlayerInitializeInputSystem : IProtoInitSystem, IProtoRunSystem
 {
-    [DIUnity("InputService")] readonly InputService _inputService = default;
+    private readonly InputService _inputService;
     [DI] private PlayerAspect _playerAspect;
     [DI] private ProtoWorld _world;
     private ProtoIt _playerInitializeIt;
 
+    public PlayerInitializeInputSystem(InputService inputService)
+    {
+        _inputService  = inputService;
+    }
     public void Init(IProtoSystems systems)
     {
         _playerInitializeIt = new(new[]

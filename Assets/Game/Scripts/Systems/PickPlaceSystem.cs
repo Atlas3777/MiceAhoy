@@ -8,7 +8,6 @@ namespace Game.Script.Systems
     public class PickPlaceSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySystem
     {
         [DI] readonly WorkstationsAspect _workstationsAspect = default;
-        [DI] readonly GuestAspect _guestAspect = default;
         [DI] readonly PlayerAspect _playerAspect = default;
         [DI] readonly BaseAspect _baseAspect = default;
         [DI] readonly ProtoWorld _world = default;

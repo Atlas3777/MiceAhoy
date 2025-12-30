@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -151064641
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: -4795573259988461060, guid: 321135aa99c5aa34ab1f362fe85a077c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -257,7 +257,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -151064641
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 20
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -284,7 +284,6 @@ GameObject:
   - component: {fileID: 3777577797370295754}
   - component: {fileID: 858956405033609419}
   - component: {fileID: 135783641706292557}
-  - component: {fileID: -5456378214734515099}
   m_Layer: 6
   m_Name: GuestTable
   m_TagString: Untagged
@@ -332,7 +331,6 @@ MonoBehaviour:
   Components:
   - rid: 8223375694890532965
   - rid: 8223375694890532966
-  - rid: 8223375694890532967
   - rid: 8223375694890532968
   - rid: 6709886293115404488
   - rid: 6709886293115404489
@@ -384,11 +382,8 @@ MonoBehaviour:
     - rid: 7346997453272383577
       type: {class: DirtyPlate, ns: Game.Script, asm: Assembly-CSharp}
       data:
-        PickupItemSprite:
-          PickableItemSpriteRenderer: {fileID: 0}
-          PlateItemSpriteRenderer: {fileID: 0}
-          PickableItemSprite: {fileID: 0}
-          PlateItemSprite: {fileID: 0}
+        pickableItemGo: {fileID: 0}
+        satietyRestoration: 0
     - rid: 8223375694890532965
       type: {class: PositionComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -397,19 +392,11 @@ MonoBehaviour:
       type: {class: InteractableComponent, ns: , asm: Assembly-CSharp}
       data:
         SpriteRenderer: {fileID: 9036790696962229687}
-        OutlineController: {fileID: 0}
-    - rid: 8223375694890532967
-      type: {class: Rigidbody2DComponent, ns: , asm: Assembly-CSharp}
-      data:
-        Rigidbody2D: {fileID: 3777577797370295754}
     - rid: 8223375694890532968
       type: {class: HolderComponent, ns: , asm: Assembly-CSharp}
       data:
-        PickableItemVisual:
-          PickableItemSpriteRenderer: {fileID: 6956692444172444326}
-          PlateItemSpriteRenderer: {fileID: 8653305344576166362}
-          PickableItemSprite: {fileID: 0}
-          PlateItemSprite: {fileID: 0}
+        HolderTransform: {fileID: 0}
+        PickableItemVisual: {fileID: 0}
 --- !u!212 &9036790696962229687
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -455,7 +442,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1933854053
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 228
   m_Sprite: {fileID: -406356527201391241, guid: 0262b1353b59f6049b252f5a91376e07, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -465,7 +452,7 @@ SpriteRenderer:
   m_Size: {x: 1.26, y: 1.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &3777577797370295754
@@ -593,22 +580,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.26, y: 1.04}
   m_EdgeRadius: 0
---- !u!114 &-5456378214734515099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7483289833465234307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifier
-  m_OverrideArea: 1
-  m_Area: 1
-  m_IgnoreFromBuild: 0
-  m_AffectedAgents: ffffffff
 --- !u!1001 &1140164340405229538
 PrefabInstance:
   m_ObjectHideFlags: 0

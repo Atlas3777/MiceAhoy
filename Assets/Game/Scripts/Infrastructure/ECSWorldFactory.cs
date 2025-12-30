@@ -12,11 +12,11 @@ namespace Game.Script.Infrastructure
         private ProtoWorld _world;
         private ProtoSystems _systems;
 
-        private readonly IObjectResolver _resolver;
+        private readonly IObjectResolver _r;
 
-        public ECSWorldFactory(IObjectResolver resolver)
+        public ECSWorldFactory(IObjectResolver r)
         {
-            _resolver = resolver;
+            _r = r;
         }
 
         /// <summary>
@@ -45,21 +45,22 @@ namespace Game.Script.Infrastructure
             _systems = new ProtoSystems(_world);
 
             // Разрешаем фабрики и создаём системы
-            var groupGenerationSystem = _resolver.Resolve<GroupGenerationSystemFactory>().CreateProtoSystem();
+            var groupGenerationSystem = _r.Resolve<GroupGenerationSystemFactory>().CreateProtoSystem();
 
-            var playerSpawnFurnitureSystem = _resolver.Resolve<PlayerSpawnFurnitureSystemFactory>().CreateProtoSystem();
-            var createGameObjectsSystem = _resolver.Resolve<CreateGameObjectsSystemFactory>().CreateProtoSystem();
-            var moveFurnitureSystem = _resolver.Resolve<MoveFurnitureSystemFactory>().CreateProtoSystem();
-            var moveGameObjectSystem = _resolver.Resolve<MoveGameObjectSystemFactory>().CreateProtoSystem();
-            var syncGridPositionSystem = _resolver.Resolve<SyncGridPositionSystemFactory>().CreateProtoSystem();
-            var randomSpawnerPositionSystem = _resolver.Resolve<RandomSpawnerPositionSystemFactory>().CreateProtoSystem();
-            var destroySpawnersSystem = _resolver.Resolve<DestroySpawnersSystemFactory>().CreateProtoSystem();
+            var playerSpawnFurnitureSystem = _r.Resolve<PlayerSpawnFurnitureSystemFactory>().CreateProtoSystem();
+            var createGameObjectsSystem = _r.Resolve<CreateGameObjectsSystemFactory>().CreateProtoSystem();
+            var moveFurnitureSystem = _r.Resolve<MoveFurnitureSystemFactory>().CreateProtoSystem();
+            var moveGameObjectSystem = _r.Resolve<MoveGameObjectSystemFactory>().CreateProtoSystem();
+            var syncGridPositionSystem = _r.Resolve<SyncGridPositionSystemFactory>().CreateProtoSystem();
+            var randomSpawnerPositionSystem = _r.Resolve<RandomSpawnerPositionSystemFactory>().CreateProtoSystem();
+            var destroySpawnersSystem = _r.Resolve<DestroySpawnersSystemFactory>().CreateProtoSystem();
 
-            var itemSourceGeneratorSystem = _resolver.Resolve<ItemSourceGeneratorSystemFactory>().CreateProtoSystem();
-            var stoveSystem = _resolver.Resolve<StoveSystemFactory>().CreateProtoSystem();
-            var clearSystem = _resolver.Resolve<ClearSystemFactory>().CreateProtoSystem();
-            var endGameSystem = _resolver.Resolve<EndGameSystem>();
-            var pickPlaceSystem = _resolver.Resolve<PickPlaceSystem>();
+            var itemSourceGeneratorSystem = _r.Resolve<ItemSourceGeneratorSystemFactory>().CreateProtoSystem();
+            var stoveSystem = _r.Resolve<StoveSystemFactory>().CreateProtoSystem();
+            var clearSystem = _r.Resolve<ClearSystemFactory>().CreateProtoSystem();
+            var endGameSystem = _r.Resolve<EndGameSystem>();
+            var pickPlaceSystem = _r.Resolve<PickPlaceSystem>();
+            
             
             _systems
                 .AddModule(new AutoInjectModule())
@@ -69,8 +70,8 @@ namespace Game.Script.Infrastructure
                 .AddSystem(new TimerSystem())
                 .AddSystem(new ProgressBarSystem())
                 
-                .AddSystem(new PlayerInitializeInputSystem())
-                .AddSystem(new UpdateInputSystem())
+                .AddSystem(_r.Resolve<PlayerInitializeInputSystem>())
+                .AddSystem(_r.Resolve<UpdateInputSystem>())
                 .AddSystem(new PlayerMovementSystem())
                 .AddSystem(new PlayerTargetSystem())
                 .AddSystem(pickPlaceSystem) 

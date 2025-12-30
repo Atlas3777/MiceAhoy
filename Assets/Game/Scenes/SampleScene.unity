@@ -939,7 +939,6 @@ MonoBehaviour:
   - {fileID: 986101715}
   grid: {fileID: 0}
   playableDirector: {fileID: 0}
-  inputService: {fileID: 1356073377}
   uiController: {fileID: 1472389985}
 --- !u!4 &100294198
 Transform:
@@ -9059,8 +9058,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1356073379}
   - component: {fileID: 1356073378}
-  - component: {fileID: 1356073377}
-  - component: {fileID: 1356073380}
   m_Layer: 0
   m_Name: PlayerInputSystem
   m_TagString: Untagged
@@ -9068,18 +9065,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1356073377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1356073376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c9d2544440982949932ecaa6debd080, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InputService
 --- !u!114 &1356073378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9094,8 +9079,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInputManager
   m_NotificationBehavior: 3
   m_MaxPlayerCount: -1
-  m_AllowJoining: 1
-  m_JoinBehavior: 0
+  m_AllowJoining: 0
+  m_JoinBehavior: 2
   m_PlayerJoinedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -9114,7 +9099,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 5505783645829132517, guid: f31b13ab96f8bad43af44b07ecc98850, type: 3}
+  m_PlayerPrefab: {fileID: 0}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1
@@ -9139,21 +9124,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1356073380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1356073376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a950226beaf44d818fca2b2ba7495e5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Leopotam.EcsProto.Unity::Leopotam.EcsProto.Unity.ProtoUnityLink
-  _registrationType: 0
-  _linkName: InputService
-  _inScene: 1
 --- !u!1 &1367352705
 GameObject:
   m_ObjectHideFlags: 0
@@ -10050,7 +10020,7 @@ PrefabInstance:
     - target: {fileID: 5965812277585143668, guid: 0c51845555ca98c41b84658ad04e73ed, type: 3}
       propertyPath: DayCountText
       value: 
-      objectReference: {fileID: 1690197641}
+      objectReference: {fileID: 0}
     - target: {fileID: 5965812277585143668, guid: 0c51845555ca98c41b84658ad04e73ed, type: 3}
       propertyPath: gameResultWin
       value: 
@@ -11273,14 +11243,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1637640375465416326, guid: 0712a29a232c81341b639a0153cd1ab2, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1637640375465416326, guid: 0712a29a232c81341b639a0153cd1ab2, type: 3}
-      propertyPath: m_PlaneDistance
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2528113051132028057, guid: 0712a29a232c81341b639a0153cd1ab2, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -11366,25 +11328,10 @@ PrefabInstance:
       value: HUD
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 1780636930084586816, guid: 0712a29a232c81341b639a0153cd1ab2, type: 3}
-    - {fileID: 4452333107984944229, guid: 0712a29a232c81341b639a0153cd1ab2, type: 3}
-    - {fileID: 3265865127053919803, guid: 0712a29a232c81341b639a0153cd1ab2, type: 3}
-    - {fileID: 6988520332337785603, guid: 0712a29a232c81341b639a0153cd1ab2, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0712a29a232c81341b639a0153cd1ab2, type: 3}
---- !u!114 &1690197641 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5975269972334111616, guid: 0712a29a232c81341b639a0153cd1ab2, type: 3}
-  m_PrefabInstance: {fileID: 1690197640}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &1694939566
 GameObject:
   m_ObjectHideFlags: 0

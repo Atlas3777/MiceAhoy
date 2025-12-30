@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.InputSystem;
+using VContainer.Unity;
 
-public class InputService : MonoBehaviour
+public class InputService : ILateTickable
 {
-    public static InputService Instance { get; private set; }
-
     public struct PlayerInputData
     {
         public Vector2 MoveDirection;
@@ -21,17 +20,6 @@ public class InputService : MonoBehaviour
     private Dictionary<int, PlayerInputData> _playerInputs = new();
 
     private Queue<int> _pendingPlayerIndices = new();
-
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-    }
 
     public Action OnPausePressed;
 
@@ -77,7 +65,7 @@ public class InputService : MonoBehaviour
         {
             // Этот код должен вызываться только для зарегистрированных игроков.
             // Если он сработал, значит, компонент PlayerInput не был зарегистрирован вовремя.
-            Debug.LogError($"InputService: Attempted to UpdateState for unregistered player index {playerIndex}. Registration must happen first (e.g., in PlayerInputHandler's Start or OnPlayerJoined).");
+            Debug.LogError($"InputService: Attempted to UpdateState for unregistered player index {playerIndex}. Registration must happen first");
             return;
         }
 
@@ -107,9 +95,8 @@ public class InputService : MonoBehaviour
 
     public int CountActivePlayerIndices() => _playerInputs.Count;
 
-    private void LateUpdate()
+    public void LateTick()
     {
-        // Сброс булевых флагов нажатий после обработки в конце кадра
         var keys = _playerInputs.Keys.ToList();
         foreach (var playerIndex in keys)
         {

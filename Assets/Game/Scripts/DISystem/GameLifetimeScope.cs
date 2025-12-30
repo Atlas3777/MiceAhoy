@@ -1,5 +1,6 @@
 using Game.Script.Factories;
 using Game.Script.Infrastructure;
+using Game.Script.Input;
 using Game.Script.Modules;
 using Game.Script.Systems;
 using Leopotam.EcsProto;
@@ -20,7 +21,6 @@ namespace Game.Script.DISystem
     {
         [SerializeField] private Grid grid;
         [SerializeField] private PlayableDirector playableDirector;
-        [SerializeField] private InputService inputService;
         [SerializeField] private UIController uiController;
 
         protected override void Configure(IContainerBuilder builder)
@@ -28,6 +28,8 @@ namespace Game.Script.DISystem
             Debug.Log("GameLifetimeScope : Configure");
             
             builder.RegisterEntryPoint<GameStateManager>();
+            builder.Register<ManualPlayerSpawner>(Lifetime.Singleton).AsImplementedInterfaces();
+            builder.Register<InputService>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
             
             builder.Register<GameResources>(Lifetime.Singleton);
             builder.Register<RecipeService>(Lifetime.Singleton);
@@ -35,7 +37,6 @@ namespace Game.Script.DISystem
             
             builder.RegisterComponent(playableDirector).AsSelf();
             builder.RegisterComponent(uiController).AsSelf();
-            builder.RegisterComponent(inputService).AsSelf();
             builder.RegisterComponent(grid);
             
             builder.Register<PlacementGrid>(Lifetime.Singleton);
@@ -88,6 +89,7 @@ namespace Game.Script.DISystem
             builder.Register<GroupGenerationSystemFactory>(Lifetime.Singleton);
             builder.Register<RandomSpawnerPositionSystemFactory>(Lifetime.Singleton);
             builder.Register<DestroySpawnersSystemFactory>(Lifetime.Singleton);
+            builder.Register<PlayerInitializeInputSystem>(Lifetime.Singleton);
             //builder.Register<EndGameSystemSystemFactory>(Lifetime.Singleton);
         }
 
@@ -95,6 +97,7 @@ namespace Game.Script.DISystem
         {
             builder.Register<EndGameSystem>(Lifetime.Singleton);
             builder.Register<PickPlaceSystem>(Lifetime.Singleton);
+            builder.Register<UpdateInputSystem>(Lifetime.Singleton);
             
             builder.RegisterFactory<ItemSourceGeneratorSystem>(container =>
                 container.Resolve<ItemSourceGeneratorSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
@@ -104,6 +107,9 @@ namespace Game.Script.DISystem
 
             builder.RegisterFactory<SyncUnityPhysicsToEcsSystem>(container =>
                 container.Resolve<SyncUnityPhysicsToEcsSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
+            
+            builder.RegisterFactory<PlayerInitializeInputSystem>(container =>
+                container.Resolve<PlayerInitializeInputSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
 
             // builder.RegisterFactory<PickPlaceSystem>(container =>
             //     container.Resolve<PickPlaceSystemFactory>().CreateProtoSystem, Lifetime.Singleton);

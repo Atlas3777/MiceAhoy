@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using VContainer;
 
 
 [RequireComponent(typeof(PlayerInput))]
@@ -8,17 +9,19 @@ public class PlayerInputHandler : MonoBehaviour
     private PlayerInput _playerInput;
     private int _playerIndex;
     private bool _isPressHandled = false;
+    
+    [Inject] private InputService _inputService;
 
     private void Awake()
     {
         _playerInput = GetComponent<PlayerInput>();
         _playerIndex = _playerInput.playerIndex;
-        InputService.Instance.RegisterPlayer(_playerIndex, _playerInput);
+        _inputService.RegisterPlayer(_playerIndex, _playerInput);
+
     }
 
     private void Start()
     {
-        
     }
 
     private void OnEnable()
@@ -28,7 +31,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void HandleInput(InputAction.CallbackContext context)
     {
-        var state = InputService.Instance.GetPlayerInputState(_playerIndex);
+        var state = _inputService.GetPlayerInputState(_playerIndex);
 
         switch (context.action.name)
         {
@@ -49,7 +52,7 @@ public class PlayerInputHandler : MonoBehaviour
                 break;
         }
 
-        InputService.Instance.UpdateState(_playerIndex, state);
+        _inputService.UpdateState(_playerIndex, state);
     }
 
     private void OnPause(InputAction.CallbackContext context, ref InputService.PlayerInputData state)
@@ -58,7 +61,7 @@ public class PlayerInputHandler : MonoBehaviour
         if (context.performed && !_isPressHandled)
         {
             _isPressHandled = true; // Блокируем дальнейшие срабатывания
-            InputService.Instance.OnPausePressed.Invoke();
+            _inputService.OnPausePressed.Invoke();
         }
     
         // 2. Сбрасываем флаг, когда кнопка отпущена

@@ -41,7 +41,6 @@ internal class PlayerTargetSystem : IProtoInitSystem, IProtoRunSystem
             //если игрок сейчас двигает мебель, то что-то подсвечивать не нужно
             if (playerInput.IsMoveFurnitureNow) continue;
 
-            InteractableComponent interactableComponent = default;
             ProtoEntity targetEntity = default;
             var minAngle = float.MaxValue;
 
