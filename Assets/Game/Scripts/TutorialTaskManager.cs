@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Game.Scripts.TutorialTasks;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -14,9 +15,9 @@ namespace Game.Scripts
         private int _currentIndex = -1;
         private IObjectResolver _container;
 
-        public event Action<string> OnTaskStart;
-        public event Action OnTaskComplete;
-        public event Action OnAllTasksCompleted;
+        public event Action<string> TaskStart;
+        public event Action TaskComplete;
+        public event Action AllTasksCompleted;
 
         public TutorialTaskManager(IObjectResolver container, TutorialTaskList taskList)
         {
@@ -40,34 +41,23 @@ namespace Game.Scripts
             _currentIndex = index;
             var task = _tasks[_currentIndex];
         
-            task.OnComplete += HandleTaskComplete;
+            task.Complete += OnTaskComplete;
             task.Enter(_container);
-        
-            OnTaskStart?.Invoke(task.Description);
+            TaskStart?.Invoke(task.Description);
+            
             Debug.Log($"[Tutorial] Начата задача: {task.Description}");
         }
 
-        private void HandleTaskComplete()
+        private void OnTaskComplete()
         {
             var completedTask = _tasks[_currentIndex];
-            completedTask.OnComplete -= HandleTaskComplete;
+            completedTask.Complete -= OnTaskComplete;
             completedTask.Exit();
 
             _currentIndex++;
             
-            // if (nextIndex < _tasks.Count)
-            // {
-            //     OnTaskComplete?.Invoke();
-            //     StartTask(nextIndex);
-            // }
-            // else
-            // {
-            //     Debug.Log("[Tutorial] Все задачи выполнены!");
-            //     OnAllTasksCompleted?.Invoke();
-            // }
-            
             Debug.Log($"[Tutorial] Задача помечена выполненной, ожидаем подтверждения от UI. nextIndex={_currentIndex}");
-            OnTaskComplete?.Invoke();
+            TaskComplete?.Invoke();
         }
         public void ProceedToNextTask()
         {
@@ -78,8 +68,8 @@ namespace Game.Scripts
             else
             {
                 Debug.Log("[Tutorial] Все задачи выполнены!");
-                OnAllTasksCompleted?.Invoke();
-                _currentIndex = -1;  // Reset only after all tasks are done
+                AllTasksCompleted?.Invoke();
+                _currentIndex = -1;
             }
         }
 
@@ -88,56 +78,10 @@ namespace Game.Scripts
         {
             if (_currentIndex >= 0 && _currentIndex < _tasks.Count)
             {
-                _tasks[_currentIndex].OnComplete -= HandleTaskComplete;
+                _tasks[_currentIndex].Complete -= OnTaskComplete;
                 _tasks[_currentIndex].Exit();
             }
             _container?.Dispose();
-        }
-    }
-
-    [Serializable]
-    public abstract class TutorialTask
-    {
-        public abstract string Description { get; }
-    
-        public event Action OnComplete;
-
-        public abstract void Enter(IObjectResolver resolver);
-
-        public abstract void Exit();
-
-        protected void NotifyComplete()
-        {
-            OnComplete?.Invoke();
-        }
-    }
-
-    [Serializable]
-    public class MoveTask : TutorialTask
-    {
-        public override string Description => "TEST-TEST Используй WASD, чтобы двигаться";
-    
-        private PlayerMovementSystem _movementSystem;
-
-        public override void Enter(IObjectResolver resolver)
-        {
-            if (resolver.TryResolve<PlayerMovementSystem>(out _movementSystem))
-                _movementSystem.PlayerMoved += HandleMovement;
-            else
-                UnityEngine.Debug.LogError("MoveTask: PlayerMovementSystem не найден в контейнере!");
-        }
-
-        private void HandleMovement()
-        {
-            NotifyComplete();
-        }
-
-        public override void Exit()
-        {
-            if (_movementSystem != null)
-            {
-                _movementSystem.PlayerMoved -= HandleMovement;
-            }
         }
     }
 }

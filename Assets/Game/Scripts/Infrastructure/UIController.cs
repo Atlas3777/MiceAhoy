@@ -4,6 +4,7 @@ using Game.Script.Infrastructure;
 using Game.Scripts;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using VContainer;
 
@@ -12,37 +13,33 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private Button exitToMainMenuButton;
 
-    [Header("Task HUD")]
-    [SerializeField] private GameObject activeTask;
-    private TMP_Text _taskText;
-    private TypewriterByCharacter _taskTypewriter;
+    [Header("Task HUD")] [SerializeField] private GameObject activeTask;
+    [SerializeField] private TMP_Text taskText;
+    [SerializeField] private TypewriterByCharacter taskTypewriter;
 
-    [Header("Completed HUD")]
-    [SerializeField] private GameObject completedTaskWindow; // окно/плашка с "Выполнено"
-    private TypewriterByCharacter _completedTaskWindowTypewriter;
+    [Header("Completed HUD")] [SerializeField]
+    private GameObject completedTaskWindow;
+    [SerializeField] private TMP_Text taskCompileText;
+    [SerializeField] private TypewriterByCharacter completedTaskWindowTypewriter;
 
     private SceneController _sceneController;
     private TutorialTaskManager _tutorialTaskManager;
 
-    // состояния печати
     private bool _isTaskTyping = false;
-    private bool _isCompletedTyping = false;
-    
+    private bool _isCompletedTextTyping = false;
+
     private bool _tutorialFinished = false;
 
-    // когда менеджер пометил задачу как выполненную — UI ставит этот флаг и ждёт,
-    // когда оба typewriter'а перестанут печатать, чтобы вызвать ProceedToNextTask.
     private bool _advanceRequestedByManager = false;
 
     private void Awake()
     {
-        _taskText = activeTask.GetComponentInChildren<TMP_Text>();
-        _taskTypewriter = activeTask.GetComponentInChildren<TypewriterByCharacter>();
+        // taskText = activeTask.GetComponentInChildren<TMP_Text>();
+        // taskTypewriter = activeTask.GetComponentInChildren<TypewriterByCharacter>();
+        //
+        // completedTaskWindowTypewriter = completedTaskWindow.GetComponentInChildren<TypewriterByCharacter>();
 
-        _completedTaskWindowTypewriter = completedTaskWindow.GetComponentInChildren<TypewriterByCharacter>();
-
-        // начально скрываем окно выполнено
-        if (completedTaskWindow != null)
+        if (completedTaskWindow)
             completedTaskWindow.SetActive(false);
     }
 
@@ -52,94 +49,81 @@ public class UIController : MonoBehaviour
         _sceneController = sceneController;
         _tutorialTaskManager = tutorialTaskManager;
 
-        _tutorialTaskManager.OnTaskStart += UpdateTaskText;
-        _tutorialTaskManager.OnAllTasksCompleted += AllTasksCompleted;
-        _tutorialTaskManager.OnTaskComplete += OnTaskMarkedCompleteByManager;
+        _tutorialTaskManager.TaskStart += UpdateTaskText;
+        _tutorialTaskManager.AllTasksCompleted += AllTasksCompleted;
+        _tutorialTaskManager.TaskComplete += TaskMarkedCompleteByManager;
 
-        // Подпишемся на события завершения печати у typewriter'ов
-        if (_taskTypewriter)
-            _taskTypewriter.onTextShowed.AddListener(OnTaskTextFullyShown);
+        if (taskTypewriter)
+        {
+            Debug.Log("Tutorial task typewriter");
+            taskTypewriter.onTextShowed.AddListener(OnTaskTextFullyShown);
+        }
 
-        if (_completedTaskWindowTypewriter)
-            _completedTaskWindowTypewriter.onTextShowed.AddListener(OnCompletedTextFullyShown);
+        if (completedTaskWindowTypewriter)
+        {
+            Debug.Log("Tutorial completed task window");
+            completedTaskWindowTypewriter.onTextShowed.AddListener(OnCompletedTextFullyShown);
+        }
 
         Debug.Log("TutorialTaskManager и UIController инициализированы");
-    }
-
-    private void Start()
-    {
-        // exitToMainMenuButton.onClick.AddListener(_sceneController.LoadMainMenuScene);
     }
 
     private void OnDestroy()
     {
         if (_tutorialTaskManager != null)
         {
-            _tutorialTaskManager.OnTaskStart -= UpdateTaskText;
-            _tutorialTaskManager.OnAllTasksCompleted -= AllTasksCompleted;
-            _tutorialTaskManager.OnTaskComplete -= OnTaskMarkedCompleteByManager;
+            _tutorialTaskManager.TaskStart -= UpdateTaskText;
+            _tutorialTaskManager.AllTasksCompleted -= AllTasksCompleted;
+            _tutorialTaskManager.TaskComplete -= TaskMarkedCompleteByManager;
         }
 
-        if (_taskTypewriter)
-            _taskTypewriter.onTextShowed.RemoveListener(OnTaskTextFullyShown);
+        if (taskTypewriter)
+            taskTypewriter.onTextShowed.RemoveListener(OnTaskTextFullyShown);
 
-        if (_completedTaskWindowTypewriter)
-            _completedTaskWindowTypewriter.onTextShowed.RemoveListener(OnCompletedTextFullyShown);
+        if (completedTaskWindowTypewriter)
+            completedTaskWindowTypewriter.onTextShowed.RemoveListener(OnCompletedTextFullyShown);
     }
 
     private void AllTasksCompleted()
     {
         _tutorialFinished = true;
 
-        // сбрасываем всю логику ожидания перехода
         _advanceRequestedByManager = false;
         _isTaskTyping = false;
-        _isCompletedTyping = false;
+        _isCompletedTextTyping = false;
 
-        // скрываем окно "выполнено"
         if (completedTaskWindow != null)
             completedTaskWindow.SetActive(false);
 
-        //HideInlineCheckmark();
-
-        // гарантированно показываем финальный текст
         if (!activeTask.activeSelf)
             activeTask.SetActive(true);
 
-        _taskText.text = "Все задачи выполнены";
+        taskText.text = "Все задачи выполнены";
 
-        // если typewriter настроен на автоматический старт, иначе явно запускаем
-        if (_taskTypewriter != null && !_taskTypewriter.isShowingText)
+        if (taskTypewriter != null && !taskTypewriter.isShowingText)
         {
-            _taskTypewriter.StartShowingText();
+            taskTypewriter.StartShowingText();
         }
 
         _isTaskTyping = true;
     }
 
-    // Менеджер вызвал этот эвент — задача помечена как выполненной.
-    // UI показывает окно "Выполнено" (или галочку) и ждёт окончания печати.
-    private void OnTaskMarkedCompleteByManager()
+    private void TaskMarkedCompleteByManager()
     {
-        //ShowInlineCheckmark();
+        if (!completedTaskWindow) return;
+        completedTaskWindow.SetActive(true);
+        taskCompileText.text = "Выполнено";
 
-        if (completedTaskWindow != null)
+        if (completedTaskWindowTypewriter)
         {
-            completedTaskWindow.SetActive(true);
-
-            if (_completedTaskWindowTypewriter != null)
+            if (!completedTaskWindowTypewriter.isShowingText)
             {
-                if (!_completedTaskWindowTypewriter.isShowingText)
-                {
-                    _completedTaskWindowTypewriter.StartShowingText();
-                }
-                _isCompletedTyping = true;
+                completedTaskWindowTypewriter.StartShowingText();
             }
-            else
-            {
-                _isCompletedTyping = false;
-            }
+            _isCompletedTextTyping = true;
         }
+        else
+            _isCompletedTextTyping = false;
 
         _advanceRequestedByManager = true;
         TryAdvanceIfReady();
@@ -150,36 +134,24 @@ public class UIController : MonoBehaviour
         if (!activeTask.activeSelf)
             activeTask.SetActive(true);
 
-        // Сбрасываем возможные состояния предыдущей комплит-плашки
-        if (completedTaskWindow != null)
+        if (completedTaskWindow)
             completedTaskWindow.SetActive(false);
 
-        //HideInlineCheckmark();
-
-        _taskText.text = taskText;
-
-        // явно запускаем typewriter, если не стартует автоматически
-        if (_taskTypewriter != null && !_taskTypewriter.isShowingText)
-        {
-            _taskTypewriter.StartShowingText();
-        }
-
+        this.taskText.text = taskText;
+        taskTypewriter.StartShowingText();
         _isTaskTyping = true;
     }
 
     private void OnTaskTextFullyShown()
     {
+        Debug.Log("OnTaskTextFullyShown");
         _isTaskTyping = false;
-
-        if (_tutorialFinished)
-            return;
-
         TryAdvanceIfReady();
     }
 
     private void OnCompletedTextFullyShown()
     {
-        _isCompletedTyping = false;
+        _isCompletedTextTyping = false;
         TryAdvanceIfReady();
     }
 
@@ -188,30 +160,16 @@ public class UIController : MonoBehaviour
         if (!_advanceRequestedByManager)
             return;
 
-        if (_isTaskTyping || _isCompletedTyping)
+        if (_isTaskTyping || _isCompletedTextTyping)
             return;
 
         _advanceRequestedByManager = false;
 
-        if (completedTaskWindow != null)
+        if (completedTaskWindow)
             completedTaskWindow.SetActive(false);
-
-        //HideInlineCheckmark();
 
         _tutorialTaskManager.ProceedToNextTask();
     }
-
-    // private void ShowInlineCheckmark()
-    // {
-    //     var check = activeTask.transform.Find("CheckIcon");
-    //     if (check != null) check.gameObject.SetActive(true);
-    // }
-    //
-    // private void HideInlineCheckmark()
-    // {
-    //     var check = activeTask.transform.Find("CheckIcon");
-    //     if (check != null) check.gameObject.SetActive(false);
-    // }
 
     public void OpenPauseMenu()
     {

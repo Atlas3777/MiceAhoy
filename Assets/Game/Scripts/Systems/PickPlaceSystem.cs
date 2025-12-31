@@ -1,4 +1,5 @@
-﻿using Game.Script.Aspects;
+﻿using System;
+using Game.Script.Aspects;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using UnityEngine;
@@ -14,6 +15,8 @@ namespace Game.Script.Systems
 
         private ProtoIt _iterator;
 
+        public event Action PlayerPick;
+
         public void Init(IProtoSystems systems)
         {
             _iterator = new(new[] { typeof(PickPlaceEvent), typeof(HolderComponent) });
@@ -26,21 +29,14 @@ namespace Game.Script.Systems
             {
                 ref var pickPlaceEvent = ref _workstationsAspect.PickPlaceEventPool.Get(interactedEntity);
 
-                // 1. Проверяем валидность игрока. Если игрок "мертв", пропускаем итерацию.
-                if (!pickPlaceEvent.Invoker.TryUnpack(out _, out var playerEntity))
-                {
-                    _workstationsAspect.PickPlaceEventPool.DelIfExists(interactedEntity);
-                    continue;
-                }
+                if (!pickPlaceEvent.Invoker.TryUnpack(out _, out var playerEntity)) continue;
 
                 ref var interactedHolder = ref _playerAspect.HolderPool.Get(interactedEntity);
                 ref var playerHolder = ref _playerAspect.HolderPool.Get(playerEntity);
 
-                // 2. Определяем состояние через наличие тегов (или можно проверять Holder.Entity.IsAlive())
-                bool playerHasItem = _playerAspect.HasItemTagPool.Has(playerEntity);
-                bool interactedHolderHasItem = _playerAspect.HasItemTagPool.Has(interactedEntity);
+                var playerHasItem = _playerAspect.HasItemTagPool.Has(playerEntity);
+                var interactedHolderHasItem = _playerAspect.HasItemTagPool.Has(interactedEntity);
 
-                // 3. Используем switch по кортежу для обработки 4-х ситуаций
                 switch (playerHasItem, tableHasItem: interactedHolderHasItem)
                 {
                     case (false, false):
@@ -48,6 +44,7 @@ namespace Game.Script.Systems
                         break;
 
                     case (false, true):
+                        PlayerPick?.Invoke();
                         if (!_workstationsAspect.ItemSourcePool.Has(interactedEntity))
                         {
                             Debug.Log("Берем со стола!");
@@ -57,13 +54,15 @@ namespace Game.Script.Systems
                         }
                         else
                             Debug.Log("Берём новый предмет");
+
                         _workstationsAspect.ItemPickEventPool.Add(interactedEntity);
                         break;
 
                     case (true, false):
                         Debug.Log("Кладем на стол!");
                         _workstationsAspect.ItemPlaceEventPool.GetOrAdd(interactedEntity);
-                        Helper.TransferItem(from: playerEntity, to: interactedEntity, ref playerHolder, ref interactedHolder,
+                        Helper.TransferItem(from: playerEntity, to: interactedEntity, ref playerHolder,
+                            ref interactedHolder,
                             _playerAspect, _baseAspect);
                         break;
 

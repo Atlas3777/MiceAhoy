@@ -4,6 +4,7 @@ using Game.Script.Input;
 using Game.Script.Modules;
 using Game.Script.Systems;
 using Game.Scripts;
+using Game.Scripts.TutorialTasks;
 using Leopotam.EcsProto;
 using Unity.Cinemachine;
 using UnityEngine;

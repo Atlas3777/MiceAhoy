@@ -9,14 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b7ec2e027e04337a62690b6d73fc8a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 3514f29719b74b139569868ee84b0899, type: 3}
   m_Name: TutorialTaskList
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.TutorialTaskList
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.TutorialTasks.TutorialTaskList
   Tasks:
-  - rid: 6709886953413148743
+  - rid: 6709886965016952902
+  - rid: 6709886965016952903
   references:
     version: 2
     RefIds:
-    - rid: 6709886953413148743
-      type: {class: MoveTask, ns: Game.Scripts, asm: Assembly-CSharp}
+    - rid: 6709886965016952902
+      type: {class: MoveTask, ns: Game.Scripts.TutorialTasks, asm: Assembly-CSharp}
+      data: 
+    - rid: 6709886965016952903
+      type: {class: PickTask, ns: Game.Scripts.TutorialTasks, asm: Assembly-CSharp}
       data: 
