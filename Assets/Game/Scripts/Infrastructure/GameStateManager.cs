@@ -18,7 +18,7 @@ namespace Game.Script.Infrastructure
         private readonly IProtoSystems _mainSystems;
         private readonly InputService _inputService;
         private readonly EndGameSystem  _endGameSystem;
-        private readonly UIController _uiController;
+        private readonly PauseView _pauseView;
         
         public bool IsPaused {get; private set;}
         public Action<GameState> EndGame;
@@ -26,13 +26,13 @@ namespace Game.Script.Infrastructure
         public GameStateManager(
             [Key(IProtoSystemsType.MainSystem)] IProtoSystems mainSystems,
             InputService inputService,
-            UIController uiController,
+            PauseView pauseView,
             EndGameSystem endGameSystem)
         {
             Debug.Log("Starting game state manager");
             _mainSystems = mainSystems;
             _inputService = inputService;
-            _uiController = uiController;
+            _pauseView = pauseView;
             _endGameSystem = endGameSystem;
         }
         
@@ -67,7 +67,7 @@ namespace Game.Script.Infrastructure
             {
                 IsPaused = true;
                 _inputService.SwitchAllActionMapsTo("UI");
-                _uiController.OpenPauseMenu();
+                _pauseView.OpenPauseMenu();
                 Time.timeScale = 0;
                 Debug.Log("Game Paused. Input Map switched to UI.");
             }
@@ -75,7 +75,7 @@ namespace Game.Script.Infrastructure
             {
                 IsPaused = false;
                 _inputService.SwitchAllActionMapsTo("Player");
-                _uiController.ClosePauseMenu();
+                _pauseView.ClosePauseMenu();
                 Time.timeScale = 1;
                 Debug.Log("Game Unpaused. Input Map switched to Player.");
             }

@@ -599,9 +599,10 @@ MonoBehaviour:
   parentReference:
     TypeName: 
   autoRun: 1
-  autoInjectGameObjects: []
+  autoInjectGameObjects:
+  - {fileID: 762857707}
   tutorialTaskList: {fileID: 11400000, guid: 9dcaab6c0b410a543bbf8517d23b3e4e, type: 2}
-  uiController: {fileID: 762857711}
+  pauseView: {fileID: 394319262}
   cinemachineTargetGroup: {fileID: 1278852000}
 --- !u!4 &100294198
 Transform:
@@ -1230,7 +1231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Febucci.TextAnimator.Runtime::Febucci.UI.TypewriterByCharacter
   useTypeWriter: 1
-  startTypewriterMode: 3
+  startTypewriterMode: 2
   hideAppearancesOnSkip: 0
   hideDisappearancesOnSkip: 0
   triggerEventsOnSkip: 0
@@ -1272,7 +1273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8ace8ced0e81c847968cdca0aeda757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Febucci.TextAnimator.TMP.Runtime::Febucci.UI.TextAnimator_TMP
-  typewriterStartsAutomatically: 1
+  typewriterStartsAutomatically: 0
   animationLoop: 0
   timeScale: 0
   _text: "<noparse></noparse>\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435
@@ -3300,6 +3301,62 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1170451477}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1 &394319260
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 394319261}
+  - component: {fileID: 394319262}
+  m_Layer: 5
+  m_Name: Pause
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &394319261
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394319260}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 762857710}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &394319262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394319260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfacc0f4dc004bba964e1df20f03ef8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseView
+  pauseMenu: {fileID: 0}
+  exitToMainMenuButton: {fileID: 0}
+  activeTask: {fileID: 0}
+  taskText: {fileID: 0}
+  taskTypewriter: {fileID: 0}
+  completedTaskWindow: {fileID: 0}
+  taskCompileText: {fileID: 0}
+  completedTaskWindowTypewriter: {fileID: 0}
 --- !u!1 &405380827
 GameObject:
   m_ObjectHideFlags: 0
@@ -4769,7 +4826,7 @@ GameObject:
   - component: {fileID: 762857710}
   - component: {fileID: 762857709}
   - component: {fileID: 762857708}
-  - component: {fileID: 762857711}
+  - component: {fileID: 762857712}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -4837,6 +4894,7 @@ RectTransform:
   m_Children:
   - {fileID: 1737187741}
   - {fileID: 1962671868}
+  - {fileID: 394319261}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4844,7 +4902,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &762857711
+--- !u!114 &762857712
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4853,17 +4911,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 762857707}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfacc0f4dc004bba964e1df20f03ef8b, type: 3}
+  m_Script: {fileID: 11500000, guid: 62c07704242e485aa47b184501f9368a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UIController
-  pauseMenu: {fileID: 0}
-  exitToMainMenuButton: {fileID: 0}
-  activeTask: {fileID: 1737187740}
-  taskText: {fileID: 148590464}
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialUIController
+  taskGroup: {fileID: 1737187746}
   taskTypewriter: {fileID: 148590462}
-  completedTaskWindow: {fileID: 1962671867}
-  taskCompileText: {fileID: 1763716279}
-  completedTaskWindowTypewriter: {fileID: 1763716281}
+  taskText: {fileID: 148590464}
+  completedGroup: {fileID: 1962671871}
+  completedText: {fileID: 1763716279}
 --- !u!1 &799371863
 GameObject:
   m_ObjectHideFlags: 0
@@ -7392,6 +7447,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1170451477}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!4 &1268755520 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5855621613044057051, guid: 017ae1e074c7b1a409d9bbbb1bdcb971, type: 3}
+  m_PrefabInstance: {fileID: 1913465532}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1278851999
 GameObject:
   m_ObjectHideFlags: 0
@@ -8633,6 +8693,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fridge
       objectReference: {fileID: 0}
+    - target: {fileID: 8766884320135700761, guid: a69446931e5b334458f248477b2a3e68, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9201,6 +9265,11 @@ MeshFilter:
 --- !u!1 &1590386935 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4949581644060774540, guid: 3602724711db5f84799bfc136256b72f, type: 3}
+  m_PrefabInstance: {fileID: 1969879235}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1590386938 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6173034450013360008, guid: 3602724711db5f84799bfc136256b72f, type: 3}
   m_PrefabInstance: {fileID: 1969879235}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1637227674
@@ -10336,6 +10405,7 @@ GameObject:
   - component: {fileID: 1737187744}
   - component: {fileID: 1737187743}
   - component: {fileID: 1737187742}
+  - component: {fileID: 1737187746}
   m_Layer: 5
   m_Name: Task(Layout+image)
   m_TagString: Untagged
@@ -10353,7 +10423,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 148590461}
   m_Father: {fileID: 762857710}
@@ -10441,6 +10511,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1737187740}
   m_CullTransparentMesh: 1
+--- !u!225 &1737187746
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737187740}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1739885806
 GameObject:
   m_ObjectHideFlags: 0
@@ -10680,7 +10762,7 @@ GameObject:
   - component: {fileID: 1763716282}
   - component: {fileID: 1763716281}
   m_Layer: 5
-  m_Name: DoneText
+  m_Name: CompletedText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10825,12 +10907,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1763716276}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57a6945b90dcd0c4b81619c0d8b5c283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Febucci.TextAnimator.Runtime::Febucci.UI.TypewriterByCharacter
-  useTypeWriter: 1
+  useTypeWriter: 0
   startTypewriterMode: 3
   hideAppearancesOnSkip: 0
   hideDisappearancesOnSkip: 0
@@ -10873,7 +10955,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8ace8ced0e81c847968cdca0aeda757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Febucci.TextAnimator.TMP.Runtime::Febucci.UI.TextAnimator_TMP
-  typewriterStartsAutomatically: 1
+  typewriterStartsAutomatically: 0
   animationLoop: 0
   timeScale: 0
   _text: "\u0412\u044B\u043F\u043E\u043B\u043D\u0435\u043D\u043E"
@@ -11462,7 +11544,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1564977615960006965, guid: 017ae1e074c7b1a409d9bbbb1bdcb971, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1564977615960006965, guid: 017ae1e074c7b1a409d9bbbb1bdcb971, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11470,7 +11552,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1564977615960006965, guid: 017ae1e074c7b1a409d9bbbb1bdcb971, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1564977615960006965, guid: 017ae1e074c7b1a409d9bbbb1bdcb971, type: 3}
       propertyPath: m_LocalRotation.w
@@ -11513,6 +11595,14 @@ PrefabInstance:
       value: Assembly-CSharp HasItemTag
       objectReference: {fileID: 0}
     - target: {fileID: 4459233110914282488, guid: 017ae1e074c7b1a409d9bbbb1bdcb971, type: 3}
+      propertyPath: managedReferences[7346997658554204235].Position.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459233110914282488, guid: 017ae1e074c7b1a409d9bbbb1bdcb971, type: 3}
+      propertyPath: managedReferences[7346997658554204235].Position.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459233110914282488, guid: 017ae1e074c7b1a409d9bbbb1bdcb971, type: 3}
       propertyPath: managedReferences[7346997658554204237].PickableItemVisual
       value: 
       objectReference: {fileID: 1590386935}
@@ -11522,7 +11612,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5855621613044057051, guid: 017ae1e074c7b1a409d9bbbb1bdcb971, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1590386938}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 017ae1e074c7b1a409d9bbbb1bdcb971, type: 3}
 --- !u!1 &1945308457
@@ -11855,8 +11948,9 @@ GameObject:
   - component: {fileID: 1962671868}
   - component: {fileID: 1962671870}
   - component: {fileID: 1962671869}
+  - component: {fileID: 1962671871}
   m_Layer: 5
-  m_Name: Done(Image)
+  m_Name: Completed(Image)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11920,6 +12014,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1962671867}
   m_CullTransparentMesh: 1
+--- !u!225 &1962671871
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962671867}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1968117883
 GameObject:
   m_ObjectHideFlags: 0
@@ -12038,7 +12144,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1268755520}
     m_Modifications:
     - target: {fileID: -7018556360123477561, guid: 3602724711db5f84799bfc136256b72f, type: 3}
       propertyPath: satietyRestoration
@@ -12050,15 +12156,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6173034450013360008, guid: 3602724711db5f84799bfc136256b72f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.062
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6173034450013360008, guid: 3602724711db5f84799bfc136256b72f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.606
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6173034450013360008, guid: 3602724711db5f84799bfc136256b72f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6173034450013360008, guid: 3602724711db5f84799bfc136256b72f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -13007,4 +13113,3 @@ SceneRoots:
   - {fileID: 894206529}
   - {fileID: 1913465532}
   - {fileID: 1509507973}
-  - {fileID: 1969879235}

@@ -22,7 +22,7 @@ namespace Game.Script.DISystem
     public class GameLifetimeScope : LifetimeScope
     {
         [SerializeField] private TutorialTaskList tutorialTaskList;
-        [SerializeField] private UIController uiController;
+        [SerializeField] private PauseView pauseView;
         [SerializeField] private CinemachineTargetGroup cinemachineTargetGroup;
 
         protected override void Configure(IContainerBuilder builder)
@@ -44,7 +44,7 @@ namespace Game.Script.DISystem
             
             builder.RegisterInstance<TutorialTaskList>(tutorialTaskList);
             builder.RegisterComponent(cinemachineTargetGroup);
-            builder.RegisterComponent(uiController);
+            builder.RegisterComponent(pauseView);
             
             
             

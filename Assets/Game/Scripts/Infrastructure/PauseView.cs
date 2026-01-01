@@ -8,7 +8,7 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 using VContainer;
 
-public class UIController : MonoBehaviour
+public class PauseView : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private Button exitToMainMenuButton;
@@ -28,7 +28,7 @@ public class UIController : MonoBehaviour
     private bool _isTaskTyping = false;
     private bool _isCompletedTextTyping = false;
 
-    private bool _tutorialFinished = false;
+    //private bool _tutorialFinished = false;
 
     private bool _advanceRequestedByManager = false;
 
@@ -43,7 +43,7 @@ public class UIController : MonoBehaviour
             completedTaskWindow.SetActive(false);
     }
 
-    [Inject]
+    //[Inject]
     private void Initialize(SceneController sceneController, TutorialTaskManager tutorialTaskManager)
     {
         _sceneController = sceneController;
@@ -86,7 +86,7 @@ public class UIController : MonoBehaviour
 
     private void AllTasksCompleted()
     {
-        _tutorialFinished = true;
+        //_tutorialFinished = true;
 
         _advanceRequestedByManager = false;
         _isTaskTyping = false;
