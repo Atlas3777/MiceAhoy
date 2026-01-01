@@ -33,21 +33,21 @@ public class RandomSpawnerPositionSystem : IProtoInitSystem, IProtoRunSystem, IP
     { 
         foreach (var entityEvent in _iteratorEvent) 
         {
-            if (!_placementAspect.CreateGameObjectEventPool.Has(entityEvent))
-                _placementAspect.CreateGameObjectEventPool.Add(entityEvent);
-            ref var createGO = ref _placementAspect.CreateGameObjectEventPool.Get(entityEvent);
-            createGO.destroyInvoker = false;
-
-            createGO.objects ??= new();
-            for (int i = 0; i < 3; i++)
-            {
-                var cell = new Vector2Int(rnd.Next(worldGrid.PlacementZoneSize.x),
-                    rnd.Next(worldGrid.PlacementZoneSize.y));
-                var type = spawnerTypes[rnd.Next(spawnerTypes.Count)];
-                if (worldGrid.IsValidEmptyCell(cell))
-                    createGO.objects.Add((type,cell));
-            }
-            _placementAspect.CreateSpawnersEventPool.DelIfExists(entityEvent);
+            // if (!_placementAspect.CreateGameObjectEventPool.Has(entityEvent))
+            //     _placementAspect.CreateGameObjectEventPool.Add(entityEvent);
+            // ref var createGO = ref _placementAspect.CreateGameObjectEventPool.Get(entityEvent);
+            // createGO.destroyInvoker = false;
+            //
+            // createGO.objects ??= new();
+            // for (int i = 0; i < 3; i++)
+            // {
+            //     var cell = new Vector2Int(rnd.Next(worldGrid.PlacementZoneSize.x),
+            //         rnd.Next(worldGrid.PlacementZoneSize.y));
+            //     var type = spawnerTypes[rnd.Next(spawnerTypes.Count)];
+            //     if (worldGrid.IsValidEmptyCell(cell))
+            //         createGO.objects.Add((type,cell));
+            // }
+            // _placementAspect.CreateSpawnersEventPool.DelIfExists(entityEvent);
         }
     }
 

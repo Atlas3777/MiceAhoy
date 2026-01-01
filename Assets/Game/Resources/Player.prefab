@@ -376,14 +376,21 @@ MonoBehaviour:
   - rid: 6709886398881071184
   - rid: 6709886398881071186
   - rid: 6709886695004438799
-  - rid: 7346997658554204252
+  - rid: 1239605930776854806
   references:
     version: 2
     RefIds:
+    - rid: 1239605930776854806
+      type: {class: VisualizationInfoComponent, ns: Game.Scripts.Aspects, asm: Assembly-CSharp}
+      data:
+        AllInfo: {fileID: 6130618373860877934}
+        Info:
+          satietyRestoration: {fileID: 1269709820235219348}
     - rid: 6709886398881071179
       type: {class: PlayerInputComponent, ns: , asm: Assembly-CSharp}
       data:
         MoveDirection: {x: 0, y: 0}
+        LookDirection: {x: 0, y: 0}
         InteractPressed: 0
         PickPlacePressed: 0
         RandomSpawnFurniturePressed: 0
@@ -393,7 +400,7 @@ MonoBehaviour:
     - rid: 6709886398881071182
       type: {class: PositionComponent, ns: , asm: Assembly-CSharp}
       data:
-        Position: {x: 0, y: 0}
+        Position: {x: 0, y: 0, z: 0}
     - rid: 6709886398881071183
       type: {class: HolderComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -414,12 +421,6 @@ MonoBehaviour:
       type: {class: MovementSpeedComponent, ns: , asm: Assembly-CSharp}
       data:
         Value: 5
-    - rid: 7346997658554204252
-      type: {class: VisualizationInfoComponent, ns: , asm: Assembly-CSharp}
-      data:
-        AllInfo: {fileID: 6130618373860877934}
-        Info:
-          satietyRestoration: {fileID: 1269709820235219348}
 --- !u!114 &7491341558457626327
 MonoBehaviour:
   m_ObjectHideFlags: 0

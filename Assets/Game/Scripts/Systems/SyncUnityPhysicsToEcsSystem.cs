@@ -19,7 +19,7 @@ public class SyncUnityPhysicsToEcsSystem : IProtoInitSystem, IProtoRunSystem
     {
         foreach (var entity in _iterator)
         {
-            ref var rb = ref _physics.Rigidbody2DPool.Get(entity);
+            ref var rb = ref _physics.RigidbodyPool.Get(entity);
             if (!rb.Rigidbody)
                 continue;
             ref var pos = ref _physics.PositionPool.Get(entity);

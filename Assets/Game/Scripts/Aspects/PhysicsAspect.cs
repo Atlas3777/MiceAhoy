@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.Scripts.Aspects;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine;
 public class PhysicsAspect : ProtoAspectInject
 {
     public ProtoPool<PositionComponent> PositionPool;
-    public ProtoPool<RigidbodyComponent> Rigidbody2DPool;
+    public ProtoPool<RigidbodyComponent> RigidbodyPool;
     public ProtoPool<MovementSpeedComponent> MovementSpeedPool;
     public ProtoPool<GridPositionComponent> GridPositionPool;
     public ProtoPool<UnityTransformRef> UnityTransformPool;
@@ -15,13 +16,13 @@ public class PhysicsAspect : ProtoAspectInject
 [Serializable]
 public struct PositionComponent : IComponent
 {
-    public Vector2 Position;
+    public Vector3 Position;
 }
 
 [Serializable]
 public struct GridPositionComponent : IComponent
 {
-    public Vector2Int Position;
+    public Vector3Int Position;
 }
 
 [Serializable]
@@ -37,7 +38,11 @@ public struct MovementSpeedComponent : IComponent
 }
 
 [Serializable]
-public struct UnityTransformRef : IComponent
+public struct UnityTransformRef : IComponent, IUnityAuthoring
 {
     public Transform Transform;
+    public void Authoring(in ProtoPackedEntityWithWorld entity, GameObject go)
+    {
+        Transform =  go.transform;
+    }
 }

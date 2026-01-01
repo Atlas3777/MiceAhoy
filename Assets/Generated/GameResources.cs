@@ -55,8 +55,14 @@ public class GameResources
     public Workstations WorkstationsLink;
     public class Workstations
     {
+        public CustomAuthoring Base_Furniture => Resources.Load<CustomAuthoring>("Workstations/Base_Furniture");
         public CustomAuthoring Fridge => Resources.Load<CustomAuthoring>("Workstations/Fridge");
+        public CustomAuthoring Fridge_OLD => Resources.Load<CustomAuthoring>("Workstations/Fridge_OLD");
+        public CustomAuthoring Furniture_1x1_Base => Resources.Load<CustomAuthoring>("Workstations/Furniture_1x1_Base");
+        public CustomAuthoring Furniture_1x2_Base => Resources.Load<CustomAuthoring>("Workstations/Furniture_1x2_Base");
+        public CustomAuthoring GuestTable => Resources.Load<CustomAuthoring>("Workstations/GuestTable");
         public CustomAuthoring Table => Resources.Load<CustomAuthoring>("Workstations/Table");
+        public CustomAuthoring TableOld => Resources.Load<CustomAuthoring>("Workstations/TableOld");
     }
     public GameObject barrel => Resources.Load<GameObject>("barrel");
     public AudioClip button_click_clear_soft => Resources.Load<AudioClip>("button-click-clear-soft");

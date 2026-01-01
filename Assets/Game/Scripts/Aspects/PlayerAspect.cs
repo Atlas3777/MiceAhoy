@@ -1,5 +1,6 @@
 ﻿using System;
 using Game.Script;
+using Game.Scripts.Aspects;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using Leopotam.EcsProto.Unity;
@@ -51,22 +52,9 @@ public struct HasItemTag : IComponent
 [Serializable]
 public struct PlayerInputComponent : IComponent
 {
-    public Vector2 MoveDirection;
-    private Vector2 LookDirectionOld;
+    public Vector2 MoveDirection; 
+    public Vector2 LookDirection;
 
-    public Vector2 LookDirection
-    {
-        get
-        {
-            if (MoveDirection != Vector2.zero)
-            {
-                LookDirectionOld = MoveDirection.normalized;
-                return MoveDirection.normalized;
-            }
-
-            return LookDirectionOld;
-        }
-    }
 
 
     public bool InteractPressed;

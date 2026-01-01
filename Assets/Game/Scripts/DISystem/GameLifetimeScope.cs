@@ -58,16 +58,6 @@ namespace Game.Script.DISystem
         
         private void RegisterECSWorldAndSystems(IContainerBuilder builder)
         {
-            //builder.Register<MainGameECSWorldFactory>(Lifetime.Singleton);
-
-            // builder.Register<IProtoSystems>(container =>
-            //         container.Resolve<MainGameECSWorldFactory>().CreateMainSystems(), Lifetime.Singleton)
-            //     .Keyed(IProtoSystemsType.MainSystem);
-
-            // builder.Register<IProtoSystems>(container =>
-            //         container.Resolve<MainGameECSWorldFactory>().CreatePhysicsSystems(), Lifetime.Singleton)
-            //     .Keyed(IProtoSystemsType.PhysicsSystem);
-            
             builder.Register<ECSWorldFactory>(Lifetime.Singleton);
             
             builder.Register<IProtoSystems>(container =>
@@ -112,6 +102,7 @@ namespace Game.Script.DISystem
             builder.Register<GroupGenerationSystem>(Lifetime.Singleton);
             builder.Register<ClearSystem>(Lifetime.Singleton);
             builder.Register<PlayerMovementSystem>(Lifetime.Singleton);
+            builder.Register<SyncGridPositionSystem>(Lifetime.Singleton);
             
             // builder.RegisterFactory<ItemSourceGeneratorSystem>(container =>
             //     container.Resolve<ItemSourceGeneratorSystemFactory>().CreateProtoSystem, Lifetime.Singleton);

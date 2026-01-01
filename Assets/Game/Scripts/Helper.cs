@@ -1,4 +1,5 @@
 ﻿using Game.Script;
+using Game.Scripts.Aspects;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using UnityEngine;
@@ -74,7 +75,7 @@ public static class Helper
     {
         ref var itemVisualizationData = ref baseAspect.VisualizationInfoComponentPool.Get(playerEntity);
         itemVisualizationData.Info.satietyRestoration.text = item.satietyRestoration.ToString();
-        Debug.Log("тыче говна пожрал, сынок?");
+        //Debug.Log("тыче говна пожрал, сынок?");
         itemVisualizationData.Show();
     }
 }

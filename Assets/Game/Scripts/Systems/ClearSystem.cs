@@ -1,4 +1,5 @@
 ﻿using Game.Script.Aspects;
+using Game.Scripts.Aspects;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using UnityEngine;
@@ -24,6 +25,7 @@ namespace Game.Script.Systems
         private ProtoIt _groupArrivedEventIt;
         private ProtoIt _guestGroupServedEventIt;
         private ProtoIt _playerInitializeItEventIt;
+        private ProtoIt _selectedByPlayerTagIt;
 
         public void Init(IProtoSystems systems)
         {
@@ -33,11 +35,12 @@ namespace Game.Script.Systems
             _iteratorTimer = new(new[] { typeof(TimerComponent), typeof(TimerCompletedEvent) });
             _placeWorkstationIt = new(new[] { typeof(PlaceWorkstationEvent) });
             _interactedEventIt = new(new[] { typeof(InteractedEvent) });
-            _reachedTargetPositionEventIt = new (new[] {typeof(ReachedTargetPositionEvent) });
-            _groupArrivedEventIt = new (new[] {typeof(GroupArrivedEvent) });
-            _guestGroupServedEventIt = new (new[] {typeof(GuestGroupServedEvent) });
-            _playerInitializeItEventIt = new  (new[] {typeof(PlayerInitializeEvent) });
-            
+            _reachedTargetPositionEventIt = new(new[] { typeof(ReachedTargetPositionEvent) });
+            _groupArrivedEventIt = new(new[] { typeof(GroupArrivedEvent) });
+            _guestGroupServedEventIt = new(new[] { typeof(GuestGroupServedEvent) });
+            _playerInitializeItEventIt = new(new[] { typeof(PlayerInitializeEvent) });
+            _selectedByPlayerTagIt = new(new[] { typeof(SelectedByPlayerEvent)});
+
             _iteratorPick.Init(_world);
             _iteratorPlace.Init(_world);
             _iteratorPickPlace.Init(_world);
@@ -48,6 +51,7 @@ namespace Game.Script.Systems
             _groupArrivedEventIt.Init(_world);
             _guestGroupServedEventIt.Init(_world);
             _playerInitializeItEventIt.Init(_world);
+            _selectedByPlayerTagIt.Init(_world);
         }
 
         public void Run()
@@ -66,24 +70,27 @@ namespace Game.Script.Systems
                 _baseAspect.TimerCompletedPool.Del(item);
                 _baseAspect.TimerPool.Del(item);
             }
-            
+
             foreach (var item in _placeWorkstationIt)
                 _workstationsAspect.PlaceWorkstationEventPool.Del(item);
-            
-            foreach(var item in _interactedEventIt)
+
+            foreach (var item in _interactedEventIt)
                 _workstationsAspect.InteractedEventPool.Del(item);
-            
-            foreach(var item in _reachedTargetPositionEventIt)
+
+            foreach (var item in _reachedTargetPositionEventIt)
                 _guestAspect.ReachedTargetPositionEventPool.Del(item);
-            
+
             foreach (var item in _groupArrivedEventIt)
                 _guestGroupAspect.GroupArrivedEventPool.Del(item);
-            
+
             foreach (var item in _guestGroupServedEventIt)
                 _guestGroupAspect.GuestGroupServedEventPool.Del(item);
-            
-            foreach(var item in _playerInitializeItEventIt)
+
+            foreach (var item in _playerInitializeItEventIt)
                 _playerAspect.PlayerInitializeEventPool.Del(item);
+
+            foreach (var item in _selectedByPlayerTagIt)
+                _baseAspect.SelectedByPlayerTagPool.Del(item);
         }
     }
 }

@@ -27,15 +27,14 @@ public class PlayerMovementSystem : IProtoInitSystem, IProtoRunSystem, IProtoDes
         {
             ref var input = ref _playerAspect.InputRawPool.Get(entity);
             ref var speed = ref _physicsAspect.MovementSpeedPool.Get(entity);
-            ref var rigidbody = ref _physicsAspect.Rigidbody2DPool.Get(entity);
+            ref var rigidbody = ref _physicsAspect.RigidbodyPool.Get(entity);
 
             var r = rigidbody.Rigidbody;
 
-            var moveDirection = new  Vector3(input.MoveDirection.x, 0, input.MoveDirection.y);
+            var moveDirection = new Vector3(input.MoveDirection.x, 0, input.MoveDirection.y);
+            
             if (moveDirection != Vector3.zero)
-            {
                 PlayerMoved?.Invoke();
-            }
             
             var desiredVelocity = moveDirection * speed.Value; 
 

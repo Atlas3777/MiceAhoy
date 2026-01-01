@@ -1,5 +1,6 @@
 ﻿using System;
 using Game.Script.Systems;
+using Game.Scripts.Aspects;
 using Leopotam.EcsProto;
 
 class PlayerModule : IProtoModule

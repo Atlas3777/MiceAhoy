@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using Game.Script;
+using Game.Scripts.Aspects;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using UnityEngine;
@@ -46,11 +46,6 @@ public struct ItemGenerationAvailableTag : IComponent
 {
 }
 
-[Serializable]
-public struct InteractableComponent : IComponent
-{
-    public SpriteRenderer SpriteRenderer;
-}
 
 
 [Serializable]
@@ -67,8 +62,9 @@ public struct ItemSourceComponent : IComponent
 [Serializable]
 public struct GuestTableComponent : IComponent
 {
-    public Vector2[] guestPlaces;
+    public Vector3[] guestPlaces;
     public ProtoPackedEntityWithWorld GuestGroup;
+    public Transform GuestPosition;
 }
 
 [Serializable]

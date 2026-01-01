@@ -9,6 +9,8 @@ using UnityEngine;
 [CustomEditor(typeof(CustomAuthoring), true)]
 public class CustomAuthoringInspector : Editor
 {
+    
+    
     CustomAuthoring _authoring;
     readonly Slice<object> _componentsCache = new();
     static string _filter = "";

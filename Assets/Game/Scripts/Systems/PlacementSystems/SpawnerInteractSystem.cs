@@ -27,11 +27,11 @@ public class SpawnerInteractSystem : IProtoInitSystem, IProtoRunSystem, IProtoDe
             if (!_placementAspect.CreateGameObjectEventPool.Has(spawner))
                 _placementAspect.CreateGameObjectEventPool.Add(spawner);
             ref var createComponent = ref _placementAspect.CreateGameObjectEventPool.Get(spawner);
-            createComponent.objects = new()
-            {
-                (spawnerTag.spawnObjectType.GetType(), gridPosition.Position)
-            };
-            createComponent.destroyInvoker = true;
+            // createComponent.objects = new()
+            // {
+            //     (spawnerTag.spawnObjectType.GetType(), gridPosition.Position)
+            // };
+            // createComponent.destroyInvoker = true;
 
             _placementAspect.SpawnFurnitureEventPool.DelIfExists(spawner);
         }

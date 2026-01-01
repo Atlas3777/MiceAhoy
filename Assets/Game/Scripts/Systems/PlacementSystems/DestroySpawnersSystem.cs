@@ -31,9 +31,9 @@ public class DestroySpawnersSystem : IProtoInitSystem, IProtoRunSystem, IProtoDe
             foreach(var spawner in _iteratorSpawners)
             {
                 ref var gridPos = ref _physicsAspect.GridPositionPool.Get(spawner);
-                ref var rig2D = ref _physicsAspect.Rigidbody2DPool.Get(spawner);
-                GameObject.Destroy(rig2D.Rigidbody.gameObject);
-                worldGrid.DeleteElement(gridPos.Position);
+                ref var rig2D = ref _physicsAspect.RigidbodyPool.Get(spawner);
+                // GameObject.Destroy(rig2D.Rigidbody.gameObject);
+                // worldGrid.DeleteElement(gridPos.Position);
                 _world.DelEntity(spawner);
             }
             _placementAspect.DestroyAllSpawnersEventPool.DelIfExists(entityEvent);

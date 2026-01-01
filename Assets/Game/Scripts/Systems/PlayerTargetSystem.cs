@@ -1,110 +1,74 @@
-﻿using Game.Script.Aspects;
+﻿using Game.Scripts.Aspects;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using UnityEngine;
 
 internal class PlayerTargetSystem : IProtoInitSystem, IProtoRunSystem
 {
+    [DI] private ProtoWorld _world;
     [DI] private PlayerAspect _playerAspect;
+    [DI] private BaseAspect _baseAspect;
     [DI] private PhysicsAspect _physicsAspect;
-    [DI] private PlacementAspect _placementAspect;
     [DI] private WorkstationsAspect _workstationsAspect;
-    [DI] private GuestAspect _guestAspect;
 
     private ProtoIt _iteratorInteractable;
     private ProtoIt _iteratorPlayer;
-    private ProtoIt _iteratorGuest;
-    private ProtoWorld _world;
 
-    public void Init(IProtoSystems systems)
-    {
-        _world = systems.World();
+    private const float InteractionRange = 2.0f;
+    private const float InteractionAngle = 60f;
 
-        _iteratorInteractable = new(new[] { typeof(InteractableComponent), typeof(PositionComponent) });
-        _iteratorPlayer = new(new[] { typeof(PlayerInputComponent), typeof(PositionComponent) });
-        _iteratorGuest = new(new[] { typeof(GuestTag), typeof(InteractableComponent) });
+    public void Init(IProtoSystems systems) {
+        _iteratorInteractable = new ProtoIt(new[] { typeof(InteractableComponent), typeof(PositionComponent) });
+        _iteratorPlayer = new ProtoIt(new[] { typeof(PlayerInputComponent), typeof(PositionComponent) });
 
         _iteratorInteractable.Init(_world);
         _iteratorPlayer.Init(_world);
-        _iteratorGuest.Init(_world);
     }
 
-    public void Run()
-    {
-        foreach (var entityPlayer in _iteratorPlayer)
-        {
-            var range = 2f;
-
-            ref var playerPosition = ref _physicsAspect.PositionPool.Get(entityPlayer);
+    public void Run() {
+        foreach (var entityPlayer in _iteratorPlayer) {
+            ref var playerPos = ref _physicsAspect.PositionPool.Get(entityPlayer).Position;
             ref var playerInput = ref _playerAspect.InputRawPool.Get(entityPlayer);
 
-            //если игрок сейчас двигает мебель, то что-то подсвечивать не нужно
-            if (playerInput.IsMoveFurnitureNow) continue;
+            ProtoEntity bestTarget = default;
+            bool targetFound = false;
+            float minAngle = float.MaxValue;
 
-            ProtoEntity targetEntity = default;
-            var minAngle = float.MaxValue;
+            foreach (var entityInteractable in _iteratorInteractable) {
+                ref var targetPos = ref _physicsAspect.PositionPool.Get(entityInteractable).Position;
+                
+                // 1. Быстрая проверка дистанции (sqrMagnitude быстрее чем Distance)
+                Vector3 directionToTarget = targetPos - playerPos;
+                float sqrDist = directionToTarget.sqrMagnitude;
 
-            foreach (var entityInteractable in _iteratorInteractable)
-            {
-                //ref InteractableComponent interactable = ref _playerAspect.InteractablePool.Get(entityInteractable);
-                ref PositionComponent interactablePosition = ref _physicsAspect.PositionPool.Get(entityInteractable);
+                if (sqrDist > InteractionRange * InteractionRange) continue;
 
-                //interactable.OutlineController.SetHighlight(false);
+                directionToTarget.y = 0;
+                var rr = playerInput.LookDirection;
+                var rrr = new Vector3(rr.x, 0, rr.y);
+                var angle = Vector3.Angle(rrr, directionToTarget);
 
-                if (Vector3.Distance(interactablePosition.Position, playerPosition.Position) < range)
-                {
-                    var vector = interactablePosition.Position - playerPosition.Position;
-
-                    var angle = Vector2.SignedAngle(vector, playerInput.LookDirection);
-                    float absAngle = Mathf.Abs(angle);
-
-                    if (absAngle < 60)
-                    {
-                        if (absAngle < minAngle)
-                        {
-                            minAngle = absAngle;
-                            //interactableComponent = interactable;
-                            targetEntity = entityInteractable;
-                            //Debug.Log($"Вижу {targetEntity}");
-                        }
+                if (angle < InteractionAngle) {
+                    if (angle < minAngle) {
+                        minAngle = angle;
+                        bestTarget = entityInteractable;
+                        targetFound = true;
                     }
                 }
             }
+            if(targetFound)
+                _baseAspect.SelectedByPlayerTagPool.GetOrAdd(bestTarget);
 
-            if (minAngle != float.MaxValue)
-            {
-                //interactableComponent.OutlineController.SetHighlight(true);
-
-                if (playerInput.InteractPressed)
-                {
-                    if (!playerInput.IsInPlacementMode)
-                    {
-                        if (!_workstationsAspect.PickPlaceEventPool.Has(targetEntity))
-                        {
-                            _workstationsAspect.PickPlaceEventPool.Add(targetEntity);
-                            ref PickPlaceEvent r = ref _workstationsAspect.PickPlaceEventPool.Get(targetEntity);
-                            r.Invoker = _world.PackEntityWithWorld(entityPlayer);
-                        }
-                    }
-                    else
-                    {
-                        if (_placementAspect.SpawnerTagPool.Has(targetEntity))
-                        {
-                            if (!_placementAspect.SpawnFurnitureEventPool.Has(targetEntity))
-                            {
-                                _placementAspect.SpawnFurnitureEventPool.Add(targetEntity);
-                                ref var spawnEvent = ref _placementAspect.SpawnFurnitureEventPool.Get(targetEntity);                                
-                            }
-                        }
-                        else if (!_placementAspect.MoveThisFurnitureEventPool.Has(targetEntity))
-                        {
-                            _placementAspect.MoveThisFurnitureEventPool.Add(targetEntity);
-                            ref var m = ref _placementAspect.MoveThisFurnitureEventPool.Get(targetEntity);
-                            m.Invoker = _world.PackEntityWithWorld(entityPlayer);
-                        }
-                    }
-                }
+            if (targetFound && playerInput.InteractPressed) {
+                HandleInteraction(entityPlayer, bestTarget);
             }
+        }
+    }
+
+    private void HandleInteraction(ProtoEntity player, ProtoEntity target) {
+        if (!_workstationsAspect.PickPlaceEventPool.Has(target)) {
+            ref var evt = ref _workstationsAspect.PickPlaceEventPool.Add(target);
+            evt.Invoker = _world.PackEntityWithWorld(player);
         }
     }
 }

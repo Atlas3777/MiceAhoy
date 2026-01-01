@@ -29,20 +29,20 @@ public class GuestTableSetupSystem : IProtoInitSystem, IProtoRunSystem
     {
         foreach (var guestTable in _it)
         {
-            ref var pos = ref _physicsAspect.PositionPool.Get(guestTable).Position;
-            ref var table = ref _guestAspect.GuestTablePool.Get(guestTable);
-            
-            var tempPlaces = new List<Vector2>(4);
-            var startPoint = pos;
-
-            TryAddPlace(startPoint, Vector2.right, GridConstants.HORIZONTAL_RAYCAST_DISTANCE, tempPlaces);
-            TryAddPlace(startPoint, Vector2.left, GridConstants.HORIZONTAL_RAYCAST_DISTANCE, tempPlaces);
-            TryAddPlace(startPoint, Vector2.up, GridConstants.VERTICAL_RAYCAST_DISTANCE, tempPlaces);
-            TryAddPlace(startPoint, Vector2.down, GridConstants.VERTICAL_RAYCAST_DISTANCE, tempPlaces);
-            
-            table.guestPlaces = tempPlaces.ToArray();
-            
-            //table.Guests ??= new List<ProtoPackedEntityWithWorld>();
+            // ref var pos = ref _physicsAspect.PositionPool.Get(guestTable).Position;
+            // ref var table = ref _guestAspect.GuestTablePool.Get(guestTable);
+            //
+            // var tempPlaces = new List<Vector2>(4);
+            // var startPoint = pos;
+            //
+            // TryAddPlace(startPoint, Vector3.right, GridConstants.HORIZONTAL_RAYCAST_DISTANCE, tempPlaces);
+            // TryAddPlace(startPoint, Vector3.left, GridConstants.HORIZONTAL_RAYCAST_DISTANCE, tempPlaces);
+            // TryAddPlace(startPoint, Vector3.up, GridConstants.VERTICAL_RAYCAST_DISTANCE, tempPlaces);
+            // TryAddPlace(startPoint, Vector3.down, GridConstants.VERTICAL_RAYCAST_DISTANCE, tempPlaces);
+            //
+            // table.guestPlaces = tempPlaces.ToArray();
+            //
+            // //table.Guests ??= new List<ProtoPackedEntityWithWorld>();
         }
     }
 

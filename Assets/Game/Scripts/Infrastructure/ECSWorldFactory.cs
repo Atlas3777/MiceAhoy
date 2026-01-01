@@ -1,5 +1,6 @@
 ﻿using Game.Script.Factories;
 using Game.Script.Systems;
+using Game.Scripts.Aspects;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using Leopotam.EcsProto.Unity;
@@ -38,6 +39,7 @@ namespace Game.Script.Infrastructure
                 .AddSystem(_r.Resolve<UpdateInputSystem>())
                 .AddSystem(_r.Resolve<PlayerMovementSystem>())
                 .AddSystem(new PlayerTargetSystem())
+                .AddSystem(new OutlineSystem())
                 .AddSystem(_r.Resolve<PickPlaceSystem>()) 
                 
                 .AddSystem(new GuestTableSetupSystem()) 
@@ -45,6 +47,8 @@ namespace Game.Script.Infrastructure
                 .AddSystem(new AcceptOrderSystem())
                 .AddSystem(_r.Resolve<ItemSourceGeneratorSystem>())
                 .AddSystem(_r.Resolve<StoveSystem>())
+                
+                .AddSystem(_r.Resolve<SyncGridPositionSystem>())
                 
                 //.AddSystem(_r.Resolve<GroupGenerationSystem>())
                 .AddSystem(new GuestGroupTableResolveSystem())

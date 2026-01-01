@@ -70,7 +70,7 @@ public class PlacementGrid
         return false;
     }
 
-    public bool TryGetPivotDifference(Type type, out Vector2 pivotDifference) 
+    public bool TryGetPivotDifference(Type type, out Vector3 pivotDifference) 
     {
         if (pivotDifferences.ContainsKey(type))
         {

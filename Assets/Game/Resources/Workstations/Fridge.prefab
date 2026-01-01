@@ -1,335 +1,148 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4193128985154032944
-GameObject:
+--- !u!1001 &2567296020999166692
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1632990538885276820}
-  - component: {fileID: 161368494953068328}
-  - component: {fileID: 5840977510315441320}
-  - component: {fileID: 2589232329212709623}
-  m_Layer: 0
-  m_Name: TopQ
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1632990538885276820
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4193128985154032944}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1.388, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 532959154327911370}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!33 &161368494953068328
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4193128985154032944}
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &5840977510315441320
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4193128985154032944}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: ee44a783cb74023478252b9163a0f43f, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2589232329212709623
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4193128985154032944}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &8709505408249560105
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7604927328702005173}
-  - component: {fileID: 7686770297577976340}
-  - component: {fileID: 4112615409204870572}
-  - component: {fileID: 6841998190624839874}
-  m_Layer: 0
-  m_Name: SideQ
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7604927328702005173
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: Components.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: 'Components.Array.data[3]'
+      value: 1239605930776854811
+      objectReference: {fileID: 0}
+    - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: 'Components.Array.data[4]'
+      value: 1239605930776854812
+      objectReference: {fileID: 0}
+    - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: 'Components.Array.data[5]'
+      value: 1239605930776854814
+      objectReference: {fileID: 0}
+    - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: 'Components.Array.data[6]'
+      value: 1239605930776854816
+      objectReference: {fileID: 0}
+    - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: 'Components.Array.data[7]'
+      value: 1239605930776854817
+      objectReference: {fileID: 0}
+    - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: 'managedReferences[1239605930776854811]'
+      value: Assembly-CSharp HolderComponent
+      objectReference: {fileID: 0}
+    - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: 'managedReferences[1239605930776854812]'
+      value: Assembly-CSharp ItemSourceComponent
+      objectReference: {fileID: 0}
+    - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: 'managedReferences[1239605930776854813]'
+      value: Assembly-CSharp Game.Script.Fish0
+      objectReference: {fileID: 0}
+    - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: 'managedReferences[1239605930776854814]'
+      value: Assembly-CSharp FurnitureComponent
+      objectReference: {fileID: 0}
+    - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: 'managedReferences[1239605930776854815]'
+      value: Assembly-CSharp Fridge
+      objectReference: {fileID: 0}
+    - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: 'managedReferences[1239605930776854816]'
+      value: Assembly-CSharp PlaceWorkstationEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: 'managedReferences[1239605930776854817]'
+      value: Assembly-CSharp SyncGridPositionEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: managedReferences[1239605930776854814].type
+      value: 1239605930776854815
+      objectReference: {fileID: 0}
+    - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: managedReferences[1239605930776854817].Transform
+      value: 
+      objectReference: {fileID: 8814449994966506331}
+    - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: managedReferences[1239605930776854813].pickableItemGo
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: managedReferences[1239605930776854811].HolderTransform
+      value: 
+      objectReference: {fileID: 8814449994966506331}
+    - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: managedReferences[1239605930776854812].resourceItemType
+      value: 1239605930776854813
+      objectReference: {fileID: 0}
+    - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: managedReferences[1239605930776854815].workstationSprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: managedReferences[1239605930776854811].PickableItemVisual
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: managedReferences[1239605930776854813].satietyRestoration
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2024667353642627036, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: m_Name
+      value: Fridge
+      objectReference: {fileID: 0}
+    - target: {fileID: 6481781234270847423, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.24751
+      objectReference: {fileID: 0}
+    - target: {fileID: 6481781234270847423, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6481781234270847423, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.14905
+      objectReference: {fileID: 0}
+    - target: {fileID: 6481781234270847423, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6481781234270847423, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6481781234270847423, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6481781234270847423, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6481781234270847423, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6481781234270847423, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6481781234270847423, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+--- !u!4 &8814449994966506331 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 6481781234270847423, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+  m_PrefabInstance: {fileID: 2567296020999166692}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8709505408249560105}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.6943, z: -0.5}
-  m_LocalScale: {x: 1, y: 1.4051249, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 532959154327911370}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &7686770297577976340
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8709505408249560105}
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &4112615409204870572
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8709505408249560105}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: dbae25f636a66b34ba6af0ed4e05716d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6841998190624839874
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8709505408249560105}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &8766884320135700761
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 532959154327911370}
-  - component: {fileID: 4116833319232833429}
-  m_Layer: 0
-  m_Name: Fridge
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &532959154327911370
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8766884320135700761}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.516, y: -5.487, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7604927328702005173}
-  - {fileID: 1632990538885276820}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4116833319232833429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8766884320135700761}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65818240a510495eb6ea29cdaf49a433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MyAuthoring
-  _worldName: 
-  _authoringType: 0
-  _destroyAfterAuthoring: 0
-  Components:
-  - rid: 6222297960297791562
-  - rid: 6222297960297791563
-  - rid: 7346997658554204232
-  - rid: 6222297960297791566
-  - rid: 6222297960297791568
-  - rid: 6222297960297791569
-  - rid: 6222297960297791570
-  - rid: 6222297960297791571
-  - rid: 7346997658554204234
-  references:
-    version: 2
-    RefIds:
-    - rid: 6222297960297791562
-      type: {class: PositionComponent, ns: , asm: Assembly-CSharp}
-      data:
-        Position: {x: 2, y: 1}
-    - rid: 6222297960297791563
-      type: {class: InteractableComponent, ns: , asm: Assembly-CSharp}
-      data:
-        SpriteRenderer: {fileID: 0}
-    - rid: 6222297960297791566
-      type: {class: ItemSourceComponent, ns: , asm: Assembly-CSharp}
-      data:
-        resourceItemType:
-          rid: 7346997658554204233
-    - rid: 6222297960297791568
-      type: {class: FurnitureComponent, ns: , asm: Assembly-CSharp}
-      data:
-        type:
-          rid: 7346997708779421764
-    - rid: 6222297960297791569
-      type: {class: PlacementTransformComponent, ns: , asm: Assembly-CSharp}
-      data:
-        transform: {fileID: 532959154327911370}
-    - rid: 6222297960297791570
-      type: {class: GridPositionComponent, ns: , asm: Assembly-CSharp}
-      data:
-        Position: {x: 0, y: 0}
-    - rid: 6222297960297791571
-      type: {class: SyncGridPositionEvent, ns: , asm: Assembly-CSharp}
-      data:
-        entityGridPositions: {x: 0, y: 0}
-    - rid: 7346997658554204232
-      type: {class: HolderComponent, ns: , asm: Assembly-CSharp}
-      data:
-        HolderTransform: {fileID: 532959154327911370}
-        PickableItemVisual: {fileID: 0}
-    - rid: 7346997658554204233
-      type: {class: Fish0, ns: Game.Script, asm: Assembly-CSharp}
-      data:
-        pickableItemGo: {fileID: 4949581644060774540, guid: 3602724711db5f84799bfc136256b72f, type: 3}
-        satietyRestoration: 20
-    - rid: 7346997658554204234
-      type: {class: PlaceWorkstationEvent, ns: , asm: Assembly-CSharp}
-      data: 
-    - rid: 7346997708779421764
-      type: {class: Fridge, ns: , asm: Assembly-CSharp}
-      data:
-        workstationSprite: {fileID: 0}

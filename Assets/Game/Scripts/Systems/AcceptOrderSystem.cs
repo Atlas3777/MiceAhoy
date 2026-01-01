@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Game.Script.Aspects;
+using Game.Scripts.Aspects;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using UnityEngine;
@@ -23,7 +24,7 @@ namespace Game.Script.Systems
 
             _interactedTableIterator = new(new[]
             {
-                typeof(GuestTableComponent), typeof(PickPlaceEvent),
+                typeof(GuestTableComponent), typeof(PickPlaceEvent),    
                 typeof(PositionComponent), typeof(InteractableComponent)
             },
             new[]

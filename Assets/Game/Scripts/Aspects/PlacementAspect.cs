@@ -1,29 +1,25 @@
 using System;
 using System.Collections.Generic;
+using Game.Scripts.Aspects;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using Leopotam.EcsProto.Unity;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlacementAspect : ProtoAspectInject
 {
     public ProtoPool<FurnitureComponent> FurniturePool;
-    public ProtoPool<PlacementTransformComponent> PlacementTransformPool;
     public ProtoPool<MoveThisFurnitureTag> MoveThisFurnitureEventPool;
     public ProtoPool<CreateGameObjectEvent> CreateGameObjectEventPool;
     public ProtoPool<MoveThisGameObjectEvent> MoveThisGameObjectEventPool;
-    public ProtoPool<SyncGridPositionEvent> SyncMyGridPositionEventPool;
+    public ProtoPool<SyncGridPositionEvent> SyncGridPositionEventPool;
     public ProtoPool<SpawnFurnitureEvent> SpawnFurnitureEventPool;
     public ProtoPool<SpawnerTag> SpawnerTagPool;
     public ProtoPool<CreateSpawnersEvent> CreateSpawnersEventPool;
     public ProtoPool<DestroyAllSpawnersEvent> DestroyAllSpawnersEventPool;
 }
 
-[Serializable]
-public struct PlacementTransformComponent : IComponent
-{
-    public Transform transform;
-}
 [Serializable]
 public struct FurnitureComponent : IComponent
 {
@@ -38,19 +34,23 @@ public struct MoveThisFurnitureTag
 
 public struct CreateGameObjectEvent
 {
-    public List<(Type furnitureType, Vector2Int gridPosition)> objects;
+    public List<(Type furnitureType, Vector3Int gridPosition)> objects;
     public bool destroyInvoker;
 }
 
 public struct MoveThisGameObjectEvent
 {
-    public Vector2Int newPositionInGrid;
+    public Vector3Int newPositionInGrid;
 }
 
 [Serializable]
-public struct SyncGridPositionEvent : IComponent
+public struct SyncGridPositionEvent : IComponent, IUnityAuthoring
 {
-    public Vector2Int entityGridPositions;
+    public Transform Transform;
+    public void Authoring(in ProtoPackedEntityWithWorld entity, GameObject go)
+    {
+        Transform = go.transform;
+    }
 }
 
 [Serializable]

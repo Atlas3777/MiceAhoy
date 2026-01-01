@@ -1,4 +1,5 @@
-﻿using Leopotam.EcsProto;
+﻿using Game.Scripts.Aspects;
+using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using UnityEngine;
 

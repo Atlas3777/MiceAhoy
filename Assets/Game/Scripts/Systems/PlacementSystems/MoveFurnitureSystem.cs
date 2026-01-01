@@ -27,7 +27,7 @@ public class MoveFurnitureSystem : IProtoInitSystem, IProtoRunSystem, IProtoDest
         foreach (var furn in _iteratorFurniture)
         {
             ref var moveEvent = ref _placementAspect.MoveThisFurnitureEventPool.Get(furn);
-            //получаем игрока
+            //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
             moveEvent.Invoker.TryUnpack(out _, out var playerEntity);
             ref var playerInput = ref _playerAspect.InputRawPool.Get(playerEntity);
 
@@ -43,18 +43,18 @@ public class MoveFurnitureSystem : IProtoInitSystem, IProtoRunSystem, IProtoDest
             }
 
             //ref var furnComponent = ref _placementAspect.FurniturePool.Get(furn);
-            ref var playerPosition = ref _physicsAspect.PositionPool.Get(playerEntity);
-            ref var gridPosition = ref _physicsAspect.GridPositionPool.Get(furn);
-
-            var newFurnPosition = GetNearestGridViewedCell(worldGrid, ref playerInput, playerPosition, gridPosition.Position);
-            if (newFurnPosition == gridPosition.Position) continue; 
-            worldGrid.SwitchElement(gridPosition.Position,newFurnPosition);
-            gridPosition.Position = newFurnPosition;
-
-            if (!_placementAspect.MoveThisGameObjectEventPool.Has(furn))
-                _placementAspect.MoveThisGameObjectEventPool.Add(furn);
-            ref var moveGameObjectEvent = ref _placementAspect.MoveThisGameObjectEventPool.Get(furn);
-            moveGameObjectEvent.newPositionInGrid = newFurnPosition;
+            // ref var playerPosition = ref _physicsAspect.PositionPool.Get(playerEntity);
+            // ref var gridPosition = ref _physicsAspect.GridPositionPool.Get(furn);
+            //
+            // var newFurnPosition = GetNearestGridViewedCell(worldGrid, ref playerInput, playerPosition, gridPosition.Position);
+            // if (newFurnPosition == gridPosition.Position) continue; 
+            // worldGrid.SwitchElement(gridPosition.Position,newFurnPosition);
+            // gridPosition.Position = newFurnPosition;
+            //
+            // if (!_placementAspect.MoveThisGameObjectEventPool.Has(furn))
+            //     _placementAspect.MoveThisGameObjectEventPool.Add(furn);
+            // ref var moveGameObjectEvent = ref _placementAspect.MoveThisGameObjectEventPool.Get(furn);
+            // moveGameObjectEvent.newPositionInGrid = newFurnPosition;
 
             
         }
@@ -66,18 +66,18 @@ public class MoveFurnitureSystem : IProtoInitSystem, IProtoRunSystem, IProtoDest
     {
         if (pos.Position.x > grid.PlacementZoneWorldStart.x && pos.Position.x < grid.PlacementZoneWorldStart.x + grid.PlacementZoneSize.x * grid.PlacementZoneCellSize.x)
         {
-            if (pos.Position.y > grid.PlacementZoneWorldStart.y && pos.Position.y < grid.PlacementZoneWorldStart.y + grid.PlacementZoneSize.y * grid.PlacementZoneCellSize.y)
-            {
-                var point = pos.Position - worldGrid.PlacementZoneWorldStart - worldGrid.PlacementZoneCellSize / 2;
-                var scaledPoint = new Vector2(point.x / worldGrid.PlacementZoneCellSize.x, point.y / worldGrid.PlacementZoneCellSize.y)
-                    + input.LookDirection * 5 / 8;
-                var foundPos = new Vector2Int(Mathf.RoundToInt(scaledPoint.x),Mathf.RoundToInt(scaledPoint.y));
-                var angle = Vector2.SignedAngle(new Vector2(1, 0), input.LookDirection);
-                var diff = SwitchLookAngle(angle);
-                var res = foundPos + diff;
-                if (worldGrid.IsValidEmptyCell(res))
-                    return res;
-            }
+            // if (pos.Position.y > grid.PlacementZoneWorldStart.y && pos.Position.y < grid.PlacementZoneWorldStart.y + grid.PlacementZoneSize.y * grid.PlacementZoneCellSize.y)
+            // {
+            //     var point = pos.Position - worldGrid.PlacementZoneWorldStart - worldGrid.PlacementZoneCellSize / 2;
+            //     var scaledPoint = new Vector2(point.x / worldGrid.PlacementZoneCellSize.x, point.y / worldGrid.PlacementZoneCellSize.y)
+            //         + input.LookDirection * 5 / 8;
+            //     var foundPos = new Vector2Int(Mathf.RoundToInt(scaledPoint.x),Mathf.RoundToInt(scaledPoint.y));
+            //     var angle = Vector2.SignedAngle(new Vector2(1, 0), input.LookDirection);
+            //     var diff = SwitchLookAngle(angle);
+            //     var res = foundPos + diff;
+            //     if (worldGrid.IsValidEmptyCell(res))
+            //         return res;
+            // }
         }
         return defaultVector;
     }

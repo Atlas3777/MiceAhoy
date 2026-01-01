@@ -29,7 +29,7 @@ public class GuestMovementSystem : IProtoInitSystem, IProtoRunSystem, IProtoDest
         foreach (var guestEntity in _moveIterator)
         {
             ref var agent = ref _guestAspect.NavMeshAgentComponentPool.Get(guestEntity).Agent;
-            ref var rb = ref _physicsAspect.Rigidbody2DPool.Get(guestEntity);
+            ref var rb = ref _physicsAspect.RigidbodyPool.Get(guestEntity);
 
             if (!agent.pathPending && agent.remainingDistance < 0.3f)
             {

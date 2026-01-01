@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Game.Script.Aspects;
+using Game.Scripts.Aspects;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using UnityEngine;

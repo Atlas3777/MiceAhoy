@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Game.Scripts.Aspects;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using Leopotam.EcsProto.Unity;
@@ -8,6 +9,9 @@ using UnityEngine;
 #if ENABLE_IL2CPP
 using Unity.IL2CPP.CompilerServices;
 #endif
+public interface IUnityAuthoring {
+    void Authoring (in ProtoPackedEntityWithWorld entity, GameObject go);
+}
 
 [DefaultExecutionOrder(10000)]
 [DisallowMultipleComponent]
@@ -72,7 +76,7 @@ public class CustomAuthoring : MonoBehaviour
                 pool.AddRaw(entity);
             }
 
-            if (c is IProtoUnityAuthoring linkE)
+            if (c is IUnityAuthoring linkE)
             {
                 linkE.Authoring(packedEntity, go);
             }
