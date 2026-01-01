@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Game.Script.Aspects;
 using Game.Scripts.Aspects;
@@ -16,6 +17,9 @@ namespace Game.Script.Systems
         [DI] private BaseAspect _baseAspect;
         private ProtoIt _tablesIterator;
 
+        public event Action GuestGroupServedTagPool;
+
+        
         public void Init(IProtoSystems systems)
         {
             var world = systems.World();
@@ -69,8 +73,8 @@ namespace Game.Script.Systems
 
                 if (isEverybodyServed)
                 {
-                    
                     Debug.Log("Гости поели, щяс уйдут");
+                    
                     _guestGroupAspect.WaitingOrderTagPool.Del(guestGroupEntity);
                     _guestGroupAspect.GuestGroupServedEventPool.Add(guestGroupEntity);
                     _guestGroupAspect.GuestGroupServedTagPool.Add(guestGroupEntity);

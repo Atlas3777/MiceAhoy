@@ -42,10 +42,10 @@ public class ItemSourceGeneratorSystem : IProtoInitSystem, IProtoRunSystem, IPro
             {
                 ref var itemSource = ref _workstationsAspect.ItemSourcePool.Get(generatorEntity);
                 var resourceType = itemSource.resourceItemType.GetType();
-                Debug.Log("обработка");
+                //Debug.Log("обработка");
                 if (_pickableService.TryGetPickable(resourceType, out var pickableItem))
                 {
-                    Debug.Log("создал");
+                    //Debug.Log("создал");
                     generatorHolder.Item = pickableItem.GetType();
                     generatorHolder.PickableItemVisual = pickableItem.pickableItemGo;
                     _playerAspect.HasItemTagPool.GetOrAdd(generatorEntity);

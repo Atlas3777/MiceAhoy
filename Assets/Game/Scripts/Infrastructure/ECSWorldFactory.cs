@@ -34,23 +34,22 @@ namespace Game.Script.Infrastructure
                 .AddSystem(new SyncUnityPhysicsToEcsSystem())
                 .AddSystem(new TimerSystem())
                 .AddSystem(new ProgressBarSystem())
+                .AddSystem(_r.Resolve<SyncGridPositionSystem>())
                 
                 .AddSystem(_r.Resolve<PlayerInitializeInputSystem>())
                 .AddSystem(_r.Resolve<UpdateInputSystem>())
                 .AddSystem(_r.Resolve<PlayerMovementSystem>())
                 .AddSystem(new PlayerTargetSystem())
                 .AddSystem(new OutlineSystem())
-                .AddSystem(_r.Resolve<PickPlaceSystem>()) 
+                .AddSystem(_r.Resolve<PickPlaceSystem>())
+                
+                .AddSystem(_r.Resolve<StoveSystem>())
+                .AddSystem(_r.Resolve<ItemSourceGeneratorSystem>())
                 
                 .AddSystem(new GuestTableSetupSystem()) 
-                .AddSystem(new TableNotificationSystem())
+                .AddSystem(_r.Resolve<TableNotificationSystem>())
                 .AddSystem(new AcceptOrderSystem())
-                .AddSystem(_r.Resolve<ItemSourceGeneratorSystem>())
-                .AddSystem(_r.Resolve<StoveSystem>())
-                
-                .AddSystem(_r.Resolve<SyncGridPositionSystem>())
-                
-                //.AddSystem(_r.Resolve<GroupGenerationSystem>())
+                .AddSystem(_r.Resolve<GroupGenerationSystem>())
                 .AddSystem(new GuestGroupTableResolveSystem())
                 .AddSystem(new GuestNavigateToTableSystem())
                 .AddSystem(new GuestMovementSystem())

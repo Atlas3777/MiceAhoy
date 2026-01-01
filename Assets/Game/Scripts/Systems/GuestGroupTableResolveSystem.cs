@@ -13,21 +13,14 @@ namespace Game.Script.Systems
         [DI] private WorkstationsAspect _workstationsAspect;
         [DI] private GuestGroupAspect _guestGroupAspect;
         [DI] private PhysicsAspect _physicsAspect;
-        
+
         private ProtoIt _groupIterator;
         private ProtoIt _freeTablesIterator;
-        
+
         public void Init(IProtoSystems systems)
         {
-            _world = systems.World();
-            _groupIterator = new(new[]
-            {
-                typeof(GuestGroupTag), typeof(GroupNeedsTableTag)
-            });
-            _freeTablesIterator = new(new[]
-            {
-                typeof(GuestTableComponent), typeof(GuestTableIsFreeTag)
-            });
+            _groupIterator = new(new[] { typeof(GuestGroupTag), typeof(GroupNeedsTableTag) });
+            _freeTablesIterator = new(new[] { typeof(GuestTableComponent), typeof(GuestTableIsFreeTag) });
             _groupIterator.Init(_world);
             _freeTablesIterator.Init(_world);
         }
@@ -48,12 +41,12 @@ namespace Game.Script.Systems
                     _guestGroupAspect.GroupNeedsTablePool.Del(guestGroupEntity);
                     _guestGroupAspect.GroupGotTableEventPool.Add(guestGroupEntity);
                     _guestGroupAspect.GroupIsWalkingPool.Add(guestGroupEntity);
-                    
+
                     ref var groupPos = ref _physicsAspect.PositionPool.Get(guestGroupEntity);
                     groupPos.Position = _physicsAspect.PositionPool.Get(tableEntity).Position;
                     Debug.Log("Выдали группе стол");
                     break;
-                }   
+                }
             }
         }
     }

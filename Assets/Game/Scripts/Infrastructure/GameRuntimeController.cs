@@ -13,7 +13,7 @@ namespace Game.Script.Infrastructure
         Win
     }
     
-    public class GameStateManager : IStartable, ITickable, IDisposable
+    public class GameRuntimeController : IStartable, ITickable, IDisposable
     {
         private readonly IProtoSystems _mainSystems;
         private readonly InputService _inputService;
@@ -23,7 +23,7 @@ namespace Game.Script.Infrastructure
         public bool IsPaused {get; private set;}
         public Action<GameState> EndGame;
 
-        public GameStateManager(
+        public GameRuntimeController(
             [Key(IProtoSystemsType.MainSystem)] IProtoSystems mainSystems,
             InputService inputService,
             PauseView pauseView,

@@ -46,7 +46,8 @@ namespace Game.Script.Systems
                     }
                         
                     ref var agent = ref _guestAspect.NavMeshAgentComponentPool.Get(guest).Agent;
-                    agent.SetDestination(tableComponent.guestPlaces[i]);
+                    //agent.SetDestination(tableComponent.guestPlaces[i]);
+                    agent.SetDestination(tableComponent.GuestPosition.position);
                     _guestAspect.GuestIsWalkingTagPool.Add(guest);
                     ++i;
                 }

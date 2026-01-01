@@ -61,7 +61,7 @@ MonoBehaviour:
     - rid: 7346997224796061772
       type: {class: TargetGroupSize, ns: Game.Script.Aspects, asm: Assembly-CSharp}
       data:
-        size: 0
+        size: 1
     - rid: 7346997224796061773
       type: {class: GuestGroupTag, ns: Game.Script.Aspects, asm: Assembly-CSharp}
       data: 
@@ -106,7 +106,7 @@ MonoBehaviour:
     - rid: 7346997245717512268
       type: {class: PositionComponent, ns: , asm: Assembly-CSharp}
       data:
-        Position: {x: 0, y: 0}
+        Position: {x: 0, y: 0, z: 0}
     - rid: 7346997245717512269
       type: {class: UnityTransformRef, ns: , asm: Assembly-CSharp}
       data:

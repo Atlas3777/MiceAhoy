@@ -63,7 +63,7 @@ namespace Game.Script.Aspects
     public struct TargetPositionComponent : IComponent
     {
         public ProtoPackedEntityWithWorld Table;
-        public Vector2 Position;
+        public Vector3 Position;
     }
 
     [Serializable]

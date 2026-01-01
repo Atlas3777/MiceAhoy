@@ -24,10 +24,7 @@ namespace Game.Script.Systems
 
         public void Init(IProtoSystems systems)
         {
-            _groupsToGenerateIterator = new(new[]
-            {
-                typeof(GuestGroupTag), typeof(TargetGroupSize)
-            });
+            _groupsToGenerateIterator = new(new[] { typeof(GuestGroupTag), typeof(TargetGroupSize) });
             _groupsToGenerateIterator.Init(_world);
         }
 

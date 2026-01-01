@@ -3,8 +3,7 @@ using Game.Script.Infrastructure;
 using Game.Script.Input;
 using Game.Script.Modules;
 using Game.Script.Systems;
-using Game.Scripts;
-using Game.Scripts.TutorialTasks;
+using Game.Scripts.LevelStates;
 using Leopotam.EcsProto;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -21,50 +20,50 @@ namespace Game.Script.DISystem
 
     public class GameLifetimeScope : LifetimeScope
     {
-        [SerializeField] private TutorialTaskList tutorialTaskList;
+        [SerializeField] private LevelStateList levelStateList;
         [SerializeField] private PauseView pauseView;
+        [SerializeField] private TutorialUIController tutorialUIController;
         [SerializeField] private CinemachineTargetGroup cinemachineTargetGroup;
 
         protected override void Configure(IContainerBuilder builder)
         {
             Debug.Log("GameLifetimeScope : Configure");
-            
-            builder.RegisterEntryPoint<GameStateManager>();
-            
+
+            builder.RegisterEntryPoint<GameRuntimeController>();
+            builder.Register<LevelFlowController>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
             builder.Register<ManualPlayerSpawner>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<InputService>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
-            builder.Register<TutorialTaskManager>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
-            
-            
+
+
             builder.Register<GameResources>(Lifetime.Singleton);
             builder.Register<RecipeService>(Lifetime.Singleton);
             builder.Register<PickableService>(Lifetime.Singleton);
-            
+
             builder.Register<PlacementGrid>(Lifetime.Singleton);
-            
-            builder.RegisterInstance<TutorialTaskList>(tutorialTaskList);
+
+            builder.RegisterInstance<LevelStateList>(levelStateList);
             builder.RegisterComponent(cinemachineTargetGroup);
+            builder.RegisterComponent(tutorialUIController);
             builder.RegisterComponent(pauseView);
-            
-            
-            
+
+
             RegisterSystemFactories(builder);
             RegisterProtoSystems(builder);
             RegisterModules(builder);
-            
-            
+
+
             RegisterECSWorldAndSystems(builder);
         }
-        
+
         private void RegisterECSWorldAndSystems(IContainerBuilder builder)
         {
             builder.Register<ECSWorldFactory>(Lifetime.Singleton);
-            
+
             builder.Register<IProtoSystems>(container =>
                     container.Resolve<ECSWorldFactory>().CreateMainSystems(), Lifetime.Singleton)
                 .Keyed(IProtoSystemsType.MainSystem);
         }
-        
+
         private void RegisterModules(IContainerBuilder builder)
         {
             builder.Register<WorkstationsModule>(Lifetime.Singleton);
@@ -99,11 +98,12 @@ namespace Game.Script.DISystem
             builder.Register<UpdateInputSystem>(Lifetime.Singleton);
             builder.Register<ItemSourceGeneratorSystem>(Lifetime.Singleton);
             builder.Register<StoveSystem>(Lifetime.Singleton);
-            builder.Register<GroupGenerationSystem>(Lifetime.Singleton);
+            //builder.Register<GroupGenerationSystem>(Lifetime.Singleton);
             builder.Register<ClearSystem>(Lifetime.Singleton);
             builder.Register<PlayerMovementSystem>(Lifetime.Singleton);
             builder.Register<SyncGridPositionSystem>(Lifetime.Singleton);
-            
+            builder.Register<TableNotificationSystem>(Lifetime.Singleton);
+
             // builder.RegisterFactory<ItemSourceGeneratorSystem>(container =>
             //     container.Resolve<ItemSourceGeneratorSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
 
@@ -112,7 +112,7 @@ namespace Game.Script.DISystem
 
             builder.RegisterFactory<SyncUnityPhysicsToEcsSystem>(container =>
                 container.Resolve<SyncUnityPhysicsToEcsSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
-            
+
             builder.RegisterFactory<PlayerInitializeInputSystem>(container =>
                 container.Resolve<PlayerInitializeInputSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
 
@@ -121,7 +121,7 @@ namespace Game.Script.DISystem
 
             // builder.RegisterFactory<ClearSystem>(container =>
             //     container.Resolve<ClearSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
-            
+
             // builder.RegisterFactory<EndGameSystem>(container =>
             //     container.Resolve<EndGameSystemSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
 
@@ -140,8 +140,8 @@ namespace Game.Script.DISystem
             builder.RegisterFactory<SyncGridPositionSystem>(container =>
                 container.Resolve<SyncGridPositionSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
 
-            // builder.RegisterFactory<GroupGenerationSystem>(container =>
-            //     container.Resolve<GroupGenerationSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
+            builder.Register<GroupGenerationSystem>(container =>
+                    container.Resolve<GroupGenerationSystemFactory>().CreateProtoSystem(), Lifetime.Singleton);
 
             builder.RegisterFactory<RandomSpawnerPositionSystem>(container =>
                 container.Resolve<RandomSpawnerPositionSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
