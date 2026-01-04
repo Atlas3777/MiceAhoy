@@ -2,55 +2,43 @@ using System.Collections.Generic;
 using Game.Script.Aspects;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace Game.Script.Systems
 {
-    public class GroupGenerationSystem : IProtoInitSystem, IProtoRunSystem
+    public class GuestGenerationSystem : IProtoInitSystem, IProtoRunSystem
     {
-        [DI] private GuestGroupAspect _guestGroupAspect;
         [DI] private GuestAspect _guestAspect;
         [DI] private ProtoWorld _world;
         
         private readonly GameObject _guestPrefab;
-        private ProtoIt _groupsToGenerateIterator;
+        private ProtoIt _guestToGenerateIterator;
         
-        public GroupGenerationSystem(GameObject guestPrefab)
+        public GuestGenerationSystem(GameObject guestPrefab)
         {
             this._guestPrefab = guestPrefab;
         }
 
         public void Init(IProtoSystems systems)
         {
-            _groupsToGenerateIterator = new(new[] { typeof(GuestGroupTag), typeof(TargetGroupSize) });
-            _groupsToGenerateIterator.Init(_world);
+            _guestToGenerateIterator = new(new[] { typeof(GuestRequestEvent) });
+            _guestToGenerateIterator.Init(_world);
         }
 
         public void Run()
         {
-            foreach (var groupEntity in _groupsToGenerateIterator)
-            {
-                Debug.Log("создаём гостей");
-                var numberOfGuests = _guestGroupAspect.TargetGroupSizePool.Get(groupEntity).size;
-                var guests = CreateGuests(numberOfGuests);
-                foreach (var packed in guests)
-                {
-                    if (packed.TryUnpack(out _, out var guestEntity))
-                    {
-                        ref var groupComp = ref _guestAspect.GuestGroupComponentPool.Add(guestEntity);
-                        groupComp.GuestGroup = _world.PackEntityWithWorld(groupEntity);
-                    }
-                }
-                ref var groupGuests = ref _guestGroupAspect.GuestGroupPool.Get(groupEntity);
-                groupGuests.includedGuests = guests;
-                _guestGroupAspect.TargetGroupSizePool.Del(groupEntity);
-            }
+            // foreach (var guest in _guestToGenerateIterator)
+            // {
+            //     Debug.Log("создаём гостя");
+            //     CreateGuests();
+            //     _guestAspect.GuestRequestEventPool.Del(guest);
+            // }
         }
         
         private List<ProtoPackedEntityWithWorld> CreateGuests(int numberOfGuests = 1)
         {
+            Debug.LogError("рот ебал мамаши автора ecs");
             var guests = new List<ProtoPackedEntityWithWorld>();
             for (var i = 0; i < numberOfGuests; ++i)
             {

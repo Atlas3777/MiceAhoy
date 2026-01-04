@@ -14,13 +14,12 @@ public static class Helper
         PlayerAspect playerAspect,
         BaseAspect baseAspect)
     {
-        var itemGO = fromHolder.PickableItemVisual;
+        var itemGO = fromHolder.PickableItemInfo;
 
-        toHolder.PickableItemVisual = itemGO;
+        toHolder.PickableItemInfo = itemGO;
         toHolder.Item = fromHolder.Item;
-
-
-        itemGO.transform.SetParent(toHolder.HolderTransform, false);
+        
+        itemGO.transform.SetParent(toHolder.HolderGO.transform, false);
         itemGO.transform.localPosition = Vector3.zero;
         itemGO.transform.localRotation = Quaternion.identity;
 
@@ -29,41 +28,44 @@ public static class Helper
         playerAspect.HasItemTagPool.Add(to);
         playerAspect.HasItemTagPool.DelIfExists(from);
 
-        if (baseAspect.VisualizationInfoComponentPool.Has(from))
-        {
-            ref var itemVisualizationData = ref baseAspect.VisualizationInfoComponentPool.GetOrAdd(from);
-            itemVisualizationData.Hide();
-        }
-        else
-            UpdateItemVisualizationInfo(to, itemGO.GetComponent<PickableItemInfoWrapper>(), baseAspect);
+        // if (baseAspect.VisualizationInfoComponentPool.Has(from))
+        // {
+        //     ref var itemVisualizationData = ref baseAspect.VisualizationInfoComponentPool.GetOrAdd(from);
+        //     itemVisualizationData.Hide();
+        // }
+        // else
+        //     UpdateItemVisualizationInfo(to, itemGO.GetComponent<PickableItemInfoWrapper>(), baseAspect);
 }
 
     public static void EatItem(ProtoEntity tableEntity, ref HolderComponent fromHolder, PlayerAspect playerAspect)
     {
+        playerAspect.HasItemTagPool.Del(tableEntity);
+        Debug.Log("ебаная магия");
+        Object.Destroy(fromHolder.PickableItemInfo);
+        // Object.Destroy(fromHolder.HolderGO.transform.gameObject);
         fromHolder.Clear();
-        playerAspect.HasItemTagPool.DelIfExists(tableEntity);
     }
     
     public static void CreateItem(ProtoEntity playerEntity, ref HolderComponent playerHolder,
         PlayerAspect playerAspect, BaseAspect baseAspect, PickableItem itemPick)
     {
-        playerHolder.PickableItemVisual = Object.Instantiate(itemPick.pickableItemGo, playerHolder.HolderTransform);
-        var infoWrapper = playerHolder.PickableItemVisual.GetComponent<PickableItemInfoWrapper>();
+        playerHolder.PickableItemInfo = Object.Instantiate(itemPick.pickableItemGo, playerHolder.HolderGO.transform);
+        var infoWrapper = playerHolder.PickableItemInfo.GetComponent<PickableItemInfoWrapper>();
         SetupWrapperData(infoWrapper, itemPick);
         playerHolder.Item = itemPick.GetType();
         
         playerAspect.HasItemTagPool.GetOrAdd(playerEntity);
-        UpdateItemVisualizationInfo(playerEntity, infoWrapper, baseAspect);
+        //UpdateItemVisualizationInfo(playerEntity, infoWrapper, baseAspect);
     }
 
     public static void ReturnItemToGenerator(ProtoEntity from, ref HolderComponent fromHolder,
         PlayerAspect playerAspect, BaseAspect baseAspect)
     {
-        Object.Destroy(fromHolder.PickableItemVisual);
+        Object.Destroy(fromHolder.PickableItemInfo);
         fromHolder.Clear();
         playerAspect.HasItemTagPool.Del(from);
-        ref var itemVisualizationData = ref baseAspect.VisualizationInfoComponentPool.Get(from);
-        itemVisualizationData.Hide();
+        // ref var itemVisualizationData = ref baseAspect.VisualizationInfoComponentPool.Get(from);
+        // itemVisualizationData.Hide();
     }
 
     private static void SetupWrapperData(PickableItemInfoWrapper wrapper, PickableItem pickableItem)

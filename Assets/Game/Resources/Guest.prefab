@@ -383,9 +383,28 @@ MonoBehaviour:
   - rid: 6709886293115404485
   - rid: 6709886293115404491
   - rid: 7346997453272383567
+  - rid: 5252179128873386059
+  - rid: 5252179135611535433
+  - rid: 5252179135611535436
+  - rid: 5252179135611535437
   references:
     version: 2
     RefIds:
+    - rid: 5252179128873386059
+      type: {class: NeedsTableTag, ns: Game.Script.Aspects, asm: Assembly-CSharp}
+      data: 
+    - rid: 5252179135611535433
+      type: {class: GuestGameObjectRefComponent, ns: Game.Script.Aspects, asm: Assembly-CSharp}
+      data:
+        GameObject: {fileID: 9168951379536319562}
+    - rid: 5252179135611535436
+      type: {class: NavMeshAgentComponent, ns: Game.Script.Aspects, asm: Assembly-CSharp}
+      data:
+        Agent: {fileID: 6188592401123237228}
+    - rid: 5252179135611535437
+      type: {class: GuestStateComponent, ns: Game.Script.Aspects, asm: Assembly-CSharp}
+      data:
+        Hunger: 60
     - rid: 6709886293115404485
       type: {class: WantedItemComponent, ns: Game.Script.Aspects, asm: Assembly-CSharp}
       data:

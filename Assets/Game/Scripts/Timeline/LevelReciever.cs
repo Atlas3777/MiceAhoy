@@ -8,9 +8,10 @@ using VContainer;
 
 public class LevelReciever : MonoBehaviour, INotificationReceiver
 {
-    private GuestGroupAspect _guestGroupAspect;
+    private GuestAspect _guestAspect;
     private ProtoWorld _world;
     private GameResources _gameResources;
+    private ProtoPackedEntityWithWorld _entity;
     
     [Inject]
     private void Setup(IObjectResolver container)
@@ -21,30 +22,28 @@ public class LevelReciever : MonoBehaviour, INotificationReceiver
     public void Start()
     {
         _world = ProtoUnityWorlds.Get();
-        _guestGroupAspect = (GuestGroupAspect)_world.Aspect(typeof(GuestGroupAspect));
+        _guestAspect = (GuestAspect)_world.Aspect(typeof(GuestAspect));
+        var spawner = _gameResources.GuestSpawner;
+        var goSpawner = Instantiate(spawner);
+        var auth = goSpawner.GetComponent<CustomAuthoring>();
+        
+        auth.ProcessAuthoring();
+        _entity = auth.Entity();
     }
 
     public void OnNotify(Playable origin, INotification notification, object context)
     {
         if (notification is GuestGroupSpawnEventMarker spawnMarker)
         {
-            SpawnGuestGroupEntity(spawnMarker);
+            SpawnGuestGroupEntity();
         }
     }
 
-    private void SpawnGuestGroupEntity(GuestGroupSpawnEventMarker spawnMarker)
+    private void SpawnGuestGroupEntity()
     {
-        var group = _gameResources.GuestGroup.gameObject;
-        var goGroup = Instantiate(group);
-        var auth = goGroup.GetComponent<CustomAuthoring>();
-        
-        auth.ProcessAuthoring();
-        var entity = auth.Entity();
-        
-        entity.TryUnpack(out _, out var protoEntity);
+        _entity.TryUnpack(out _, out var protoEntity);
         {
-            ref var targetGroupSize = ref _guestGroupAspect.TargetGroupSizePool.Get(protoEntity);
-            targetGroupSize.size = spawnMarker.count;
+            _guestAspect.GuestRequestEventPool.Add(protoEntity);
         }
     }
 }

@@ -93,7 +93,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6711824874435919185, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
       propertyPath: Components.Array.size
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6711824874435919185, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
       propertyPath: 'Components.Array.data[6]'
@@ -105,7 +105,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6711824874435919185, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
       propertyPath: 'Components.Array.data[8]'
-      value: 1239605930776854799
+      value: 1239605943781032009
       objectReference: {fileID: 0}
     - target: {fileID: 6711824874435919185, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
       propertyPath: 'managedReferences[1239605930776854799]'
@@ -116,12 +116,28 @@ PrefabInstance:
       value: Assembly-CSharp Game.Scripts.Aspects.InteractableComponent
       objectReference: {fileID: 0}
     - target: {fileID: 6711824874435919185, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
+      propertyPath: 'managedReferences[1239605943781032009]'
+      value: Assembly-CSharp Game.Script.Aspects.GuestTableIsFreeTag
+      objectReference: {fileID: 0}
+    - target: {fileID: 6711824874435919185, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
       propertyPath: managedReferences[1239605930776854803].Outline
       value: 
       objectReference: {fileID: 5173222594521170149}
     - target: {fileID: 6711824874435919185, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
       propertyPath: managedReferences[1239605930776854803].IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6711824874435919185, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
+      propertyPath: managedReferences[1239605962581475400].HolderGO
+      value: 
+      objectReference: {fileID: 1285227512723961481}
+    - target: {fileID: 6711824874435919185, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
+      propertyPath: managedReferences[7346997658554204235].Position.x
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6711824874435919185, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
+      propertyPath: managedReferences[7346997658554204235].Position.z
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6711824874435919185, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
       propertyPath: managedReferences[1239605930776854799].GuestPosition
@@ -140,6 +156,11 @@ PrefabInstance:
       addedObject: {fileID: 5504136373215013001}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
+--- !u!1 &1285227512723961481 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5640227963405745337, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
+  m_PrefabInstance: {fileID: 6886029042051336752}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1886367725258414672 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5025365851142115424, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}

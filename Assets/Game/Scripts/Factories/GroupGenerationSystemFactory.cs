@@ -9,6 +9,6 @@ namespace Game.Script.Factories
         public GroupGenerationSystemFactory(GameResources gameResources) =>
             _gameResources = gameResources;
         
-        public GroupGenerationSystem CreateProtoSystem() => new(_gameResources.Guest.gameObject);
+        public GuestGenerationSystem CreateProtoSystem() => new(_gameResources.Guest.gameObject);
     }
 }

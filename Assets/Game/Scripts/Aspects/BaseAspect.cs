@@ -4,6 +4,7 @@ using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using TMPro;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Game.Scripts.Aspects
 {
@@ -22,7 +23,6 @@ namespace Game.Scripts.Aspects
 
 
         public GuestAspect GuestAspect;
-        public GuestGroupAspect GuestGroupAspect;
         public WorkstationsAspect WorkstationsAspect;
         public ViewAspect ViewAspect;
         public PlayerAspect PlayerAspect;
@@ -33,15 +33,15 @@ namespace Game.Scripts.Aspects
     [Serializable]
     public struct HolderComponent : IComponent
     {
-        public Transform HolderTransform;
+        public GameObject HolderGO;
         public ProtoPackedEntityWithWorld ItemEntity;
         public Type Item;
-        public GameObject PickableItemVisual;
+        public GameObject PickableItemInfo;
 
         public void Clear()
         {
             Item = null;
-            PickableItemVisual = null;
+            PickableItemInfo = null;
         }
     }
 

@@ -35,6 +35,8 @@ internal class PlayerTargetSystem : IProtoInitSystem, IProtoRunSystem
             float minAngle = float.MaxValue;
 
             foreach (var entityInteractable in _iteratorInteractable) {
+                if (entityPlayer == entityInteractable)
+                    continue;
                 ref var targetPos = ref _physicsAspect.PositionPool.Get(entityInteractable).Position;
                 
                 // 1. Быстрая проверка дистанции (sqrMagnitude быстрее чем Distance)

@@ -28,7 +28,7 @@ public class WorkstationsModule : IProtoModule
         systems
             .AddSystem(_pickPlaceSystem)
             .AddSystem(new GuestTableSetupSystem())
-            .AddSystem(new AcceptOrderSystem())
+            //.AddSystem(new AcceptOrderSystem())
             .AddSystem(new TableNotificationSystem())
             .AddSystem(_itemSourceGeneratorSystem)
             .AddSystem(_stoveSystem)

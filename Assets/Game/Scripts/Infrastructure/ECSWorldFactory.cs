@@ -33,7 +33,7 @@ namespace Game.Script.Infrastructure
                     
                 .AddSystem(new SyncUnityPhysicsToEcsSystem())
                 .AddSystem(new TimerSystem())
-                .AddSystem(new ProgressBarSystem())
+                //.AddSystem(new ProgressBarSystem())
                 .AddSystem(_r.Resolve<SyncGridPositionSystem>())
                 
                 .AddSystem(_r.Resolve<PlayerInitializeInputSystem>())
@@ -47,14 +47,14 @@ namespace Game.Script.Infrastructure
                 .AddSystem(_r.Resolve<ItemSourceGeneratorSystem>())
                 
                 .AddSystem(_r.Resolve<TableNotificationSystem>())
-                .AddSystem(new AcceptOrderSystem())
-                .AddSystem(_r.Resolve<GroupGenerationSystem>())
+                //.AddSystem(new AcceptOrderSystem())
+                .AddSystem(_r.Resolve<GuestGenerationSystem>())
                 .AddSystem(new GuestGroupTableResolveSystem())
                 .AddSystem(new GuestNavigateToTableSystem())
+                .AddSystem(new GuestNavigateToDestroySystem(_r.Resolve<GameResources>()))
                 .AddSystem(new GuestMovementSystem())
-                .AddSystem(new GroupArrivingRegistrySystem())
+                //.AddSystem(new GroupArrivingRegistrySystem())
                 .AddSystem(new GuestWaitingSystem())
-                .AddSystem(new GuestNavigateToDestroySystem())
                 .AddSystem(new GuestDestroyerSystem())
                 
                 .AddSystem(_r.Resolve<EndGameSystem>())

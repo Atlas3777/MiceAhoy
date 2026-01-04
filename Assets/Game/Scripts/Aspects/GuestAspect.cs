@@ -13,27 +13,43 @@ namespace Game.Script.Aspects
         public ProtoPool<GuestTableComponent> GuestTablePool;
         public ProtoPool<WantedItemComponent> WantedItemPool;
         public ProtoPool<WantedItemVisualizationComponent> WantedItemVisualizationPool;
-        public ProtoPool<GuestGroupComponent> GuestGroupComponentPool;
         public ProtoPool<GuestGameObjectRefComponent> GuestGameObjectRefComponentPool;
         public ProtoPool<NavMeshAgentComponent> NavMeshAgentComponentPool;
         public ProtoPool<GuestStateComponent> GuestStateComponentPool;
+        public ProtoPool<GuestSpawnerComponent> GuestSpawnerComponentPool;
         
         public ProtoPool<ReachedTargetPositionEvent> ReachedTargetPositionEventPool;
+        public ProtoPool<GotTableEvent> GotTableEventPool;
+        public ProtoPool<GuestServedEvent> GuestServedEventPool;
+        public ProtoPool<GuestRequestEvent> GuestRequestEventPool;
         
         public ProtoPool<GuestTag> GuestTagPool;
-        public ProtoPool<GuestServicedTag> GuestServicedPool;
+        public ProtoPool<GuestServicedTag> GuestServicedTagPool;
         public ProtoPool<GuestTableIsFreeTag> GuestTableIsFreeTagPool;
         public ProtoPool<GuestIsWalkingTag> GuestIsWalkingTagPool;
+        public ProtoPool<NeedsTableTag> NeedsTableTagPool;
         public ProtoPool<GuestDidArriveTag>  GuestDidArriveTagPool;
+        public ProtoPool<WaitingOrderTag> WaitingOrderTagPool;
     }
 
-    public struct GuestStateComponent
+    [Serializable]
+    public struct GuestStateComponent : IComponent
     {
         public float Hunger;
     }
     
     [Serializable]
     public struct GuestTag : IComponent
+    {
+    }
+
+    [Serializable]
+    public struct NeedsTableTag : IComponent
+    {
+    }
+
+    [Serializable]
+    public struct WaitingOrderTag : IComponent
     {
     }
     
@@ -60,10 +76,25 @@ namespace Game.Script.Aspects
     }
 
     [Serializable]
-    public struct GuestGroupComponent : IComponent
+    public struct GotTableEvent : IComponent
     {
-        public ProtoPackedEntityWithWorld GuestGroup;
     }
+
+    [Serializable]
+    public struct GuestServedEvent : IComponent
+    {
+    }
+
+    [Serializable]
+    public struct GuestRequestEvent : IComponent
+    {
+    }
+
+    // [Serializable]
+    // public struct GuestGroupComponent : IComponent
+    // {
+    //     public ProtoPackedEntityWithWorld GuestGroup;
+    // }
 
     [Serializable]
     public struct TargetPositionComponent : IComponent
@@ -94,5 +125,10 @@ namespace Game.Script.Aspects
     public struct NavMeshAgentComponent : IComponent
     {
         public NavMeshAgent Agent;
+    }
+
+    [Serializable]
+    public struct GuestSpawnerComponent : IComponent
+    {
     }
 }

@@ -69,6 +69,10 @@ PrefabInstance:
       value: 1239605930776854815
       objectReference: {fileID: 0}
     - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: managedReferences[1239605962581475399].HolderGO
+      value: 
+      objectReference: {fileID: 4591927906797565240}
+    - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
       propertyPath: managedReferences[1239605930776854817].Transform
       value: 
       objectReference: {fileID: 8814449994966506331}
@@ -87,6 +91,10 @@ PrefabInstance:
     - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
       propertyPath: managedReferences[1239605930776854812].resourceItemType
       value: 1239605930776854813
+      objectReference: {fileID: 0}
+    - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: managedReferences[1239605962581475399].PickableItemInfo
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
       propertyPath: managedReferences[1239605930776854815].workstationSprite
@@ -153,6 +161,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+--- !u!1 &4591927906797565240 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2024667353642627036, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+  m_PrefabInstance: {fileID: 2567296020999166692}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8814449994966506331 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6481781234270847423, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}

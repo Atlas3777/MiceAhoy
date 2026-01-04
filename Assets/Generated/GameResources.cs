@@ -69,7 +69,7 @@ public class GameResources
     public AudioClip fonovyy_zvuk_krik_chaek_shum_vody => Resources.Load<AudioClip>("fonovyy-zvuk-krik-chaek-shum-vody");
     public CustomAuthoring FridgeSpawner => Resources.Load<CustomAuthoring>("FridgeSpawner");
     public CustomAuthoring Guest => Resources.Load<CustomAuthoring>("Guest");
-    public CustomAuthoring GuestGroup => Resources.Load<CustomAuthoring>("GuestGroup");
+    public CustomAuthoring GuestSpawner => Resources.Load<CustomAuthoring>("GuestSpawner");
     public CustomAuthoring GuestTable => Resources.Load<CustomAuthoring>("GuestTable");
     public CustomAuthoring GuestTableSpawner => Resources.Load<CustomAuthoring>("GuestTableSpawner");
     public PickableItemsDB Pickable_Items_DB => Resources.Load<PickableItemsDB>("Pickable_Items_DB");
