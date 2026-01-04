@@ -30,11 +30,12 @@ namespace Game.Script.Infrastructure
             systems
                 .AddModule(new AutoInjectModule())
                 .AddModule(new UnityModule())
+                .AddModule(_r.Resolve<PlacementModule>())
                     
                 .AddSystem(new SyncUnityPhysicsToEcsSystem())
                 .AddSystem(new TimerSystem())
                 .AddSystem(new ProgressBarSystem())
-                .AddSystem(_r.Resolve<SyncGridPositionSystem>())
+                //.AddSystem(_r.Resolve<SyncGridPositionSystem>())
                 
                 .AddSystem(_r.Resolve<PlayerInitializeInputSystem>())
                 .AddSystem(_r.Resolve<UpdateInputSystem>())

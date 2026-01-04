@@ -44,7 +44,7 @@ public class PlayerInputHandler : MonoBehaviour
             case "Interact":
                 OnInteract(context, ref state);
                 break;
-            case "Edit":
+            case "RandomSpawnFurniture":
                 OnEdit(context, ref state);
                 break;
             case "Pause":
