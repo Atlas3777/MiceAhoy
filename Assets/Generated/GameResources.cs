@@ -1,4 +1,5 @@
 using Game.Script;
+using Image = UnityEngine.UI.Image;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -65,6 +66,7 @@ public class GameResources
         public CustomAuthoring TableOld => Resources.Load<CustomAuthoring>("Workstations/TableOld");
     }
     public GameObject barrel => Resources.Load<GameObject>("barrel");
+    public Image baseFurnitureCard => Resources.Load<Image>("baseFurnitureCard");
     public AudioClip button_click_clear_soft => Resources.Load<AudioClip>("button-click-clear-soft");
     public AudioClip fonovyy_zvuk_krik_chaek_shum_vody => Resources.Load<AudioClip>("fonovyy-zvuk-krik-chaek-shum-vody");
     public CustomAuthoring FridgeSpawner => Resources.Load<CustomAuthoring>("FridgeSpawner");

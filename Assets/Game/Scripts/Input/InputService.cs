@@ -14,6 +14,8 @@ public class InputService : ILateTickable
         public bool PickPlacePressed;
         public bool RandomSpawnFurniturePressed;
         public bool MoveFurniturePressed;
+        public bool LeftPressed;
+        public bool RightPressed;
     }
 
     private Dictionary<int, PlayerInput> _playerComponents = new();
@@ -76,7 +78,10 @@ public class InputService : ILateTickable
         if (newData.PickPlacePressed) currentData.PickPlacePressed = true;
         if (newData.RandomSpawnFurniturePressed) currentData.RandomSpawnFurniturePressed = true;
         if (newData.MoveFurniturePressed) currentData.MoveFurniturePressed = true;
-        
+        if (newData.LeftPressed) currentData.LeftPressed = true;
+        if (newData.RightPressed) currentData.RightPressed = true;
+
+
         currentData.MoveDirection = newData.MoveDirection;
         
         _playerInputs[playerIndex] = currentData;
@@ -105,6 +110,8 @@ public class InputService : ILateTickable
             state.PickPlacePressed = false;
             state.RandomSpawnFurniturePressed = false;
             state.MoveFurniturePressed = false;
+            state.RightPressed = false;
+            state.LeftPressed = false;
             _playerInputs[playerIndex] = state;
         }
     }

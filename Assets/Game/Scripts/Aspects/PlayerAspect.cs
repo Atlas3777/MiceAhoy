@@ -51,5 +51,7 @@ public struct PlayerInputComponent : IComponent
 
     public bool MoveFurniturePressed;
     public bool IsMoveFurnitureNow;
-    public bool IsInPlacementMode;
+    public bool IsScrollMenuOpened;
+    public bool IsRightPressed;
+    public bool IsLeftPressed;
 }

@@ -98,12 +98,12 @@ public class PlacementGrid
             var type = placementObject.workstationType.GetType();
             if (type is null)
             {
-                Debug.LogError("� ������ ������� workstationType null");
+                Debug.LogError("workstationType null");
                 continue;
             }
             if (res.ContainsKey(type))
             {
-                Debug.LogError($"������ ����� ���� ����������� ������: {type}");
+                Debug.LogError($"dublicate in list: {type}");
                 continue;
             }
             res[type] = placementObject.prefab;

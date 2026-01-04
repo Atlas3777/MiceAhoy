@@ -50,6 +50,12 @@ public class PlayerInputHandler : MonoBehaviour
             case "Pause":
                 OnPause(context, ref state);
                 break;
+            case "GoRight":
+                OnRightPressed(context, ref state);
+                break;
+            case "GoLeft":
+                OnLeftPressed(context, ref state);
+                break;
         }
 
         _inputService.UpdateState(_playerIndex, state);
@@ -97,6 +103,22 @@ public class PlayerInputHandler : MonoBehaviour
         if (context.performed)
         {
             state.RandomSpawnFurniturePressed = true;
+        }
+    }
+
+    private void OnRightPressed(InputAction.CallbackContext context, ref InputService.PlayerInputData state)
+    {
+        if (context.performed)
+        {
+            state.RightPressed = true;
+        }
+    }
+
+    private void OnLeftPressed(InputAction.CallbackContext context, ref InputService.PlayerInputData state)
+    {
+        if (context.performed)
+        {
+            state.LeftPressed = true;
         }
     }
 

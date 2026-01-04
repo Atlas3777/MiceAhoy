@@ -37,6 +37,8 @@ class UpdateInputSystem : IProtoInitSystem, IProtoRunSystem
             input.InteractPressed = data.InteractPressed;
             input.PickPlacePressed = data.PickPlacePressed;
             input.RandomSpawnFurniturePressed = data.RandomSpawnFurniturePressed;
+            input.IsRightPressed = data.RightPressed;
+            input.IsLeftPressed = data.LeftPressed;
         }
     }
 }

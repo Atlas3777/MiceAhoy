@@ -6,4 +6,5 @@ public class PlacementObject : ScriptableObject
     [SerializeReference, SubclassSelector]
     public WorkstationItem workstationType;
     public GameObject prefab;
+    public Sprite UIVisualisation;
 }

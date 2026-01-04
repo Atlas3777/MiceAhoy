@@ -31,7 +31,7 @@ internal class ResourceClassGenerator : AssetPostprocessor
         if (!Directory.Exists(outputDirectory))
             Directory.CreateDirectory(outputDirectory);
 
-        HashSet<string> namespaces = new HashSet<string> { "UnityEngine", "UnityEngine.UIElements" };
+        HashSet<string> namespaces = new HashSet<string> { "UnityEngine", "UnityEngine.UIElements", "Image = UnityEngine.UI.Image" };
 
         StringBuilder classBuilder = new StringBuilder();
         classBuilder.AppendLine("// This file is auto-generated. Do not modify manually.");

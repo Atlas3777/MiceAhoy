@@ -7,6 +7,7 @@ using Game.Scripts.LevelStates;
 using Leopotam.EcsProto;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.UI;
 using VContainer;
 using VContainer.Unity;
 
@@ -24,6 +25,7 @@ namespace Game.Script.DISystem
         [SerializeField] private PauseView pauseView;
         [SerializeField] private TutorialUIController tutorialUIController;
         [SerializeField] private CinemachineTargetGroup cinemachineTargetGroup;
+        [SerializeField] private ScrollRect furnitureScrollRect;
         [SerializeField] private AnimationCurve _animationCurve;
 
         protected override void Configure(IContainerBuilder builder)
@@ -41,11 +43,13 @@ namespace Game.Script.DISystem
             builder.Register<PickableService>(Lifetime.Singleton);
 
             builder.Register<PlacementGrid>(Lifetime.Singleton);
+            builder.Register<ScrollMenuManager>(Lifetime.Singleton);
 
             builder.RegisterInstance<LevelStateList>(levelStateList);
             builder.RegisterComponent(cinemachineTargetGroup);
             builder.RegisterComponent(tutorialUIController);
             builder.RegisterComponent(pauseView);
+            builder.RegisterComponent(furnitureScrollRect);
 
 
             RegisterSystemFactories(builder);
@@ -90,6 +94,7 @@ namespace Game.Script.DISystem
             builder.Register<DestroySpawnersSystemFactory>(Lifetime.Singleton);
             builder.Register<PlayerInitializeInputSystem>(Lifetime.Singleton);
             //builder.Register<EndGameSystemSystemFactory>(Lifetime.Singleton);
+            builder.Register<MoveScrollMenuSystemFactory>(Lifetime.Singleton);
         }
 
         private void RegisterProtoSystems(IContainerBuilder builder)
@@ -149,6 +154,9 @@ namespace Game.Script.DISystem
 
             builder.RegisterFactory<DestroySpawnersSystem>(container =>
                 container.Resolve<DestroySpawnersSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
+
+            builder.RegisterFactory<MoveScrollMenuSystem>(container =>
+                container.Resolve<MoveScrollMenuSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
         }
     }
 }
