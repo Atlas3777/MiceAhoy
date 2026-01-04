@@ -36,7 +36,6 @@ public class ScrollMenuManager
     {
         //I don't know what this list depends on. This string is workable shitpost
         currentFurnitures = Enumerable.Range(0, spawnerTypes.Count + 1).Select(i => i == 0 ? spawnerTypes[0] : spawnerTypes[i - 1]).ToList();
-        currentFurnitures.Add(currentFurnitures[2]);
 
         selectedIndex = 0;
     }
