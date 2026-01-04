@@ -15,6 +15,7 @@ MonoBehaviour:
   workstationType:
     rid: 6222298054940950603
   prefab: {fileID: 8766884320135700761, guid: a69446931e5b334458f248477b2a3e68, type: 3}
+  UIVisualisation: {fileID: -1311028390, guid: b44f2b0f72c3a91498b04572b0544aed, type: 3}
   references:
     version: 2
     RefIds:
