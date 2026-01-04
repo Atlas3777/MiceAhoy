@@ -46,7 +46,7 @@ namespace Game.Script.Systems
             {
                 Debug.Log("Пытаемся взять заказ");
                 ref var tableComponent = ref _workstationsAspect.GuestTablePool.Get(tableEntity);
-                if (!tableComponent.GuestGroup.TryUnpack(out _, out var guestGroupEntity))
+                if (!tableComponent.Guest.TryUnpack(out _, out var guestGroupEntity))
                 {
                     Debug.LogWarning("Не получилось извлечь группу!");
                     continue;

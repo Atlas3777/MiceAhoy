@@ -19,6 +19,7 @@ namespace Game.Scripts.TutorialTasks
 
             movementSystem.PlayerMoved += OnMoved;
 
+
             try
             {
                 await UniTask.WhenAll(

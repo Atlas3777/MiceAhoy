@@ -240,7 +240,7 @@ MonoBehaviour:
   _destroyAfterAuthoring: 0
   Components:
   - rid: 7346997658554204235
-  - rid: 7346997658554204237
+  - rid: 1239605962581475400
   - rid: 7346997658554204244
   - rid: 7346997658554204246
   - rid: 7346997658554204247
@@ -254,15 +254,15 @@ MonoBehaviour:
       data:
         Outline: {fileID: 1754974920767163093}
         IsActive: 0
+    - rid: 1239605962581475400
+      type: {class: HolderComponent, ns: Game.Scripts.Aspects, asm: Assembly-CSharp}
+      data:
+        HolderTransform: {fileID: 3344307055120997518}
+        PickableItemVisual: {fileID: 0}
     - rid: 7346997658554204235
       type: {class: PositionComponent, ns: , asm: Assembly-CSharp}
       data:
         Position: {x: 0, y: 0, z: 0}
-    - rid: 7346997658554204237
-      type: {class: HolderComponent, ns: , asm: Assembly-CSharp}
-      data:
-        HolderTransform: {fileID: 3344307055120997518}
-        PickableItemVisual: {fileID: 0}
     - rid: 7346997658554204244
       type: {class: FurnitureComponent, ns: , asm: Assembly-CSharp}
       data:

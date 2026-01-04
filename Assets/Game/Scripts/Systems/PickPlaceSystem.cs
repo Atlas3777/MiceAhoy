@@ -32,8 +32,8 @@ namespace Game.Script.Systems
 
                 if (!pickPlaceEvent.Invoker.TryUnpack(out _, out var playerEntity)) continue;
 
-                ref var interactedHolder = ref _playerAspect.HolderPool.Get(interactedEntity);
-                ref var playerHolder = ref _playerAspect.HolderPool.Get(playerEntity);
+                ref var interactedHolder = ref _baseAspect.HolderPool.Get(interactedEntity);
+                ref var playerHolder = ref _baseAspect.HolderPool.Get(playerEntity);
 
                 var playerHasItem = _playerAspect.HasItemTagPool.Has(playerEntity);
                 var interactedHolderHasItem = _playerAspect.HasItemTagPool.Has(interactedEntity);
@@ -69,8 +69,8 @@ namespace Game.Script.Systems
 
                     case (true, true):
                         Debug.Log("И в руках, и на столе что-то есть! (Свап или запрет)");
-                        ref var playerItem = ref _playerAspect.HolderPool.Get(playerEntity);
-                        ref var tableItem = ref _playerAspect.HolderPool.Get(interactedEntity);
+                        ref var playerItem = ref _baseAspect.HolderPool.Get(playerEntity);
+                        ref var tableItem = ref _baseAspect.HolderPool.Get(interactedEntity);
 
                         if (_workstationsAspect.ItemSourcePool.Has(interactedEntity)
                             && playerItem.Item == tableItem.Item

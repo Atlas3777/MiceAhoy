@@ -11,7 +11,6 @@ public class PlayerAspect : ProtoAspectInject
     public ProtoPool<PlayerIndexComponent> PlayerIndexPool;
     public ProtoPool<PlayerInputComponent> InputRawPool;
     public ProtoPool<InteractableComponent> InteractablePool;
-    public ProtoPool<HolderComponent> HolderPool;
     
     public ProtoPool<HasItemTag> HasItemTagPool;
     
@@ -30,19 +29,7 @@ public struct PlayerInitializeEvent : IComponent
     
 }
 
-[Serializable]
-public struct HolderComponent : IComponent
-{
-    public Transform HolderTransform;
-    public Type Item;
-    public GameObject PickableItemVisual;
 
-    public void Clear()
-    {
-        Item = null;
-        PickableItemVisual = null;
-    }
-}
 
 [Serializable]
 public struct HasItemTag : IComponent

@@ -46,7 +46,6 @@ namespace Game.Script.Infrastructure
                 .AddSystem(_r.Resolve<StoveSystem>())
                 .AddSystem(_r.Resolve<ItemSourceGeneratorSystem>())
                 
-                .AddSystem(new GuestTableSetupSystem()) 
                 .AddSystem(_r.Resolve<TableNotificationSystem>())
                 .AddSystem(new AcceptOrderSystem())
                 .AddSystem(_r.Resolve<GroupGenerationSystem>())

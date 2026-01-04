@@ -24,6 +24,7 @@ namespace Game.Script.DISystem
         [SerializeField] private PauseView pauseView;
         [SerializeField] private TutorialUIController tutorialUIController;
         [SerializeField] private CinemachineTargetGroup cinemachineTargetGroup;
+        [SerializeField] private AnimationCurve _animationCurve;
 
         protected override void Configure(IContainerBuilder builder)
         {

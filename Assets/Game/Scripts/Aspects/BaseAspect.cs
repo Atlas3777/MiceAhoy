@@ -7,7 +7,9 @@ using UnityEngine;
 
 namespace Game.Scripts.Aspects
 {
-    public interface IComponent { }
+    public interface IComponent
+    {
+    }
 
     public class BaseAspect : ProtoAspectInject
     {
@@ -16,29 +18,46 @@ namespace Game.Scripts.Aspects
         public ProtoPool<VisualizationInfoComponent> VisualizationInfoComponentPool;
         public ProtoPool<SelectedByPlayerEvent> SelectedByPlayerTagPool;
         public ProtoPool<InteractableComponent> InteractableComponentPool;
-    
+        public ProtoPool<HolderComponent> HolderPool;
+
+
         public GuestAspect GuestAspect;
-        public GuestGroupAspect  GuestGroupAspect;
-        public WorkstationsAspect  WorkstationsAspect;
-        public ViewAspect  ViewAspect;
-        public PlayerAspect   PlayerAspect;
+        public GuestGroupAspect GuestGroupAspect;
+        public WorkstationsAspect WorkstationsAspect;
+        public ViewAspect ViewAspect;
+        public PlayerAspect PlayerAspect;
         public PlacementAspect PlacementAspect;
-        public PhysicsAspect PhysicsAspect; 
+        public PhysicsAspect PhysicsAspect;
+    }
+
+    [Serializable]
+    public struct HolderComponent : IComponent
+    {
+        public Transform HolderTransform;
+        public ProtoPackedEntityWithWorld ItemEntity;
+        public Type Item;
+        public GameObject PickableItemVisual;
+
+        public void Clear()
+        {
+            Item = null;
+            PickableItemVisual = null;
+        }
     }
 
     public struct SelectedByPlayerEvent
     {
     }
 
-    
+
     [Serializable]
     public struct InteractableComponent : IComponent
     {
         public GameObject Outline;
         public bool IsActive;
     }
-    
-    
+
+
     [Serializable]
     public struct TimerComponent
     {

@@ -36,7 +36,7 @@ namespace Game.Script.Systems
                     ref var group = ref _guestGroupAspect.GuestGroupPool.Get(guestGroupEntity);
                     ref var table = ref _workstationsAspect.GuestTablePool.Get(tableEntity);
                     group.table = _world.PackEntityWithWorld(tableEntity);
-                    table.GuestGroup = _world.PackEntityWithWorld(guestGroupEntity);
+                    table.Guest = _world.PackEntityWithWorld(guestGroupEntity);
                     _guestAspect.GuestTableIsFreeTagPool.Del(tableEntity);
                     _guestGroupAspect.GroupNeedsTablePool.Del(guestGroupEntity);
                     _guestGroupAspect.GroupGotTableEventPool.Add(guestGroupEntity);

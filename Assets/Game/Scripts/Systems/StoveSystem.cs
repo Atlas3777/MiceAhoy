@@ -58,7 +58,7 @@ public class StoveSystem : IProtoInitSystem, IProtoRunSystem
         foreach (var stoveEntity in _startIt)
         {
             ref var works = ref _workstationsAspect.WorkstationsTypePool.Get(stoveEntity);
-            ref var holder = ref _playerAspect.HolderPool.Get(stoveEntity);
+            ref var holder = ref _baseAspect.HolderPool.Get(stoveEntity);
 
             if (holder.Item is null)
             {
@@ -78,7 +78,7 @@ public class StoveSystem : IProtoInitSystem, IProtoRunSystem
 
         foreach (var stoveEntity in _completedIt)
         {
-            ref var holder = ref _playerAspect.HolderPool.Get(stoveEntity);
+            ref var holder = ref _baseAspect.HolderPool.Get(stoveEntity);
             ref var works = ref _workstationsAspect.WorkstationsTypePool.Get(stoveEntity);
 
             if (_recipeService.TryGetRecipe(holder.Item, works.workstationType.GetType(), out var recipe))

@@ -36,12 +36,13 @@ namespace Game.Script.Systems
             foreach (var tableEntity in _tablesIterator)
             {
                 ref var tableComponent = ref _workstationsAspect.GuestTablePool.Get(tableEntity);
-                if (!tableComponent.GuestGroup.TryUnpack(out _, out var guestGroupEntity))
+                ref var holder = ref _baseAspect.HolderPool.Get(tableEntity);
+                if (!tableComponent.Guest.TryUnpack(out _, out var guestGroupEntity))
                 {
                     Debug.LogWarning("Не получилось извлечь группу!");
                     continue;
                 }
-                ref var holder = ref _playerAspect.HolderPool.Get(tableEntity);
+
                 var group = _guestGroupAspect.GuestGroupPool.Get(guestGroupEntity);
                 if (!_guestGroupAspect.WaitingOrderTagPool.Has(guestGroupEntity))
                 {

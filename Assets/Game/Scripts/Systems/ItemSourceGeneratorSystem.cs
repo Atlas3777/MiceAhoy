@@ -37,7 +37,7 @@ public class ItemSourceGeneratorSystem : IProtoInitSystem, IProtoRunSystem, IPro
     {
         foreach (var generatorEntity in _generatorIt)
         {
-            ref var generatorHolder = ref _playerAspect.HolderPool.Get(generatorEntity);
+            ref var generatorHolder = ref _baseAspect.HolderPool.Get(generatorEntity);
             if (!generatorHolder.PickableItemVisual)
             {
                 ref var itemSource = ref _workstationsAspect.ItemSourcePool.Get(generatorEntity);
@@ -60,10 +60,10 @@ public class ItemSourceGeneratorSystem : IProtoInitSystem, IProtoRunSystem, IPro
             if (!interacted.Invoker.TryUnpack(out _, out var playerEntity))
                 continue;
             
-            if (!_playerAspect.HolderPool.Has(playerEntity)) 
+            if (!_baseAspect.HolderPool.Has(playerEntity)) 
                 continue;
             
-            ref var playerHolder = ref _playerAspect.HolderPool.Get(playerEntity);
+            ref var playerHolder = ref _baseAspect.HolderPool.Get(playerEntity);
             if (playerHolder.Item is not null)
             {
                 Debug.Log($"[{generatorEntity}] Руки заняты, не могу взять {itemSource.resourceItemType.GetType().Name}!");

@@ -21,7 +21,7 @@ namespace Game.Scripts.LevelStates
         
         public override void Exit()
         {
-            
+             
         }
     }
 }

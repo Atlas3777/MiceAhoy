@@ -62,8 +62,7 @@ public struct ItemSourceComponent : IComponent
 [Serializable]
 public struct GuestTableComponent : IComponent
 {
-    public Vector3[] guestPlaces;
-    public ProtoPackedEntityWithWorld GuestGroup;
+    public ProtoPackedEntityWithWorld Guest;
     public Transform GuestPosition;
 }
 

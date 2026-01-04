@@ -372,7 +372,7 @@ MonoBehaviour:
   - rid: 6709886398881071179
   - rid: 6709886695004438798
   - rid: 6709886398881071182
-  - rid: 6709886398881071183
+  - rid: 1239605962581475403
   - rid: 6709886398881071184
   - rid: 6709886398881071186
   - rid: 6709886695004438799
@@ -386,6 +386,11 @@ MonoBehaviour:
         AllInfo: {fileID: 6130618373860877934}
         Info:
           satietyRestoration: {fileID: 1269709820235219348}
+    - rid: 1239605962581475403
+      type: {class: HolderComponent, ns: Game.Scripts.Aspects, asm: Assembly-CSharp}
+      data:
+        HolderTransform: {fileID: 265113631180259755}
+        PickableItemVisual: {fileID: 0}
     - rid: 6709886398881071179
       type: {class: PlayerInputComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -401,11 +406,6 @@ MonoBehaviour:
       type: {class: PositionComponent, ns: , asm: Assembly-CSharp}
       data:
         Position: {x: 0, y: 0, z: 0}
-    - rid: 6709886398881071183
-      type: {class: HolderComponent, ns: , asm: Assembly-CSharp}
-      data:
-        HolderTransform: {fileID: 265113631180259755}
-        PickableItemVisual: {fileID: 0}
     - rid: 6709886398881071184
       type: {class: PlayerInitializeEvent, ns: , asm: Assembly-CSharp}
       data: 

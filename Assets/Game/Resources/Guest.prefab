@@ -376,7 +376,6 @@ MonoBehaviour:
   _authoringType: 0
   _destroyAfterAuthoring: 0
   Components:
-  - rid: 7346997658554204231
   - rid: 8223375694890532957
   - rid: 8223375694890532955
   - rid: 8223375694890532956
@@ -405,11 +404,6 @@ MonoBehaviour:
       type: {class: WantedItemVisualizationComponent, ns: Game.Script.Aspects, asm: Assembly-CSharp}
       data:
         Visualization: {fileID: 4182418915176891477}
-    - rid: 7346997658554204231
-      type: {class: HolderComponent, ns: , asm: Assembly-CSharp}
-      data:
-        HolderTransform: {fileID: 0}
-        PickableItemVisual: {fileID: 0}
     - rid: 8223375694890532955
       type: {class: PositionComponent, ns: , asm: Assembly-CSharp}
       data:

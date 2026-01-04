@@ -16,6 +16,7 @@ namespace Game.Script.Aspects
         public ProtoPool<GuestGroupComponent> GuestGroupComponentPool;
         public ProtoPool<GuestGameObjectRefComponent> GuestGameObjectRefComponentPool;
         public ProtoPool<NavMeshAgentComponent> NavMeshAgentComponentPool;
+        public ProtoPool<GuestStateComponent> GuestStateComponentPool;
         
         public ProtoPool<ReachedTargetPositionEvent> ReachedTargetPositionEventPool;
         
@@ -26,6 +27,11 @@ namespace Game.Script.Aspects
         public ProtoPool<GuestDidArriveTag>  GuestDidArriveTagPool;
     }
 
+    public struct GuestStateComponent
+    {
+        public float Hunger;
+    }
+    
     [Serializable]
     public struct GuestTag : IComponent
     {
