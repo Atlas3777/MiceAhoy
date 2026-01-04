@@ -13,8 +13,12 @@ public class ScrollMenuManager
     private Dictionary<Type, Sprite> UIVisualisations;
     private Image baseFurnitureCard;
     private Transform scrollContentTransform;
+    private float scrollZoneWidth;
 
     private List<Type> currentFurnitures;
+
+    private int selectedIndex;
+    public Type SelectedFurniture { get { return currentFurnitures[selectedIndex]; } }
 
     public ScrollMenuManager(ScrollRect furnitureScrollRect, GameResources gameResources)
     {
@@ -25,12 +29,16 @@ public class ScrollMenuManager
         UIVisualisations = workstationList.ToDictionary(p=>p.workstationType.GetType(),p=>p.UIVisualisation);
         baseFurnitureCard = gameResources.baseFurnitureCard;
         scrollContentTransform = furnitureScrollRect.transform.Find("Viewport").Find("Content");
+        scrollZoneWidth = furnitureScrollRect.transform.GetComponent<RectTransform>().sizeDelta.x;
     }
 
     public void GenerateCurrentFurnitureList()
     {
         //I don't know what this list depends on. This string is workable shitpost
         currentFurnitures = Enumerable.Range(0, spawnerTypes.Count + 1).Select(i => i == 0 ? spawnerTypes[0] : spawnerTypes[i - 1]).ToList();
+        currentFurnitures.Add(currentFurnitures[2]);
+
+        selectedIndex = 0;
     }
 
     public void ShowScrollMenu()
@@ -41,9 +49,14 @@ public class ScrollMenuManager
         {
             var obj = GameObject.Instantiate(baseFurnitureCard,scrollContentTransform);
             obj.GetComponent<Image>().sprite = UIVisualisations[f];
+            obj.transform.localScale = Vector3.one;
         }
 
+        var rectTransform = scrollContentTransform.GetComponent<RectTransform>();
+        rectTransform.sizeDelta = new Vector2(currentFurnitures.Count * 100 + scrollZoneWidth, rectTransform.sizeDelta.y);
         furnitureScrollRect.gameObject.SetActive(true);
+
+        HighlightSelectedObject();
     }
 
     public void HideScrollMenu()
@@ -62,12 +75,24 @@ public class ScrollMenuManager
 
     public void MoveCursorLeft()
     {
-        Debug.Log("left");
+        if (selectedIndex == 0) return;
+        selectedIndex--;
+        HighlightSelectedObject();
     }
 
     public void MoveCursorRight()
     {
-        Debug.Log("right");
+        if (selectedIndex == currentFurnitures.Count - 1) return;
+        selectedIndex++;
+        HighlightSelectedObject();
+    }
+
+    private void HighlightSelectedObject()
+    {
+        foreach (Transform child in scrollContentTransform)
+            child.localScale = Vector3.one;
+        scrollContentTransform.GetChild(selectedIndex).localScale = new Vector3(1.42f, 1.42f, 1.42f);
+        furnitureScrollRect.horizontalNormalizedPosition = -(scrollZoneWidth / 2 - selectedIndex * 100 - 35) / (currentFurnitures.Count * 100);
     }
 
     private List<PlacementObject> GetWorkstationList()
