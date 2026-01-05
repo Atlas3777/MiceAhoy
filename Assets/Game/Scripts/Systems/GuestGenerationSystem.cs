@@ -13,11 +13,13 @@ namespace Game.Script.Systems
         [DI] private ProtoWorld _world;
         
         private readonly GameObject _guestPrefab;
+        private readonly Transform _guestSpawnerTransform;
         private ProtoIt _guestToGenerateIterator;
         
-        public GuestGenerationSystem(GameObject guestPrefab)
+        public GuestGenerationSystem(GameObject guestPrefab, Transform guestSpawnerTransform)
         {
             this._guestPrefab = guestPrefab;
+            this._guestSpawnerTransform = guestSpawnerTransform;
         }
 
         public void Init(IProtoSystems systems)
@@ -28,33 +30,32 @@ namespace Game.Script.Systems
 
         public void Run()
         {
-            // foreach (var guest in _guestToGenerateIterator)
-            // {
-            //     Debug.Log("создаём гостя");
-            //     CreateGuests();
-            //     _guestAspect.GuestRequestEventPool.Del(guest);
-            // }
+            foreach (var guest in _guestToGenerateIterator)
+            {
+                Debug.Log("создаём гостя");
+                CreateGuests();
+                _guestAspect.GuestRequestEventPool.Del(guest);
+            }
         }
         
         private List<ProtoPackedEntityWithWorld> CreateGuests(int numberOfGuests = 1)
         {
-            Debug.LogError("рот ебал мамаши автора ecs");
             var guests = new List<ProtoPackedEntityWithWorld>();
             for (var i = 0; i < numberOfGuests; ++i)
             {
-                var go = Object.Instantiate(_guestPrefab);
+                var go = Object.Instantiate(_guestPrefab, _guestSpawnerTransform.position, Quaternion.identity);
                 var authoring = go.GetComponent<CustomAuthoring>();
 
-                authoring.ProcessAuthoring();
+                //authoring.ProcessAuthoring();
                 var entity = authoring.Entity();
                 entity.TryUnpack(out _, out var unpackedEntity);
                 
-                ref var goRef = ref _guestAspect.GuestGameObjectRefComponentPool.Add(unpackedEntity);
-                goRef.GameObject = go;
+                // ref var goRef = ref _guestAspect.GuestGameObjectRefComponentPool.Add(unpackedEntity);
+                // goRef.GameObject = go;
                 
                 var agent = go.GetComponent<NavMeshAgent>();
-                ref var agentComponent = ref _guestAspect.NavMeshAgentComponentPool.Add(unpackedEntity);
-                agentComponent.Agent = agent;
+                // ref var agentComponent = ref _guestAspect.NavMeshAgentComponentPool.Add(unpackedEntity);
+                // agentComponent.Agent = agent;
                 agent.updateRotation = false;
                 agent.updateUpAxis = false;
 

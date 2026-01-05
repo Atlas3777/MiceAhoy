@@ -42,7 +42,6 @@ public static class Helper
         playerAspect.HasItemTagPool.Del(tableEntity);
         Debug.Log("ебаная магия");
         Object.Destroy(fromHolder.PickableItemInfo);
-        // Object.Destroy(fromHolder.HolderGO.transform.gameObject);
         fromHolder.Clear();
     }
     
