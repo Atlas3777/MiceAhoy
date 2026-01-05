@@ -7,7 +7,7 @@ using VContainer.Unity;
 
 namespace Game.Script.Infrastructure
 {
-    public class GameRuntimeController : IStartable, ITickable, IDisposable
+    public class GameRuntimeController : IStartable, IFixedTickable, IDisposable
     {
         private readonly IProtoSystems _mainSystems;
         private readonly InputService _inputService;
@@ -61,8 +61,6 @@ namespace Game.Script.Infrastructure
 
         public void Tick()
         {
-            if(IsPaused) return;
-            _mainSystems.Run();
         }
 
 
@@ -71,6 +69,12 @@ namespace Game.Script.Infrastructure
             _mainSystems.Destroy();
             _inputService.OnPausePressed -= OnPausePressed;
             IsPaused = true;
+        }
+
+        public void FixedTick()
+        {
+            if(IsPaused) return;
+            _mainSystems.Run();
         }
     }
 }

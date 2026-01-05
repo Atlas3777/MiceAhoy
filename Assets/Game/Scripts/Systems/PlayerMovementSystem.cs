@@ -38,7 +38,7 @@ public class PlayerMovementSystem : IProtoInitSystem, IProtoRunSystem, IProtoDes
             
             var desiredVelocity = moveDirection * speed.Value; 
 
-            r.linearVelocity = Vector3.Lerp(r.linearVelocity, desiredVelocity, 0.2f);
+            r.linearVelocity = Vector3.Lerp(r.linearVelocity, desiredVelocity, 10f * Time.fixedDeltaTime);
         }
     }
 

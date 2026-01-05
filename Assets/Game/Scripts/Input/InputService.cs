@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine.InputSystem;
 using VContainer.Unity;
 
-public class InputService : ILateTickable
+public class InputService : IFixedTickable
 {
     public struct PlayerInputData
     {
@@ -95,7 +95,7 @@ public class InputService : ILateTickable
 
     public int CountActivePlayerIndices() => _playerInputs.Count;
 
-    public void LateTick()
+    public void FixedTick()
     {
         var keys = _playerInputs.Keys.ToList();
         foreach (var playerIndex in keys)

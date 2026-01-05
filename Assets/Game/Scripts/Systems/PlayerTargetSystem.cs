@@ -31,8 +31,10 @@ internal class PlayerTargetSystem : IProtoInitSystem, IProtoRunSystem
             ref var playerInput = ref _playerAspect.InputRawPool.Get(entityPlayer);
 
             ProtoEntity bestTarget = default;
-            bool targetFound = false;
-            float minAngle = float.MaxValue;
+            var targetFound = false;
+            var bestScore = float.MaxValue;
+            var distWeight = 0.9f;
+            var angleWeight = 0.1f;
 
             foreach (var entityInteractable in _iteratorInteractable) {
                 if (entityPlayer == entityInteractable)
@@ -51,8 +53,9 @@ internal class PlayerTargetSystem : IProtoInitSystem, IProtoRunSystem
                 var angle = Vector3.Angle(rrr, directionToTarget);
 
                 if (angle < InteractionAngle) {
-                    if (angle < minAngle) {
-                        minAngle = angle;
+                    var score = sqrDist * distWeight + angle * angleWeight;
+                    if (score <= bestScore) {
+                        bestScore = score;
                         bestTarget = entityInteractable;
                         targetFound = true;
                     }
