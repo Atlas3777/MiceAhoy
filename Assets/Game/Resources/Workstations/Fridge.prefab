@@ -116,6 +116,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fridge
       objectReference: {fileID: 0}
+    - target: {fileID: 4551356049484251197, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4551356049484251197, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 6481781234270847423, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.82
