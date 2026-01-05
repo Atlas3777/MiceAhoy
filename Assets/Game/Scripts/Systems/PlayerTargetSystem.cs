@@ -52,13 +52,20 @@ internal class PlayerTargetSystem : IProtoInitSystem, IProtoRunSystem
                 var rrr = new Vector3(rr.x, 0, rr.y);
                 var angle = Vector3.Angle(rrr, directionToTarget);
 
-                if (angle < InteractionAngle) {
-                    var score = sqrDist * distWeight + angle * angleWeight;
-                    if (score <= bestScore) {
-                        bestScore = score;
-                        bestTarget = entityInteractable;
-                        targetFound = true;
-                    }
+                if (angle >= InteractionAngle)
+                    continue;
+                
+                var ray = new Ray(playerPos, targetPos - playerPos);
+                if (Physics.Raycast(ray, out var hit, (targetPos - playerPos).sqrMagnitude,
+                        LayerMask.GetMask("Wall", "Doors")))
+                    if (hit.collider is not null && hit.collider.gameObject)
+                        continue;
+                
+                var score = sqrDist * distWeight + angle * angleWeight;
+                if (score <= bestScore) {
+                    bestScore = score;
+                    bestTarget = entityInteractable;
+                    targetFound = true;
                 }
             }
             if(targetFound)
