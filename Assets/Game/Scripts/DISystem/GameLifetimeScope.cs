@@ -156,7 +156,7 @@ namespace Game.Script.DISystem
             builder.RegisterFactory<SyncGridPositionSystem>(container =>
                 container.Resolve<SyncGridPositionSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
 
-            builder.Register<GroupGenerationSystem>(container =>
+            builder.Register<GuestGenerationSystem>(container =>
                     container.Resolve<GroupGenerationSystemFactory>().CreateProtoSystem(), Lifetime.Singleton);
 
             builder.RegisterFactory<RandomSpawnerPositionSystem>(container =>

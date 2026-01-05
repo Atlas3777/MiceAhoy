@@ -13,7 +13,6 @@ namespace Game.Script.Systems
         [DI] private WorkstationsAspect _workstationsAspect;
         [DI] private PlayerAspect _playerAspect;
         [DI] private GuestAspect _guestAspect;
-        [DI] private GuestGroupAspect _guestGroupAspect;
         [DI] private BaseAspect _baseAspect;
         private ProtoIt _tablesIterator;
 
@@ -37,73 +36,43 @@ namespace Game.Script.Systems
             {
                 ref var tableComponent = ref _workstationsAspect.GuestTablePool.Get(tableEntity);
                 ref var holder = ref _baseAspect.HolderPool.Get(tableEntity);
-                if (!tableComponent.Guest.TryUnpack(out _, out var guestGroupEntity))
+                if (!tableComponent.Guest.TryUnpack(out _, out var guestEntity))
                 {
-                    Debug.LogWarning("Не получилось извлечь группу!");
+                    Debug.LogWarning("Не получилось извлечь гостя!");
                     continue;
                 }
-
-                var group = _guestGroupAspect.GuestGroupPool.Get(guestGroupEntity);
-                if (!_guestGroupAspect.WaitingOrderTagPool.Has(guestGroupEntity))
+                if (!_guestAspect.WaitingOrderTagPool.Has(guestEntity))
                 {
                     Debug.Log("Пока не пришли, не едим");
                     continue;
                 }
-                var packedGuests = group.includedGuests;
-
-                foreach (var packedGuest in packedGuests)
-                    if (packedGuest.TryUnpack(out _, out var guestEntity))
-                    {
-                        if (TryServiceGuest(guestEntity, tableEntity, ref holder))
-                        {
-                            Debug.Log("Гость хавает");
-                            break;
-                        }
-                    }
-                
-                var isEverybodyServed = true;
-                foreach (var packedGuest in packedGuests)
-                    if (packedGuest.TryUnpack(out _, out var guestEntity))
-                    {
-                        if (!_guestAspect.GuestServicedPool.Has(guestEntity))
-                        {
-                            isEverybodyServed = false;
-                            break;
-                        }
-                    }
-
-                if (isEverybodyServed)
+                if (IsGuestFull(guestEntity, tableEntity, ref holder))
                 {
-                    Debug.Log("Гости поели, щяс уйдут");
-                    
-                    _guestGroupAspect.WaitingOrderTagPool.Del(guestGroupEntity);
-                    _guestGroupAspect.GuestGroupServedEventPool.Add(guestGroupEntity);
-                    _guestGroupAspect.GuestGroupServedTagPool.Add(guestGroupEntity);
-                    _baseAspect.TimerCompletedPool.Add(guestGroupEntity);
-                    _workstationsAspect.ItemGenerationAvailablePool.Add(tableEntity);
-                    _playerAspect.HasItemTagPool.Add(tableEntity);
+                    Debug.Log("Гость хавает");
+                    continue;
                 }
+                Debug.Log("Гость наелся, уходит");
+                
+                _guestAspect.WaitingOrderTagPool.Del(guestEntity);
+                _guestAspect.GuestServedEventPool.Add(guestEntity);
+                _guestAspect.GuestServicedTagPool.Add(guestEntity);
+                _baseAspect.TimerCompletedPool.Add(guestEntity);
+                _workstationsAspect.ItemGenerationAvailablePool.Add(tableEntity);
             }
         }
         
-        private bool TryServiceGuest(ProtoEntity guestEntity, ProtoEntity tableEntity, ref HolderComponent holder)
+        private bool IsGuestFull(ProtoEntity guestEntity, ProtoEntity tableEntity, ref HolderComponent holder)
         {
-            ref var wantedItem = ref _guestAspect.WantedItemPool.Get(guestEntity).WantedItem;
-
-            if (!wantedItem.Is(holder.Item))
-                return false;
-
-            if (_guestAspect.GuestServicedPool.Has(guestEntity))
-                return false;
+            ref var hunger = ref _guestAspect.GuestStateComponentPool.Get(guestEntity).Hunger;
+            ref var satietyRestoration = ref _baseAspect.HolderPool.Get(tableEntity)
+                .PickableItemInfo.GetComponent<PickableItemInfoWrapper>().satietyRestoration;
             
-            ref var wantedItemVisualization = ref _guestAspect.WantedItemVisualizationPool.Get(guestEntity);
-            wantedItemVisualization.Visualization.SetActive(false);
-            _guestAspect.GuestServicedPool.Add(guestEntity);
+            hunger -= satietyRestoration;
             
             Helper.EatItem(tableEntity, ref holder, _playerAspect);
             
             Debug.Log("WINWINWIN");
-            return true;
+            return hunger <= 0;
         }
     }
 }

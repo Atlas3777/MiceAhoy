@@ -38,7 +38,7 @@ public class ItemSourceGeneratorSystem : IProtoInitSystem, IProtoRunSystem, IPro
         foreach (var generatorEntity in _generatorIt)
         {
             ref var generatorHolder = ref _baseAspect.HolderPool.Get(generatorEntity);
-            if (!generatorHolder.PickableItemVisual)
+            if (!generatorHolder.PickableItemInfo)
             {
                 ref var itemSource = ref _workstationsAspect.ItemSourcePool.Get(generatorEntity);
                 var resourceType = itemSource.resourceItemType.GetType();
@@ -47,7 +47,7 @@ public class ItemSourceGeneratorSystem : IProtoInitSystem, IProtoRunSystem, IPro
                 {
                     //Debug.Log("создал");
                     generatorHolder.Item = pickableItem.GetType();
-                    generatorHolder.PickableItemVisual = pickableItem.pickableItemGo;
+                    generatorHolder.PickableItemInfo = pickableItem.pickableItemGo;
                     _playerAspect.HasItemTagPool.GetOrAdd(generatorEntity);
                 }
             }

@@ -19,7 +19,7 @@ public class GuestMovementSystem : IProtoInitSystem, IProtoRunSystem, IProtoDest
         _moveIterator = new(new[]
         {
             typeof(GuestTag), typeof(PositionComponent), typeof(GuestIsWalkingTag),
-            typeof(TargetPositionComponent), typeof(MovementSpeedComponent), typeof(RigidbodyComponent),
+            typeof(TargetPositionComponent), typeof(MovementSpeedComponent)
         });
         _moveIterator.Init(_world);
     }
@@ -29,20 +29,20 @@ public class GuestMovementSystem : IProtoInitSystem, IProtoRunSystem, IProtoDest
         foreach (var guestEntity in _moveIterator)
         {
             ref var agent = ref _guestAspect.NavMeshAgentComponentPool.Get(guestEntity).Agent;
-            ref var rb = ref _physicsAspect.RigidbodyPool.Get(guestEntity);
+            // ref var rb = ref _physicsAspect.RigidbodyPool.Get(guestEntity);
 
             if (!agent.pathPending && agent.remainingDistance < 0.3f)
             {
                 _guestAspect.ReachedTargetPositionEventPool.Add(guestEntity);
                 _guestAspect.GuestIsWalkingTagPool.Del(guestEntity);
                 agent.isStopped = true;
-                rb.Rigidbody.isKinematic = true;
+                // rb.Rigidbody.isKinematic = true;
                 Debug.Log("ало мы тут да");
             }
             else
             {
                 agent.isStopped = false;
-                rb.Rigidbody.isKinematic = false;
+                // rb.Rigidbody.isKinematic = false;
             }
         }
     }

@@ -6,47 +6,34 @@ using UnityEngine;
 
 public class GuestNavigateToDestroySystem : IProtoInitSystem, IProtoRunSystem
 {
-    //[DIUnity("Exit")] private readonly Transform _exitTransform = default;
+    private readonly Transform _exit;
     [DI] private ProtoWorld _world;
     [DI] private GuestAspect _guestAspect;
-    [DI] private GuestGroupAspect _guestGroupAspect;
 
-    private ProtoItExc _leavingGroupsIterator;
+    private ProtoIt _leavingGroupsIterator;
+
+    public GuestNavigateToDestroySystem(GameResources gameResources)
+    {
+        _exit = gameResources.GuestSpawner.transform;
+    }
 
     public void Init(IProtoSystems systems)
     {
         _leavingGroupsIterator = new(new[]
         {
-            typeof(GuestGroupTag), typeof(GuestGroupServedEvent)
-        }, new[]
-        {
-            typeof(WaitingOrderTag), typeof(WaitingTakeOrderTag)
+            typeof(GuestTag), typeof(GuestServicedTag),
         });
         _leavingGroupsIterator.Init(_world);
     }
 
     public void Run()
     {
-        foreach (var leavingGroupEntity in _leavingGroupsIterator)
+        foreach (var guest in _leavingGroupsIterator)
         {
-            ref var packedGuests = ref _guestGroupAspect.GuestGroupPool
-                .Get(leavingGroupEntity).includedGuests;
-            foreach (var packedGuestEntity in packedGuests)
-            {
-                if (!packedGuestEntity.TryUnpack(out _, out var guest))
-                {
-                    Debug.LogWarning("Гость опять не распаковался тварь");
-                    continue;
-                }
-
-                ref var agent = ref _guestAspect.NavMeshAgentComponentPool.Get(guest).Agent;
-                Debug.LogError("ВЫХОДА НЕТ");
-                //agent.SetDestination(_exitTransform.position);
-                _guestAspect.GuestIsWalkingTagPool.Add(guest);
-            }
-
-            _guestGroupAspect.GroupIsWalkingPool.Add(leavingGroupEntity);
-            Debug.Log("Группа получила координаты выхода, уходит");
+            ref var agent = ref _guestAspect.NavMeshAgentComponentPool.Get(guest).Agent;
+                //Debug.LogError("ВЫХОДА НЕТ");
+            agent.SetDestination(_exit.position);
+            _guestAspect.GuestIsWalkingTagPool.GetOrAdd(guest);
         }
     }
 }

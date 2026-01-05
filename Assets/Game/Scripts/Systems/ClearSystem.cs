@@ -12,7 +12,6 @@ namespace Game.Script.Systems
         [DI] readonly WorkstationsAspect _workstationsAspect;
         [DI] readonly BaseAspect _baseAspect;
         [DI] readonly GuestAspect _guestAspect;
-        [DI] readonly GuestGroupAspect _guestGroupAspect;
         [DI] readonly PlayerAspect _playerAspect;
 
         private ProtoIt _iteratorPick;
@@ -36,8 +35,8 @@ namespace Game.Script.Systems
             _placeWorkstationIt = new(new[] { typeof(PlaceWorkstationEvent) });
             _interactedEventIt = new(new[] { typeof(InteractedEvent) });
             _reachedTargetPositionEventIt = new(new[] { typeof(ReachedTargetPositionEvent) });
-            _groupArrivedEventIt = new(new[] { typeof(GroupArrivedEvent) });
-            _guestGroupServedEventIt = new(new[] { typeof(GuestGroupServedEvent) });
+            _groupArrivedEventIt = new(new[] { typeof(GuestDidArriveTag) });
+            _guestGroupServedEventIt = new(new[] { typeof(GuestServedEvent) });
             _playerInitializeItEventIt = new(new[] { typeof(PlayerInitializeEvent) });
             _selectedByPlayerTagIt = new(new[] { typeof(SelectedByPlayerEvent)});
 
@@ -81,10 +80,10 @@ namespace Game.Script.Systems
                 _guestAspect.ReachedTargetPositionEventPool.Del(item);
 
             foreach (var item in _groupArrivedEventIt)
-                _guestGroupAspect.GroupArrivedEventPool.Del(item);
+                _guestAspect.GuestDidArriveTagPool.Del(item);
 
             foreach (var item in _guestGroupServedEventIt)
-                _guestGroupAspect.GuestGroupServedEventPool.Del(item);
+                _guestAspect.GuestServedEventPool.Del(item);
 
             foreach (var item in _playerInitializeItEventIt)
                 _playerAspect.PlayerInitializeEventPool.Del(item);

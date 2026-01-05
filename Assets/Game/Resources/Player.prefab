@@ -351,6 +351,7 @@ Transform:
   - {fileID: 5386724084893822737}
   - {fileID: 265113631180259755}
   - {fileID: 7003550342276712494}
+  - {fileID: 6905700394245461369}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5916910683595494960
@@ -376,21 +377,20 @@ MonoBehaviour:
   - rid: 6709886398881071184
   - rid: 6709886398881071186
   - rid: 6709886695004438799
-  - rid: 1239605930776854806
+  - rid: 5252179128873386056
   references:
     version: 2
     RefIds:
-    - rid: 1239605930776854806
-      type: {class: VisualizationInfoComponent, ns: Game.Scripts.Aspects, asm: Assembly-CSharp}
-      data:
-        AllInfo: {fileID: 6130618373860877934}
-        Info:
-          satietyRestoration: {fileID: 1269709820235219348}
     - rid: 1239605962581475403
       type: {class: HolderComponent, ns: Game.Scripts.Aspects, asm: Assembly-CSharp}
       data:
-        HolderTransform: {fileID: 265113631180259755}
-        PickableItemVisual: {fileID: 0}
+        HolderGO: {fileID: 5990564113085466207}
+        PickableItemInfo: {fileID: 0}
+    - rid: 5252179128873386056
+      type: {class: InteractableComponent, ns: Game.Scripts.Aspects, asm: Assembly-CSharp}
+      data:
+        Outline: {fileID: 7872894448560563935}
+        IsActive: 0
     - rid: 6709886398881071179
       type: {class: PlayerInputComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -711,6 +711,37 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.86, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6359850192155969874}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7872894448560563935
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6905700394245461369}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &6905700394245461369
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7872894448560563935}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

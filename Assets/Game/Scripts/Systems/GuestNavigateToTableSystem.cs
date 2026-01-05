@@ -7,52 +7,37 @@ namespace Game.Script.Systems
 {
     public class GuestNavigateToTableSystem : IProtoInitSystem, IProtoRunSystem
     {
-        [DI] private GuestGroupAspect _guestGroupAspect;
         [DI] private WorkstationsAspect _workstationsAspect;
         [DI] private GuestAspect _guestAspect;
         [DI] private ProtoWorld _world;
-        private ProtoIt _groupsWithTablesIterator;
+        private ProtoIt _guestsWithTablesIterator;
         
         public void Init(IProtoSystems systems)
         {
-            _groupsWithTablesIterator = new(new[]
+            _guestsWithTablesIterator = new(new[]
             {
-                typeof(GuestGroupTag), typeof(GroupGotTableEvent)
+                typeof(GuestTag), typeof(GotTableEvent)
             });
-            _groupsWithTablesIterator.Init(_world);
+            _guestsWithTablesIterator.Init(_world);
         }
 
         public void Run()
         {
-            foreach (var groupEntity in _groupsWithTablesIterator)
+            foreach (var guestEntity in _guestsWithTablesIterator)
             {
-                ref var packedGuests = ref _guestGroupAspect.GuestGroupPool
-                    .Get(groupEntity).includedGuests;
-                if (!_guestGroupAspect.GuestGroupPool.Get(groupEntity).table.TryUnpack(out _, out var table))
+                if (!_guestAspect.TargetPositionComponentPool.Get(guestEntity).Table.TryUnpack(out _, out var table))
                 {
                     Debug.LogWarning("Стол куда-то исчез...");
                     continue;
                 }
 
                 ref var tableComponent = ref _workstationsAspect.GuestTablePool.Get(table);
-                Debug.Log("Распределяем места за столом...");
+                
+                ref var agent = ref _guestAspect.NavMeshAgentComponentPool.Get(guestEntity).Agent;
+                agent.SetDestination(tableComponent.GuestPosition.position);
+                _guestAspect.GuestIsWalkingTagPool.GetOrAdd(guestEntity);
 
-                var i = 0;
-                foreach (var guestEntity in packedGuests)
-                {
-                    if (!guestEntity.TryUnpack(out _, out var guest))
-                    {
-                        Debug.LogWarning("Гость не распакован!!");
-                    }
-                        
-                    ref var agent = ref _guestAspect.NavMeshAgentComponentPool.Get(guest).Agent;
-                    //agent.SetDestination(tableComponent.guestPlaces[i]);
-                    agent.SetDestination(tableComponent.GuestPosition.position);
-                    _guestAspect.GuestIsWalkingTagPool.Add(guest);
-                    ++i;
-                }
-
-                _guestGroupAspect.GroupGotTableEventPool.Del(groupEntity);
+                _guestAspect.GotTableEventPool.Del(guestEntity);
             }
         }
     }
