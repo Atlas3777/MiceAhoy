@@ -11,6 +11,7 @@ using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 using Game.Scripts;
+using Game.Scripts.UIControllers;
 
 namespace Game.Script.DISystem
 {
@@ -22,12 +23,18 @@ namespace Game.Script.DISystem
 
     public class GameLifetimeScope : LifetimeScope
     {
+        [Header("LevelConfiguration")]
         [SerializeField] private LevelStepsList levelStepsList;
-        [SerializeField] private PauseView pauseView;
-        [SerializeField] private TutorialUIController tutorialUIController;
-        [SerializeField] private CinemachineTargetGroup cinemachineTargetGroup;
         [SerializeField] private LevelConfig levelConfig;
         [SerializeField] private SpawnRegistry spawnPoint;
+        
+        [Header("UI")]
+        [SerializeField] private PauseView pauseView;
+        [SerializeField] private TutorialUIController tutorialUIController;
+        [SerializeField] private LevelProgressUIController levelProgressUIController;
+        
+        [Header("CameraSetting")]
+        [SerializeField] private CinemachineTargetGroup cinemachineTargetGroup;
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -38,7 +45,6 @@ namespace Game.Script.DISystem
             builder.Register<ManualPlayerSpawner>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<InputService>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
 
-            builder.RegisterInstance<SpawnRegistry>(spawnPoint);
             
             builder.Register<GameResources>(Lifetime.Singleton);
             builder.Register<LevelStateService>(Lifetime.Singleton);
@@ -51,8 +57,11 @@ namespace Game.Script.DISystem
 
             builder.RegisterInstance<LevelStepsList>(levelStepsList);
             builder.RegisterInstance<LevelConfig>(levelConfig);
+            builder.RegisterInstance<SpawnRegistry>(spawnPoint);
+            
             builder.RegisterComponent(cinemachineTargetGroup);
             builder.RegisterComponent(tutorialUIController);
+            builder.RegisterComponent(levelProgressUIController);
             builder.RegisterComponent(pauseView);
 
 
@@ -106,6 +115,7 @@ namespace Game.Script.DISystem
             builder.Register<WinGameSystem>(Lifetime.Singleton);
             builder.Register<LoseGameSystem>(Lifetime.Singleton);
             builder.Register<GuestNavigateToDestroySystem>(Lifetime.Singleton);
+            builder.Register<LevelProgresSystem>(Lifetime.Singleton);
             
 
             // builder.RegisterFactory<ItemSourceGeneratorSystem>(container =>

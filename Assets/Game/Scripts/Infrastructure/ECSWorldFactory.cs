@@ -1,6 +1,7 @@
 ﻿using Game.Script.Systems;
 using Game.Scripts;
 using Game.Scripts.Aspects;
+using Game.Scripts.Infrastructure;
 using Game.Scripts.Systems;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.ConditionalSystems;
@@ -71,6 +72,7 @@ namespace Game.Script.Infrastructure
                     new GuestDestroyerSystem(),
                     
                     _r.Resolve<ReputationSystem>(),
+                    _r.Resolve<LevelProgresSystem>(),
                     
                     _r.Resolve<WinGameSystem>(),
                     _r.Resolve<LoseGameSystem>(),
@@ -82,13 +84,3 @@ namespace Game.Script.Infrastructure
         }
     }
 }
-
-
-// .AddSystem(playerSpawnFurnitureSystem) 
-// .AddSystem(createGameObjectsSystem)
-// .AddSystem(moveFurnitureSystem)
-// .AddSystem(moveGameObjectSystem)
-// .AddSystem(syncGridPositionSystem)
-// .AddSystem(randomSpawnerPositionSystem)
-// .AddSystem(new SpawnerInteractSystem())
-// .AddSystem(destroySpawnersSystem)

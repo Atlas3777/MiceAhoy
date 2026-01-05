@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using Game.Script.Systems;
 using Game.Scripts.Aspects;
+using Game.Scripts.UIControllers;
 using Leopotam.EcsProto.QoL;
 using Leopotam.EcsProto.Unity;
 using VContainer;

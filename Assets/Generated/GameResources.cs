@@ -68,7 +68,6 @@ public class GameResources
     public class UIPrefabs
     {
         public CanvasScaler HUD => Resources.Load<CanvasScaler>("UIPrefabs/HUD");
-        public PauseView UIConroller => Resources.Load<PauseView>("UIPrefabs/UIConroller");
     }
     public Workstations WorkstationsLink;
     public class Workstations
