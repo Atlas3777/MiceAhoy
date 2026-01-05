@@ -13,7 +13,6 @@ public class EndGameSystem : IProtoInitSystem, IProtoRunSystem
     private ProtoIt _it;
     private ProtoIt _itWin;
 
-    public event Action<GameState> EndGame;
     
     public void Init(IProtoSystems systems)
     {
@@ -27,7 +26,7 @@ public class EndGameSystem : IProtoInitSystem, IProtoRunSystem
     {
         foreach (var guestEntity in _itWin)
         {
-            EndGame?.Invoke(GameState.Win);
+            
         }
         
         foreach (var guestEntity in _it)
@@ -38,7 +37,6 @@ public class EndGameSystem : IProtoInitSystem, IProtoRunSystem
             _guestAspect.GuestServicedTagPool.GetOrAdd(guestEntity);
             _guestAspect.GuestIsWalkingTagPool.Add(guestEntity);
             
-            EndGame?.Invoke(GameState.Lose);
         }
     }
 }

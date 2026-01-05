@@ -75,7 +75,6 @@ public class GameResources
     public CustomAuthoring FridgeSpawner => Resources.Load<CustomAuthoring>("FridgeSpawner");
     public CustomAuthoring Guest => Resources.Load<CustomAuthoring>("Guest");
     public CustomAuthoring GuestSpawner => Resources.Load<CustomAuthoring>("GuestSpawner");
-    public CustomAuthoring GuestTable => Resources.Load<CustomAuthoring>("GuestTable");
     public CustomAuthoring GuestTableSpawner => Resources.Load<CustomAuthoring>("GuestTableSpawner");
     public PickableItemsDB Pickable_Items_DB => Resources.Load<PickableItemsDB>("Pickable_Items_DB");
     public PivotToRealPositionDifferences PivotToRealPositionDifferences => Resources.Load<PivotToRealPositionDifferences>("PivotToRealPositionDifferences");

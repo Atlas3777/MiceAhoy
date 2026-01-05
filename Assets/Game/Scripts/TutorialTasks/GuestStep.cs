@@ -25,6 +25,7 @@ namespace Game.Scripts.TutorialTasks
             var tutorialUIController = resolver.Resolve<TutorialUIController>();
             
             var r = gameResources.GuestSpawner;
+            
             var g = Object.Instantiate(r.gameObject);
             Object.Destroy(g);
 
