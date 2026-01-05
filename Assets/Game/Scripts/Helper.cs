@@ -45,7 +45,7 @@ public static class Helper
         fromHolder.Clear();
     }
     
-    public static void CreateItem(ProtoEntity playerEntity, ref HolderComponent playerHolder, 
+    public static void CreateItem(ProtoEntity holderEntity, ref HolderComponent holderComponent, 
         PlayerAspect playerAspect, BaseAspect baseAspect, PickableItem itemPick)
     {
         if (itemPick == null )
@@ -60,17 +60,18 @@ public static class Helper
 
         }
 
-        if (playerHolder.HolderGO == null)
+        if (holderComponent.HolderGO == null)
         {
-            Debug.LogError($"CreateItem: HolderGO is missing on entity {playerEntity}!");
+            Debug.LogError($"CreateItem: HolderGO is missing on entity {holderEntity}!");
             return;
         }
 
-        Object.Destroy(playerHolder.PickableItemInfo.gameObject);
+        if (holderComponent.PickableItemInfo)
+            Object.Destroy(holderComponent.PickableItemInfo.gameObject);
         
         // 2. Логика создания
-        var instantiatedGo = Object.Instantiate(itemPick.pickableItemGo, playerHolder.HolderGO.transform);
-        playerHolder.PickableItemInfo = instantiatedGo;
+        var instantiatedGo = Object.Instantiate(itemPick.pickableItemGo, holderComponent.HolderGO.transform);
+        holderComponent.PickableItemInfo = instantiatedGo;
         
         
 
@@ -85,10 +86,10 @@ public static class Helper
         }
 
         // 4. Обновление ECS стейта
-        playerHolder.Item = itemPick.GetType();
+        holderComponent.Item = itemPick.GetType();
     
         // В Proto важно проверять, жива ли сущность, если метод может быть вызван асинхронно или с задержкой
-        playerAspect.HasItemTagPool.GetOrAdd(playerEntity);
+        playerAspect.HasItemTagPool.GetOrAdd(holderEntity);
     
         // UpdateItemVisualizationInfo(playerEntity, infoWrapper, baseAspect);
     }
