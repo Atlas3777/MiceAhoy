@@ -45,16 +45,52 @@ public static class Helper
         fromHolder.Clear();
     }
     
-    public static void CreateItem(ProtoEntity playerEntity, ref HolderComponent playerHolder,
+    public static void CreateItem(ProtoEntity playerEntity, ref HolderComponent playerHolder, 
         PlayerAspect playerAspect, BaseAspect baseAspect, PickableItem itemPick)
     {
-        playerHolder.PickableItemInfo = Object.Instantiate(itemPick.pickableItemGo, playerHolder.HolderGO.transform);
-        var infoWrapper = playerHolder.PickableItemInfo.GetComponent<PickableItemInfoWrapper>();
-        SetupWrapperData(infoWrapper, itemPick);
-        playerHolder.Item = itemPick.GetType();
+        if (itemPick == null )
+        {
+            Debug.LogError("CreateItem: PickableItem  is null!");
+            return;
+        }
+
+        if (itemPick.pickableItemGo == null)
+        {
+            Debug.LogError("CreateItem: Prefab is null!");
+
+        }
+
+        if (playerHolder.HolderGO == null)
+        {
+            Debug.LogError($"CreateItem: HolderGO is missing on entity {playerEntity}!");
+            return;
+        }
+
+        Object.Destroy(playerHolder.PickableItemInfo.gameObject);
         
+        // 2. Логика создания
+        var instantiatedGo = Object.Instantiate(itemPick.pickableItemGo, playerHolder.HolderGO.transform);
+        playerHolder.PickableItemInfo = instantiatedGo;
+        
+        
+
+        // 3. Проверка компонента на префабе
+        if (instantiatedGo.TryGetComponent<PickableItemInfoWrapper>(out var infoWrapper))
+        {
+            SetupWrapperData(infoWrapper, itemPick);
+        }
+        else
+        {
+            Debug.LogError($"CreateItem: PickableItemInfoWrapper not found on {itemPick.pickableItemGo.name}");
+        }
+
+        // 4. Обновление ECS стейта
+        playerHolder.Item = itemPick.GetType();
+    
+        // В Proto важно проверять, жива ли сущность, если метод может быть вызван асинхронно или с задержкой
         playerAspect.HasItemTagPool.GetOrAdd(playerEntity);
-        //UpdateItemVisualizationInfo(playerEntity, infoWrapper, baseAspect);
+    
+        // UpdateItemVisualizationInfo(playerEntity, infoWrapper, baseAspect);
     }
 
     public static void ReturnItemToGenerator(ProtoEntity from, ref HolderComponent fromHolder,

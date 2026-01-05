@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class WorkstationsAspect : ProtoAspectInject
 {
-    public ProtoPool<WorkstationsTypeComponent> WorkstationsTypePool;
     public ProtoPool<ItemSourceComponent> ItemSourcePool;
     public ProtoPool<ReceiptProcessorComponent> StovePool;
     public ProtoPool<GuestTableComponent> GuestTablePool;
@@ -64,10 +63,4 @@ public struct GuestTableComponent : IComponent
 {
     public ProtoPackedEntityWithWorld Guest;
     public Transform GuestPosition;
-}
-
-[Serializable]
-public struct WorkstationsTypeComponent : IComponent
-{
-    [SerializeReference, SubclassSelector] public WorkstationItem workstationType;
 }

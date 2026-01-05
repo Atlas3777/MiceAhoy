@@ -9,7 +9,6 @@ namespace Game.Script
     {
         public GameObject pickableItemGo;
         public int satietyRestoration;
-        // public PickableItemWrapper PickupItemSprite;
 
         public bool Is(Type type)
         {

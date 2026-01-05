@@ -9,6 +9,7 @@ public class StoveSystem : IProtoInitSystem, IProtoRunSystem
     [DI] readonly PlayerAspect _playerAspect;
     [DI] readonly BaseAspect _baseAspect;
     [DI] readonly ViewAspect _viewAspect;
+    [DI] readonly PlacementAspect _placementAspect;
     [DI] readonly ProtoWorld _world;
 
     private ProtoIt _startIt;
@@ -27,7 +28,7 @@ public class StoveSystem : IProtoInitSystem, IProtoRunSystem
     {
         _startIt = new(new[]
         {
-            typeof(WorkstationsTypeComponent),
+            typeof(FurnitureComponent),
             typeof(InteractableComponent),
             typeof(HolderComponent),
             typeof(ReceiptProcessorComponent),
@@ -35,14 +36,14 @@ public class StoveSystem : IProtoInitSystem, IProtoRunSystem
         });
         _completedIt = new(new[]
         {
-            typeof(WorkstationsTypeComponent),
+            typeof(FurnitureComponent),
             typeof(InteractableComponent),
             typeof(ReceiptProcessorComponent),
             typeof(TimerCompletedEvent),
         });
         _abortIt = new(new[]
         {
-            typeof(WorkstationsTypeComponent),
+            typeof(FurnitureComponent),
             typeof(InteractableComponent),
             typeof(ReceiptProcessorComponent),
             typeof(ItemPickEvent),
@@ -57,7 +58,7 @@ public class StoveSystem : IProtoInitSystem, IProtoRunSystem
     {
         foreach (var stoveEntity in _startIt)
         {
-            ref var works = ref _workstationsAspect.WorkstationsTypePool.Get(stoveEntity);
+            ref var works = ref _placementAspect.FurniturePool.Get(stoveEntity);
             ref var holder = ref _baseAspect.HolderPool.Get(stoveEntity);
 
             if (holder.Item is null)
@@ -66,7 +67,7 @@ public class StoveSystem : IProtoInitSystem, IProtoRunSystem
                 continue;
             }
 
-            if (!_recipeService.TryGetRecipe(holder.Item, works.workstationType.GetType(), out var recipe))
+            if (!_recipeService.TryGetRecipe(holder.Item, works.type.GetType(), out var recipe))
             {
                 Debug.Log("Recipe not found");
                 continue;
@@ -79,9 +80,9 @@ public class StoveSystem : IProtoInitSystem, IProtoRunSystem
         foreach (var stoveEntity in _completedIt)
         {
             ref var holder = ref _baseAspect.HolderPool.Get(stoveEntity);
-            ref var works = ref _workstationsAspect.WorkstationsTypePool.Get(stoveEntity);
+            ref var works = ref _placementAspect.FurniturePool.Get(stoveEntity);
 
-            if (_recipeService.TryGetRecipe(holder.Item, works.workstationType.GetType(), out var recipe))
+            if (_recipeService.TryGetRecipe(holder.Item, works.type.GetType(), out var recipe))
             {
                 if (_pickableService.TryGetPickable(recipe.outputItemType.GetType(), out var pickableItem))
                 {

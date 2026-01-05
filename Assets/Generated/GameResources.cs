@@ -30,6 +30,7 @@ public class GameResources
     public class PickeableItemsGO
     {
         public PickableItemInfoWrapper Fish0GO => Resources.Load<PickableItemInfoWrapper>("PickeableItemsGO/Fish0GO");
+        public PickableItemInfoWrapper Fish1 => Resources.Load<PickableItemInfoWrapper>("PickeableItemsGO/Fish1");
     }
     public PlacementObjects PlacementObjectsLink;
     public class PlacementObjects
@@ -66,6 +67,7 @@ public class GameResources
         public CustomAuthoring Furniture_1x1_Base => Resources.Load<CustomAuthoring>("Workstations/Furniture_1x1_Base");
         public CustomAuthoring Furniture_1x2_Base => Resources.Load<CustomAuthoring>("Workstations/Furniture_1x2_Base");
         public CustomAuthoring GuestTable => Resources.Load<CustomAuthoring>("Workstations/GuestTable");
+        public CustomAuthoring Stove => Resources.Load<CustomAuthoring>("Workstations/Stove");
         public CustomAuthoring Table => Resources.Load<CustomAuthoring>("Workstations/Table");
         public CustomAuthoring TableOld => Resources.Load<CustomAuthoring>("Workstations/TableOld");
     }
