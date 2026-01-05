@@ -17,7 +17,8 @@ namespace Game.Scripts.LevelSteps
     {
         None,
         Build,
-        Gameplay
+        Gameplay,
+        EcsPause
     }
     
     public sealed class LevelFlowController : IStartable, ILevelStateContext, IDisposable
@@ -116,6 +117,7 @@ namespace Game.Scripts.LevelSteps
         }
 
         public GameplayPhase GetCurrentLevelPhase() => _currentState;
+        public void SetCurrentLevelPhase(GameplayPhase phase) => _currentState = phase;
 
         public void Dispose()
         {

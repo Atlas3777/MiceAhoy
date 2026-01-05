@@ -32,7 +32,7 @@ namespace Game.Script.Systems
                 if (progressBar.IsActive)
                 {
                     var progressValue = timer.Elapsed / timer.Duration;
-                    progressBar.Image.fillAmount = progressValue;
+                    progressBar.Image.fillAmount = 1 - progressValue;
                     progressBar.Image.color = progressBar.Gradient.Evaluate(progressValue);
                 }
                 else

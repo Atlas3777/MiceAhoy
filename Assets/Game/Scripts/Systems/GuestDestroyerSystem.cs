@@ -9,13 +9,12 @@ namespace Game.Script.Systems
     {
         [DI] private GuestAspect _guestAspect;
         private ProtoWorld _world;
-        private ProtoItExc _deadGuests;
+        private ProtoIt _deadGuests;
 
         public void Init(IProtoSystems systems)
         {
             _world = systems.World();
-            _deadGuests = new(new[] { typeof(GuestServicedTag), typeof(ReachedTargetPositionEvent) },
-                new[] { typeof(GuestServedEvent)});
+            _deadGuests = new(new[] { typeof(GuestServicedTag), typeof(ReachedTargetPositionEvent) });
             _deadGuests.Init(_world);
         }
 

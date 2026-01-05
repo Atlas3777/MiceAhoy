@@ -122,7 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3344307055120997518}
   m_Layer: 0
-  m_Name: Holder
+  m_Name: HolderRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -157,7 +157,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 539d10602d529434283d69bf5da2f515, type: 2}
     - target: {fileID: 3036941096806962511, guid: 75310bcf90aa6a4498bed35da17aae78, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3036941096806962511, guid: 75310bcf90aa6a4498bed35da17aae78, type: 3}
       propertyPath: m_LocalPosition.y
@@ -165,7 +165,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3036941096806962511, guid: 75310bcf90aa6a4498bed35da17aae78, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 3036941096806962511, guid: 75310bcf90aa6a4498bed35da17aae78, type: 3}
       propertyPath: m_LocalRotation.w
@@ -257,8 +257,8 @@ MonoBehaviour:
     - rid: 1239605962581475400
       type: {class: HolderComponent, ns: Game.Scripts.Aspects, asm: Assembly-CSharp}
       data:
-        HolderGO: {fileID: 5640227963405745337}
-        PickableItemInfo: {fileID: 0}
+        HolderRootGO: {fileID: 5640227963405745337}
+        PickableItemGO: {fileID: 0}
     - rid: 7346997658554204235
       type: {class: PositionComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -271,7 +271,7 @@ MonoBehaviour:
     - rid: 7346997658554204246
       type: {class: SyncGridPositionEvent, ns: , asm: Assembly-CSharp}
       data:
-        Transform: {fileID: 0}
+        Transform: {fileID: 5025365851142115424}
     - rid: 7346997658554204247
       type: {class: GridPositionComponent, ns: , asm: Assembly-CSharp}
       data:

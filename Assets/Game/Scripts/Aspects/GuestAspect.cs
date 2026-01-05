@@ -2,8 +2,11 @@ using System;
 using Game.Scripts.Aspects;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
 
 namespace Game.Script.Aspects
 {
@@ -17,6 +20,7 @@ namespace Game.Script.Aspects
         public ProtoPool<NavMeshAgentComponent> NavMeshAgentComponentPool;
         public ProtoPool<GuestStateComponent> GuestStateComponentPool;
         public ProtoPool<GuestSpawnerComponent> GuestSpawnerComponentPool;
+        public ProtoPool<GuestViewComponent> GuestViewComponentPool;
         
         public ProtoPool<ReachedTargetPositionEvent> ReachedTargetPositionEventPool;
         public ProtoPool<GotTableEvent> GotTableEventPool;
@@ -32,9 +36,18 @@ namespace Game.Script.Aspects
     }
 
     [Serializable]
+    public struct GuestViewComponent : IComponent
+    {
+        public Image HungerBarImage;
+        public TMP_Text CurrentHunger;
+    }
+
+    [Serializable]
     public struct GuestStateComponent : IComponent
     {
+        public float MaxHunger;
         public float Hunger;
+        public float WaitingSeconds;
     }
     
     [Serializable]

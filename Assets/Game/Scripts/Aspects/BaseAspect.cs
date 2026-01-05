@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.Script;
 using Game.Script.Aspects;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
@@ -20,11 +21,9 @@ namespace Game.Scripts.Aspects
         public ProtoPool<SelectedByPlayerEvent> SelectedByPlayerTagPool;
         public ProtoPool<InteractableComponent> InteractableComponentPool;
         public ProtoPool<HolderComponent> HolderPool;
-        public ProtoPool<DirectorComponent> DirectorPool;
         public ProtoPool<SpawnGuestRequest> SpawnGuestRequestPool;
         public ProtoPool<ReputationRequest> ReputationRequestPool;
-
-
+        
         public GuestAspect GuestAspect;
         public WorkstationsAspect WorkstationsAspect;
         public ViewAspect ViewAspect;
@@ -43,25 +42,30 @@ namespace Game.Scripts.Aspects
         public GuestProfile Profile;
     }
 
-    public struct DirectorComponent
-    {
-        public float CurrentTime; // Время с начала фазы Gameplay
-        public float AccumulatedCredits; // "Кошелек" директора
-        public float NextSpawnTime;
-    }
-
     [Serializable]
     public struct HolderComponent : IComponent
     {
-        public GameObject HolderGO;
+        public GameObject HolderRootGO;
         public ProtoPackedEntityWithWorld ItemEntity;
         public Type Item;
-        public GameObject PickableItemInfo;
+        public GameObject PickableItemGO;
+        private PickableItemInfoWrapper ItemInfo;
+
+        public PickableItemInfoWrapper GetItemInfo
+        {
+            get
+            {
+                if (ItemInfo == null)
+                    ItemInfo = PickableItemGO.GetComponent<PickableItemInfoWrapper>();
+                return ItemInfo;
+            }
+        }
+            
 
         public void Clear()
         {
             Item = null;
-            PickableItemInfo = null;
+            PickableItemGO = null;
         }
     }
 

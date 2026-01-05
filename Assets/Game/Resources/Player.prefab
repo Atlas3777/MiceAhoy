@@ -384,8 +384,8 @@ MonoBehaviour:
     - rid: 1239605962581475403
       type: {class: HolderComponent, ns: Game.Scripts.Aspects, asm: Assembly-CSharp}
       data:
-        HolderGO: {fileID: 5990564113085466207}
-        PickableItemInfo: {fileID: 0}
+        HolderRootGO: {fileID: 5990564113085466207}
+        PickableItemGO: {fileID: 0}
     - rid: 5252179128873386056
       type: {class: InteractableComponent, ns: Game.Scripts.Aspects, asm: Assembly-CSharp}
       data:
@@ -420,7 +420,7 @@ MonoBehaviour:
     - rid: 6709886695004438799
       type: {class: MovementSpeedComponent, ns: , asm: Assembly-CSharp}
       data:
-        Value: 3
+        Value: 4.5
 --- !u!114 &7491341558457626327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -532,7 +532,7 @@ Rigidbody:
   m_GameObject: {fileID: 5505783645829132517}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 5
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -672,7 +672,7 @@ GameObject:
   m_Component:
   - component: {fileID: 265113631180259755}
   m_Layer: 0
-  m_Name: Holder
+  m_Name: HolderRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

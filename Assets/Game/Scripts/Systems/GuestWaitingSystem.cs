@@ -22,7 +22,7 @@ namespace Game.Script.Systems
             _startWaitingOrderIt = new(new[]
             {
                 typeof(GuestTag), typeof(ReachedTargetPositionEvent)
-            }, new[] { typeof(WaitingOrderTag) });
+            }, new[] { typeof(WaitingOrderTag), typeof(GuestServicedTag) });
 
             _startWaitingOrderIt.Init(_world);
         }
@@ -34,9 +34,12 @@ namespace Game.Script.Systems
                 Debug.Log("Старт ожидания");
                 _guestAspect.GuestIsWalkingTagPool.DelIfExists(guestEntity);
                 _guestAspect.NeedsTableTagPool.DelIfExists(guestEntity);
+                
                 _guestAspect.WaitingOrderTagPool.Add(guestEntity);
                 ref var timer = ref _baseAspect.TimerPool.GetOrAdd(guestEntity);
-                timer.Duration = 10f;
+                ref var guestState = ref _guestAspect.GuestStateComponentPool.GetOrAdd(guestEntity);
+                
+                timer.Duration = guestState.WaitingSeconds;
             }
         }
 

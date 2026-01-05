@@ -111,7 +111,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5025365851142115424, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 5025365851142115424, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -119,7 +119,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5025365851142115424, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5025365851142115424, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -197,6 +197,10 @@ PrefabInstance:
       propertyPath: managedReferences[1239605930776854803].IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6711824874435919185, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
+      propertyPath: managedReferences[7346997658554204246].Transform
+      value: 
+      objectReference: {fileID: 1886367725258414672}
     - target: {fileID: 6711824874435919185, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
       propertyPath: managedReferences[1239605930776854799].GuestPosition
       value: 

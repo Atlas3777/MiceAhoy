@@ -13,6 +13,7 @@ namespace Game.Script.Infrastructure
     public class ECSWorldFactory
     {
         private readonly IObjectResolver _r;
+
         public ECSWorldFactory(IObjectResolver resolver)
             => _r = resolver;
 
@@ -28,55 +29,59 @@ namespace Game.Script.Infrastructure
         private IProtoSystems BuildMainSystems(ProtoWorld world)
         {
             var systems = new ProtoSystems(world);
-            
+
             systems
                 .AddModule(new AutoInjectModule())
                 .AddModule(new UnityModule())
+                
+                .AddSystem(new ConditionalSystem(_r.Resolve<TutorialEcsPauseSolver>(), true,
                     
-                .AddSystem(new SyncUnityPhysicsToEcsSystem())
-                .AddSystem(new TimerSystem())
-                //.AddSystem(new ProgressBarSystem())
-                .AddSystem(_r.Resolve<SyncGridPositionSystem>())
-                
-                .AddSystem(_r.Resolve<PlayerInitializeInputSystem>())
-                .AddSystem(_r.Resolve<UpdateInputSystem>())
-                .AddSystem(_r.Resolve<PlayerMovementSystem>())
-                .AddSystem(new PlayerTargetSystem())
-                .AddSystem(new OutlineSystem())
-                .AddSystem(_r.Resolve<PickPlaceSystem>())
-                
-                .AddSystem(_r.Resolve<StoveSystem>())
-                .AddSystem(_r.Resolve<ItemSourceGeneratorSystem>())
-                
-                .AddSystem(new ConditionalSystem(_r.Resolve<GameplaySolver>(), true,
-                    _r.Resolve<LevelDirectorSystem>()/*,
-                    _r.Resolve<GuestSpawnSystem>()*/)
-                )
-                .AddSystem(_r.Resolve<GuestSpawnSystem>())
-                
-                .AddSystem(_r.Resolve<TableNotificationSystem>())
-                //.AddSystem(new AcceptOrderSystem())
-                .AddSystem(_r.Resolve<GuestGenerationSystem>())
-                .AddSystem(new GuestGroupTableResolveSystem())
-                .AddSystem(new GuestNavigateToTableSystem())
-                .AddSystem(new GuestNavigateToDestroySystem(_r.Resolve<GameResources>()))
-                .AddSystem(new GuestMovementSystem())
-                //.AddSystem(new GroupArrivingRegistrySystem())
-                .AddSystem(new GuestWaitingSystem())
-                .AddSystem(new GuestDestroyerSystem())
-                
-                .AddSystem(_r.Resolve<ReputationSystem>())
-                .AddSystem(new GuestServicingFinalSystem())
-                //.AddSystem(_r.Resolve<WinGameSystem>())
-                //.AddSystem(_r.Resolve<LoseGameSystem>())
-                
-                .AddSystem(new PositionToTransformSystem()) //#TODO уничтожить
-                .AddSystem(_r.Resolve<ClearSystem>(), 999);
+                    new SyncUnityPhysicsToEcsSystem(),
+                    new TimerSystem(),
+                    new ProgressBarSystem(),
+                    _r.Resolve<SyncGridPositionSystem>(),
+                    
+                    _r.Resolve<PlayerInitializeInputSystem>(),
+                    _r.Resolve<UpdateInputSystem>(),
+                    _r.Resolve<PlayerMovementSystem>(),
+                    new PlayerTargetSystem(),
+                    new OutlineSystem(),
+                    _r.Resolve<PickPlaceSystem>(),
+                    
+                    _r.Resolve<StoveSystem>(),
+                    _r.Resolve<ItemSourceGeneratorSystem>(),
+                    
+                    new ConditionalSystem(_r.Resolve<GameplaySolver>(), true,
+                        _r.Resolve<LevelDirectorSystem>()
+                    ),
+                    _r.Resolve<GuestSpawnSystem>(),
+                    
+                    
+                    new GuestBookTableSystem(),
+                    new GuestNavigateToTableSystem(),
+                    new GuestMovementSystem(),
+                    
+                    new GuestWaitingSystem(),
+                    _r.Resolve<GuestEatingSystem>(),
+                    
+                    new HappyGuestLeaveSystem(),
+                    new AngryGuestLeaveSystem(),
+                    
+                    _r.Resolve<GuestNavigateToDestroySystem>(),
+                    new GuestDestroyerSystem(),
+                    
+                    _r.Resolve<ReputationSystem>(),
+                    
+                    _r.Resolve<WinGameSystem>(),
+                    _r.Resolve<LoseGameSystem>(),
+                    
+                    _r.Resolve<ClearSystem>())
+                );
+
             return systems;
         }
     }
 }
-
 
 
 // .AddSystem(playerSpawnFurnitureSystem) 

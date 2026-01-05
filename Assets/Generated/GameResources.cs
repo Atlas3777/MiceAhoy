@@ -12,6 +12,7 @@ public class GameResources
     public class GuestProfiles
     {
         public GuestProfile BaseGuestProfile => Resources.Load<GuestProfile>("GuestProfiles/BaseGuestProfile");
+        public GuestProfile TutorialGuestProfile => Resources.Load<GuestProfile>("GuestProfiles/TutorialGuestProfile");
     }
     public LevelConfigs LevelConfigsLink;
     public class LevelConfigs
@@ -57,6 +58,12 @@ public class GameResources
         public Recipe meet1 => Resources.Load<Recipe>("Recipes/meet1");
         public Recipe WashPlate => Resources.Load<Recipe>("Recipes/WashPlate");
     }
+    public Sounds SoundsLink;
+    public class Sounds
+    {
+        public AudioClip button_click_clear_soft => Resources.Load<AudioClip>("Sounds/button-click-clear-soft");
+        public AudioClip fonovyy_zvuk_krik_chaek_shum_vody => Resources.Load<AudioClip>("Sounds/fonovyy-zvuk-krik-chaek-shum-vody");
+    }
     public UIPrefabs UIPrefabsLink;
     public class UIPrefabs
     {
@@ -77,24 +84,11 @@ public class GameResources
         public CustomAuthoring Table => Resources.Load<CustomAuthoring>("Workstations/Table");
         public CustomAuthoring TableOld => Resources.Load<CustomAuthoring>("Workstations/TableOld");
     }
-    public GameObject barrel => Resources.Load<GameObject>("barrel");
-    public AudioClip button_click_clear_soft => Resources.Load<AudioClip>("button-click-clear-soft");
-    public AudioClip fonovyy_zvuk_krik_chaek_shum_vody => Resources.Load<AudioClip>("fonovyy-zvuk-krik-chaek-shum-vody");
-    public CustomAuthoring FridgeSpawner => Resources.Load<CustomAuthoring>("FridgeSpawner");
     public CustomAuthoring Guest => Resources.Load<CustomAuthoring>("Guest");
-    public CustomAuthoring GuestSpawner => Resources.Load<CustomAuthoring>("GuestSpawner");
-    public CustomAuthoring GuestTableSpawner => Resources.Load<CustomAuthoring>("GuestTableSpawner");
     public PickableItemsDB Pickable_Items_DB => Resources.Load<PickableItemsDB>("Pickable_Items_DB");
-    public PivotToRealPositionDifferences PivotToRealPositionDifferences => Resources.Load<PivotToRealPositionDifferences>("PivotToRealPositionDifferences");
     public PlacementObjectsDB PlacementObjects_DB => Resources.Load<PlacementObjectsDB>("PlacementObjects_DB");
-    public CustomAuthoring PlatesStand => Resources.Load<CustomAuthoring>("PlatesStand");
-    public CustomAuthoring PlatesWasher => Resources.Load<CustomAuthoring>("PlatesWasher");
     public CustomAuthoring Player => Resources.Load<CustomAuthoring>("Player");
     public RecipesDB Recipes_DB => Resources.Load<RecipesDB>("Recipes_DB");
-    public CustomAuthoring Refrigerator => Resources.Load<CustomAuthoring>("Refrigerator");
-    public CustomAuthoring Stove => Resources.Load<CustomAuthoring>("Stove");
-    public CustomAuthoring StoveSpawner => Resources.Load<CustomAuthoring>("StoveSpawner");
-    public CustomAuthoring TableSpawner => Resources.Load<CustomAuthoring>("TableSpawner");
 
     public GameResources()
     {
@@ -105,6 +99,7 @@ public class GameResources
         PickeableItemsGOLink = new PickeableItemsGO();
         PlacementObjectsLink = new PlacementObjects();
         RecipesLink = new Recipes();
+        SoundsLink = new Sounds();
         UIPrefabsLink = new UIPrefabs();
         WorkstationsLink = new Workstations();
     }

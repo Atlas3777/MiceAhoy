@@ -75,7 +75,7 @@ namespace Game.Script.Systems
                         if (_workstationsAspect.ItemSourcePool.Has(interactedEntity)
                             && playerItem.Item == tableItem.Item
                             && !_workstationsAspect.GuestTablePool.Has(interactedEntity)
-                            && playerItem.PickableItemInfo)
+                            && playerItem.PickableItemGO)
                             Helper.ReturnItemToGenerator(playerEntity, ref playerHolder, _playerAspect, _baseAspect);
                         break;
                 }

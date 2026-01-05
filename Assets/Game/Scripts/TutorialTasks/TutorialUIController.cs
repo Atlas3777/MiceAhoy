@@ -28,6 +28,13 @@ public class TutorialUIController : MonoBehaviour
         _typingTask = taskTypewriter.ShowTextAsync(description, ct).Preserve();
         await _typingTask;
     }
+    public async UniTask HideTaskAsync(CancellationToken ct)
+    {
+        taskGroup.gameObject.SetActive(true);
+        taskGroup.alpha = 1;
+        await Tween.Alpha(completedGroup, 1, 0, 0.5f).ToUniTask(ct);
+        taskGroup.gameObject.SetActive(false);
+    }
 
     public async UniTask ShowCompletedAsync(CancellationToken ct)
     {

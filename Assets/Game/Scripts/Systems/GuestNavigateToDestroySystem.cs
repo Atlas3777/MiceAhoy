@@ -1,7 +1,7 @@
 ﻿using Game.Script.Aspects;
+using Game.Scripts;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
-using Leopotam.EcsProto.Unity;
 using UnityEngine;
 
 public class GuestNavigateToDestroySystem : IProtoInitSystem, IProtoRunSystem
@@ -12,17 +12,14 @@ public class GuestNavigateToDestroySystem : IProtoInitSystem, IProtoRunSystem
 
     private ProtoIt _leavingGroupsIterator;
 
-    public GuestNavigateToDestroySystem(GameResources gameResources)
+    public GuestNavigateToDestroySystem(SpawnRegistry spawnRegistry)
     {
-        _exit = gameResources.GuestSpawner.transform;
+        _exit = spawnRegistry.GuestDestroy;
     }
 
     public void Init(IProtoSystems systems)
     {
-        _leavingGroupsIterator = new(new[]
-        {
-            typeof(GuestTag), typeof(GuestServicedTag),
-        });
+        _leavingGroupsIterator = new(new[] { typeof(GuestTag), typeof(GuestServicedTag), });
         _leavingGroupsIterator.Init(_world);
     }
 
@@ -31,7 +28,6 @@ public class GuestNavigateToDestroySystem : IProtoInitSystem, IProtoRunSystem
         foreach (var guest in _leavingGroupsIterator)
         {
             ref var agent = ref _guestAspect.NavMeshAgentComponentPool.Get(guest).Agent;
-                //Debug.LogError("ВЫХОДА НЕТ");
             agent.SetDestination(_exit.position);
             _guestAspect.GuestIsWalkingTagPool.GetOrAdd(guest);
         }

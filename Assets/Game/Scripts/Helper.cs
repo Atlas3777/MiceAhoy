@@ -14,12 +14,12 @@ public static class Helper
         PlayerAspect playerAspect,
         BaseAspect baseAspect)
     {
-        var itemGO = fromHolder.PickableItemInfo;
+        var itemGO = fromHolder.PickableItemGO;
 
-        toHolder.PickableItemInfo = itemGO;
+        toHolder.PickableItemGO = itemGO;
         toHolder.Item = fromHolder.Item;
         
-        itemGO.transform.SetParent(toHolder.HolderGO.transform, false);
+        itemGO.transform.SetParent(toHolder.HolderRootGO.transform, false);
         itemGO.transform.localPosition = Vector3.zero;
         itemGO.transform.localRotation = Quaternion.identity;
 
@@ -40,8 +40,7 @@ public static class Helper
     public static void EatItem(ProtoEntity tableEntity, ref HolderComponent fromHolder, PlayerAspect playerAspect)
     {
         playerAspect.HasItemTagPool.Del(tableEntity);
-        Debug.Log("ебаная магия");
-        Object.Destroy(fromHolder.PickableItemInfo);
+        Object.Destroy(fromHolder.PickableItemGO);
         fromHolder.Clear();
     }
     
@@ -60,18 +59,18 @@ public static class Helper
 
         }
 
-        if (holderComponent.HolderGO == null)
+        if (holderComponent.HolderRootGO == null)
         {
-            Debug.LogError($"CreateItem: HolderGO is missing on entity {holderEntity}!");
+            Debug.LogError($"CreateItem: HolderRootGO is missing on entity {holderEntity}!");
             return;
         }
 
-        if (holderComponent.PickableItemInfo)
-            Object.Destroy(holderComponent.PickableItemInfo.gameObject);
+        if (holderComponent.PickableItemGO)
+            Object.Destroy(holderComponent.PickableItemGO.gameObject);
         
         // 2. Логика создания
-        var instantiatedGo = Object.Instantiate(itemPick.pickableItemGo, holderComponent.HolderGO.transform);
-        holderComponent.PickableItemInfo = instantiatedGo;
+        var instantiatedGo = Object.Instantiate(itemPick.pickableItemGo, holderComponent.HolderRootGO.transform);
+        holderComponent.PickableItemGO = instantiatedGo;
         
         
 
@@ -97,7 +96,7 @@ public static class Helper
     public static void ReturnItemToGenerator(ProtoEntity from, ref HolderComponent fromHolder,
         PlayerAspect playerAspect, BaseAspect baseAspect)
     {
-        Object.Destroy(fromHolder.PickableItemInfo);
+        Object.Destroy(fromHolder.PickableItemGO);
         fromHolder.Clear();
         playerAspect.HasItemTagPool.Del(from);
         // ref var itemVisualizationData = ref baseAspect.VisualizationInfoComponentPool.Get(from);

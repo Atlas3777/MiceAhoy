@@ -114,21 +114,21 @@ public class PlacementGrid
     private Dictionary<Type, Vector2> GetPivotDifferenceDict()
     {
         Dictionary<Type, Vector2> res = new();
-        foreach (var diff in gameResources.PivotToRealPositionDifferences.differenceList)
-        {
-            var type = diff.item.GetType();
-            if (type is null)
-            {
-                Debug.LogError("� ������ ������� workstationType null");
-                continue;
-            }
-            if (res.ContainsKey(type))
-            {
-                Debug.LogError($"������ ����� ���� ����������� ������: {type}");
-                continue;
-            }
-            res[type] = diff.pivotToRealPositionDifference;
-        }
+        // foreach (var diff in gameResources.PivotToRealPositionDifferences.differenceList)
+        // {
+        //     var type = diff.item.GetType();
+        //     if (type is null)
+        //     {
+        //         Debug.LogError("� ������ ������� workstationType null");
+        //         continue;
+        //     }
+        //     if (res.ContainsKey(type))
+        //     {
+        //         Debug.LogError($"������ ����� ���� ����������� ������: {type}");
+        //         continue;
+        //     }
+        //     res[type] = diff.pivotToRealPositionDifference;
+        // }
         return res;
     }
 }

@@ -1,7 +1,6 @@
 using Game.Script.Factories;
 using Game.Script.Infrastructure;
 using Game.Script.Input;
-using Game.Script.Modules;
 using Game.Script.Systems;
 using Game.Scripts.Infrastructure;
 using Game.Scripts.LevelSteps;
@@ -11,7 +10,6 @@ using Unity.Cinemachine;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
-using System;
 using Game.Scripts;
 
 namespace Game.Script.DISystem
@@ -49,6 +47,7 @@ namespace Game.Script.DISystem
             builder.Register<PlacementGrid>(Lifetime.Singleton);
             
             builder.Register<GameplaySolver>(Lifetime.Singleton);
+            builder.Register<TutorialEcsPauseSolver>(Lifetime.Singleton);
 
             builder.RegisterInstance<LevelStepsList>(levelStepsList);
             builder.RegisterInstance<LevelConfig>(levelConfig);
@@ -59,8 +58,6 @@ namespace Game.Script.DISystem
 
             RegisterSystemFactories(builder);
             RegisterProtoSystems(builder);
-            RegisterModules(builder);
-
 
             RegisterECSWorldAndSystems(builder);
         }
@@ -72,14 +69,6 @@ namespace Game.Script.DISystem
             builder.Register<IProtoSystems>(container =>
                     container.Resolve<ECSWorldFactory>().CreateMainSystems(), Lifetime.Singleton)
                 .Keyed(IProtoSystemsType.MainSystem);
-        }
-
-        private void RegisterModules(IContainerBuilder builder)
-        {
-            builder.Register<WorkstationsModule>(Lifetime.Singleton);
-            builder.Register<PlacementModule>(Lifetime.Singleton);
-            builder.Register<PhysicsModule>(Lifetime.Singleton);
-            builder.Register<GuestModule>(Lifetime.Singleton);
         }
 
         private void RegisterSystemFactories(IContainerBuilder builder)
@@ -94,7 +83,6 @@ namespace Game.Script.DISystem
             builder.Register<MoveFurnitureSystemFactory>(Lifetime.Singleton);
             builder.Register<MoveGameObjectSystemFactory>(Lifetime.Singleton);
             builder.Register<SyncGridPositionSystemFactory>(Lifetime.Singleton);
-            builder.Register<GroupGenerationSystemFactory>(Lifetime.Singleton);
             builder.Register<RandomSpawnerPositionSystemFactory>(Lifetime.Singleton);
             builder.Register<DestroySpawnersSystemFactory>(Lifetime.Singleton);
             builder.Register<PlayerInitializeInputSystem>(Lifetime.Singleton);
@@ -111,13 +99,13 @@ namespace Game.Script.DISystem
             builder.Register<ClearSystem>(Lifetime.Singleton);
             builder.Register<PlayerMovementSystem>(Lifetime.Singleton);
             builder.Register<SyncGridPositionSystem>(Lifetime.Singleton);
-            builder.Register<TableNotificationSystem>(Lifetime.Singleton);
+            builder.Register<GuestEatingSystem>(Lifetime.Singleton);
             builder.Register<LevelDirectorSystem>(Lifetime.Singleton);
             builder.Register<GuestSpawnSystem>(Lifetime.Singleton);
             builder.Register<ReputationSystem>(Lifetime.Singleton);
             builder.Register<WinGameSystem>(Lifetime.Singleton);
             builder.Register<LoseGameSystem>(Lifetime.Singleton);
-            
+            builder.Register<GuestNavigateToDestroySystem>(Lifetime.Singleton);
             
 
             // builder.RegisterFactory<ItemSourceGeneratorSystem>(container =>
@@ -156,22 +144,11 @@ namespace Game.Script.DISystem
             builder.RegisterFactory<SyncGridPositionSystem>(container =>
                 container.Resolve<SyncGridPositionSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
 
-            builder.Register<GuestGenerationSystem>(container =>
-                    container.Resolve<GroupGenerationSystemFactory>().CreateProtoSystem(), Lifetime.Singleton);
-
             builder.RegisterFactory<RandomSpawnerPositionSystem>(container =>
                 container.Resolve<RandomSpawnerPositionSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
 
             builder.RegisterFactory<DestroySpawnersSystem>(container =>
                 container.Resolve<DestroySpawnersSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
         }
-    }
-
-    [Serializable]
-    public class SpawnRegistry
-    {
-        public Transform PlayerSpawn; 
-        public Transform GuestSpawn; 
-        public Transform GuestDestroy; 
     }
 }
