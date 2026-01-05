@@ -3,6 +3,7 @@ using Game.Scripts.Aspects;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Game.Scripts.Systems
 {
@@ -30,7 +31,10 @@ namespace Game.Scripts.Systems
             {
                 ref var request = ref _baseAspect.SpawnGuestRequestPool.Get(requestEntity);
                 
-                Object.Instantiate(request.Profile.Guest, _spawnPoint);
+                var go = Object.Instantiate(request.Profile.Guest, _spawnPoint.position, Quaternion.identity);
+                var agent = go.GetComponent<NavMeshAgent>();
+                agent.updateRotation = false;
+                agent.updateUpAxis = false;
                 
                 _baseAspect.SpawnGuestRequestPool.Del(requestEntity);
             }

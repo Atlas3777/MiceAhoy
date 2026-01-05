@@ -197,7 +197,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -336,6 +336,8 @@ GameObject:
   - component: {fileID: 8823938586616885949}
   - component: {fileID: 7837051385413714890}
   - component: {fileID: 6188592401123237228}
+  - component: {fileID: 1977165852264531298}
+  - component: {fileID: 659432436302682765}
   m_Layer: 0
   m_Name: Guest
   m_TagString: Untagged
@@ -387,6 +389,7 @@ MonoBehaviour:
   - rid: 5252179135611535433
   - rid: 5252179135611535436
   - rid: 5252179135611535437
+  - rid: 5252179152888397897
   references:
     version: 2
     RefIds:
@@ -405,6 +408,10 @@ MonoBehaviour:
       type: {class: GuestStateComponent, ns: Game.Script.Aspects, asm: Assembly-CSharp}
       data:
         Hunger: 60
+    - rid: 5252179152888397897
+      type: {class: RigidbodyComponent, ns: , asm: Assembly-CSharp}
+      data:
+        Rigidbody: {fileID: 1977165852264531298}
     - rid: 6709886293115404485
       type: {class: WantedItemComponent, ns: Game.Script.Aspects, asm: Assembly-CSharp}
       data:
@@ -491,3 +498,53 @@ NavMeshAgent:
   m_BaseOffset: -0.12
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!54 &1977165852264531298
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9168951379536319562}
+  serializedVersion: 5
+  m_Mass: 10000
+  m_LinearDamping: 10000
+  m_AngularDamping: 10000
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 0
+--- !u!136 &659432436302682765
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9168951379536319562}
+  m_Material: {fileID: 13400000, guid: 3a49634baeaf33e48b187c8f17f1e41c, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.20277691
+  m_Height: 1.4758368
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.687672, z: 0.23768514}

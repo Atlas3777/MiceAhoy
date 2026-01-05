@@ -3,6 +3,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using Game.Script.Aspects;
 using Game.Script.Systems;
+using Game.Scripts.Aspects;
 using Leopotam.EcsProto.QoL;
 using Leopotam.EcsProto.Unity;
 using Unity.VisualScripting;
@@ -23,11 +24,10 @@ namespace Game.Scripts.TutorialTasks
             var gameResources = resolver.Resolve<GameResources>();
             var tableNotificationSystem = resolver.Resolve<TableNotificationSystem>();
             var tutorialUIController = resolver.Resolve<TutorialUIController>();
-            
-            var r = gameResources.GuestSpawner;
-            
-            var g = Object.Instantiate(r.gameObject);
-            Object.Destroy(g);
+
+            var world = ProtoUnityWorlds.Get();
+            var guest = gameResources.GuestProfilesLink.BaseGuestProfile;
+            world.Aspect<BaseAspect>().SpawnGuestRequestPool.NewEntity().Profile = guest;
 
             var tcsMoved = new UniTaskCompletionSource();
 

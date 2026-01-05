@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Game.Script.Aspects;
+using Game.Scripts.Aspects;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace Game.Script.Systems
     public class GuestGenerationSystem : IProtoInitSystem, IProtoRunSystem
     {
         [DI] private GuestAspect _guestAspect;
+        [DI] private BaseAspect _baseAspect;
         [DI] private ProtoWorld _world;
         
         private readonly GameObject _guestPrefab;
@@ -24,7 +26,7 @@ namespace Game.Script.Systems
 
         public void Init(IProtoSystems systems)
         {
-            _guestToGenerateIterator = new(new[] { typeof(GuestRequestEvent) });
+            _guestToGenerateIterator = new(new[] { typeof(SpawnGuestRequest) });
             _guestToGenerateIterator.Init(_world);
         }
 
@@ -34,7 +36,7 @@ namespace Game.Script.Systems
             {
                 Debug.Log("создаём гостя");
                 CreateGuests();
-                _guestAspect.GuestRequestEventPool.Del(guest);
+                _baseAspect.SpawnGuestRequestPool.Del(guest);
             }
         }
         

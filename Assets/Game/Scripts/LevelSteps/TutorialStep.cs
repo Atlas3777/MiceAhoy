@@ -14,8 +14,8 @@ namespace Game.Scripts.LevelSteps
 
         public override async UniTask Execute(IObjectResolver resolver, CancellationToken ct)
         {
-            // await new MoveStep().Execute(resolver, ct);
-            // await new PickStep().Execute(resolver, ct);
+            //await new MoveStep().Execute(resolver, ct);
+            //await new PickStep().Execute(resolver, ct);
             await new GuestStep().Execute(resolver, ct);
         }
         

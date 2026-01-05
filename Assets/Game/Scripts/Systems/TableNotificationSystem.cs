@@ -46,7 +46,7 @@ namespace Game.Script.Systems
                     Debug.Log("Пока не пришли, не едим");
                     continue;
                 }
-                if (IsGuestFull(guestEntity, tableEntity, ref holder))
+                if (!IsGuestFull(guestEntity, tableEntity, ref holder))
                 {
                     Debug.Log("Гость хавает");
                     continue;
@@ -71,7 +71,7 @@ namespace Game.Script.Systems
             
             Helper.EatItem(tableEntity, ref holder, _playerAspect);
             
-            Debug.Log("WINWINWIN");
+            Debug.Log(hunger);
             return hunger <= 0;
         }
     }

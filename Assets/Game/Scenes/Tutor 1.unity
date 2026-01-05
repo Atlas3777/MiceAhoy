@@ -10548,6 +10548,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GuestSpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 8981168774400123739, guid: a321e299ced91c54983e5a92a0a34c98, type: 3}
+      propertyPath: Components.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
