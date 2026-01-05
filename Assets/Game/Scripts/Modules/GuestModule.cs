@@ -9,11 +9,11 @@ namespace Game.Script.Modules
     public class GuestModule : IProtoModule
     {
         private readonly GroupGenerationSystem _groupGenerationSystem;
-        private readonly EndGameSystem _endGameSystem;
-        public GuestModule(GroupGenerationSystemFactory groupGenerationSystemFactory, EndGameSystem  endGameSystem)
+        private readonly LoseGameSystem _loseGameSystem;
+        public GuestModule(GroupGenerationSystemFactory groupGenerationSystemFactory, LoseGameSystem  loseGameSystem)
         {
             this._groupGenerationSystem = groupGenerationSystemFactory.CreateProtoSystem();
-            _endGameSystem = endGameSystem;
+            _loseGameSystem = loseGameSystem;
         }
         
         public void Init(IProtoSystems systems)
@@ -26,7 +26,7 @@ namespace Game.Script.Modules
                 .AddSystem(new GroupArrivingRegistrySystem())
                 .AddSystem(new GuestWaitingSystem())
                 .AddSystem(new GuestDestroyerSystem())
-                .AddSystem(_endGameSystem)
+                .AddSystem(_loseGameSystem)
                 .AddSystem(new GuestNavigateToDestroySystem())
                 .AddSystem(new PositionToTransformSystem());
         }

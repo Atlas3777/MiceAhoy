@@ -22,7 +22,6 @@ namespace Game.Scripts.TutorialTasks
 
             var r = gameResources.GuestGroup;
 
-
             var g = Object.Instantiate(r.gameObject);
             var authoring = g.GetComponent<CustomAuthoring>();
 

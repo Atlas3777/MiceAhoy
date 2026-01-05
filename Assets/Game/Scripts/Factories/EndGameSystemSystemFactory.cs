@@ -3,6 +3,6 @@
     public class EndGameSystemSystemFactory
     {
 
-        public EndGameSystem CreateProtoSystem() => new();
+        public LoseGameSystem CreateProtoSystem() => new();
     }
 }

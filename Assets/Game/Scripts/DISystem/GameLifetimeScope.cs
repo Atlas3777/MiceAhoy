@@ -3,12 +3,16 @@ using Game.Script.Infrastructure;
 using Game.Script.Input;
 using Game.Script.Modules;
 using Game.Script.Systems;
-using Game.Scripts.LevelStates;
+using Game.Scripts.Infrastructure;
+using Game.Scripts.LevelSteps;
+using Game.Scripts.Systems;
 using Leopotam.EcsProto;
 using Unity.Cinemachine;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
+using System;
+using Game.Scripts;
 
 namespace Game.Script.DISystem
 {
@@ -20,11 +24,12 @@ namespace Game.Script.DISystem
 
     public class GameLifetimeScope : LifetimeScope
     {
-        [SerializeField] private LevelStateList levelStateList;
+        [SerializeField] private LevelStepsList levelStepsList;
         [SerializeField] private PauseView pauseView;
         [SerializeField] private TutorialUIController tutorialUIController;
         [SerializeField] private CinemachineTargetGroup cinemachineTargetGroup;
-        [SerializeField] private AnimationCurve _animationCurve;
+        [SerializeField] private LevelConfig levelConfig;
+        [SerializeField] private SpawnRegistry spawnPoint;
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -35,14 +40,18 @@ namespace Game.Script.DISystem
             builder.Register<ManualPlayerSpawner>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<InputService>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
 
-
+            builder.RegisterInstance<SpawnRegistry>(spawnPoint);
+            
             builder.Register<GameResources>(Lifetime.Singleton);
+            builder.Register<LevelStateService>(Lifetime.Singleton);
             builder.Register<RecipeService>(Lifetime.Singleton);
             builder.Register<PickableService>(Lifetime.Singleton);
-
             builder.Register<PlacementGrid>(Lifetime.Singleton);
+            
+            builder.Register<GameplaySolver>(Lifetime.Singleton);
 
-            builder.RegisterInstance<LevelStateList>(levelStateList);
+            builder.RegisterInstance<LevelStepsList>(levelStepsList);
+            builder.RegisterInstance<LevelConfig>(levelConfig);
             builder.RegisterComponent(cinemachineTargetGroup);
             builder.RegisterComponent(tutorialUIController);
             builder.RegisterComponent(pauseView);
@@ -94,7 +103,6 @@ namespace Game.Script.DISystem
 
         private void RegisterProtoSystems(IContainerBuilder builder)
         {
-            builder.Register<EndGameSystem>(Lifetime.Singleton);
             builder.Register<PickPlaceSystem>(Lifetime.Singleton);
             builder.Register<UpdateInputSystem>(Lifetime.Singleton);
             builder.Register<ItemSourceGeneratorSystem>(Lifetime.Singleton);
@@ -104,6 +112,13 @@ namespace Game.Script.DISystem
             builder.Register<PlayerMovementSystem>(Lifetime.Singleton);
             builder.Register<SyncGridPositionSystem>(Lifetime.Singleton);
             builder.Register<TableNotificationSystem>(Lifetime.Singleton);
+            builder.Register<LevelDirectorSystem>(Lifetime.Singleton);
+            builder.Register<GuestSpawnSystem>(Lifetime.Singleton);
+            builder.Register<ReputationSystem>(Lifetime.Singleton);
+            builder.Register<WinGameSystem>(Lifetime.Singleton);
+            builder.Register<LoseGameSystem>(Lifetime.Singleton);
+            
+            
 
             // builder.RegisterFactory<ItemSourceGeneratorSystem>(container =>
             //     container.Resolve<ItemSourceGeneratorSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
@@ -150,5 +165,13 @@ namespace Game.Script.DISystem
             builder.RegisterFactory<DestroySpawnersSystem>(container =>
                 container.Resolve<DestroySpawnersSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
         }
+    }
+
+    [Serializable]
+    public class SpawnRegistry
+    {
+        public Transform PlayerSpawn; 
+        public Transform GuestSpawn; 
+        public Transform GuestDestroy; 
     }
 }

@@ -19,6 +19,9 @@ namespace Game.Scripts.Aspects
         public ProtoPool<SelectedByPlayerEvent> SelectedByPlayerTagPool;
         public ProtoPool<InteractableComponent> InteractableComponentPool;
         public ProtoPool<HolderComponent> HolderPool;
+        public ProtoPool<DirectorComponent> DirectorPool;
+        public ProtoPool<SpawnGuestRequest> SpawnGuestRequestPool;
+        public ProtoPool<ReputationRequest> ReputationRequestPool;
 
 
         public GuestAspect GuestAspect;
@@ -28,6 +31,23 @@ namespace Game.Scripts.Aspects
         public PlayerAspect PlayerAspect;
         public PlacementAspect PlacementAspect;
         public PhysicsAspect PhysicsAspect;
+    }
+
+    public struct ReputationRequest
+    {
+        public int Diff;
+    }
+    
+    public struct SpawnGuestRequest
+    {
+        public GuestProfile Profile;
+    }
+
+    public struct DirectorComponent
+    {
+        public float CurrentTime; // Время с начала фазы Gameplay
+        public float AccumulatedCredits; // "Кошелек" директора
+        public float NextSpawnTime;
     }
 
     [Serializable]

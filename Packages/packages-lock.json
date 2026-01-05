@@ -279,6 +279,13 @@
       "dependencies": {},
       "hash": "8bc08acba192dd1bd2e45fee6df85704466f439e"
     },
+    "ru.leopotam.ecsproto.conditionalsystems": {
+      "version": "https://gitverse.ru/leopotam/ecsproto.conditionalsystems.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "83bf66a469a154410aa2b791a63ab2e354c7c6c3"
+    },
     "ru.leopotam.ecsproto.unity": {
       "version": "https://gitverse.ru/leopotam/ecsproto.unity.git",
       "depth": 0,

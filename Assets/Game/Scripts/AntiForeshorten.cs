@@ -20,22 +20,23 @@ public class AntiForeshorten : MonoBehaviour
 
     void LateUpdate()
     {
-        if (_cam.aspect != _lastAspect || _cam.fieldOfView != _lastFov)
-        {
+        // if (_cam.aspect != _lastAspect || _cam.fieldOfView != _lastFov)
+        // {
             UpdateMatrix();
-        }
+        //}
     }
 
     [ContextMenu("Update Matrix")]
     public void UpdateMatrix()
     {
-        if (_cam == null) _cam = GetComponent<Camera>();
+        if (!_cam) 
+            _cam = GetComponent<Camera>();
         
         _cam.ResetProjectionMatrix();
         Matrix4x4 mat = _cam.projectionMatrix;
         mat[1, 1] *= AspectModifier;
         _cam.projectionMatrix = mat;
-
+        
         _lastAspect = _cam.aspect;
         _lastFov = _cam.fieldOfView;
     }

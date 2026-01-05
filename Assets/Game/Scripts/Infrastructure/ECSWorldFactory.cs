@@ -1,7 +1,9 @@
-﻿using Game.Script.Factories;
-using Game.Script.Systems;
+﻿using Game.Script.Systems;
+using Game.Scripts;
 using Game.Scripts.Aspects;
+using Game.Scripts.Systems;
 using Leopotam.EcsProto;
+using Leopotam.EcsProto.ConditionalSystems;
 using Leopotam.EcsProto.QoL;
 using Leopotam.EcsProto.Unity;
 using VContainer;
@@ -46,6 +48,11 @@ namespace Game.Script.Infrastructure
                 .AddSystem(_r.Resolve<StoveSystem>())
                 .AddSystem(_r.Resolve<ItemSourceGeneratorSystem>())
                 
+                .AddSystem(new ConditionalSystem(_r.Resolve<GameplaySolver>(), true,
+                    _r.Resolve<LevelDirectorSystem>(),
+                    _r.Resolve<GuestSpawnSystem>())
+                )
+                
                 .AddSystem(_r.Resolve<TableNotificationSystem>())
                 .AddSystem(new AcceptOrderSystem())
                 .AddSystem(_r.Resolve<GroupGenerationSystem>())
@@ -57,8 +64,12 @@ namespace Game.Script.Infrastructure
                 .AddSystem(new GuestNavigateToDestroySystem())
                 .AddSystem(new GuestDestroyerSystem())
                 
-                .AddSystem(_r.Resolve<EndGameSystem>())
-                .AddSystem(new PositionToTransformSystem()) 
+                .AddSystem(_r.Resolve<ReputationSystem>())
+                
+                .AddSystem(_r.Resolve<WinGameSystem>())
+                .AddSystem(_r.Resolve<LoseGameSystem>())
+                
+                .AddSystem(new PositionToTransformSystem()) //#TODO уничтожить
                 .AddSystem(_r.Resolve<ClearSystem>(), 999);
             return systems;
         }

@@ -11,6 +11,10 @@ public class GameResources
     public class LevelConfigs
     {
     }
+    public Phys PhysLink;
+    public class Phys
+    {
+    }
     public PickableItems PickableItemsLink;
     public class PickableItems
     {
@@ -56,6 +60,7 @@ public class GameResources
     public class Workstations
     {
         public CustomAuthoring Base_Furniture => Resources.Load<CustomAuthoring>("Workstations/Base_Furniture");
+        public GameObject Door => Resources.Load<GameObject>("Workstations/Door");
         public CustomAuthoring Fridge => Resources.Load<CustomAuthoring>("Workstations/Fridge");
         public CustomAuthoring Fridge_OLD => Resources.Load<CustomAuthoring>("Workstations/Fridge_OLD");
         public CustomAuthoring Furniture_1x1_Base => Resources.Load<CustomAuthoring>("Workstations/Furniture_1x1_Base");
@@ -87,6 +92,7 @@ public class GameResources
     public GameResources()
     {
         LevelConfigsLink = new LevelConfigs();
+        PhysLink = new Phys();
         PickableItemsLink = new PickableItems();
         PickeableItemsGOLink = new PickeableItemsGO();
         PlacementObjectsLink = new PlacementObjects();
