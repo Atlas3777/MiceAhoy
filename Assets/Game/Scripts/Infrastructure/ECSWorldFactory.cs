@@ -49,9 +49,10 @@ namespace Game.Script.Infrastructure
                 .AddSystem(_r.Resolve<ItemSourceGeneratorSystem>())
                 
                 .AddSystem(new ConditionalSystem(_r.Resolve<GameplaySolver>(), true,
-                    _r.Resolve<LevelDirectorSystem>(),
-                    _r.Resolve<GuestSpawnSystem>())
+                    _r.Resolve<LevelDirectorSystem>()/*,
+                    _r.Resolve<GuestSpawnSystem>()*/)
                 )
+                .AddSystem(_r.Resolve<GuestSpawnSystem>())
                 
                 .AddSystem(_r.Resolve<TableNotificationSystem>())
                 //.AddSystem(new AcceptOrderSystem())
@@ -65,9 +66,9 @@ namespace Game.Script.Infrastructure
                 .AddSystem(new GuestDestroyerSystem())
                 
                 .AddSystem(_r.Resolve<ReputationSystem>())
-                
-                .AddSystem(_r.Resolve<WinGameSystem>())
-                .AddSystem(_r.Resolve<LoseGameSystem>())
+                .AddSystem(new GuestServicingFinalSystem())
+                //.AddSystem(_r.Resolve<WinGameSystem>())
+                //.AddSystem(_r.Resolve<LoseGameSystem>())
                 
                 .AddSystem(new PositionToTransformSystem()) //#TODO уничтожить
                 .AddSystem(_r.Resolve<ClearSystem>(), 999);

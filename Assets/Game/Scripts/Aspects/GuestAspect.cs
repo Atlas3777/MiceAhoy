@@ -21,7 +21,6 @@ namespace Game.Script.Aspects
         public ProtoPool<ReachedTargetPositionEvent> ReachedTargetPositionEventPool;
         public ProtoPool<GotTableEvent> GotTableEventPool;
         public ProtoPool<GuestServedEvent> GuestServedEventPool;
-        public ProtoPool<GuestRequestEvent> GuestRequestEventPool;
         
         public ProtoPool<GuestTag> GuestTagPool;
         public ProtoPool<GuestServicedTag> GuestServicedTagPool;
@@ -82,11 +81,6 @@ namespace Game.Script.Aspects
 
     [Serializable]
     public struct GuestServedEvent : IComponent
-    {
-    }
-
-    [Serializable]
-    public struct GuestRequestEvent : IComponent
     {
     }
 

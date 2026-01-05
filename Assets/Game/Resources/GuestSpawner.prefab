@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 8206555051002470736}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.01491, y: -0, z: 9.01}
+  m_LocalPosition: {x: 0, y: -0, z: -2.61293}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -49,13 +49,9 @@ MonoBehaviour:
   _destroyAfterAuthoring: 0
   Components:
   - rid: 5252179128873386057
-  - rid: 5252179128873386058
   references:
     version: 2
     RefIds:
     - rid: 5252179128873386057
       type: {class: GuestSpawnerComponent, ns: Game.Script.Aspects, asm: Assembly-CSharp}
-      data: 
-    - rid: 5252179128873386058
-      type: {class: GuestRequestEvent, ns: Game.Script.Aspects, asm: Assembly-CSharp}
       data: 

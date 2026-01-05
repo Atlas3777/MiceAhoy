@@ -1,4 +1,5 @@
 using Game.Script;
+using Game.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -7,6 +8,11 @@ using UnityEngine.UIElements;
 
 public class GameResources
 {
+    public GuestProfiles GuestProfilesLink;
+    public class GuestProfiles
+    {
+        public GuestProfile BaseGuestProfile => Resources.Load<GuestProfile>("GuestProfiles/BaseGuestProfile");
+    }
     public LevelConfigs LevelConfigsLink;
     public class LevelConfigs
     {
@@ -90,6 +96,7 @@ public class GameResources
 
     public GameResources()
     {
+        GuestProfilesLink = new GuestProfiles();
         LevelConfigsLink = new LevelConfigs();
         PhysLink = new Phys();
         PickableItemsLink = new PickableItems();
