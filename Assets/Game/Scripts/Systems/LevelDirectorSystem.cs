@@ -37,7 +37,7 @@ namespace Game.Scripts.Systems
             // Берем значение из кривой сложности в зависимости от прогресса уровня (0..1)
             float progress = director.ElapsedTime / director.LevelDuration;
             float creditsPerSecond = _config.DifficultyCurve.Evaluate(progress);
-            Debug.Log(creditsPerSecond * Time.fixedDeltaTime);
+            //Debug.Log(creditsPerSecond * Time.fixedDeltaTime);
 
             // Скейлинг от игроков:
             creditsPerSecond *= (1 + (PlayerCount - 1) * 0.5f); // +50% сложности за доп. игрока

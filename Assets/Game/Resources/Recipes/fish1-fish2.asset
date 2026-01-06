@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b82b15923f6b438a862559f58c05689e, type: 3}
+  m_Name: fish1-fish2
+  m_EditorClassIdentifier: Assembly-CSharp::ItemProcessor
+  inputItemType:
+    rid: 5252179181263126600
+  outputItemType:
+    rid: 5252179181263126601
+  workstationType:
+    rid: 6709886309644107851
+  Duration: 3
+  references:
+    version: 2
+    RefIds:
+    - rid: 5252179181263126600
+      type: {class: Fish1, ns: Game.Script, asm: Assembly-CSharp}
+      data:
+        pickableItemGo: {fileID: 0}
+        satietyRestoration: 0
+    - rid: 5252179181263126601
+      type: {class: Fish2, ns: Game.Script, asm: Assembly-CSharp}
+      data:
+        pickableItemGo: {fileID: 0}
+        satietyRestoration: 0
+    - rid: 6709886309644107851
+      type: {class: Stove, ns: , asm: Assembly-CSharp}
+      data:
+        workstationSprite: {fileID: 0}

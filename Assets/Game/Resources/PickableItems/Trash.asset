@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c53bc166abe24032beb849173501ddc9, type: 3}
-  m_Name: Fish2
+  m_Name: Trash
   m_EditorClassIdentifier: Assembly-CSharp::Game.Script.PickableItemSO
   PickableItem:
-    rid: 7346997319901118545
+    rid: 5252179181263126602
   references:
     version: 2
     RefIds:
-    - rid: 7346997319901118545
-      type: {class: Fish2, ns: Game.Script, asm: Assembly-CSharp}
+    - rid: 5252179181263126602
+      type: {class: Trash, ns: Game.Script, asm: Assembly-CSharp}
       data:
-        pickableItemGo: {fileID: 4949581644060774540, guid: 031d3c3fef97d0245858dd8e1d157222, type: 3}
+        pickableItemGo: {fileID: 4949581644060774540, guid: bd412eb334890a849958173ff9dd044c, type: 3}
         satietyRestoration: 0

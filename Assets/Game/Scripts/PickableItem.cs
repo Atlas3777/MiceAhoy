@@ -50,4 +50,9 @@ namespace Game.Script
     public class DirtyPlate : PickableItem
     {
     }
+
+    [Serializable]
+    public class Trash : PickableItem
+    {
+    }
 }

@@ -32,12 +32,15 @@ public class GameResources
         public PickableItemSO Fish3 => Resources.Load<PickableItemSO>("PickableItems/Fish3");
         public PickableItemSO Meat => Resources.Load<PickableItemSO>("PickableItems/Meat");
         public PickableItemSO Plate => Resources.Load<PickableItemSO>("PickableItems/Plate");
+        public PickableItemSO Trash => Resources.Load<PickableItemSO>("PickableItems/Trash");
     }
     public PickeableItemsGO PickeableItemsGOLink;
     public class PickeableItemsGO
     {
         public PickableItemInfoWrapper Fish0GO => Resources.Load<PickableItemInfoWrapper>("PickeableItemsGO/Fish0GO");
         public PickableItemInfoWrapper Fish1 => Resources.Load<PickableItemInfoWrapper>("PickeableItemsGO/Fish1");
+        public PickableItemInfoWrapper Fish2 => Resources.Load<PickableItemInfoWrapper>("PickeableItemsGO/Fish2");
+        public PickableItemInfoWrapper Trash => Resources.Load<PickableItemInfoWrapper>("PickeableItemsGO/Trash");
     }
     public PlacementObjects PlacementObjectsLink;
     public class PlacementObjects
@@ -55,6 +58,8 @@ public class GameResources
     public class Recipes
     {
         public Recipe fish0_fish1 => Resources.Load<Recipe>("Recipes/fish0-fish1");
+        public Recipe fish1_fish2 => Resources.Load<Recipe>("Recipes/fish1-fish2");
+        public Recipe fish2_trash => Resources.Load<Recipe>("Recipes/fish2-trash");
         public Recipe meet1 => Resources.Load<Recipe>("Recipes/meet1");
         public Recipe WashPlate => Resources.Load<Recipe>("Recipes/WashPlate");
     }
@@ -83,11 +88,13 @@ public class GameResources
         public CustomAuthoring Table => Resources.Load<CustomAuthoring>("Workstations/Table");
         public CustomAuthoring TableOld => Resources.Load<CustomAuthoring>("Workstations/TableOld");
     }
+    public Sprite box => Resources.Load<Sprite>("box");
     public CustomAuthoring Guest => Resources.Load<CustomAuthoring>("Guest");
     public PickableItemsDB Pickable_Items_DB => Resources.Load<PickableItemsDB>("Pickable_Items_DB");
     public PlacementObjectsDB PlacementObjects_DB => Resources.Load<PlacementObjectsDB>("PlacementObjects_DB");
     public CustomAuthoring Player => Resources.Load<CustomAuthoring>("Player");
     public RecipesDB Recipes_DB => Resources.Load<RecipesDB>("Recipes_DB");
+    public Sprite Безымянный => Resources.Load<Sprite>("Безымянный");
 
     public GameResources()
     {

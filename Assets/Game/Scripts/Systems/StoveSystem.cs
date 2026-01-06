@@ -94,6 +94,7 @@ public class StoveSystem : IProtoInitSystem, IProtoRunSystem
                     Debug.Log($"Не удалось найти PickableItem для {recipe.outputItemType.GetType().Name}");
                 }
             }
+            _workstationsAspect.ItemCookedTagPool.Add(stoveEntity);
         }
 
         foreach (var stoveEntity in _abortIt)

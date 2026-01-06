@@ -34,21 +34,21 @@ namespace Game.Script.Infrastructure
             systems
                 .AddModule(new AutoInjectModule())
                 .AddModule(new UnityModule())
-                
+
                 .AddSystem(new ConditionalSystem(_r.Resolve<TutorialEcsPauseSolver>(), true,
-                    
+
                     new SyncUnityPhysicsToEcsSystem(),
                     new TimerSystem(),
                     new ProgressBarSystem(),
                     _r.Resolve<SyncGridPositionSystem>(),
-                    
+
                     _r.Resolve<PlayerInitializeInputSystem>(),
                     _r.Resolve<UpdateInputSystem>(),
                     _r.Resolve<PlayerMovementSystem>(),
                     new PlayerTargetSystem(),
                     new OutlineSystem(),
                     _r.Resolve<PickPlaceSystem>(),
-                    
+                    new CookingProceedSystem(),
                     _r.Resolve<StoveSystem>(),
                     _r.Resolve<ItemSourceGeneratorSystem>(),
                     

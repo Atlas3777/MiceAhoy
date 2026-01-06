@@ -12,6 +12,7 @@ public class WorkstationsAspect : ProtoAspectInject
     public ProtoPool<GuestTableComponent> GuestTablePool;
     
     public ProtoPool<ItemGenerationAvailableTag> ItemGenerationAvailablePool;
+    public ProtoPool<ItemCookedTag> ItemCookedTagPool;
     
     public ProtoPool<PickPlaceEvent> PickPlaceEventPool;
     public ProtoPool<ItemPlaceEvent> ItemPlaceEventPool;
@@ -45,7 +46,10 @@ public struct ItemGenerationAvailableTag : IComponent
 {
 }
 
-
+[Serializable]
+public struct ItemCookedTag : IComponent
+{
+}
 
 [Serializable]
 public struct ReceiptProcessorComponent : IComponent

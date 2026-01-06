@@ -52,11 +52,12 @@ namespace Game.Script.Systems
                     continue;
                 }
 
-                ConsumeFood(guestEntity, tableEntity);
+                if (!TryConsumeFood(guestEntity, tableEntity))
+                    _baseAspect.TimerPool.Get(guestEntity).Completed = true;
             }
         }
 
-        private void ConsumeFood(ProtoEntity guestEntity, ProtoEntity tableEntity)
+        private bool TryConsumeFood(ProtoEntity guestEntity, ProtoEntity tableEntity)
         {
             ref var holder = ref _baseAspect.HolderPool.Get(tableEntity);
             var eatType = holder.Item;
@@ -77,7 +78,22 @@ namespace Game.Script.Systems
                 Debug.Log($"Гость поел. Текущий голод: {guestState.Hunger}");
 
                 Helper.EatItem(tableEntity, ref holder, _playerAspect);
+                
+                if (guestState.Hunger <= 0)
+                {
+                    guestState.Hunger = 0;
+                    _guestAspect.GuestTableIsFreeTagPool.Add(tableEntity);
+                }
+                
+                if (eatType == typeof(Trash))
+                {
+                    Debug.Log("Сам свои угольки хавай");
+                    _guestAspect.GuestTableIsFreeTagPool.Add(tableEntity);
+                    return false;
+                }
             }
+
+            return true;
         }
     }
 }

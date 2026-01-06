@@ -1,6 +1,7 @@
 ﻿using Game.Scripts.Aspects;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
+using UnityEngine;
 
 namespace Game.Script.Systems
 {
@@ -32,7 +33,7 @@ namespace Game.Script.Systems
                 if (progressBar.IsActive)
                 {
                     var progressValue = timer.Elapsed / timer.Duration;
-                    progressBar.Image.fillAmount = 1 - progressValue;
+                    progressBar.Image.fillAmount = progressValue;
                     progressBar.Image.color = progressBar.Gradient.Evaluate(progressValue);
                 }
                 else
