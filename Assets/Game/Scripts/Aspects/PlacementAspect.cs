@@ -18,6 +18,7 @@ public class PlacementAspect : ProtoAspectInject
     public ProtoPool<SpawnerTag> SpawnerTagPool;
     public ProtoPool<CreateSpawnersEvent> CreateSpawnersEventPool;
     public ProtoPool<DestroyAllSpawnersEvent> DestroyAllSpawnersEventPool;
+    public ProtoPool<PlacementModeTag> PlacementModeTagPool;
 }
 
 [Serializable]
@@ -69,6 +70,11 @@ public struct CreateSpawnersEvent
 }
 
 public struct DestroyAllSpawnersEvent
+{
+
+}
+
+public struct PlacementModeTag
 {
 
 }

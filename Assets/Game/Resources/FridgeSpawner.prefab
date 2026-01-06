@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7291924211842048097}
   - component: {fileID: 4670920363943342149}
-  - component: {fileID: 4598049960511015139}
   - component: {fileID: 597195514834045564}
+  - component: {fileID: 4378676657276425082}
   m_Layer: 0
   m_Name: FridgeSpawner
   m_TagString: Untagged
@@ -27,13 +27,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 580955582349234919}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.63, y: 0.52, z: 0}
-  m_LocalScale: {x: 0.63, y: 0.63, z: 0.63}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.496, y: 0, z: 0.51}
+  m_LocalScale: {x: 0.55, y: 0.55, z: 0.55}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!212 &4670920363943342149
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -92,33 +92,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &4598049960511015139
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 580955582349234919}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &597195514834045564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,9 +109,7 @@ MonoBehaviour:
   _destroyAfterAuthoring: 1
   Components:
   - rid: 6222297960297791572
-  - rid: 6222297960297791573
-  - rid: 6222297960297791574
-  - rid: 6222297960297791576
+  - rid: 2522187466447519815
   - rid: 6222297960297791577
   - rid: 6222297960297791578
   - rid: 6222297960297791579
@@ -146,23 +117,14 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 2522187466447519815
+      type: {class: RigidbodyComponent, ns: , asm: Assembly-CSharp}
+      data:
+        Rigidbody: {fileID: 4378676657276425082}
     - rid: 6222297960297791572
       type: {class: PositionComponent, ns: , asm: Assembly-CSharp}
       data:
-        Position: {x: 0, y: 0}
-    - rid: 6222297960297791573
-      type: {class: InteractableComponent, ns: , asm: Assembly-CSharp}
-      data:
-        SpriteRenderer: {fileID: 0}
-        OutlineController: {fileID: 0}
-    - rid: 6222297960297791574
-      type: {class: Rigidbody2DComponent, ns: , asm: Assembly-CSharp}
-      data:
-        Rigidbody2D: {fileID: 4598049960511015139}
-    - rid: 6222297960297791576
-      type: {class: PlacementTransformComponent, ns: , asm: Assembly-CSharp}
-      data:
-        transform: {fileID: 7291924211842048097}
+        Position: {x: 0, y: 0, z: 0}
     - rid: 6222297960297791577
       type: {class: FurnitureComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -171,11 +133,11 @@ MonoBehaviour:
     - rid: 6222297960297791578
       type: {class: SyncGridPositionEvent, ns: , asm: Assembly-CSharp}
       data:
-        entityGridPositions: {x: 0, y: 0}
+        Transform: {fileID: 7291924211842048097}
     - rid: 6222297960297791579
       type: {class: GridPositionComponent, ns: , asm: Assembly-CSharp}
       data:
-        Position: {x: 0, y: 0}
+        Position: {x: 0, y: 0, z: 0}
     - rid: 6222298054940950624
       type: {class: FridgeSpawner, ns: , asm: Assembly-CSharp}
       data:
@@ -189,3 +151,30 @@ MonoBehaviour:
       type: {class: Fridge, ns: , asm: Assembly-CSharp}
       data:
         workstationSprite: {fileID: 0}
+--- !u!54 &4378676657276425082
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 580955582349234919}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

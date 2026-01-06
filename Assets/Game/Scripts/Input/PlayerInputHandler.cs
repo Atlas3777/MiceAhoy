@@ -44,8 +44,11 @@ public class PlayerInputHandler : MonoBehaviour
             case "Interact":
                 OnInteract(context, ref state);
                 break;
-            case "RandomSpawnFurniture":
-                OnEdit(context, ref state);
+            case "OpenScrollMenu":
+                OnOpenScroll(context, ref state);
+                break;
+            case "TogglePlaceMode":
+                OnPlacement(context, ref state);
                 break;
             case "Pause":
                 OnPause(context, ref state);
@@ -98,11 +101,19 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
-    private void OnEdit(InputAction.CallbackContext context, ref InputService.PlayerInputData state)
+    private void OnOpenScroll(InputAction.CallbackContext context, ref InputService.PlayerInputData state)
     {
         if (context.performed)
         {
-            state.RandomSpawnFurniturePressed = true;
+            state.OpenScrollPressed = true;
+        }
+    }
+
+    private void OnPlacement(InputAction.CallbackContext context, ref InputService.PlayerInputData state)
+    {
+        if (context.performed)
+        {
+            state.PlacementModePressed = true;
         }
     }
 

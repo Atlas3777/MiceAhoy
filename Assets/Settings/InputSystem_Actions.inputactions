@@ -34,7 +34,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "RandomSpawnFurniture",
+                    "name": "TogglePlaceMode",
                     "type": "Value",
                     "id": "b55f47ad-9807-4da7-b804-02dc0e222fcf",
                     "expectedControlType": "",
@@ -43,7 +43,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "MoveFurniture",
+                    "name": "OpenScrollMenu",
                     "type": "Value",
                     "id": "4bfccaf7-ff2f-4ec8-83b2-262c5af83285",
                     "expectedControlType": "",
@@ -241,7 +241,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RandomSpawnFurniture",
+                    "action": "TogglePlaceMode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -252,7 +252,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MoveFurniture",
+                    "action": "OpenScrollMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

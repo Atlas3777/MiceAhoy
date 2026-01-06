@@ -25,7 +25,11 @@ public class PlayerMovementSystem : IProtoInitSystem, IProtoRunSystem, IProtoDes
     {
         foreach (ProtoEntity entity in _iterator)
         {
+
             ref var input = ref _playerAspect.InputRawPool.Get(entity);
+
+            if (input.IsScrollMenuOpened) continue;
+
             ref var speed = ref _physicsAspect.MovementSpeedPool.Get(entity);
             ref var rigidbody = ref _physicsAspect.RigidbodyPool.Get(entity);
 

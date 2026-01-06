@@ -36,6 +36,7 @@ public class PlacementModule : IProtoModule
     public void Init(IProtoSystems systems)
     {
         systems
+            .AddSystem(new PlayerPressedPSystem())
             .AddSystem(moveScrollMenuSystem)
             .AddSystem(playerSpawnFurnitureSystem)
             .AddSystem(createGameObjectsSystem)

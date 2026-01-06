@@ -4973,7 +4973,6 @@ GameObject:
   - component: {fileID: 762857709}
   - component: {fileID: 762857708}
   - component: {fileID: 762857712}
-  - component: {fileID: 762857713}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -5067,21 +5066,6 @@ MonoBehaviour:
   taskText: {fileID: 148590464}
   completedGroup: {fileID: 1962671871}
   completedText: {fileID: 1763716279}
---- !u!114 &762857713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 762857707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29c75d6c803f0214d8ce5801ef2456ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WhatIf
-  S: {fileID: 1599051425}
-  h: 0
-  i: 0
 --- !u!1 &799371863
 GameObject:
   m_ObjectHideFlags: 0

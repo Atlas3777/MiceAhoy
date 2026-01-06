@@ -12,8 +12,8 @@ public class InputService : ILateTickable
         public Vector2 MoveDirection;
         public bool InteractPressed;
         public bool PickPlacePressed;
-        public bool RandomSpawnFurniturePressed;
-        public bool MoveFurniturePressed;
+        public bool PlacementModePressed;
+        public bool OpenScrollPressed;
         public bool LeftPressed;
         public bool RightPressed;
     }
@@ -76,8 +76,8 @@ public class InputService : ILateTickable
         // Обновляем состояние только если нажатия произошли (поведение "одноразового нажатия")
         if (newData.InteractPressed) currentData.InteractPressed = true;
         if (newData.PickPlacePressed) currentData.PickPlacePressed = true;
-        if (newData.RandomSpawnFurniturePressed) currentData.RandomSpawnFurniturePressed = true;
-        if (newData.MoveFurniturePressed) currentData.MoveFurniturePressed = true;
+        if (newData.PlacementModePressed) currentData.PlacementModePressed = true;
+        if (newData.OpenScrollPressed) currentData.OpenScrollPressed = true;
         if (newData.LeftPressed) currentData.LeftPressed = true;
         if (newData.RightPressed) currentData.RightPressed = true;
 
@@ -108,10 +108,11 @@ public class InputService : ILateTickable
             var state = _playerInputs[playerIndex];
             state.InteractPressed = false;
             state.PickPlacePressed = false;
-            state.RandomSpawnFurniturePressed = false;
-            state.MoveFurniturePressed = false;
+            state.PlacementModePressed = false;
+            state.OpenScrollPressed = false;
             state.RightPressed = false;
             state.LeftPressed = false;
+            state.OpenScrollPressed = false;
             _playerInputs[playerIndex] = state;
         }
     }

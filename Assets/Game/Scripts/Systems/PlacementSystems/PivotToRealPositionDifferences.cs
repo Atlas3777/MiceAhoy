@@ -13,5 +13,5 @@ public class ObjectToDifferencePair
 {
     [SerializeReference, SubclassSelector]
     public WorkstationItem item;
-    public Vector2 pivotToRealPositionDifference;
+    public Vector3 pivotToRealPositionDifference;
 }

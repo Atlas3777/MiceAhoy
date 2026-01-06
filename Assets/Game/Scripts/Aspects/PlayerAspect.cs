@@ -47,11 +47,12 @@ public struct PlayerInputComponent : IComponent
     public bool InteractPressed;
     public bool PickPlacePressed;
 
-    public bool RandomSpawnFurniturePressed;
+    public bool PlacementModePressed;
 
-    public bool MoveFurniturePressed;
+    public bool OpenScrollPressed;
     public bool IsMoveFurnitureNow;
     public bool IsScrollMenuOpened;
+    public bool IsInPlacementMode;
     public bool IsRightPressed;
     public bool IsLeftPressed;
 }

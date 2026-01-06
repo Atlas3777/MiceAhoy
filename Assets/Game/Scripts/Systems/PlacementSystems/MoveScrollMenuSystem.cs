@@ -32,6 +32,17 @@ public class MoveScrollMenuSystem : IProtoInitSystem, IProtoRunSystem, IProtoDes
 
             if (input.IsLeftPressed) scrollMenuManager.MoveCursorLeft();
             if (input.IsRightPressed) scrollMenuManager.MoveCursorRight();
+
+            if (input.InteractPressed)
+            {
+                if (!_placementAspect.CreateGameObjectEventPool.Has(entityPlayer))
+                    _placementAspect.CreateGameObjectEventPool.Add(entityPlayer);
+                ref var createGO = ref _placementAspect.CreateGameObjectEventPool.Get(entityPlayer);
+                createGO.objects ??= new();
+                createGO.objects.Add((scrollMenuManager.SelectedFurniture,new Vector3Int()));
+                createGO.destroyInvoker = false;
+                scrollMenuManager.DeleteFurnitureFromCurrentList(scrollMenuManager.SelectedFurniture);
+            }
         }
     }
 

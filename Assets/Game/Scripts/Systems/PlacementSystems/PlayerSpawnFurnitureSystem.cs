@@ -8,7 +8,7 @@ public class PlayerSpawnFurnitureSystem : IProtoInitSystem, IProtoRunSystem, IPr
     [DI] readonly PlacementAspect _placementAspect;
     private ScrollMenuManager scrollMenuManager;
 
-    private ProtoIt _iterator;
+    private ProtoIt _iteratorPlayer;
     private ProtoWorld _world;
 
     public PlayerSpawnFurnitureSystem(ScrollMenuManager scrollMenuManager)
@@ -19,18 +19,18 @@ public class PlayerSpawnFurnitureSystem : IProtoInitSystem, IProtoRunSystem, IPr
     public void Init(IProtoSystems systems)
     {
         _world = systems.World();
-        _iterator = new(new[] { typeof(PlayerInputComponent) });
-        _iterator.Init(_world);
+        _iteratorPlayer = new(new[] { typeof(PlayerInputComponent), typeof(PlacementModeTag) });
+        _iteratorPlayer.Init(_world);
     }
 
     public void Run()
     {
-        foreach (var entityPlayer in _iterator)
+        foreach (var entityPlayer in _iteratorPlayer)
         {
             ref var playerInput = ref _playerAspect.InputRawPool.Get(entityPlayer);
-            if (!playerInput.RandomSpawnFurniturePressed) continue;
+            if (!playerInput.OpenScrollPressed || !playerInput.IsInPlacementMode) continue;
 
-            Debug.Log("P была нажата");
+            Debug.Log("O была нажата");
 
             if (playerInput.IsScrollMenuOpened)
             {
@@ -51,6 +51,6 @@ public class PlayerSpawnFurnitureSystem : IProtoInitSystem, IProtoRunSystem, IPr
 
     public void Destroy()
     {
-        _iterator = null;
+        _iteratorPlayer = null;
     }
 }

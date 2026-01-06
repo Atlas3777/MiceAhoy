@@ -32,6 +32,14 @@ public class ScrollMenuManager
         scrollZoneWidth = furnitureScrollRect.transform.GetComponent<RectTransform>().sizeDelta.x;
     }
 
+    public void DeleteFurnitureFromCurrentList(Type type)
+    {
+        currentFurnitures.Remove(type);
+        DestroyCards();
+        GenerateCards();
+        HighlightSelectedObject();
+    }
+
     public void GenerateCurrentFurnitureList()
     {
         //I don't know what this list depends on. This string is workable shitpost
@@ -42,20 +50,25 @@ public class ScrollMenuManager
 
     public void ShowScrollMenu()
     {
-        if (currentFurnitures is null) GenerateCurrentFurnitureList();
+        if (currentFurnitures is null) 
+        { 
+            GenerateCurrentFurnitureList(); 
+            GenerateCards();
+        }
+        furnitureScrollRect.gameObject.SetActive(true);
+        HighlightSelectedObject();
+    }
 
+    private void GenerateCards()
+    {
         foreach (var f in currentFurnitures)
         {
-            var obj = GameObject.Instantiate(baseFurnitureCard,scrollContentTransform);
+            var obj = GameObject.Instantiate(baseFurnitureCard, scrollContentTransform);
             obj.GetComponent<Image>().sprite = UIVisualisations[f];
             obj.transform.localScale = Vector3.one;
         }
-
         var rectTransform = scrollContentTransform.GetComponent<RectTransform>();
         rectTransform.sizeDelta = new Vector2(currentFurnitures.Count * 100 + scrollZoneWidth, rectTransform.sizeDelta.y);
-        furnitureScrollRect.gameObject.SetActive(true);
-
-        HighlightSelectedObject();
     }
 
     public void HideScrollMenu()
@@ -66,6 +79,11 @@ public class ScrollMenuManager
     public void ClearScrollMenu()
     {
         currentFurnitures.Clear();
+        DestroyCards();
+    }
+
+    private void DestroyCards()
+    {
         foreach (Transform child in scrollContentTransform)
         {
             GameObject.Destroy(child.gameObject);
@@ -74,14 +92,14 @@ public class ScrollMenuManager
 
     public void MoveCursorLeft()
     {
-        if (selectedIndex == 0) return;
+        if (selectedIndex <= 0) return;
         selectedIndex--;
         HighlightSelectedObject();
     }
 
     public void MoveCursorRight()
     {
-        if (selectedIndex == currentFurnitures.Count - 1) return;
+        if (selectedIndex >= currentFurnitures.Count - 1) return;
         selectedIndex++;
         HighlightSelectedObject();
     }
@@ -90,8 +108,12 @@ public class ScrollMenuManager
     {
         foreach (Transform child in scrollContentTransform)
             child.localScale = Vector3.one;
-        scrollContentTransform.GetChild(selectedIndex).localScale = new Vector3(1.42f, 1.42f, 1.42f);
-        furnitureScrollRect.horizontalNormalizedPosition = -(scrollZoneWidth / 2 - selectedIndex * 100 - 35) / (currentFurnitures.Count * 100);
+        var chi = scrollContentTransform.GetChild(selectedIndex);
+        if (chi != null)
+        {
+            chi.localScale = new Vector3(1.42f, 1.42f, 1.42f);
+            furnitureScrollRect.horizontalNormalizedPosition = -(scrollZoneWidth / 2 - selectedIndex * 100 - 35) / (currentFurnitures.Count * 100);
+        }
     }
 
     private List<PlacementObject> GetWorkstationList()
