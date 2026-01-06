@@ -17,7 +17,7 @@ namespace Game.Script.Infrastructure
         public bool IsPaused {get; private set;}
 
         public GameRuntimeController(
-            [Key(IProtoSystemsType.MainSystem)] IProtoSystems mainSystems,
+            IProtoSystems mainSystems,
             InputService inputService,
             PauseView pauseView,
             LoseGameSystem loseGameSystem)

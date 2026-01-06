@@ -41,26 +41,26 @@ namespace Game.Script.Systems
                 switch (playerHasItem, tableHasItem: interactedHolderHasItem)
                 {
                     case (false, false):
-                        Debug.Log("И на руках, и на столе пусто! (Ничего не делаем)");
+                        //Debug.Log("И на руках, и на столе пусто! (Ничего не делаем)");
                         break;
 
                     case (false, true):
                         PlayerPick?.Invoke();
                         if (!_workstationsAspect.ItemSourcePool.Has(interactedEntity))
                         {
-                            Debug.Log("Берем со стола!");
+                            //Debug.Log("Берем со стола!");
                             Helper.TransferItem(from: interactedEntity, to: playerEntity, ref interactedHolder,
                                 ref playerHolder,
                                 _playerAspect, _baseAspect);
                         }
-                        else
-                            Debug.Log("Берём новый предмет");
+                        // else
+                        //     Debug.Log("Берём новый предмет");
 
                         _workstationsAspect.ItemPickEventPool.Add(interactedEntity);
                         break;
 
                     case (true, false):
-                        Debug.Log("Кладем на стол!");
+                        //Debug.Log("Кладем на стол!");
                         _workstationsAspect.ItemPlaceEventPool.GetOrAdd(interactedEntity);
                         Helper.TransferItem(from: playerEntity, to: interactedEntity, ref playerHolder,
                             ref interactedHolder,
@@ -68,7 +68,7 @@ namespace Game.Script.Systems
                         break;
 
                     case (true, true):
-                        Debug.Log("И в руках, и на столе что-то есть! (Свап или запрет)");
+                        //Debug.Log("И в руках, и на столе что-то есть! (Свап или запрет)");
                         ref var playerItem = ref _baseAspect.HolderPool.Get(playerEntity);
                         ref var tableItem = ref _baseAspect.HolderPool.Get(interactedEntity);
 

@@ -29,7 +29,6 @@ namespace Game.Scripts.Systems
         
         public void Run()
         {
-            Debug.Log("LevelDirectorSystem Run");
             var director = _levelStateService;
             director.ElapsedTime += Time.deltaTime;
 

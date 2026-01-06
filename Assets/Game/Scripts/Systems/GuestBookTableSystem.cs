@@ -29,11 +29,11 @@ namespace Game.Script.Systems
             foreach (var guestEntity in _guestIterator)
             {
                 if (!_guestAspect.NeedsTableTagPool.Has(guestEntity)) continue;
-                Debug.Log(guestEntity);
+                //Debug.Log(guestEntity);
                 foreach (var tableEntity in _freeTablesIterator)
                 {
                     if (!_guestAspect.GuestTableIsFreeTagPool.Has(tableEntity)) continue;
-                    Debug.Log("стол существует");
+                    //Debug.Log("стол существует");
                     ref var guest = ref _guestAspect.TargetPositionComponentPool.Get(guestEntity);
                     ref var table = ref _workstationsAspect.GuestTablePool.Get(tableEntity);
                     guest.Table = _world.PackEntityWithWorld(tableEntity);
@@ -41,12 +41,12 @@ namespace Game.Script.Systems
                     _guestAspect.GuestTableIsFreeTagPool.Del(tableEntity);
                     _guestAspect.NeedsTableTagPool.Del(guestEntity);
                     _guestAspect.GotTableEventPool.Add(guestEntity);
-                    Debug.LogWarning(_guestAspect.NeedsTableTagPool.Has(guestEntity));
+                    //Debug.LogWarning(_guestAspect.NeedsTableTagPool.Has(guestEntity));
                     _guestAspect.GuestIsWalkingTagPool.Add(guestEntity);
 
                     ref var groupPos = ref _physicsAspect.PositionPool.Get(guestEntity);
                     groupPos.Position = _physicsAspect.PositionPool.Get(tableEntity).Position;
-                    Debug.Log("Выдали стол");
+                    //Debug.Log("Выдали стол");
                     break;
                 }
             }

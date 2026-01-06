@@ -11,31 +11,40 @@ namespace Game.Scripts.UIControllers
 {
     public class TutorialUIController : MonoBehaviour
     {
-        [Header("Task")] [SerializeField] private CanvasGroup taskGroup;
+        [Header("Task")] 
+        [SerializeField] private CanvasGroup taskGroup;
         [SerializeField] private TypewriterByCharacter taskTypewriter;
         [SerializeField] private TMP_Text taskText;
 
-        [Header("Complete")] [SerializeField] private CanvasGroup completedGroup;
+        [Header("Complete")] 
+        [SerializeField] private CanvasGroup completedGroup;
         [SerializeField] private TMP_Text completedText;
 
         private UniTask _typingTask;
 
-
         public async UniTask ShowTaskAsync(string description, CancellationToken ct)
         {
-            taskGroup.gameObject.SetActive(true);
             taskGroup.alpha = 1;
+            taskGroup.gameObject.SetActive(true);
 
             taskText.text = string.Empty;
             _typingTask = taskTypewriter.ShowTextAsync(description, ct).Preserve();
             await _typingTask;
         }
+
         public async UniTask HideTaskAsync(CancellationToken ct)
         {
-            taskGroup.gameObject.SetActive(true);
-            taskGroup.alpha = 1;
-            await Tween.Alpha(completedGroup, 1, 0, 0.5f).ToUniTask(ct);
+            if (!taskGroup.gameObject.activeInHierarchy)
+            {
+                taskGroup.alpha = 1;
+                taskGroup.gameObject.SetActive(true);
+            }
+
+            await Tween.Alpha(taskGroup, 0, 0.5f).ToUniTask(ct);
+            
             taskGroup.gameObject.SetActive(false);
+            
+            taskGroup.alpha = 1; 
         }
 
         public async UniTask ShowCompletedAsync(CancellationToken ct)
@@ -72,14 +81,6 @@ namespace Game.Scripts.UIControllers
 
             await Tween.Scale(taskGroup.transform, 0.5f, 1f, 0.6f, Ease.OutBack)
                 .ToUniTask(cancellationToken: ct);
-        }
-
-        public async UniTask WaitForConfirmAsync(CancellationToken ct)
-        {
-            await UniTask.WaitUntil(
-                () => Input.GetKeyDown(KeyCode.E),
-                cancellationToken: ct
-            );
         }
     }
 }

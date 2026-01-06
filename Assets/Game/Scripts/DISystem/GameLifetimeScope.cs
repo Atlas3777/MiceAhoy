@@ -1,6 +1,5 @@
 using Game.Script.Factories;
 using Game.Script.Infrastructure;
-using Game.Script.Input;
 using Game.Script.Systems;
 using Game.Scripts.Infrastructure;
 using Game.Scripts.LevelSteps;
@@ -11,14 +10,16 @@ using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 using Game.Scripts;
+using Game.Scripts.Input;
 using Game.Scripts.UIControllers;
+using UnityEngine.Serialization;
 
 namespace Game.Script.DISystem
 {
-    public enum IProtoSystemsType
+    public enum GameCameraType
     {
-        MainSystem,
-        PhysicsSystem
+        Intro,
+        Gameplay
     }
 
     public class GameLifetimeScope : LifetimeScope
@@ -33,8 +34,10 @@ namespace Game.Script.DISystem
         [SerializeField] private TutorialUIController tutorialUIController;
         [SerializeField] private LevelProgressUIController levelProgressUIController;
         
-        [Header("CameraSetting")]
+        [Header("Camera Configuration")]
         [SerializeField] private CinemachineTargetGroup cinemachineTargetGroup;
+        [SerializeField] private CinemachineCamera introCamera;
+        [SerializeField] private CinemachineCamera gameplayCamera;
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -59,6 +62,10 @@ namespace Game.Script.DISystem
             builder.RegisterInstance<LevelConfig>(levelConfig);
             builder.RegisterInstance<SpawnRegistry>(spawnPoint);
             
+            builder.RegisterInstance(introCamera).Keyed(GameCameraType.Intro);
+            builder.RegisterInstance(gameplayCamera).Keyed(GameCameraType.Gameplay);
+            
+            
             builder.RegisterComponent(cinemachineTargetGroup);
             builder.RegisterComponent(tutorialUIController);
             builder.RegisterComponent(levelProgressUIController);
@@ -76,8 +83,7 @@ namespace Game.Script.DISystem
             builder.Register<ECSWorldFactory>(Lifetime.Singleton);
 
             builder.Register<IProtoSystems>(container =>
-                    container.Resolve<ECSWorldFactory>().CreateMainSystems(), Lifetime.Singleton)
-                .Keyed(IProtoSystemsType.MainSystem);
+                    container.Resolve<ECSWorldFactory>().CreateMainSystems(), Lifetime.Singleton);
         }
 
         private void RegisterSystemFactories(IContainerBuilder builder)
