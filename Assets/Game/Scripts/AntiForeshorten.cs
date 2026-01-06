@@ -8,6 +8,7 @@ public class AntiForeshorten : MonoBehaviour
     private float _lastAspect;
     private float _lastFov;
     
+    //private const float AspectModifier = 1; 
     private const float AspectModifier = 1.41421356f; 
 
     void Awake()

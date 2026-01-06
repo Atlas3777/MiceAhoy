@@ -11,9 +11,9 @@ namespace Game.Scripts.Systems
         
         public event Action Win;
         
-        private readonly LevelStateService _levelStateService;
+        private readonly RuntimeLevelState _runtimeLevelState;
 
-        public WinGameSystem(LevelStateService levelStateService)
+        public WinGameSystem(RuntimeLevelState runtimeLevelState)
         {
             
         }

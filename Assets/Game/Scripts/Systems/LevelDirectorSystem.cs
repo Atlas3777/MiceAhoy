@@ -12,35 +12,37 @@ namespace Game.Scripts.Systems
         [DI] private ProtoWorld _world;
         [DI] private BaseAspect _baseAspect;
         private readonly LevelConfig _config;
-        private readonly LevelStateService _levelStateService;
+        private readonly RuntimeLevelState _runtimeLevelState;
 
         private int PlayerCount = 1; //#TODO aga
 
-        public LevelDirectorSystem(LevelStateService levelStateService, LevelConfig config)
+        public LevelDirectorSystem(RuntimeLevelState runtimeLevelState, LevelConfig config)
         {
             _config = config;
-            _levelStateService = levelStateService;
+            _runtimeLevelState = runtimeLevelState;
         }
         
         public void Init(IProtoSystems systems)
         {
-            _levelStateService.LevelDuration = _config.LevelDuration;
+            _runtimeLevelState.LevelDuration = _config.LevelDuration;
         }
         
         public void Run()
         {
-            var director = _levelStateService;
-            director.ElapsedTime += Time.deltaTime;
+            var director = _runtimeLevelState;
+            director.ElapsedTime += Time.fixedDeltaTime;
 
+            if (director.ElapsedTime >= director.LevelDuration) return;
             // 2. Начисляем кредиты
             // Берем значение из кривой сложности в зависимости от прогресса уровня (0..1)
             float progress = director.ElapsedTime / director.LevelDuration;
             float creditsPerSecond = _config.DifficultyCurve.Evaluate(progress);
+            Debug.Log(creditsPerSecond * Time.fixedDeltaTime);
 
             // Скейлинг от игроков:
             creditsPerSecond *= (1 + (PlayerCount - 1) * 0.5f); // +50% сложности за доп. игрока
 
-            director.AccumulatedCredits += creditsPerSecond * Time.deltaTime;
+            director.AccumulatedCredits += creditsPerSecond * Time.fixedDeltaTime;
 
             // 3. Проверка таймера спавна (чтобы не спамить каждую секунду)
             if (Time.time < director.NextSpawnTime) return;
@@ -53,7 +55,7 @@ namespace Game.Scripts.Systems
                 // Создаем запрос на спавн (другая система его обработает и создаст View)
                 ref var spawnGuestRequest = ref _baseAspect.SpawnGuestRequestPool.NewEntity();
                 spawnGuestRequest.Profile = selectedGuest;
-                _levelStateService.ActiveGuest++;
+                _runtimeLevelState.ActiveGuest++;
 
                 // 5. Рандомизация следующего интервала (Реиграбельность!)
                 float interval = Random.Range(_config.SpawnIntervalMin, _config.SpawnIntervalMax);

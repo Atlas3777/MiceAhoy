@@ -7,37 +7,34 @@ using VContainer.Unity;
 
 namespace Game.Script.Infrastructure
 {
-    public class GameRuntimeController : IStartable, IFixedTickable, IDisposable
+    public class GameRuntimeController : IStartable, ITickable, IFixedTickable, IDisposable
     {
         private readonly IProtoSystems _mainSystems;
         private readonly InputService _inputService;
-        private readonly LoseGameSystem  _loseGameSystem;
         private readonly PauseView _pauseView;
-        
-        public bool IsPaused {get; private set;}
+
+        public bool IsPaused { get; private set; }
 
         public GameRuntimeController(
             IProtoSystems mainSystems,
             InputService inputService,
-            PauseView pauseView,
-            LoseGameSystem loseGameSystem)
+            PauseView pauseView)
         {
             Debug.Log("Starting game state manager");
             _mainSystems = mainSystems;
             _inputService = inputService;
             _pauseView = pauseView;
-            _loseGameSystem = loseGameSystem;
         }
-        
+
         public void Start()
         {
             _mainSystems.Init();
 
             _inputService.OnPausePressed += OnPausePressed;
-            
+
             IsPaused = false;
         }
-        
+
 
         private void OnPausePressed()
         {
@@ -61,6 +58,7 @@ namespace Game.Script.Infrastructure
 
         public void Tick()
         {
+       
         }
 
 
@@ -73,7 +71,7 @@ namespace Game.Script.Infrastructure
 
         public void FixedTick()
         {
-            if(IsPaused) return;
+            if (IsPaused) return;
             _mainSystems.Run();
         }
     }

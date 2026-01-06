@@ -50,7 +50,7 @@ namespace Game.Script.DISystem
 
             
             builder.Register<GameResources>(Lifetime.Singleton);
-            builder.Register<LevelStateService>(Lifetime.Singleton);
+            builder.Register<RuntimeLevelState>(Lifetime.Singleton);
             builder.Register<RecipeService>(Lifetime.Singleton);
             builder.Register<PickableService>(Lifetime.Singleton);
             builder.Register<PlacementGrid>(Lifetime.Singleton);

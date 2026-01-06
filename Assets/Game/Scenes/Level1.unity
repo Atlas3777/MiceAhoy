@@ -4703,7 +4703,7 @@ Camera:
   near clip plane: 0.1
   far clip plane: 100
   field of view: 11
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5.2
   m_Depth: -1
   m_CullingMask:
@@ -14478,13 +14478,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1107556940}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.39674598, y: -0.15500776, z: 0.14559808, w: 0.89295375}
-  m_LocalPosition: {x: 7.1112633, y: 6.786062, z: -0.31707025}
+  m_LocalRotation: {x: 0.37107247, y: -0.22585285, z: 0.09355131, w: 0.8958482}
+  m_LocalPosition: {x: 5.211305, y: 5.067287, z: -9.038181}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 48.911, y: -14.207, z: 12.034}
+  m_LocalEulerAnglesHint: {x: 45, y: -28.3, z: 0}
 --- !u!1 &1112778452
 GameObject:
   m_ObjectHideFlags: 0
@@ -20563,7 +20563,7 @@ MonoBehaviour:
     NearClipPlane: 0.1
     FarClipPlane: 100
     Dutch: 0
-    ModeOverride: 2
+    ModeOverride: 1
     PhysicalProperties:
       GateFit: 2
       SensorSize: {x: 21.946, y: 16.002}
@@ -24461,7 +24461,7 @@ MonoBehaviour:
     NearClipPlane: 0.1
     FarClipPlane: 100
     Dutch: 0
-    ModeOverride: 2
+    ModeOverride: 1
     PhysicalProperties:
       GateFit: 2
       SensorSize: {x: 21.946, y: 16.002}
