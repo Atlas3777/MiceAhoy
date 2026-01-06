@@ -10,6 +10,7 @@ public class WorkstationsAspect : ProtoAspectInject
     public ProtoPool<ItemSourceComponent> ItemSourcePool;
     public ProtoPool<ReceiptProcessorComponent> StovePool;
     public ProtoPool<GuestTableComponent> GuestTablePool;
+    public ProtoPool<ItemDestroyerComponent> ItemDestroyerComponentPool;
     
     public ProtoPool<ItemGenerationAvailableTag> ItemGenerationAvailablePool;
     public ProtoPool<ItemCookedTag> ItemCookedTagPool;
@@ -67,4 +68,9 @@ public struct GuestTableComponent : IComponent
 {
     public ProtoPackedEntityWithWorld Guest;
     public Transform GuestPosition;
+}
+
+[Serializable]
+public struct ItemDestroyerComponent : IComponent
+{
 }

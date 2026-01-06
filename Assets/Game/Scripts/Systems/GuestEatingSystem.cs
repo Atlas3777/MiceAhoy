@@ -88,7 +88,6 @@ namespace Game.Script.Systems
                 if (eatType == typeof(Trash))
                 {
                     Debug.Log("Сам свои угольки хавай");
-                    _guestAspect.GuestTableIsFreeTagPool.Add(tableEntity);
                     return false;
                 }
             }

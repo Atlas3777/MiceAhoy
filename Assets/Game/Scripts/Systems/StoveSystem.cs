@@ -99,7 +99,8 @@ public class StoveSystem : IProtoInitSystem, IProtoRunSystem
 
         foreach (var stoveEntity in _abortIt)
         {
-            _baseAspect.TimerCompletedPool.Add(stoveEntity);
+            _baseAspect.TimerPool.Get(stoveEntity).Completed = true;
+            
         }
     }
 }

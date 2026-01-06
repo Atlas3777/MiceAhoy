@@ -84,6 +84,7 @@ public class GameResources
         public CustomAuthoring Furniture_1x1_Base => Resources.Load<CustomAuthoring>("Workstations/Furniture_1x1_Base");
         public CustomAuthoring Furniture_1x2_Base => Resources.Load<CustomAuthoring>("Workstations/Furniture_1x2_Base");
         public CustomAuthoring GuestTable => Resources.Load<CustomAuthoring>("Workstations/GuestTable");
+        public CustomAuthoring ItemDestroyer => Resources.Load<CustomAuthoring>("Workstations/ItemDestroyer");
         public CustomAuthoring Stove => Resources.Load<CustomAuthoring>("Workstations/Stove");
         public CustomAuthoring Table => Resources.Load<CustomAuthoring>("Workstations/Table");
         public CustomAuthoring TableOld => Resources.Load<CustomAuthoring>("Workstations/TableOld");

@@ -86,3 +86,9 @@ public class PlatesWasher : WorkstationItem
 {
     
 }
+
+[Serializable]
+public class ItemDestroyer : WorkstationItem
+{
+    
+}

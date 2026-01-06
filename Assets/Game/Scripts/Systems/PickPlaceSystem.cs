@@ -37,6 +37,7 @@ namespace Game.Script.Systems
 
                 var playerHasItem = _playerAspect.HasItemTagPool.Has(playerEntity);
                 var interactedHolderHasItem = _playerAspect.HasItemTagPool.Has(interactedEntity);
+                ref var playerItem = ref _baseAspect.HolderPool.Get(playerEntity);
 
                 switch (playerHasItem, tableHasItem: interactedHolderHasItem)
                 {
@@ -62,6 +63,15 @@ namespace Game.Script.Systems
                     case (true, false):
                         //Debug.Log("Кладем на стол!");
                         _workstationsAspect.ItemPlaceEventPool.GetOrAdd(interactedEntity);
+
+                        if (_workstationsAspect.ItemDestroyerComponentPool.Has(interactedEntity)
+                            && playerItem.PickableItemGO)
+                        {
+                            Debug.Log("Убийство на улице вязов");
+                            Helper.ReturnItemToGenerator(playerEntity, ref playerHolder, _playerAspect, _baseAspect);
+                            continue;
+                        }
+
                         Helper.TransferItem(from: playerEntity, to: interactedEntity, ref playerHolder,
                             ref interactedHolder,
                             _playerAspect, _baseAspect);
@@ -69,7 +79,6 @@ namespace Game.Script.Systems
 
                     case (true, true):
                         //Debug.Log("И в руках, и на столе что-то есть! (Свап или запрет)");
-                        ref var playerItem = ref _baseAspect.HolderPool.Get(playerEntity);
                         ref var tableItem = ref _baseAspect.HolderPool.Get(interactedEntity);
 
                         if (_workstationsAspect.ItemSourcePool.Has(interactedEntity)

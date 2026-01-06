@@ -93,8 +93,10 @@ public static class Helper
         // UpdateItemVisualizationInfo(playerEntity, infoWrapper, baseAspect);
     }
 
-    public static void ReturnItemToGenerator(ProtoEntity from, ref HolderComponent fromHolder,
-        PlayerAspect playerAspect, BaseAspect baseAspect)
+    public static void ReturnItemToGenerator(ProtoEntity from,
+        ref HolderComponent fromHolder,
+        PlayerAspect playerAspect,
+        BaseAspect baseAspect)
     {
         Object.Destroy(fromHolder.PickableItemGO);
         fromHolder.Clear();
