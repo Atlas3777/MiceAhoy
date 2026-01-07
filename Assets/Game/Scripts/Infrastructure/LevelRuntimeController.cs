@@ -1,13 +1,11 @@
 ﻿using System;
-using Game.Script.DISystem;
 using Leopotam.EcsProto;
 using UnityEngine;
-using VContainer;
 using VContainer.Unity;
 
-namespace Game.Script.Infrastructure
+namespace Game.Scripts.Infrastructure
 {
-    public class GameRuntimeController : IStartable, ITickable, IFixedTickable, IDisposable
+    public class LevelRuntimeController : ITickable, IFixedTickable, IDisposable
     {
         private readonly IProtoSystems _mainSystems;
         private readonly InputService _inputService;
@@ -15,12 +13,8 @@ namespace Game.Script.Infrastructure
 
         public bool IsPaused { get; private set; }
 
-        public GameRuntimeController(
-            IProtoSystems mainSystems,
-            InputService inputService,
-            PauseView pauseView)
+        public LevelRuntimeController(IProtoSystems mainSystems, InputService inputService, PauseView pauseView)
         {
-            Debug.Log("Starting game state manager");
             _mainSystems = mainSystems;
             _inputService = inputService;
             _pauseView = pauseView;
@@ -28,10 +22,10 @@ namespace Game.Script.Infrastructure
 
         public void Start()
         {
+            Debug.Log("Starting game state manager");
+
             _mainSystems.Init();
-
             _inputService.OnPausePressed += OnPausePressed;
-
             IsPaused = false;
         }
 
@@ -58,7 +52,6 @@ namespace Game.Script.Infrastructure
 
         public void Tick()
         {
-       
         }
 
 

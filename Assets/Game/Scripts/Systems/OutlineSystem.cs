@@ -2,7 +2,7 @@
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 
-namespace Game.Script.Systems
+namespace Game.Scripts.Systems
 {
     public class OutlineSystem : IProtoInitSystem, IProtoRunSystem
     {

@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace Game.Script
+namespace Game.Scripts.ResourceManagers
 {
     public class PickableItemSO : ScriptableObject
     {

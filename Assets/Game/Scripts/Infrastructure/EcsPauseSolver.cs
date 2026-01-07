@@ -1,12 +1,11 @@
-﻿using Game.Scripts.LevelSteps;
-using Leopotam.EcsProto.ConditionalSystems;
+﻿using Leopotam.EcsProto.ConditionalSystems;
 
-namespace Game.Script.Infrastructure
+namespace Game.Scripts.Infrastructure
 {
-    public class TutorialEcsPauseSolver : IConditionalSystemSolver
+    public class EcsPauseSolver : IConditionalSystemSolver
     {
         private readonly ILevelStateContext _context;
-        public TutorialEcsPauseSolver(ILevelStateContext levelStateContext)
+        public EcsPauseSolver(ILevelStateContext levelStateContext)
         {
             _context = levelStateContext;
         }

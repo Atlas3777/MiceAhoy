@@ -1,10 +1,8 @@
-using System.Collections.Generic;
 using Game.Script.Aspects;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
-using UnityEngine;
 
-namespace Game.Script.Systems
+namespace Game.Scripts.Systems
 {
     public class GuestBookTableSystem : IProtoInitSystem, IProtoRunSystem
     {

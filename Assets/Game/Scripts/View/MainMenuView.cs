@@ -1,4 +1,4 @@
-﻿using Game.Script.Infrastructure;
+﻿using Game.Scripts.Infrastructure;
 using UnityEngine;
 using UnityEngine.UI;
 using VContainer;
@@ -17,6 +17,6 @@ public class MainMenuView : MonoBehaviour
 
         _startButton.onClick.AddListener(sc.LoadMainGameScene);
         _aboutButton.onClick.AddListener(() => About.SetActive(true));
-        _exitButton.onClick.AddListener(sc.LoadExitScene);
+        _exitButton.onClick.AddListener(sc.ExitAppication);
     }
 }

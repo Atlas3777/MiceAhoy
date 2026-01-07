@@ -13,15 +13,12 @@ MonoBehaviour:
   m_Name: Plate
   m_EditorClassIdentifier: Assembly-CSharp::Game.Script.PickableItemSO
   PickableItem:
-    rid: 7346997453272383568
+    rid: 1239606066662342733
   references:
     version: 2
     RefIds:
-    - rid: 7346997453272383568
-      type: {class: Plate, ns: Game.Script, asm: Assembly-CSharp}
+    - rid: 1239606066662342733
+      type: {class: Plate, ns: Game.Scripts, asm: Assembly-CSharp}
       data:
-        PickupItemSprite:
-          PickableItemSpriteRenderer: {fileID: 0}
-          PlateItemSpriteRenderer: {fileID: 0}
-          PickableItemSprite: {fileID: -4795573259988461060, guid: 321135aa99c5aa34ab1f362fe85a077c, type: 3}
-          PlateItemSprite: {fileID: 0}
+        pickableItemGo: {fileID: 0}
+        satietyRestoration: 0

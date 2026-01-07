@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Fish2
   m_EditorClassIdentifier: Assembly-CSharp::Game.Script.PickableItemSO
   PickableItem:
-    rid: 7346997319901118545
+    rid: 1239606066662342736
   references:
     version: 2
     RefIds:
-    - rid: 7346997319901118545
-      type: {class: Fish2, ns: Game.Script, asm: Assembly-CSharp}
+    - rid: 1239606066662342736
+      type: {class: Fish2, ns: Game.Scripts, asm: Assembly-CSharp}
       data:
-        pickableItemGo: {fileID: 4949581644060774540, guid: 031d3c3fef97d0245858dd8e1d157222, type: 3}
+        pickableItemGo: {fileID: 0}
         satietyRestoration: 0

@@ -1,4 +1,5 @@
-﻿using Game.Scripts.LevelSteps;
+﻿using Game.Scripts.Infrastructure;
+using Game.Scripts.LevelSteps;
 using Leopotam.EcsProto.ConditionalSystems;
 using UnityEngine;
 

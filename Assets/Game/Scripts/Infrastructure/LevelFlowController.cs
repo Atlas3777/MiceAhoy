@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Game.Scripts.LevelSteps;
 using UnityEngine;
 using VContainer;
-using VContainer.Unity;
 
-namespace Game.Scripts.LevelSteps
+namespace Game.Scripts.Infrastructure
 {
     public interface ILevelStateContext
     {
@@ -21,29 +21,26 @@ namespace Game.Scripts.LevelSteps
         EcsPause
     }
     
-    public sealed class LevelFlowController : IStartable, ILevelStateContext, IDisposable
+    public sealed class LevelFlowController :  ILevelStateContext, IDisposable
     {
-        private readonly List<LevelStep> _steps;
         private readonly IObjectResolver _resolver;
+        private List<LevelStep> _steps;
 
         private CancellationTokenSource _cts;
         private GameplayPhase _currentState = GameplayPhase.None;
         private int _index = -1;
         private bool _running = false;
 
-        public event Action<string> StateStarted;
-        public event Action StateFinished;
-        public event Action AllStatesCompleted;
-
-        public LevelFlowController(IObjectResolver resolver, LevelStepsList stepses)
+        public LevelFlowController(IObjectResolver resolver)
         {
             _resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
-            _steps = stepses.LevelStates ?? throw new ArgumentNullException(nameof(stepses));
         }
 
-        public void Start()
+        public void Start(List<LevelStep> steps)
         {
             if (_running) return;
+            _steps = steps ?? throw new ArgumentNullException(nameof(steps));
+            
             _running = true;
             _cts = new CancellationTokenSource();
             _index = -1;
@@ -66,7 +63,6 @@ namespace Game.Scripts.LevelSteps
 
             if (_index >= _steps.Count)
             {
-                AllStatesCompleted?.Invoke();
                 _running = false;
                 return;
             }
@@ -85,7 +81,6 @@ namespace Game.Scripts.LevelSteps
                     _currentState = step.Phase.Value;
                 }
 
-                StateStarted?.Invoke(step.Description);
 
                 Debug.Log(step.Description);
                 await step.Execute(_resolver, ct).AttachExternalCancellation(ct);
@@ -110,8 +105,6 @@ namespace Game.Scripts.LevelSteps
                     Debug.LogException(ex);
                 }
             }
-
-            StateFinished?.Invoke();
 
             ProceedToNext();
         }

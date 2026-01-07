@@ -2,6 +2,7 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using Game.Script.DISystem;
+using Game.Scripts.DISystem;
 using PrimeTween;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -14,15 +15,16 @@ namespace Game.Scripts.LevelSteps
     {
         public override string Description => "Пролет камеры (Intro)";
 
-        // Настройки пролета (можно вынести в конфиг)
-        private readonly Vector3 _startPoint = new Vector3(0, 44.4f, -44.5f); // Центр
-        private readonly Vector3 _leftPoint = new Vector3(-4.5f, 44.4f, -44.5f); // Лево
+        private Vector3 _startPoint; // Центр
+        private Vector3 _leftPoint;
 
         public override async UniTask Execute(IObjectResolver resolver, CancellationToken ct)
         {
             var introCam = resolver.Resolve<CinemachineCamera>(GameCameraType.Intro);
             var gameplayCam = resolver.Resolve<CinemachineCamera>(GameCameraType.Gameplay);
 
+            _startPoint = gameplayCam.transform.position;
+            _leftPoint = _startPoint + Vector3.left*4;
             introCam.transform.position = _startPoint;
             introCam.Priority = 20;
             gameplayCam.Priority = 10;

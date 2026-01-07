@@ -25,14 +25,21 @@ namespace Game.Scripts.Systems
         public void Init(IProtoSystems systems)
         {
             _runtimeLevelState.LevelDuration = _config.LevelDuration;
+            _runtimeLevelState.AccumulatedCredits += _config.BaseCreditWallet;
         }
         
         public void Run()
         {
             var director = _runtimeLevelState;
-            director.ElapsedTime += Time.fixedDeltaTime;
 
-            if (director.ElapsedTime >= director.LevelDuration) return;
+            if (director.TimedOut)
+            {
+                director.TimedOut = true;
+                return;
+            }
+            
+            director.ElapsedTime += Time.fixedDeltaTime;
+            
             // 2. Начисляем кредиты
             // Берем значение из кривой сложности в зависимости от прогресса уровня (0..1)
             float progress = director.ElapsedTime / director.LevelDuration;

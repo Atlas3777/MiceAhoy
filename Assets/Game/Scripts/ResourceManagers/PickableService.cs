@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using Game.Script;
+using Game.Scripts;
+using Game.Scripts.ResourceManagers;
 using UnityEngine;
 
 public class PickableService

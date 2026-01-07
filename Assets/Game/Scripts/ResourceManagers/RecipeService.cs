@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Game.Script;
+using Game.Scripts.ResourceManagers;
 using UnityEngine;
 
 public class RecipeService

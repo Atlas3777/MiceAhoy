@@ -1,4 +1,6 @@
-﻿namespace Game.Script.Factories
+﻿using Game.Scripts.Systems;
+
+namespace Game.Script.Factories
 {
     public class PlayerInitializeInputSystemFactory
     {

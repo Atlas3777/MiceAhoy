@@ -50,7 +50,9 @@ public class InputService : IFixedTickable
     {
         if (_pendingPlayerIndices.Count > 0)
         {
+            Debug.Log(_pendingPlayerIndices.Count);
             index = _pendingPlayerIndices.Dequeue();
+            Debug.Log($"{index}");
             return true;
         }
 
@@ -60,25 +62,18 @@ public class InputService : IFixedTickable
 
     public void UpdateState(int playerIndex, PlayerInputData newData)
     {
-        // *** ИСПРАВЛЕНИЕ: Удаляем некорректную логику регистрации ***
         if (!_playerInputs.ContainsKey(playerIndex))
         {
-            // Этот код должен вызываться только для зарегистрированных игроков.
-            // Если он сработал, значит, компонент PlayerInput не был зарегистрирован вовремя.
-            Debug.LogError($"InputService: Attempted to UpdateState for unregistered player index {playerIndex}. Registration must happen first");
+            Debug.LogError($"[INPUT] UpdateState: Player {playerIndex} NOT REGISTERED!");
             return;
         }
 
         var currentData = _playerInputs[playerIndex];
-        
-        // Обновляем состояние только если нажатия произошли (поведение "одноразового нажатия")
+    
         if (newData.InteractPressed) currentData.InteractPressed = true;
         if (newData.PickPlacePressed) currentData.PickPlacePressed = true;
-        if (newData.RandomSpawnFurniturePressed) currentData.RandomSpawnFurniturePressed = true;
-        if (newData.MoveFurniturePressed) currentData.MoveFurniturePressed = true;
-        
         currentData.MoveDirection = newData.MoveDirection;
-        
+    
         _playerInputs[playerIndex] = currentData;
     }
 
@@ -101,6 +96,13 @@ public class InputService : IFixedTickable
         foreach (var playerIndex in keys)
         {
             var state = _playerInputs[playerIndex];
+        
+            // Если флаг был true, а сейчас мы его стираем - залогируем это
+            if (state.InteractPressed || state.PickPlacePressed)
+            {
+                Debug.Log($"[INPUT-SERVICE] Clearing flags for Player {playerIndex} in FixedTick");
+            }
+
             state.InteractPressed = false;
             state.PickPlacePressed = false;
             state.RandomSpawnFurniturePressed = false;

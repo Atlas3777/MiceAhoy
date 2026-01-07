@@ -3,7 +3,7 @@ using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using UnityEngine;
 
-namespace Game.Script.Systems
+namespace Game.Scripts.Systems
 {
     public class GuestDestroyerSystem : IProtoInitSystem, IProtoRunSystem
     {

@@ -5,6 +5,8 @@ using System;
 using System.IO;
 using System.Linq;
 using Game.Script;
+using Game.Scripts;
+using Game.Scripts.ResourceManagers;
 
 public static class PickableItemSOGenerator
 {
@@ -19,7 +21,7 @@ public static class PickableItemSOGenerator
         // Находим все наследники PickableItem
         var pickableTypes = AppDomain.CurrentDomain.GetAssemblies()
             .SelectMany(asm => asm.GetTypes())
-            .Where(t => t.IsSubclassOf(typeof(Game.Script.PickableItem)) && !t.IsAbstract)
+            .Where(t => t.IsSubclassOf(typeof(PickableItem)) && !t.IsAbstract)
             .ToList();
 
         foreach (var type in pickableTypes)
@@ -62,7 +64,7 @@ public static class PickableItemSOChecker
         foreach (string guid in guids)
         {
             string path = AssetDatabase.GUIDToAssetPath(guid);
-            var item = AssetDatabase.LoadAssetAtPath<Game.Script.PickableItemSO>(path);
+            var item = AssetDatabase.LoadAssetAtPath<PickableItemSO>(path);
 
             if (item != null && item.PickableItem == null)
             {

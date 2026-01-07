@@ -13,31 +13,25 @@ MonoBehaviour:
   m_Name: WashPlate
   m_EditorClassIdentifier: Assembly-CSharp::ItemProcessor
   inputItemType:
-    rid: 7346997453272383582
+    rid: 1239606066662342740
   outputItemType:
-    rid: 7346997453272383583
+    rid: 1239606066662342741
   workstationType:
     rid: 7346997453272383584
   Duration: 4
   references:
     version: 2
     RefIds:
-    - rid: 7346997453272383582
-      type: {class: DirtyPlate, ns: Game.Script, asm: Assembly-CSharp}
+    - rid: 1239606066662342740
+      type: {class: DirtyPlate, ns: Game.Scripts, asm: Assembly-CSharp}
       data:
-        PickupItemSprite:
-          PickableItemSpriteRenderer: {fileID: 0}
-          PlateItemSpriteRenderer: {fileID: 0}
-          PickableItemSprite: {fileID: 0}
-          PlateItemSprite: {fileID: 0}
-    - rid: 7346997453272383583
-      type: {class: Plate, ns: Game.Script, asm: Assembly-CSharp}
+        pickableItemGo: {fileID: 0}
+        satietyRestoration: 0
+    - rid: 1239606066662342741
+      type: {class: Plate, ns: Game.Scripts, asm: Assembly-CSharp}
       data:
-        PickupItemSprite:
-          PickableItemSpriteRenderer: {fileID: 0}
-          PlateItemSpriteRenderer: {fileID: 0}
-          PickableItemSprite: {fileID: 0}
-          PlateItemSprite: {fileID: 0}
+        pickableItemGo: {fileID: 0}
+        satietyRestoration: 0
     - rid: 7346997453272383584
       type: {class: PlatesWasher, ns: , asm: Assembly-CSharp}
       data:

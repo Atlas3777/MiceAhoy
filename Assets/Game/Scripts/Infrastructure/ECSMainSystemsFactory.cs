@@ -8,19 +8,26 @@ using Leopotam.EcsProto.ConditionalSystems;
 using Leopotam.EcsProto.QoL;
 using Leopotam.EcsProto.Unity;
 using VContainer;
+using System;
+using UnityEngine;
+using UnityEngine.LightTransport;
 
-namespace Game.Script.Infrastructure
+namespace Game.Scripts.Infrastructure
 {
-    public class ECSWorldFactory
+    public abstract class EcsSystemsFactory
     {
-        private readonly IObjectResolver _r;
+        public abstract IProtoSystems CreateSystems(IObjectResolver resolver);
+    }
 
-        public ECSWorldFactory(IObjectResolver resolver)
-            => _r = resolver;
+    [Serializable]
+    public class ECSMainSystemsFactory : EcsSystemsFactory
+    {
+        private IObjectResolver _r;
 
-        public IProtoSystems CreateMainSystems()
+        public override IProtoSystems CreateSystems(IObjectResolver resolver)
         {
-            var world = new ProtoWorld(new BaseAspect());
+            _r = resolver;
+            var world = resolver.Resolve<ProtoWorld>();
             var systems = BuildMainSystems(world);
 
             return systems;
@@ -34,21 +41,19 @@ namespace Game.Script.Infrastructure
             systems
                 .AddModule(new AutoInjectModule())
                 .AddModule(new UnityModule())
-
-                .AddSystem(new ConditionalSystem(_r.Resolve<TutorialEcsPauseSolver>(), true,
-
+                .AddSystem(new ConditionalSystem(_r.Resolve<EcsPauseSolver>(), true,
                     new SyncUnityPhysicsToEcsSystem(),
                     new TimerSystem(),
                     new ProgressBarSystem(),
                     _r.Resolve<SyncGridPositionSystem>(),
-
+                    
                     _r.Resolve<PlayerInitializeInputSystem>(),
                     _r.Resolve<UpdateInputSystem>(),
                     _r.Resolve<PlayerMovementSystem>(),
                     new PlayerTargetSystem(),
                     new OutlineSystem(),
                     _r.Resolve<PickPlaceSystem>(),
-                    new CookingProceedSystem(),
+                    
                     _r.Resolve<StoveSystem>(),
                     _r.Resolve<ItemSourceGeneratorSystem>(),
                     
@@ -73,9 +78,7 @@ namespace Game.Script.Infrastructure
                     
                     _r.Resolve<ReputationSystem>(),
                     _r.Resolve<LevelProgresSystem>(),
-                    
-                    _r.Resolve<WinGameSystem>(),
-                    _r.Resolve<LoseGameSystem>(),
+                    _r.Resolve<WinLoseSystem>(),
                     
                     _r.Resolve<ClearSystem>())
                 );

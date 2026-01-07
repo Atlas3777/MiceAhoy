@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game.Script
+namespace Game.Scripts
 {
     public class PickableItemInfoWrapper : MonoBehaviour
     {

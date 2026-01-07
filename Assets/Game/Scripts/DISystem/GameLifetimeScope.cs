@@ -1,20 +1,16 @@
-using Game.Script.Factories;
-using Game.Script.Infrastructure;
-using Game.Script.Systems;
+using Game.Scripts.Aspects;
 using Game.Scripts.Infrastructure;
+using Game.Scripts.Input;
 using Game.Scripts.LevelSteps;
-using Game.Scripts.Systems;
+using Game.Scripts.UIControllers;
 using Leopotam.EcsProto;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using VContainer;
 using VContainer.Unity;
-using Game.Scripts;
-using Game.Scripts.Input;
-using Game.Scripts.UIControllers;
-using UnityEngine.Serialization;
 
-namespace Game.Script.DISystem
+namespace Game.Scripts.DISystem
 {
     public enum GameCameraType
     {
@@ -24,147 +20,58 @@ namespace Game.Script.DISystem
 
     public class GameLifetimeScope : LifetimeScope
     {
-        [Header("LevelConfiguration")]
-        [SerializeField] private LevelStepsList levelStepsList;
-        [SerializeField] private LevelConfig levelConfig;
-        [SerializeField] private SpawnRegistry spawnPoint;
-        
-        [Header("UI")]
+        [Header("UI")] 
         [SerializeField] private PauseView pauseView;
         [SerializeField] private TutorialUIController tutorialUIController;
         [SerializeField] private LevelProgressUIController levelProgressUIController;
-        
-        [Header("Camera Configuration")]
+        [SerializeField] private LoseUIController loseUIController;
+
+        [Header("Camera Configuration")] 
         [SerializeField] private CinemachineTargetGroup cinemachineTargetGroup;
+
         [SerializeField] private CinemachineCamera introCamera;
         [SerializeField] private CinemachineCamera gameplayCamera;
+
+        [Header("LevelScopePrefab")] 
+        [SerializeField] private LevelLifetimeScope levelScopePrefab;
 
         protected override void Configure(IContainerBuilder builder)
         {
             Debug.Log("GameLifetimeScope : Configure");
 
-            builder.RegisterEntryPoint<GameRuntimeController>();
-            builder.Register<LevelFlowController>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
-            builder.Register<ManualPlayerSpawner>(Lifetime.Singleton).AsImplementedInterfaces();
+            builder.Register<LevelLoader>(Lifetime.Singleton).WithParameter(levelScopePrefab).AsImplementedInterfaces();
+            builder.Register<PlayerSpawner>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
             builder.Register<InputService>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
-
+            builder.Register<JoinListener>(Lifetime.Singleton);
             
+
             builder.Register<GameResources>(Lifetime.Singleton);
-            builder.Register<RuntimeLevelState>(Lifetime.Singleton);
             builder.Register<RecipeService>(Lifetime.Singleton);
             builder.Register<PickableService>(Lifetime.Singleton);
-            builder.Register<PlacementGrid>(Lifetime.Singleton);
-            
-            builder.Register<GameplaySolver>(Lifetime.Singleton);
-            builder.Register<TutorialEcsPauseSolver>(Lifetime.Singleton);
 
-            builder.RegisterInstance<LevelStepsList>(levelStepsList);
-            builder.RegisterInstance<LevelConfig>(levelConfig);
-            builder.RegisterInstance<SpawnRegistry>(spawnPoint);
-            
+            builder.Register<ECSWorldFactory>(Lifetime.Singleton);
+            builder.Register<ProtoWorld>(container =>
+                    container.Resolve<ECSWorldFactory>().CreateWorld(), Lifetime.Singleton);
+          
+
             builder.RegisterInstance(introCamera).Keyed(GameCameraType.Intro);
             builder.RegisterInstance(gameplayCamera).Keyed(GameCameraType.Gameplay);
-            
-            
+
+
             builder.RegisterComponent(cinemachineTargetGroup);
             builder.RegisterComponent(tutorialUIController);
             builder.RegisterComponent(levelProgressUIController);
+            builder.RegisterComponent(loseUIController);
             builder.RegisterComponent(pauseView);
-
-
-            RegisterSystemFactories(builder);
-            RegisterProtoSystems(builder);
-
-            RegisterECSWorldAndSystems(builder);
         }
+    }
 
-        private void RegisterECSWorldAndSystems(IContainerBuilder builder)
+    public class ECSWorldFactory
+    {
+        public ProtoWorld CreateWorld()
         {
-            builder.Register<ECSWorldFactory>(Lifetime.Singleton);
-
-            builder.Register<IProtoSystems>(container =>
-                    container.Resolve<ECSWorldFactory>().CreateMainSystems(), Lifetime.Singleton);
-        }
-
-        private void RegisterSystemFactories(IContainerBuilder builder)
-        {
-            builder.Register<StoveSystemFactory>(Lifetime.Singleton);
-            builder.Register<ItemSourceGeneratorSystemFactory>(Lifetime.Singleton);
-            builder.Register<SyncUnityPhysicsToEcsSystemFactory>(Lifetime.Singleton);
-            //builder.Register<PickPlaceSystemFactory>(Lifetime.Singleton);
-            builder.Register<ClearSystemFactory>(Lifetime.Singleton);
-            builder.Register<PlayerSpawnFurnitureSystemFactory>(Lifetime.Singleton);
-            builder.Register<CreateGameObjectsSystemFactory>(Lifetime.Singleton);
-            builder.Register<MoveFurnitureSystemFactory>(Lifetime.Singleton);
-            builder.Register<MoveGameObjectSystemFactory>(Lifetime.Singleton);
-            builder.Register<SyncGridPositionSystemFactory>(Lifetime.Singleton);
-            builder.Register<RandomSpawnerPositionSystemFactory>(Lifetime.Singleton);
-            builder.Register<DestroySpawnersSystemFactory>(Lifetime.Singleton);
-            builder.Register<PlayerInitializeInputSystem>(Lifetime.Singleton);
-            //builder.Register<EndGameSystemSystemFactory>(Lifetime.Singleton);
-        }
-
-        private void RegisterProtoSystems(IContainerBuilder builder)
-        {
-            builder.Register<PickPlaceSystem>(Lifetime.Singleton);
-            builder.Register<UpdateInputSystem>(Lifetime.Singleton);
-            builder.Register<ItemSourceGeneratorSystem>(Lifetime.Singleton);
-            builder.Register<StoveSystem>(Lifetime.Singleton);
-            //builder.Register<GroupGenerationSystem>(Lifetime.Singleton);
-            builder.Register<ClearSystem>(Lifetime.Singleton);
-            builder.Register<PlayerMovementSystem>(Lifetime.Singleton);
-            builder.Register<SyncGridPositionSystem>(Lifetime.Singleton);
-            builder.Register<GuestEatingSystem>(Lifetime.Singleton);
-            builder.Register<LevelDirectorSystem>(Lifetime.Singleton);
-            builder.Register<GuestSpawnSystem>(Lifetime.Singleton);
-            builder.Register<ReputationSystem>(Lifetime.Singleton);
-            builder.Register<WinGameSystem>(Lifetime.Singleton);
-            builder.Register<LoseGameSystem>(Lifetime.Singleton);
-            builder.Register<GuestNavigateToDestroySystem>(Lifetime.Singleton);
-            builder.Register<LevelProgresSystem>(Lifetime.Singleton);
-            
-
-            // builder.RegisterFactory<ItemSourceGeneratorSystem>(container =>
-            //     container.Resolve<ItemSourceGeneratorSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
-
-            // builder.RegisterFactory<StoveSystem>(container =>
-            //     container.Resolve<StoveSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
-
-            builder.RegisterFactory<SyncUnityPhysicsToEcsSystem>(container =>
-                container.Resolve<SyncUnityPhysicsToEcsSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
-
-            builder.RegisterFactory<PlayerInitializeInputSystem>(container =>
-                container.Resolve<PlayerInitializeInputSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
-
-            // builder.RegisterFactory<PickPlaceSystem>(container =>
-            //     container.Resolve<PickPlaceSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
-
-            // builder.RegisterFactory<ClearSystem>(container =>
-            //     container.Resolve<ClearSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
-
-            // builder.RegisterFactory<EndGameSystem>(container =>
-            //     container.Resolve<EndGameSystemSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
-
-            builder.RegisterFactory<PlayerSpawnFurnitureSystem>(container =>
-                container.Resolve<PlayerSpawnFurnitureSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
-
-            builder.RegisterFactory<CreateGameObjectsSystem>(container =>
-                container.Resolve<CreateGameObjectsSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
-
-            builder.RegisterFactory<MoveFurnitureSystem>(container =>
-                container.Resolve<MoveFurnitureSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
-
-            builder.RegisterFactory<MoveGameObjectSystem>(container =>
-                container.Resolve<MoveGameObjectSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
-
-            builder.RegisterFactory<SyncGridPositionSystem>(container =>
-                container.Resolve<SyncGridPositionSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
-
-            builder.RegisterFactory<RandomSpawnerPositionSystem>(container =>
-                container.Resolve<RandomSpawnerPositionSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
-
-            builder.RegisterFactory<DestroySpawnersSystem>(container =>
-                container.Resolve<DestroySpawnersSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
+            var world = new ProtoWorld(new BaseAspect());
+            return world;
         }
     }
 }

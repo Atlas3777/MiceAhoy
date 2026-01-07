@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
-#if UNITY_EDITOR
-using UnityEditor; // Подключаем Editor API только внутри редактора
-#endif
 
-namespace Game.Script
+// Подключаем Editor API только внутри редактора
+
+namespace Game.Scripts.ResourceManagers
 {
     [CreateAssetMenu(menuName = "Game/Recipes Database")]
     public class RecipesDB : ScriptableObject

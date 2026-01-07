@@ -1,8 +1,7 @@
 using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Game.Script
+namespace Game.Scripts
 {
     [Serializable]
     public class PickableItem

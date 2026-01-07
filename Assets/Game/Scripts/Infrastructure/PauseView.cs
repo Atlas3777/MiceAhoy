@@ -1,7 +1,7 @@
 ﻿using System;
 using Febucci.UI;
-using Game.Script.Infrastructure;
 using Game.Scripts;
+using Game.Scripts.Infrastructure;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;

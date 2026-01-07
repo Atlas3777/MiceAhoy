@@ -795,6 +795,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Join",
+            "id": "507800d9-04ff-4406-bf69-024d8d41e5fe",
+            "actions": [
+                {
+                    "name": "Join",
+                    "type": "Button",
+                    "id": "29818230-2d7d-4dab-8e22-c6438cb77737",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "40816932-0734-49fd-ae4b-f7fff0311df2",
+                    "path": "<Keyboard>/anyKey",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Join",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

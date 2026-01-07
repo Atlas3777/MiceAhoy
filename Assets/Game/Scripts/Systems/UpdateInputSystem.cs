@@ -4,8 +4,8 @@ using UnityEngine;
 
 class UpdateInputSystem : IProtoInitSystem, IProtoRunSystem 
 {
-    [DI] readonly ProtoWorld _world = default;
-    [DI] readonly PlayerAspect _playerAspect = default; // Используем DI для аспекта
+    [DI] readonly ProtoWorld _world;
+    [DI] readonly PlayerAspect _playerAspect; 
     
     private ProtoIt _iterator;
     private readonly InputService _inputService;

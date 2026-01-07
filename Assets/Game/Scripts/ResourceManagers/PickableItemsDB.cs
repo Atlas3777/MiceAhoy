@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using Game.Script;
+using UnityEditor;
 using UnityEngine;
-#if UNITY_EDITOR
-using UnityEditor; // Подключаем Editor API только внутри редактора
-#endif
 
-namespace Game.Script
+// Подключаем Editor API только внутри редактора
+
+namespace Game.Scripts.ResourceManagers
 {
     [CreateAssetMenu(menuName = "Game/Pickable Database")]
     public class PickableItemsDB : ScriptableObject

@@ -13,15 +13,12 @@ MonoBehaviour:
   m_Name: Meat
   m_EditorClassIdentifier: Assembly-CSharp::Game.Script.PickableItemSO
   PickableItem:
-    rid: 8425613255053148357
+    rid: 1239606066662342734
   references:
     version: 2
     RefIds:
-    - rid: 8425613255053148357
-      type: {class: Meat, ns: Game.Script, asm: Assembly-CSharp}
+    - rid: 1239606066662342734
+      type: {class: Meat, ns: Game.Scripts, asm: Assembly-CSharp}
       data:
-        PickupItemSprite:
-          PickableItemSpriteRenderer: {fileID: 0}
-          PlateItemSpriteRenderer: {fileID: 0}
-          PickableItemSprite: {fileID: 21300000, guid: 398ca5c382e4e8e40989c12ab3bcdba7, type: 3}
-          PlateItemSprite: {fileID: -4795573259988461060, guid: 321135aa99c5aa34ab1f362fe85a077c, type: 3}
+        pickableItemGo: {fileID: 0}
+        satietyRestoration: 0

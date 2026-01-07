@@ -16,17 +16,17 @@ public class PlayerInputHandler : MonoBehaviour
     {
         _playerInput = GetComponent<PlayerInput>();
         _playerIndex = _playerInput.playerIndex;
-        _inputService.RegisterPlayer(_playerIndex, _playerInput);
-
     }
 
-    private void Start()
-    {
-    }
 
     private void OnEnable()
     {
         _playerInput.onActionTriggered += HandleInput;
+
+        if (_playerInput.user.valid)
+        {
+            _inputService.RegisterPlayer(_playerIndex, _playerInput);
+        }
     }
 
     private void HandleInput(InputAction.CallbackContext context)
@@ -73,6 +73,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void OnMove(InputAction.CallbackContext context, ref InputService.PlayerInputData state)
     {
+        Debug.Log("Move");
         state.MoveDirection = context.ReadValue<Vector2>();
     }
 
