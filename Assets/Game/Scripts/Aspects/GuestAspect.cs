@@ -42,7 +42,7 @@ namespace Game.Script.Aspects
         public ProtoPool<NeedsTableTag> NeedsTableTagPool;
         public ProtoPool<WaitingOrderTag> WaitingOrderTagPool;
         public ProtoPool<QueueComponent> QueueComponentPool;
-        
+        public ProtoPool<QueueWaitingTimeComponent> QueueWaitingTimeComponentPool;
     }
 
     [Serializable]
@@ -185,5 +185,11 @@ namespace Game.Script.Aspects
     public struct QueueComponent : IComponent
     {
         public Queue<ProtoPackedEntityWithWorld> Queue;
+    }
+
+    [Serializable]
+    public struct QueueWaitingTimeComponent : IComponent
+    {
+        public float WaitingTime;
     }
 }

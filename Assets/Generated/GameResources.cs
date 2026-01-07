@@ -99,6 +99,7 @@ public class GameResources
     public PickableItemsDB Pickable_Items_DB => Resources.Load<PickableItemsDB>("Pickable_Items_DB");
     public PlacementObjectsDB PlacementObjects_DB => Resources.Load<PlacementObjectsDB>("PlacementObjects_DB");
     public CustomAuthoring Player => Resources.Load<CustomAuthoring>("Player");
+    public CustomAuthoring QueueHead => Resources.Load<CustomAuthoring>("QueueHead");
     public RecipesDB Recipes_DB => Resources.Load<RecipesDB>("Recipes_DB");
     public Sprite Безымянный => Resources.Load<Sprite>("Безымянный");
 

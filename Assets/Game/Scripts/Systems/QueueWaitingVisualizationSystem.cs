@@ -51,7 +51,7 @@ namespace Game.Scripts.Systems
                 }
                 ref var timer = ref _baseAspect.TimerPool.GetOrAdd(queueEntity);
                 timer.Elapsed = 0f;
-                timer.Duration = 5f;
+                timer.Duration = _guestAspect.QueueWaitingTimeComponentPool.Get(queueEntity).WaitingTime;
             }
         }
     }
