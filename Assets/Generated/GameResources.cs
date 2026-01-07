@@ -19,6 +19,7 @@ public class GameResources
     public class LevelConfigs
     {
         public LevelConfig LevelConfig1 => Resources.Load<LevelConfig>("LevelConfigs/LevelConfig1");
+        public LevelConfig LevelConfig2 => Resources.Load<LevelConfig>("LevelConfigs/LevelConfig2");
     }
     public Phys PhysLink;
     public class Phys
@@ -59,9 +60,9 @@ public class GameResources
     public Recipes RecipesLink;
     public class Recipes
     {
+        public Recipe Burn => Resources.Load<Recipe>("Recipes/Burn");
         public Recipe fish0_fish1 => Resources.Load<Recipe>("Recipes/fish0-fish1");
         public Recipe fish1_fish2 => Resources.Load<Recipe>("Recipes/fish1-fish2");
-        public Recipe fish2_trash => Resources.Load<Recipe>("Recipes/fish2-trash");
         public Recipe WashPlate => Resources.Load<Recipe>("Recipes/WashPlate");
     }
     public Sounds SoundsLink;
@@ -94,6 +95,7 @@ public class GameResources
     public CustomAuthoring Guest => Resources.Load<CustomAuthoring>("Guest");
     public LevelContext level => Resources.Load<LevelContext>("level");
     public LevelLifetimeScope LevelLifetimeScope => Resources.Load<LevelLifetimeScope>("LevelLifetimeScope");
+    public LevelContext levelWithQueue => Resources.Load<LevelContext>("levelWithQueue");
     public PickableItemsDB Pickable_Items_DB => Resources.Load<PickableItemsDB>("Pickable_Items_DB");
     public PlacementObjectsDB PlacementObjects_DB => Resources.Load<PlacementObjectsDB>("PlacementObjects_DB");
     public CustomAuthoring Player => Resources.Load<CustomAuthoring>("Player");

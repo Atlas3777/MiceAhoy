@@ -21,6 +21,6 @@ namespace Game.Scripts.DISystem
 
     public class SaveService
     {
-        public int LevelIndex { get; set; } = 1;
+        public int LevelIndex { get; set; } = 2;
     }
 }

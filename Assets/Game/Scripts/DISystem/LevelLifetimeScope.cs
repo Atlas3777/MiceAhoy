@@ -33,7 +33,7 @@ namespace Game.Scripts.DISystem
             
             builder.RegisterInstance(_levelConfig);
             builder.RegisterInstance(_levelContext);
-            builder.RegisterInstance(_levelContext.spawnRegistry);
+            builder.RegisterInstance(_levelContext.positionsRegistry);
 
             RegisterProtoSystems(builder);
             

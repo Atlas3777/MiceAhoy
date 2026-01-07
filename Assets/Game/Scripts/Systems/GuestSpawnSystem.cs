@@ -18,9 +18,9 @@ namespace Game.Scripts.Systems
         private ProtoIt _it;
         private readonly Transform _spawnPoint; 
 
-        public GuestSpawnSystem(SpawnRegistry spawnRegistry)
+        public GuestSpawnSystem(PositionsRegistry positionsRegistry)
         {
-            _spawnPoint = spawnRegistry.GuestSpawn;
+            _spawnPoint = positionsRegistry.GuestSpawn;
         }
         
         public void Init(IProtoSystems systems)

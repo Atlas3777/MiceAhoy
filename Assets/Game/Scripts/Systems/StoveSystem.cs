@@ -1,4 +1,5 @@
-﻿using Game.Scripts.Aspects;
+﻿using Game.Scripts;
+using Game.Scripts.Aspects;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using UnityEngine;
@@ -67,7 +68,8 @@ public class StoveSystem : IProtoInitSystem, IProtoRunSystem
                 continue;
             }
 
-            if (!_recipeService.TryGetRecipe(holder.Item, works.type.GetType(), out var recipe))
+            if (!_recipeService.TryGetRecipe(holder.Item, works.type.GetType(), out var recipe)
+                && recipe.outputItemType.GetType() != typeof(Trash))
             {
                 Debug.Log("Recipe not found");
                 continue;
@@ -87,6 +89,8 @@ public class StoveSystem : IProtoInitSystem, IProtoRunSystem
                 if (_pickableService.TryGetPickable(recipe.outputItemType.GetType(), out var pickableItem))
                 {
                     Helper.CreateItem(stoveEntity, ref holder, _playerAspect, _baseAspect, pickableItem);
+                    if (recipe.outputItemType is not Trash)
+                        _workstationsAspect.ItemCookedTagPool.Add(stoveEntity);
                     Debug.Log("Приготовили!");
                 }
                 else
@@ -94,7 +98,6 @@ public class StoveSystem : IProtoInitSystem, IProtoRunSystem
                     Debug.Log($"Не удалось найти PickableItem для {recipe.outputItemType.GetType().Name}");
                 }
             }
-            _workstationsAspect.ItemCookedTagPool.Add(stoveEntity);
         }
 
         foreach (var stoveEntity in _abortIt)
