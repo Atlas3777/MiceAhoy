@@ -50,7 +50,7 @@ namespace Game.Scripts.Systems
                         var queue = _guestAspect.QueueComponentPool.Get(queueEntity).Queue;
                         if (queue.Count > 0 && queue.First() == _world.PackEntityWithWorld(guestEntity))
                         {
-                            _guestAspect.UpdateQueuePositionsEventPool.Add(queueEntity);
+                            _guestAspect.QueueNeedsUpdateTagPool.Add(queueEntity);
                             _guestAspect.UpdateQueueEventPool.Add(queueEntity);
                             Debug.Log("Первый из очереди идёт к столу");
                         }

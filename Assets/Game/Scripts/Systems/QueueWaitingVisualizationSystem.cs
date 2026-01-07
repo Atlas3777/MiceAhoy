@@ -29,29 +29,35 @@ namespace Game.Scripts.Systems
             foreach (var queueEntity in _queueTimeoutIt)
             {
                 ref var queue = ref _guestAspect.QueueComponentPool.Get(queueEntity).Queue;
-                var leavingGuestPacked = queue.Dequeue();
-                if (!leavingGuestPacked.TryUnpack(out _, out var unpackedGuest))
-                {
-                    Debug.LogWarning("Он умер");
+                if (queue.Count == 0)
                     continue;
-                }
-                _guestAspect.WaitingOrderTagPool.Add(unpackedGuest);
-                _baseAspect.TimerCompletedPool.Add(unpackedGuest);
+                
+                var packed = queue.Peek();
+                if (!packed.TryUnpack(out _, out var guest))
+                    continue;
+                
+                _guestAspect.WaitingOrderTagPool.Add(guest);
+                _guestAspect.GuestServicedTagPool.Add(guest);
+                _guestAspect.GuestServedEventPool.Add(guest);
+                _guestAspect.NeedsTableTagPool.Del(guest);
+                _guestAspect.QueueNeedsUpdateTagPool.Add(queueEntity);
                 _guestAspect.UpdateQueueEventPool.Add(queueEntity);
-                _guestAspect.UpdateQueuePositionsEventPool.Add(queueEntity);
             }
             
             foreach (var queueEntity in _queueWaitingIt)
             {
                 ref var queue = ref _guestAspect.QueueComponentPool.Get(queueEntity).Queue;
                 if (queue.Count == 0)
-                {
-                    _baseAspect.TimerCompletedPool.GetOrAdd(queueEntity);
                     continue;
+
+                if (!_baseAspect.TimerPool.Has(queueEntity))
+                {
+                    ref var timer = ref _baseAspect.TimerPool.Add(queueEntity);
+                    timer.Elapsed = 0f;
+                    timer.Completed = false;
+                    timer.Duration = _guestAspect.QueueWaitingTimeComponentPool
+                        .Get(queueEntity).WaitingTime;
                 }
-                ref var timer = ref _baseAspect.TimerPool.GetOrAdd(queueEntity);
-                timer.Elapsed = 0f;
-                timer.Duration = _guestAspect.QueueWaitingTimeComponentPool.Get(queueEntity).WaitingTime;
             }
         }
     }

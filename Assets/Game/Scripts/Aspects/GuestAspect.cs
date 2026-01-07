@@ -32,8 +32,7 @@ namespace Game.Script.Aspects
         public ProtoPool<UpdateQueueEvent> UpdateQueueEventPool;
         public ProtoPool<GuestLeavingQueueEvent> GuestLeavingQueueEventPool;
         public ProtoPool<GuestEnteringQueueEvent> GuestEnteringQueueEventPool;
-        public ProtoPool<UpdateQueuePositionsEvent> UpdateQueuePositionsEventPool;
-        
+        public ProtoPool<QueueNeedsUpdateTag> QueueNeedsUpdateTagPool;
         
         public ProtoPool<GuestTag> GuestTagPool;
         public ProtoPool<GuestServicedTag> GuestServicedTagPool;
@@ -110,6 +109,11 @@ namespace Game.Script.Aspects
     {
     }
 
+    [Serializable]
+    public struct QueueNeedsUpdateTag : IComponent
+    {
+    }
+
     public struct ReachedTargetPositionEvent
     {
     }
@@ -126,11 +130,6 @@ namespace Game.Script.Aspects
 
     [Serializable]
     public struct UpdateQueueEvent : IComponent
-    {
-    }
-
-    [Serializable]
-    public struct UpdateQueuePositionsEvent : IComponent
     {
     }
 

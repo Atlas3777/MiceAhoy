@@ -44,16 +44,14 @@ namespace Game.Scripts.Systems
                 {
                     ref var agent = ref _guestAspect.NavMeshAgentComponentPool.Get(guestEntity).Agent;
 
-                    // позиция в очереди = голова + смещение * номер
-                    int indexInQueue = queue.Count;
-                    Vector3 targetPos = _queueHead.position + offset * indexInQueue;
+                    var indexInQueue = queue.Count;
+                    var targetPos = _queueHead.position + offset * indexInQueue;
 
                     agent.SetDestination(targetPos);
 
                     queue.Enqueue(_world.PackEntityWithWorld(guestEntity));
                     _guestAspect.GuestInQueueTagPool.Add(guestEntity);
 
-                    // если это первый гость — отмечаем очередь активной
                     if (indexInQueue == 0)
                     {
                         _guestAspect.QueueIsNotEmptyTagPool.GetOrAdd(queueEntity);

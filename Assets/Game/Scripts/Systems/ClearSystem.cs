@@ -26,7 +26,6 @@ namespace Game.Scripts.Systems
         private ProtoIt _updateQueueEventIt;
         private ProtoIt _guestLeavingQueueEventIt;
         private ProtoIt _guestEnteringQueueEventIt;
-        private ProtoIt _updateQueuePositionsEventPoolIt;
 
         public void Init(IProtoSystems systems)
         {
@@ -43,7 +42,6 @@ namespace Game.Scripts.Systems
             _updateQueueEventIt = new(new[] { typeof(UpdateQueueEvent) });
             _guestLeavingQueueEventIt = new(new[] { typeof(GuestLeavingQueueEvent) });
             _guestEnteringQueueEventIt = new(new[] { typeof(GuestEnteringQueueEvent) });
-            _updateQueuePositionsEventPoolIt = new(new[] { typeof(UpdateQueuePositionsEvent) });
 
             _iteratorPick.Init(_world);
             _iteratorPlace.Init(_world);
@@ -58,7 +56,6 @@ namespace Game.Scripts.Systems
             _updateQueueEventIt.Init(_world);
             _guestLeavingQueueEventIt.Init(_world);
             _guestEnteringQueueEventIt.Init(_world);
-            _updateQueuePositionsEventPoolIt.Init(_world);
         }
 
         public void Run()
@@ -104,9 +101,6 @@ namespace Game.Scripts.Systems
             
             foreach (var item in _guestEnteringQueueEventIt)
                 _guestAspect.GuestEnteringQueueEventPool.Del(item);
-            
-            foreach (var item in _updateQueuePositionsEventPoolIt)
-                _guestAspect.UpdateQueuePositionsEventPool.Del(item);
         }
     }
 }
