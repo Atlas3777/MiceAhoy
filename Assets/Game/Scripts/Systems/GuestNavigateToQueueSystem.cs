@@ -25,7 +25,7 @@ namespace Game.Scripts.Systems
 
         public void Init(IProtoSystems systems)
         {
-            _enteringGuestsIt = new(new[] { typeof(GuestTag), typeof(GuestEnteringQueueTag), });
+            _enteringGuestsIt = new(new[] { typeof(GuestTag), typeof(GuestEnteringQueueEvent), });
             _queueIt = new(new[] { typeof(QueueComponent) });
             _enteringGuestsIt.Init(_world);
             _queueIt.Init(_world);
@@ -34,36 +34,33 @@ namespace Game.Scripts.Systems
         public void Run()
         {
             var offset = new Vector3(0, 0, 1);
+
             foreach (var queueEntity in _queueIt)
             {
                 ref var queue = ref _guestAspect.QueueComponentPool.Get(queueEntity).Queue;
                 queue ??= new Queue<ProtoPackedEntityWithWorld>();
-                ProtoPackedEntityWithWorld lastGuest = default;
-                if (queue.Count > 0)
-                    lastGuest = queue.Last();
+
                 foreach (var guestEntity in _enteringGuestsIt)
                 {
                     ref var agent = ref _guestAspect.NavMeshAgentComponentPool.Get(guestEntity).Agent;
-                    var targetPos = Vector3.zero;
-                    if (queue.Count == 0)
-                        targetPos = _queueHead.position;
-                    if (!lastGuest.TryUnpack(out _, out var unpackedLastGuest))
-                    {
-                        if (queue.Count > 0)
-                        {
-                            Debug.LogWarning($"Гость {lastGuest} умер");
-                            break;
-                        }
-                    }
-                    if (queue.Count > 0)
-                        targetPos = _physicsAspect.PositionPool.Get(unpackedLastGuest).Position + offset;
+
+                    // позиция в очереди = голова + смещение * номер
+                    int indexInQueue = queue.Count;
+                    Vector3 targetPos = _queueHead.position + offset * indexInQueue;
+
                     agent.SetDestination(targetPos);
-                    ++offset.z;
-                    var packed = _world.PackEntityWithWorld(guestEntity);
-                    queue.Enqueue(packed);
-                    _guestAspect.GuestEnteringQueueTagPool.Del(guestEntity);
+
+                    queue.Enqueue(_world.PackEntityWithWorld(guestEntity));
                     _guestAspect.GuestInQueueTagPool.Add(guestEntity);
-                    Debug.Log("Иду в очередь");
+
+                    // если это первый гость — отмечаем очередь активной
+                    if (indexInQueue == 0)
+                    {
+                        _guestAspect.QueueIsNotEmptyTagPool.GetOrAdd(queueEntity);
+                        _guestAspect.UpdateQueueEventPool.GetOrAdd(queueEntity);
+                    }
+
+                    Debug.Log($"Гость {guestEntity} встал в очередь на позицию {indexInQueue}");
                 }
             }
         }

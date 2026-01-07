@@ -24,7 +24,7 @@ namespace Game.Scripts.Systems
         
         public void Init(IProtoSystems systems)
         {
-            _queueIt = new(new[] { typeof(UpdateQueueEvent) });
+            _queueIt = new(new[] { typeof(UpdateQueuePositionsEvent) });
             _queueIt.Init(_world);
         }
 
@@ -33,6 +33,7 @@ namespace Game.Scripts.Systems
             foreach (var queueEntity in _queueIt)
             {
                 ref var queue = ref _guestAspect.QueueComponentPool.Get(queueEntity).Queue;
+                if (queue.Count == 0) continue;
                 var first = queue.Dequeue();
                 if (!first.TryUnpack(out _, out var firstGuest))
                 {
@@ -56,7 +57,7 @@ namespace Game.Scripts.Systems
                     agent.SetDestination(prevGuestPlace);
                     prevGuestPlace = _physicsAspect.PositionPool.Get(guest).Position;
                 }
-                _guestAspect.UpdateQueueEventPool.Del(queueEntity);
+                _guestAspect.UpdateQueuePositionsEventPool.Del(queueEntity);
                 Debug.Log("Очередь продвинулась");
             }
         }

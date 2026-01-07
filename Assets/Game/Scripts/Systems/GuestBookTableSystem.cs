@@ -39,7 +39,7 @@ namespace Game.Scripts.Systems
                 {
                     if (!_guestAspect.GuestInQueueTagPool.Has(guestEntity))
                     {
-                        _guestAspect.GuestEnteringQueueTagPool.Add(guestEntity);
+                        _guestAspect.GuestEnteringQueueEventPool.Add(guestEntity);
                         Debug.Log($"Гость {guestEntity} отправлен в очередь");
                     }
                 }
@@ -50,6 +50,7 @@ namespace Game.Scripts.Systems
                         var queue = _guestAspect.QueueComponentPool.Get(queueEntity).Queue;
                         if (queue.Count > 0 && queue.First() == _world.PackEntityWithWorld(guestEntity))
                         {
+                            _guestAspect.UpdateQueuePositionsEventPool.Add(queueEntity);
                             _guestAspect.UpdateQueueEventPool.Add(queueEntity);
                             Debug.Log("Первый из очереди идёт к столу");
                         }
@@ -70,7 +71,8 @@ namespace Game.Scripts.Systems
                 {
                     if (!_guestAspect.GuestInQueueTagPool.Has(guestEntity))
                     {
-                        _guestAspect.GuestEnteringQueueTagPool.Add(guestEntity);
+                        _guestAspect.GuestEnteringQueueEventPool.Add(guestEntity);
+                        // _guestAspect.GuestInQueueTagPool.Add(guestEntity);
                         Debug.Log($"Гость {guestEntity} отправлен в очередь");
                     }
 

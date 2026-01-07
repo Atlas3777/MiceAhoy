@@ -24,20 +24,22 @@ namespace Game.Script.Aspects
         public ProtoPool<GuestSpawnerComponent> GuestSpawnerComponentPool;
         public ProtoPool<GuestViewComponent> GuestViewComponentPool;
         public ProtoPool<GuestInQueueTag> GuestInQueueTagPool;
-        public ProtoPool<GuestEnteringQueueTag> GuestEnteringQueueTagPool;
+        public ProtoPool<QueueIsNotEmptyTag> QueueIsNotEmptyTagPool;
         
         public ProtoPool<ReachedTargetPositionEvent> ReachedTargetPositionEventPool;
         public ProtoPool<GotTableEvent> GotTableEventPool;
         public ProtoPool<GuestServedEvent> GuestServedEventPool;
         public ProtoPool<UpdateQueueEvent> UpdateQueueEventPool;
         public ProtoPool<GuestLeavingQueueEvent> GuestLeavingQueueEventPool;
+        public ProtoPool<GuestEnteringQueueEvent> GuestEnteringQueueEventPool;
+        public ProtoPool<UpdateQueuePositionsEvent> UpdateQueuePositionsEventPool;
+        
         
         public ProtoPool<GuestTag> GuestTagPool;
         public ProtoPool<GuestServicedTag> GuestServicedTagPool;
         public ProtoPool<GuestTableIsFreeTag> GuestTableIsFreeTagPool;
         public ProtoPool<GuestIsWalkingTag> GuestIsWalkingTagPool;
         public ProtoPool<NeedsTableTag> NeedsTableTagPool;
-        public ProtoPool<GuestDidArriveTag>  GuestDidArriveTagPool;
         public ProtoPool<WaitingOrderTag> WaitingOrderTagPool;
         public ProtoPool<QueueComponent> QueueComponentPool;
         
@@ -99,7 +101,12 @@ namespace Game.Script.Aspects
     }
 
     [Serializable]
-    public struct GuestEnteringQueueTag : IComponent
+    public struct GuestEnteringQueueEvent : IComponent
+    {
+    }
+
+    [Serializable]
+    public struct QueueIsNotEmptyTag : IComponent
     {
     }
 
@@ -119,6 +126,11 @@ namespace Game.Script.Aspects
 
     [Serializable]
     public struct UpdateQueueEvent : IComponent
+    {
+    }
+
+    [Serializable]
+    public struct UpdateQueuePositionsEvent : IComponent
     {
     }
 
