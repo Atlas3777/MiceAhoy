@@ -20,6 +20,10 @@ public class PickableService
     {
         foreach (var p in _pickableItem.processors)
         {
+            if (p == null)
+            {
+                Debug.LogError("Null processor");
+            }
             var key = p.PickableItem.GetType();
             
             if (_pickableItems.ContainsKey(key))

@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine.InputSystem;
 using VContainer.Unity;
 
-public class InputService : IFixedTickable
+public class InputService : IPostFixedTickable
 {
     public struct PlayerInputData
     {
@@ -50,9 +50,7 @@ public class InputService : IFixedTickable
     {
         if (_pendingPlayerIndices.Count > 0)
         {
-            Debug.Log(_pendingPlayerIndices.Count);
             index = _pendingPlayerIndices.Dequeue();
-            Debug.Log($"{index}");
             return true;
         }
 
@@ -69,11 +67,11 @@ public class InputService : IFixedTickable
         }
 
         var currentData = _playerInputs[playerIndex];
-    
+
         if (newData.InteractPressed) currentData.InteractPressed = true;
         if (newData.PickPlacePressed) currentData.PickPlacePressed = true;
         currentData.MoveDirection = newData.MoveDirection;
-    
+
         _playerInputs[playerIndex] = currentData;
     }
 
@@ -90,18 +88,19 @@ public class InputService : IFixedTickable
 
     public int CountActivePlayerIndices() => _playerInputs.Count;
 
-    public void FixedTick()
+
+    public void PostFixedTick()
     {
         var keys = _playerInputs.Keys.ToList();
         foreach (var playerIndex in keys)
         {
             var state = _playerInputs[playerIndex];
-        
-            // Если флаг был true, а сейчас мы его стираем - залогируем это
-            if (state.InteractPressed || state.PickPlacePressed)
-            {
-                Debug.Log($"[INPUT-SERVICE] Clearing flags for Player {playerIndex} in FixedTick");
-            }
+            //
+            // // Если флаг был true, а сейчас мы его стираем - залогируем это
+            // if (state.InteractPressed || state.PickPlacePressed)
+            // {
+            //     Debug.Log($"[INPUT-SERVICE] Clearing flags for Player {playerIndex} in FixedTick");
+            // }
 
             state.InteractPressed = false;
             state.PickPlacePressed = false;

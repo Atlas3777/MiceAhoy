@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Trash
   m_EditorClassIdentifier: Assembly-CSharp::Game.Script.PickableItemSO
   PickableItem:
-    rid: 5252179181263126602
+    rid: 1239606071790665808
   references:
     version: 2
     RefIds:
-    - rid: 5252179181263126602
-      type: {class: Trash, ns: Game.Script, asm: Assembly-CSharp}
+    - rid: 1239606071790665808
+      type: {class: Trash, ns: Game.Scripts, asm: Assembly-CSharp}
       data:
         pickableItemGo: {fileID: 4949581644060774540, guid: bd412eb334890a849958173ff9dd044c, type: 3}
         satietyRestoration: 0

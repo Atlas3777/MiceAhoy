@@ -13,22 +13,22 @@ MonoBehaviour:
   m_Name: fish2-trash
   m_EditorClassIdentifier: Assembly-CSharp::ItemProcessor
   inputItemType:
-    rid: 5252179181263126603
+    rid: 1239606071790665805
   outputItemType:
-    rid: 5252179181263126604
+    rid: 1239606071790665807
   workstationType:
     rid: 6709886309644107851
   Duration: 3
   references:
     version: 2
     RefIds:
-    - rid: 5252179181263126603
-      type: {class: Fish2, ns: Game.Script, asm: Assembly-CSharp}
+    - rid: 1239606071790665805
+      type: {class: Fish2, ns: Game.Scripts, asm: Assembly-CSharp}
       data:
         pickableItemGo: {fileID: 0}
         satietyRestoration: 0
-    - rid: 5252179181263126604
-      type: {class: Trash, ns: Game.Script, asm: Assembly-CSharp}
+    - rid: 1239606071790665807
+      type: {class: Trash, ns: Game.Scripts, asm: Assembly-CSharp}
       data:
         pickableItemGo: {fileID: 0}
         satietyRestoration: 0

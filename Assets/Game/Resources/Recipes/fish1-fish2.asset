@@ -13,22 +13,22 @@ MonoBehaviour:
   m_Name: fish1-fish2
   m_EditorClassIdentifier: Assembly-CSharp::ItemProcessor
   inputItemType:
-    rid: 5252179181263126600
+    rid: 1239606071790665803
   outputItemType:
-    rid: 5252179181263126601
+    rid: 1239606071790665804
   workstationType:
     rid: 6709886309644107851
   Duration: 3
   references:
     version: 2
     RefIds:
-    - rid: 5252179181263126600
-      type: {class: Fish1, ns: Game.Script, asm: Assembly-CSharp}
+    - rid: 1239606071790665803
+      type: {class: Fish1, ns: Game.Scripts, asm: Assembly-CSharp}
       data:
         pickableItemGo: {fileID: 0}
         satietyRestoration: 0
-    - rid: 5252179181263126601
-      type: {class: Fish2, ns: Game.Script, asm: Assembly-CSharp}
+    - rid: 1239606071790665804
+      type: {class: Fish2, ns: Game.Scripts, asm: Assembly-CSharp}
       data:
         pickableItemGo: {fileID: 0}
         satietyRestoration: 0

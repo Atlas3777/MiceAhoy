@@ -21,4 +21,4 @@ MonoBehaviour:
       type: {class: Fish0, ns: Game.Scripts, asm: Assembly-CSharp}
       data:
         pickableItemGo: {fileID: 4949581644060774540, guid: 3602724711db5f84799bfc136256b72f, type: 3}
-        satietyRestoration: 0
+        satietyRestoration: 10

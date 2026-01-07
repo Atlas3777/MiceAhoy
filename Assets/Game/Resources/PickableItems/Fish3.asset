@@ -20,5 +20,5 @@ MonoBehaviour:
     - rid: 1239606066662342735
       type: {class: Fish3, ns: Game.Scripts, asm: Assembly-CSharp}
       data:
-        pickableItemGo: {fileID: 0}
+        pickableItemGo: {fileID: 4873270983607008100, guid: 2bffaf340e8b8414fb48226eb7750265, type: 3}
         satietyRestoration: 0

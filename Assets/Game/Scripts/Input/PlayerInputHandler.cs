@@ -73,7 +73,6 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void OnMove(InputAction.CallbackContext context, ref InputService.PlayerInputData state)
     {
-        Debug.Log("Move");
         state.MoveDirection = context.ReadValue<Vector2>();
     }
 

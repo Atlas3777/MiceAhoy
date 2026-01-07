@@ -53,8 +53,9 @@ namespace Game.Scripts.Infrastructure
                     new PlayerTargetSystem(),
                     new OutlineSystem(),
                     _r.Resolve<PickPlaceSystem>(),
-                    
+                    new CookingProceedSystem(),
                     _r.Resolve<StoveSystem>(),
+                    
                     _r.Resolve<ItemSourceGeneratorSystem>(),
                     
                     new ConditionalSystem(_r.Resolve<GameplaySolver>(), true,
