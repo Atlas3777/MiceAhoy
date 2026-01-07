@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class PlacementGrid
 {
-    public Vector3Int PlacementZoneSize { get; } = new Vector3Int(6, 0, 4);
+    public Vector3Int PlacementZoneSize { get; } = new Vector3Int(7, 0, 5);
     public Vector3 PlacementZoneWorldStart { get; private set; }
     public Vector3Int PlacementZoneIndexStart { get; } = new Vector3Int(-3, 0, -3);
     public Vector3 PlacementZoneCellSize { get; private set; }
@@ -20,7 +20,7 @@ public class PlacementGrid
     {
         PlacementZoneCellSize = new Vector3(1, 0, 1);
         PlacementZoneWorldStart = new Vector3(PlacementZoneIndexStart.x * PlacementZoneCellSize.x, 0,
-            PlacementZoneIndexStart.y * PlacementZoneCellSize.y);
+            PlacementZoneIndexStart.z * PlacementZoneCellSize.z);
 
         this.gameResources = gameResources;
         workstationItems = GetWorkstationDict();
@@ -32,7 +32,7 @@ public class PlacementGrid
     public bool IsValidEmptyCell(Vector3Int v)
     {
         if (v.x >= 0 && v.x < PlacementZoneSize.x)
-            if (v.y >= 0 && v.y < PlacementZoneSize.y)
+            if (v.z >= 0 && v.z < PlacementZoneSize.z)
                 if (!IsContains(v))
                     return true;
         return false;

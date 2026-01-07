@@ -10,15 +10,16 @@ using UnityEngine.Serialization;
 public class PlacementAspect : ProtoAspectInject
 {
     public ProtoPool<FurnitureComponent> FurniturePool;
-    public ProtoPool<MoveThisFurnitureTag> MoveThisFurnitureEventPool;
+    public ProtoPool<MoveThisFurnitureTag> MoveThisFurnitureTagPool;
     public ProtoPool<CreateGameObjectEvent> CreateGameObjectEventPool;
     public ProtoPool<MoveThisGameObjectEvent> MoveThisGameObjectEventPool;
     public ProtoPool<SyncGridPositionEvent> SyncGridPositionEventPool;
     public ProtoPool<SpawnFurnitureEvent> SpawnFurnitureEventPool;
     public ProtoPool<SpawnerTag> SpawnerTagPool;
     public ProtoPool<CreateSpawnersEvent> CreateSpawnersEventPool;
-    public ProtoPool<DestroyAllSpawnersEvent> DestroyAllSpawnersEventPool;
+    public ProtoPool<ActivateAllSpawnersEvent> ActivateAllSpawnersEventPool;
     public ProtoPool<PlacementModeTag> PlacementModeTagPool;
+    public ProtoPool<TransformComponent> PlacementTransformPool;
 }
 
 [Serializable]
@@ -47,10 +48,10 @@ public struct MoveThisGameObjectEvent
 [Serializable]
 public struct SyncGridPositionEvent : IComponent, IUnityAuthoring
 {
-    public Transform Transform;
+    public Transform transform;
     public void Authoring(in ProtoPackedEntityWithWorld entity, GameObject go)
     {
-        Transform = go.transform;
+        transform = go.transform;
     }
 }
 
@@ -61,15 +62,22 @@ public struct SpawnerTag : IComponent
     public WorkstationItem spawnObjectType;
 }
 
+[Serializable]
+public struct TransformComponent : IComponent
+{
+    public Transform transform;
+}
+
 public struct SpawnFurnitureEvent
 {
 }
 
 public struct CreateSpawnersEvent
 {
+    public Type spawnerType;
 }
 
-public struct DestroyAllSpawnersEvent
+public struct ActivateAllSpawnersEvent
 {
 
 }

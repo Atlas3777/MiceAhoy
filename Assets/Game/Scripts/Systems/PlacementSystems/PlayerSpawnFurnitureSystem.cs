@@ -36,16 +36,11 @@ public class PlayerSpawnFurnitureSystem : IProtoInitSystem, IProtoRunSystem, IPr
             {
                 playerInput.IsScrollMenuOpened = false;
                 scrollMenuManager.HideScrollMenu();
-                if (!_placementAspect.DestroyAllSpawnersEventPool.Has(entityPlayer))
-                    _placementAspect.DestroyAllSpawnersEventPool.Add(entityPlayer);
                 continue;
             }
 
             playerInput.IsScrollMenuOpened = true;
             scrollMenuManager.ShowScrollMenu();
-            //добавл€ю event на игрока
-            if (!_placementAspect.CreateSpawnersEventPool.Has(entityPlayer))
-                _placementAspect.CreateSpawnersEventPool.Add(entityPlayer);
         }
     }
 

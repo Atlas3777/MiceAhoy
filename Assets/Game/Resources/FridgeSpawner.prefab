@@ -9,9 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7291924211842048097}
-  - component: {fileID: 4670920363943342149}
-  - component: {fileID: 597195514834045564}
-  - component: {fileID: 4378676657276425082}
+  - component: {fileID: 1997542113949267830}
   m_Layer: 0
   m_Name: FridgeSpawner
   m_TagString: Untagged
@@ -27,20 +25,237 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 580955582349234919}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.496, y: 0, z: 0.51}
-  m_LocalScale: {x: 0.55, y: 0.55, z: 0.55}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 228994174398493069}
+  - {fileID: 2665924767237522195}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!212 &4670920363943342149
-SpriteRenderer:
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1997542113949267830
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 580955582349234919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65818240a510495eb6ea29cdaf49a433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MyAuthoring
+  _worldName: 
+  _authoringType: 0
+  _destroyAfterAuthoring: 0
+  Components:
+  - rid: 6222297960297791572
+  - rid: 2522187466447519815
+  - rid: 6222297960297791577
+  - rid: 6222297960297791578
+  - rid: 6222297960297791579
+  - rid: 6222298054940950627
+  - rid: 2522187482136838215
+  - rid: 2522187482136838218
+  references:
+    version: 2
+    RefIds:
+    - rid: 2522187466447519815
+      type: {class: RigidbodyComponent, ns: , asm: Assembly-CSharp}
+      data:
+        Rigidbody: {fileID: 1493697737596873765}
+    - rid: 2522187482136838215
+      type: {class: InteractableComponent, ns: Game.Scripts.Aspects, asm: Assembly-CSharp}
+      data:
+        Outline: {fileID: 6799812278465404699}
+        IsActive: 0
+    - rid: 2522187482136838216
+      type: {class: Fridge, ns: , asm: Assembly-CSharp}
+      data:
+        workstationSprite: {fileID: 0}
+    - rid: 2522187482136838217
+      type: {class: FridgeSpawner, ns: , asm: Assembly-CSharp}
+      data:
+        workstationSprite: {fileID: 0}
+    - rid: 2522187482136838218
+      type: {class: TransformComponent, ns: , asm: Assembly-CSharp}
+      data:
+        transform: {fileID: 7291924211842048097}
+    - rid: 6222297960297791572
+      type: {class: PositionComponent, ns: , asm: Assembly-CSharp}
+      data:
+        Position: {x: 0, y: 0, z: 0}
+    - rid: 6222297960297791577
+      type: {class: FurnitureComponent, ns: , asm: Assembly-CSharp}
+      data:
+        type:
+          rid: 2522187482136838217
+    - rid: 6222297960297791578
+      type: {class: SyncGridPositionEvent, ns: , asm: Assembly-CSharp}
+      data:
+        Transform: {fileID: 7291924211842048097}
+    - rid: 6222297960297791579
+      type: {class: GridPositionComponent, ns: , asm: Assembly-CSharp}
+      data:
+        Position: {x: 0, y: 0, z: 0}
+    - rid: 6222298054940950627
+      type: {class: SpawnerTag, ns: , asm: Assembly-CSharp}
+      data:
+        spawnObjectType:
+          rid: 2522187482136838216
+--- !u!1 &6799812278465404699
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2665924767237522195}
+  - component: {fileID: 5566442185344125655}
+  - component: {fileID: 4516431465425000928}
+  - component: {fileID: 3408575605630365560}
+  m_Layer: 0
+  m_Name: Outline
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2665924767237522195
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6799812278465404699}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.1, z: -0.378}
+  m_LocalScale: {x: 1, y: 1.31158, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7291924211842048097}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &5566442185344125655
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6799812278465404699}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &4516431465425000928
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6799812278465404699}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 4a5e05904f920d34c832f82a9651e429, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3408575605630365560
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6799812278465404699}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &7570713638468390979
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 228994174398493069}
+  - component: {fileID: 6399381840126401525}
+  - component: {fileID: 1493697737596873765}
+  m_Layer: 0
+  m_Name: Fridge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &228994174398493069
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7570713638468390979}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.55, y: 0.55, z: 0.55}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 7291924211842048097}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!212 &6399381840126401525
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7570713638468390979}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -92,72 +307,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &597195514834045564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 580955582349234919}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65818240a510495eb6ea29cdaf49a433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MyAuthoring
-  _worldName: 
-  _authoringType: 0
-  _destroyAfterAuthoring: 1
-  Components:
-  - rid: 6222297960297791572
-  - rid: 2522187466447519815
-  - rid: 6222297960297791577
-  - rid: 6222297960297791578
-  - rid: 6222297960297791579
-  - rid: 6222298054940950627
-  references:
-    version: 2
-    RefIds:
-    - rid: 2522187466447519815
-      type: {class: RigidbodyComponent, ns: , asm: Assembly-CSharp}
-      data:
-        Rigidbody: {fileID: 4378676657276425082}
-    - rid: 6222297960297791572
-      type: {class: PositionComponent, ns: , asm: Assembly-CSharp}
-      data:
-        Position: {x: 0, y: 0, z: 0}
-    - rid: 6222297960297791577
-      type: {class: FurnitureComponent, ns: , asm: Assembly-CSharp}
-      data:
-        type:
-          rid: 6222298054940950624
-    - rid: 6222297960297791578
-      type: {class: SyncGridPositionEvent, ns: , asm: Assembly-CSharp}
-      data:
-        Transform: {fileID: 7291924211842048097}
-    - rid: 6222297960297791579
-      type: {class: GridPositionComponent, ns: , asm: Assembly-CSharp}
-      data:
-        Position: {x: 0, y: 0, z: 0}
-    - rid: 6222298054940950624
-      type: {class: FridgeSpawner, ns: , asm: Assembly-CSharp}
-      data:
-        workstationSprite: {fileID: 0}
-    - rid: 6222298054940950627
-      type: {class: SpawnerTag, ns: , asm: Assembly-CSharp}
-      data:
-        spawnObjectType:
-          rid: 6222298054940950629
-    - rid: 6222298054940950629
-      type: {class: Fridge, ns: , asm: Assembly-CSharp}
-      data:
-        workstationSprite: {fileID: 0}
---- !u!54 &4378676657276425082
+--- !u!54 &1493697737596873765
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 580955582349234919}
+  m_GameObject: {fileID: 7570713638468390979}
   serializedVersion: 5
   m_Mass: 1
   m_LinearDamping: 0

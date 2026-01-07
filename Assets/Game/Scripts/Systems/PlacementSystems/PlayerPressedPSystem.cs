@@ -29,8 +29,8 @@ public class PlayerPressedPSystem : IProtoInitSystem, IProtoRunSystem, IProtoDes
             if (playerInput.IsInPlacementMode)
             {
                 playerInput.IsInPlacementMode = false;
-                if (!_placementAspect.DestroyAllSpawnersEventPool.Has(entityPlayer))
-                    _placementAspect.DestroyAllSpawnersEventPool.Add(entityPlayer);
+                if (!_placementAspect.ActivateAllSpawnersEventPool.Has(entityPlayer))
+                    _placementAspect.ActivateAllSpawnersEventPool.Add(entityPlayer);
                 continue;
             }
 

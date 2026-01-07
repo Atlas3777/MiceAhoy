@@ -35,12 +35,11 @@ public class MoveScrollMenuSystem : IProtoInitSystem, IProtoRunSystem, IProtoDes
 
             if (input.InteractPressed)
             {
-                if (!_placementAspect.CreateGameObjectEventPool.Has(entityPlayer))
-                    _placementAspect.CreateGameObjectEventPool.Add(entityPlayer);
-                ref var createGO = ref _placementAspect.CreateGameObjectEventPool.Get(entityPlayer);
-                createGO.objects ??= new();
-                createGO.objects.Add((scrollMenuManager.SelectedFurniture,new Vector3Int()));
-                createGO.destroyInvoker = false;
+                if (!_placementAspect.CreateSpawnersEventPool.Has(entityPlayer))
+                    _placementAspect.CreateSpawnersEventPool.Add(entityPlayer);
+                ref var spawnerEvent = ref _placementAspect.CreateSpawnersEventPool.Get(entityPlayer);
+                spawnerEvent.spawnerType = scrollMenuManager.SelectedFurniture;
+
                 scrollMenuManager.DeleteFurnitureFromCurrentList(scrollMenuManager.SelectedFurniture);
             }
         }

@@ -12399,6 +12399,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5173222594521170149, guid: 4767440edce991748b86ad16847bbe77, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6901556389164430387, guid: 4767440edce991748b86ad16847bbe77, type: 3}
       propertyPath: m_Name
       value: GuestTable

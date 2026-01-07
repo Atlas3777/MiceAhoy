@@ -15,28 +15,28 @@ MonoBehaviour:
   differenceList:
   - item:
       rid: 6222298054940950604
-    pivotToRealPositionDifference: {x: 0, y: 0}
+    pivotToRealPositionDifference: {x: 0, y: 0, z: 0}
   - item:
       rid: 6222298054940950605
-    pivotToRealPositionDifference: {x: 0, y: 0.22}
+    pivotToRealPositionDifference: {x: 0, y: 0.22, z: 0}
   - item:
       rid: 6222298054940950606
-    pivotToRealPositionDifference: {x: 0, y: 0.22}
+    pivotToRealPositionDifference: {x: 0, y: 0.22, z: 0}
   - item:
       rid: 6222298054940950626
-    pivotToRealPositionDifference: {x: 0, y: 0}
+    pivotToRealPositionDifference: {x: 0, y: 0.3, z: 0}
   - item:
       rid: 6222298215309639763
-    pivotToRealPositionDifference: {x: 0, y: 0}
+    pivotToRealPositionDifference: {x: 0, y: 0.3, z: 0}
   - item:
       rid: 6222298215309639764
-    pivotToRealPositionDifference: {x: 0, y: 0}
+    pivotToRealPositionDifference: {x: 0, y: 0.3, z: 0}
   - item:
       rid: 6222298218394812501
-    pivotToRealPositionDifference: {x: 0, y: 0.22}
+    pivotToRealPositionDifference: {x: 0, y: 0.22, z: 0}
   - item:
       rid: 6222298218394812502
-    pivotToRealPositionDifference: {x: 0, y: 0}
+    pivotToRealPositionDifference: {x: 0, y: 0.3, z: 0}
   references:
     version: 2
     RefIds:

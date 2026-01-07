@@ -34,10 +34,15 @@ public class ScrollMenuManager
 
     public void DeleteFurnitureFromCurrentList(Type type)
     {
-        currentFurnitures.Remove(type);
-        DestroyCards();
-        GenerateCards();
-        HighlightSelectedObject();
+        var firstType = Enumerable.Range(1, currentFurnitures.Count+1).Where(t => currentFurnitures[t-1] == type).FirstOrDefault();
+        if (firstType != 0)
+        {
+            currentFurnitures.Remove(type);
+            GameObject.Destroy(scrollContentTransform.GetChild(firstType - 1).gameObject);
+            var rectTransform = scrollContentTransform.GetComponent<RectTransform>();
+            rectTransform.sizeDelta = new Vector2(currentFurnitures.Count * 100 + scrollZoneWidth, rectTransform.sizeDelta.y);
+            HighlightSelectedObject(true);
+        }
     }
 
     public void GenerateCurrentFurnitureList()
@@ -104,11 +109,11 @@ public class ScrollMenuManager
         HighlightSelectedObject();
     }
 
-    private void HighlightSelectedObject()
+    private void HighlightSelectedObject(bool isDestroy=false)
     {
         foreach (Transform child in scrollContentTransform)
             child.localScale = Vector3.one;
-        var chi = scrollContentTransform.GetChild(selectedIndex);
+        var chi = scrollContentTransform.GetChild(isDestroy ? selectedIndex + 1:selectedIndex);
         if (chi != null)
         {
             chi.localScale = new Vector3(1.42f, 1.42f, 1.42f);
