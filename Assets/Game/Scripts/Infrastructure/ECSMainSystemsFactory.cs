@@ -1,7 +1,4 @@
 ﻿using Game.Script.Systems;
-using Game.Scripts;
-using Game.Scripts.Aspects;
-using Game.Scripts.Infrastructure;
 using Game.Scripts.Systems;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.ConditionalSystems;
@@ -9,8 +6,6 @@ using Leopotam.EcsProto.QoL;
 using Leopotam.EcsProto.Unity;
 using VContainer;
 using System;
-using UnityEngine;
-using UnityEngine.LightTransport;
 
 namespace Game.Scripts.Infrastructure
 {

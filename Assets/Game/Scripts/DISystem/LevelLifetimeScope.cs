@@ -26,6 +26,9 @@ namespace Game.Scripts.DISystem
             builder.Register<LevelFlowController>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
             builder.Register<LevelRuntimeController>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
             
+            builder.Register<PauseService>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
+            builder.Register<PausePresenter>(Lifetime.Singleton).AsImplementedInterfaces();
+            
             builder.Register<LevelState>(Lifetime.Singleton);
             
             builder.Register<GameplaySolver>(Lifetime.Singleton);

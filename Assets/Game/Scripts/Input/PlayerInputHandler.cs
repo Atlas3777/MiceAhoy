@@ -57,17 +57,11 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void OnPause(InputAction.CallbackContext context, ref InputService.PlayerInputData state)
     {
-        // 1. Проверяем, что кнопка нажата и мы еще не обработали это нажатие
-        if (context.performed && !_isPressHandled)
+        // Используем только performed. 
+        // Когда карта сменится на UI, это действие "умрет" само по себе до следующего нажатия.
+        if (context.performed)
         {
-            _isPressHandled = true; // Блокируем дальнейшие срабатывания
-            _inputService.OnPausePressed.Invoke();
-        }
-    
-        // 2. Сбрасываем флаг, когда кнопка отпущена
-        if (context.canceled) 
-        {
-            _isPressHandled = false; // Разрешаем следующее нажатие
+            _inputService.OnPausePressed?.Invoke();
         }
     }
 
