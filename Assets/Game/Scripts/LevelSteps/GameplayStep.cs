@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Game.Scripts;
 using Game.Scripts.DISystem;
 using Game.Scripts.Infrastructure;
-using Game.Scripts.Input;
 using Game.Scripts.LevelSteps;
 using Game.Scripts.Systems;
 using Game.Scripts.UIControllers;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using VContainer;
 
 [Serializable]
@@ -21,11 +20,10 @@ public class GameplayStep : LevelStep
     {
         var levelFlowController = resolver.Resolve<LevelFlowController>();
         var winLoseSystem = resolver.Resolve<WinLoseSystem>();
-        var spawner = resolver.Resolve<PlayerSpawner>();
         var rr = resolver.Resolve<JoinListener>();
         
         var resultSource = new UniTaskCompletionSource<GameResult>();
-        rr.Enable(); // ← ТОЛЬКО ЗДЕСЬ
+        rr.Enable();
 
         
         Action<GameResult> onFinish = (result) => resultSource.TrySetResult(result);
@@ -44,6 +42,7 @@ public class GameplayStep : LevelStep
 
         if (result == GameResult.Lose)
         {
+            levelFlowController.SetCurrentLevelPhase(GameplayPhase.EcsPause);
             await HandleLose(resolver, ct); 
         }
         
@@ -64,7 +63,7 @@ public class GameplayStep : LevelStep
         }
         else
         {
-            await sceneManager.LoadMainMenuScene();
+            await sceneManager.LoadMainGameSceneAsync();
         }
     }
 }

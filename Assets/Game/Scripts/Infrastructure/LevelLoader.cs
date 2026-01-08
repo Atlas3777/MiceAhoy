@@ -23,7 +23,7 @@ namespace Game.Scripts.Infrastructure
         public void Start()
         {
             Debug.Log("GameLifetimeScope : Start");
-            var i = _saveService.LevelIndex;
+            var i = _saveService.Data.LevelIndex;
             var config = Resources.Load<LevelConfig>($"LevelConfigs/LevelConfig{i}");
 
             if (config == null) Debug.LogError($"Не нашел конфиг уровня {i}!");

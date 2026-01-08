@@ -1,4 +1,5 @@
 using Game.Script.Aspects;
+using Game.Scripts.Infrastructure;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using UnityEngine;
@@ -10,7 +11,12 @@ namespace Game.Scripts.Systems
         [DI] private GuestAspect _guestAspect;
         private ProtoWorld _world;
         private ProtoIt _deadGuests;
-
+        private readonly LevelState _state;
+        public GuestDestroyerSystem(LevelState state)
+        {
+            _state = state;
+        }
+        
         public void Init(IProtoSystems systems)
         {
             _world = systems.World();
@@ -28,6 +34,7 @@ namespace Game.Scripts.Systems
                 {
                     Object.Destroy(goRef.GameObject);
                     goRef.GameObject = null;
+                    _state.ActiveGuest--;
                 }
 
                 _world.DelEntity(guest);

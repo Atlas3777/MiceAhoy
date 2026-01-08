@@ -25,6 +25,8 @@ namespace Game.Scripts.DISystem
         [SerializeField] private TutorialUIController tutorialUIController;
         [SerializeField] private LevelProgressUIController levelProgressUIController;
         [SerializeField] private LoseUIController loseUIController;
+        [SerializeField] private ReputationUIController reputationUIController;
+        [SerializeField] private RewardUIController rewardUIController;
 
         [Header("Camera Configuration")] 
         [SerializeField] private CinemachineTargetGroup cinemachineTargetGroup;
@@ -45,7 +47,6 @@ namespace Game.Scripts.DISystem
             builder.Register<JoinListener>(Lifetime.Singleton);
             
 
-            builder.Register<GameResources>(Lifetime.Singleton);
             builder.Register<RecipeService>(Lifetime.Singleton);
             builder.Register<PickableService>(Lifetime.Singleton);
 
@@ -63,6 +64,8 @@ namespace Game.Scripts.DISystem
             builder.RegisterComponent(levelProgressUIController);
             builder.RegisterComponent(loseUIController);
             builder.RegisterComponent(pauseView);
+            builder.RegisterComponent(reputationUIController);
+            builder.RegisterComponent(rewardUIController);
         }
     }
 
@@ -71,6 +74,7 @@ namespace Game.Scripts.DISystem
         public ProtoWorld CreateWorld()
         {
             var world = new ProtoWorld(new BaseAspect());
+            EcsExtensions.SetWorld(world);
             return world;
         }
     }

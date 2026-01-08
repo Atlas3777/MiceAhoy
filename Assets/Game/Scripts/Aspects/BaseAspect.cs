@@ -1,6 +1,7 @@
 ﻿using System;
 using Game.Script;
 using Game.Script.Aspects;
+using Game.Scripts.Systems;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using TMPro;
@@ -23,6 +24,10 @@ namespace Game.Scripts.Aspects
         public ProtoPool<HolderComponent> HolderPool;
         public ProtoPool<SpawnGuestRequest> SpawnGuestRequestPool;
         public ProtoPool<ReputationRequest> ReputationRequestPool;
+        public ProtoPool<PlaySFXRequest> PlaySFXRequestPool;
+        public ProtoPool<StartLoopSound> StartLoopSoundPool;
+        public ProtoPool<StopLoopSound> StopLoopSoundPool;
+        public ProtoPool<ActiveLoopSound> ActiveLoopSoundPool;
         
         public GuestAspect GuestAspect;
         public WorkstationsAspect WorkstationsAspect;
@@ -30,6 +35,18 @@ namespace Game.Scripts.Aspects
         public PlayerAspect PlayerAspect;
         public PlacementAspect PlacementAspect;
         public PhysicsAspect PhysicsAspect;
+    }
+    public struct StartLoopSound { public SoundType SoundType; }
+    public struct StopLoopSound { }
+    public struct ActiveLoopSound 
+    { 
+        public SoundType SoundType; 
+        public Guid InternalId; 
+    }
+
+    public struct PlaySFXRequest 
+    {
+        public SoundType SoundType;
     }
 
     public struct ReputationRequest

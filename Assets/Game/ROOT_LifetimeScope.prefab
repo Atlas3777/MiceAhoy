@@ -49,3 +49,4 @@ MonoBehaviour:
   autoRun: 1
   autoInjectGameObjects: []
   actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  soundPrefab: {fileID: 8986949546101073742, guid: a025040181272b94f99aa72d2a05c35f, type: 3}

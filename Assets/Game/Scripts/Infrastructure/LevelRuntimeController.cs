@@ -3,69 +3,77 @@ using Leopotam.EcsProto;
 using UnityEngine;
 using VContainer.Unity;
 
-namespace Game.Scripts.Infrastructure
+public class LevelRuntimeController : IFixedTickable, IDisposable
 {
-    public class LevelRuntimeController : ITickable, IFixedTickable, IDisposable
+    private readonly IProtoSystems _systems;
+    private readonly InputService _input;
+    private readonly PauseView _view;
+
+    public bool IsPaused { get; private set; }
+
+    public LevelRuntimeController(IProtoSystems systems, InputService input, PauseView view)
     {
-        private readonly IProtoSystems _mainSystems;
-        private readonly InputService _inputService;
-        private readonly PauseView _pauseView;
+        _systems = systems;
+        _input = input;
+        _view = view;
+    }
 
-        public bool IsPaused { get; private set; }
+    public void Start()
+    {
+        _systems.Init();
+        
+        _input.OnPausePressed += TogglePause;
+        _view.OnResumeRequested += Unpause;
+        _view.OnRetryRequested += HandleRetry;
+        _view.OnMainMenuRequested += HandleMainMenu;
+    }
 
-        public LevelRuntimeController(IProtoSystems mainSystems, InputService inputService, PauseView pauseView)
-        {
-            _mainSystems = mainSystems;
-            _inputService = inputService;
-            _pauseView = pauseView;
-        }
+    private void TogglePause()
+    {
+        if (IsPaused) Unpause();
+        else Pause();
+    }
 
-        public void Start()
-        {
-            Debug.Log("Starting game state manager");
+    private void Pause()
+    {
+        IsPaused = true;
+        Time.timeScale = 0;
+        _input.SwitchAllActionMapsTo("UI");
+        _view.Show();
+    }
 
-            _mainSystems.Init();
-            _inputService.OnPausePressed += OnPausePressed;
-            IsPaused = false;
-        }
+    private void Unpause()
+    {
+        IsPaused = false;
+        Time.timeScale = 1;
+        _input.SwitchAllActionMapsTo("Player");
+        _view.Hide();
+    }
 
+    private void HandleRetry()
+    {
+        Time.timeScale = 1; 
+        Debug.Log("Restarting level...");
+    }
 
-        private void OnPausePressed()
-        {
-            if (!IsPaused)
-            {
-                IsPaused = true;
-                _inputService.SwitchAllActionMapsTo("UI");
-                _pauseView.OpenPauseMenu();
-                Time.timeScale = 0;
-                Debug.Log("Game Paused. Input Map switched to UI.");
-            }
-            else
-            {
-                IsPaused = false;
-                _inputService.SwitchAllActionMapsTo("Player");
-                _pauseView.ClosePauseMenu();
-                Time.timeScale = 1;
-                Debug.Log("Game Unpaused. Input Map switched to Player.");
-            }
-        }
+    private void HandleMainMenu()
+    {
+        Time.timeScale = 1;
+    }
 
-        public void Tick()
-        {
-        }
+    public void FixedTick()
+    {
+        if (!IsPaused) _systems.Run();
+    }
 
-
-        public void Dispose()
-        {
-            _mainSystems.Destroy();
-            _inputService.OnPausePressed -= OnPausePressed;
-            IsPaused = true;
-        }
-
-        public void FixedTick()
-        {
-            if (IsPaused) return;
-            _mainSystems.Run();
-        }
+    public void Dispose()
+    {
+        _input.OnPausePressed -= TogglePause;
+        _view.OnResumeRequested -= Unpause;
+        _view.OnRetryRequested -= HandleRetry;
+        _view.OnMainMenuRequested -= HandleMainMenu;
+        
+        _systems.World().Destroy();
+        _systems.Destroy();
     }
 }

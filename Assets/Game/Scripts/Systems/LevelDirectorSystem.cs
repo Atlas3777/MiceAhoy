@@ -12,31 +12,34 @@ namespace Game.Scripts.Systems
         [DI] private ProtoWorld _world;
         [DI] private BaseAspect _baseAspect;
         private readonly LevelConfig _config;
-        private readonly RuntimeLevelState _runtimeLevelState;
+        private readonly LevelState _levelState;
 
         private int PlayerCount = 1; //#TODO aga
 
-        public LevelDirectorSystem(RuntimeLevelState runtimeLevelState, LevelConfig config)
+        public LevelDirectorSystem(LevelState levelState, LevelConfig config)
         {
             _config = config;
-            _runtimeLevelState = runtimeLevelState;
+            _levelState = levelState;
         }
         
         public void Init(IProtoSystems systems)
         {
-            _runtimeLevelState.LevelDuration = _config.LevelDuration;
-            _runtimeLevelState.AccumulatedCredits += _config.BaseCreditWallet;
+            _levelState.LevelDuration = _config.LevelDuration;
+            _levelState.AccumulatedCredits += _config.BaseCreditWallet;
         }
         
         public void Run()
         {
-            var director = _runtimeLevelState;
-
-            if (director.TimedOut)
+            var director = _levelState;
+            //Debug.Log(director.AccumulatedCredits);
+            if (director.ElapsedTime >= director.LevelDuration)
             {
+                //Debug.Log("Level director: Elapsed time: " + director.ElapsedTime);
                 director.TimedOut = true;
                 return;
             }
+            //
+            // Debug.Log("Тут нас нет");
             
             director.ElapsedTime += Time.fixedDeltaTime;
             
@@ -59,10 +62,9 @@ namespace Game.Scripts.Systems
             {
                 director.AccumulatedCredits -= selectedGuest.Cost;
 
-                // Создаем запрос на спавн (другая система его обработает и создаст View)
                 ref var spawnGuestRequest = ref _baseAspect.SpawnGuestRequestPool.NewEntity();
                 spawnGuestRequest.Profile = selectedGuest;
-                _runtimeLevelState.ActiveGuest++;
+                _levelState.ActiveGuest++;
 
                 // 5. Рандомизация следующего интервала (Реиграбельность!)
                 float interval = Random.Range(_config.SpawnIntervalMin, _config.SpawnIntervalMax);

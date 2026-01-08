@@ -53,6 +53,7 @@ namespace Game.Scripts.Infrastructure
                     new PlayerTargetSystem(),
                     new OutlineSystem(),
                     _r.Resolve<PickPlaceSystem>(),
+                    
                     new CookingProceedSystem(),
                     _r.Resolve<StoveSystem>(),
                     
@@ -72,13 +73,15 @@ namespace Game.Scripts.Infrastructure
                     _r.Resolve<GuestEatingSystem>(),
                     
                     new HappyGuestLeaveSystem(),
-                    new AngryGuestLeaveSystem(),
+                    _r.Resolve<AngryGuestLeaveSystem>(),
                     
                     _r.Resolve<GuestNavigateToDestroySystem>(),
-                    new GuestDestroyerSystem(),
+                    _r.Resolve<GuestDestroyerSystem>(),
                     
                     _r.Resolve<ReputationSystem>(),
                     _r.Resolve<LevelProgresSystem>(),
+                    
+                    _r.Resolve<SoundSystem>(),
                     _r.Resolve<WinLoseSystem>(),
                     
                     _r.Resolve<ClearSystem>())

@@ -1,4 +1,6 @@
-﻿using Game.Scripts.Aspects;
+﻿using Game.Scripts;
+using Game.Scripts.Aspects;
+using Game.Scripts.Systems;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using UnityEngine;
@@ -75,6 +77,9 @@ public class StoveSystem : IProtoInitSystem, IProtoRunSystem
 
             ref var timer = ref _baseAspect.TimerPool.Add(stoveEntity);
             timer.Duration = recipe.Duration;
+            Debug.Log("Начали");
+            
+            stoveEntity.Add<StartLoopSound>().SoundType = SoundType.StoveSound;
         }
 
         foreach (var stoveEntity in _completedIt)
@@ -87,6 +92,9 @@ public class StoveSystem : IProtoInitSystem, IProtoRunSystem
                 if (_pickableService.TryGetPickable(recipe.outputItemType.GetType(), out var pickableItem))
                 {
                     Helper.CreateItem(stoveEntity, ref holder, _playerAspect, _baseAspect, pickableItem);
+                    
+                    _world.NewEntityWith<PlaySFXRequest>().SoundType = SoundType.CookingComplete;
+                    
                     Debug.Log("Приготовили!");
                 }
                 else
@@ -94,13 +102,14 @@ public class StoveSystem : IProtoInitSystem, IProtoRunSystem
                     Debug.Log($"Не удалось найти PickableItem для {recipe.outputItemType.GetType().Name}");
                 }
             }
+            stoveEntity.Add<StopLoopSound>();
             _workstationsAspect.ItemCookedTagPool.Add(stoveEntity);
         }
 
         foreach (var stoveEntity in _abortIt)
         {
             _baseAspect.TimerPool.Get(stoveEntity).Completed = true;
-            
+            stoveEntity.Add<StopLoopSound>();
         }
     }
 }

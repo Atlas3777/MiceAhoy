@@ -16,26 +16,35 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 1.5009263
-      outSlope: 1.5009263
-      tangentMode: 34
+      time: -0.004814148
+      value: 0.5015869
+      inSlope: 1.0191346
+      outSlope: 1.0191346
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
+      outWeight: 0.7794159
+    - serializedVersion: 3
+      time: 0.2984706
+      value: 1.1541156
+      inSlope: 4.8550572
+      outSlope: 4.8550572
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.15596567
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.28716198
-      value: 1.4310089
-      inSlope: 1.7853281
-      outSlope: 1.7853281
+      time: 0.49977276
+      value: 1.0040042
+      inSlope: 0.8180121
+      outSlope: 0.8180121
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.7755702
-      value: 2.0612159
+      time: 0.74944717
+      value: 1.4967475
       inSlope: 0.0017122763
       outSlope: 0.0017122763
       tangentMode: 0
@@ -52,10 +61,10 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: -1.2756674
-      outSlope: -1.2756674
+      time: 1.0136108
+      value: 0.4772339
+      inSlope: -3.9634018
+      outSlope: -3.9634018
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -63,7 +72,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  LevelDuration: 20
+  LevelDuration: 40
   AvailableGuests:
   - {fileID: 11400000, guid: 55a7a849cc270aa4484496f489e3322f, type: 2}
   BaseCreditWallet: 4
@@ -72,6 +81,7 @@ MonoBehaviour:
   LevelStates:
   - rid: 1239606066662342728
   - rid: 1239606066662342729
+  - rid: 1239606075664629832
   EcsSystemFactory:
     rid: 1239606066662342744
   LevelLayout: {fileID: 1632987616714677642, guid: 30073ec0e72a7ec4598db7f055cb4d1d, type: 3}
@@ -86,4 +96,7 @@ MonoBehaviour:
       data: 
     - rid: 1239606066662342744
       type: {class: ECSMainSystemsFactory, ns: Game.Scripts.Infrastructure, asm: Assembly-CSharp}
+      data: 
+    - rid: 1239606075664629832
+      type: {class: RewardStep, ns: Game.Scripts.LevelSteps, asm: Assembly-CSharp}
       data: 

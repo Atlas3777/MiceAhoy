@@ -1,7 +1,7 @@
 ﻿using Game.Scripts.Input;
 using UnityEngine.InputSystem;
 
-namespace Game.Scripts.DISystem
+namespace Game.Scripts
 {
     public class JoinListener
     {

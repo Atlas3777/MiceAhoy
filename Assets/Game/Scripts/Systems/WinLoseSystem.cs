@@ -16,11 +16,11 @@ namespace Game.Scripts.Systems
     {
         public event Action<GameResult> OnGameFinished;
         private bool _isFinished = false;
-        private readonly RuntimeLevelState _runtimeLevelState;
+        private readonly LevelState _levelState;
 
-        public WinLoseSystem(RuntimeLevelState runtimeLevelState)
+        public WinLoseSystem(LevelState levelState)
         {
-            _runtimeLevelState = runtimeLevelState;
+            _levelState = levelState;
         }
         
         public void Run()
@@ -48,8 +48,8 @@ namespace Game.Scripts.Systems
         {
             get
             {
-                if (!_runtimeLevelState.TimedOut) return false;
-                if (_runtimeLevelState.ActiveGuest == 0)
+                if (!_levelState.TimedOut) return false;
+                if (_levelState.ActiveGuest == 0)
                     return true;
 
                 return false;
@@ -60,7 +60,7 @@ namespace Game.Scripts.Systems
         {
             get
             {
-                if (_runtimeLevelState.Reputation <= 0)
+                if (_levelState.Reputation <= 0)
                     return true;
                 return false;
             }

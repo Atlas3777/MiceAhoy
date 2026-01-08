@@ -3,38 +3,41 @@ using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using UnityEngine;
 
-public class TimerSystem : IProtoRunSystem, IProtoInitSystem
+namespace Game.Scripts.Systems
 {
-    [DI] readonly BaseAspect _aspect;
-    [DI] readonly ProtoWorld _world;
-    
-    private ProtoIt _iteratorUpdate;
-
-    public void Init(IProtoSystems systems)
+    public class TimerSystem : IProtoRunSystem, IProtoInitSystem
     {
-        _iteratorUpdate = new(new[] { typeof(TimerComponent) });
-        _iteratorUpdate.Init(_world);
-    }
+        [DI] readonly BaseAspect _aspect;
+        [DI] readonly ProtoWorld _world;
 
-    public void Run()
-    {
-        var dt = Time.deltaTime;
+        private ProtoIt _iteratorUpdate;
 
-        foreach (var timerEntity in _iteratorUpdate)
+        public void Init(IProtoSystems systems)
         {
-            ref var timer = ref _aspect.TimerPool.Get(timerEntity);
+            _iteratorUpdate = new(new[] { typeof(TimerComponent) });
+            _iteratorUpdate.Init(_world);
+        }
 
-            if (timer.Completed)
+        public void Run()
+        {
+            var dt = Time.deltaTime;
+
+            foreach (var timerEntity in _iteratorUpdate)
             {
-                _aspect.TimerCompletedPool.Add(timerEntity);
-                continue;
-            }
+                ref var timer = ref _aspect.TimerPool.Get(timerEntity);
 
-            timer.Elapsed += dt;
+                if (timer.Completed)
+                {
+                    _aspect.TimerCompletedPool.Add(timerEntity);
+                    continue;
+                }
 
-            if (timer.Elapsed >= timer.Duration)
-            {
-                timer.Completed = true;
+                timer.Elapsed += dt;
+
+                if (timer.Elapsed >= timer.Duration)
+                {
+                    timer.Completed = true;
+                }
             }
         }
     }

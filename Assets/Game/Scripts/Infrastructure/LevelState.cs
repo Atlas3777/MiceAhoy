@@ -1,8 +1,9 @@
 ﻿namespace Game.Scripts.Infrastructure
 {
-    public class RuntimeLevelState
+    public class LevelState
     {
-        public int Reputation;
+        public int Reputation = 3;
+        
         public int ActiveGuest;
         public float AccumulatedCredits;
         

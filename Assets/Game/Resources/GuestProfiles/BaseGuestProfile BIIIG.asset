@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a97272518604b30b0537eecb01fb499, type: 3}
+  m_Name: BaseGuestProfile BIIIG
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.GuestProfile
+  Guest: {fileID: 9168951379536319562, guid: dac2a25ab68fd8445987c4f78401872a, type: 3}
+  Cost: 10
+  Weight: 0
+  PatienceSeconds: 20
+  MaxHunger: 60
+  MoveSpeed: 2

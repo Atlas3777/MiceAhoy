@@ -715,6 +715,8 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 1239606028313034825
       type: {class: GuestViewComponent, ns: Game.Script.Aspects, asm: Assembly-CSharp}
       data:
@@ -737,6 +739,7 @@ MonoBehaviour:
         MaxHunger: 0
         Hunger: 0
         WaitingSeconds: 0
+        ReputationBlow: 0
     - rid: 5252179152888397897
       type: {class: RigidbodyComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -745,16 +748,11 @@ MonoBehaviour:
       type: {class: WantedItemComponent, ns: Game.Script.Aspects, asm: Assembly-CSharp}
       data:
         WantedItem:
-          rid: 7346997319901118548
+          rid: -2
     - rid: 6709886293115404491
       type: {class: TargetPositionComponent, ns: Game.Script.Aspects, asm: Assembly-CSharp}
       data:
         Position: {x: 0, y: 0, z: 0}
-    - rid: 7346997319901118548
-      type: {class: Fish1, ns: Game.Script, asm: Assembly-CSharp}
-      data:
-        pickableItemGo: {fileID: 0}
-        satietyRestoration: 0
     - rid: 7346997453272383567
       type: {class: WantedItemVisualizationComponent, ns: Game.Script.Aspects, asm: Assembly-CSharp}
       data:
@@ -835,7 +833,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9168951379536319562}
   serializedVersion: 5
-  m_Mass: 10000
+  m_Mass: 20
   m_LinearDamping: 10000
   m_AngularDamping: 10000
   m_CenterOfMass: {x: 0, y: 0, z: 0}

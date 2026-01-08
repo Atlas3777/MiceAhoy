@@ -64,8 +64,12 @@ internal class ResourceClassGenerator : AssetPostprocessor
 
         // =========== WRAP WITH NAMESPACES ===========
         StringBuilder finalBuilder = new StringBuilder();
+
+        finalBuilder.AppendLine("using UnityEngine.UI;"); // Теперь Image будет браться отсюда
+
         foreach (string ns in namespaces.OrderBy(n => n))
         {
+            if (ns == "UnityEngine.UIElements" || ns == "UnityEngine.UI") continue;
             finalBuilder.AppendLine($"using {ns};");
         }
 
@@ -152,7 +156,11 @@ internal class ResourceClassGenerator : AssetPostprocessor
                 return GetScriptableObjectType(filePath, namespaces);
             case ".prefab":
                 string componentType = GetFirstMonoBehaviourType(relativePath, namespaces);
+                if (componentType == "Image") return "UnityEngine.UI.Image";
                 return string.IsNullOrEmpty(componentType) ? "GameObject" : componentType;
+
+            case ".uss":
+                return "UnityEngine.UIElements.StyleSheet";
             case ".txt":
             case ".json":
             case ".xml":
@@ -169,8 +177,6 @@ internal class ResourceClassGenerator : AssetPostprocessor
                 return "Material";
             case ".shader":
                 return "Shader";
-            case ".uss":
-                return "StyleSheet";
             default:
                 return null;
         }

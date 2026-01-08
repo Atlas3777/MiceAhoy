@@ -1,39 +1,36 @@
 ﻿using System;
-using Febucci.UI;
-using Game.Scripts;
-using Game.Scripts.Infrastructure;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
-using VContainer;
 
 public class PauseView : MonoBehaviour
 {
-    [SerializeField] private GameObject pauseMenu;
-    [SerializeField] private Button exitToMainMenuButton;
+    [SerializeField] private CanvasGroup canvasGroup;
+    [SerializeField] private Button resumeButton;
+    [SerializeField] private Button retryButton;
+    [SerializeField] private Button menuButton;
 
+    public event Action OnResumeRequested;
+    public event Action OnRetryRequested;
+    public event Action OnMainMenuRequested;
 
-    private SceneController _sceneController;
-
-    [Inject]
-    private void Initialize(SceneController sceneController)
+    private void Awake()
     {
-        _sceneController = sceneController;
-    }
-    
-    public void OpenPauseMenu()
-    {
-        Debug.Log("Opening pause menu");
-        pauseMenu.SetActive(true);
+        resumeButton.onClick.AddListener(() => OnResumeRequested?.Invoke());
+        retryButton.onClick.AddListener(() => OnRetryRequested?.Invoke());
+        menuButton.onClick.AddListener(() => OnMainMenuRequested?.Invoke());
     }
 
-    public void ClosePauseMenu()
+    public void Show()
     {
-        pauseMenu.SetActive(false);
+        canvasGroup.gameObject.SetActive(true);
+        canvasGroup.alpha = 1;
+        canvasGroup.blocksRaycasts = true;
     }
 
-    private void OnDestroy()
+    public void Hide()
     {
+        canvasGroup.alpha = 0;
+        canvasGroup.blocksRaycasts = false;
+        canvasGroup.gameObject.SetActive(false);
     }
 }

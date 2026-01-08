@@ -1,9 +1,8 @@
+using UnityEngine.UI;
 using Game.Scripts;
 using Game.Scripts.DISystem;
 using Game.Scripts.ResourceManagers;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 // This file is auto-generated. Do not modify manually.
 
@@ -12,6 +11,7 @@ public class GameResources
     public GuestProfiles GuestProfilesLink;
     public class GuestProfiles
     {
+        public GuestProfile BaseGuestProfile_BIIIG => Resources.Load<GuestProfile>("GuestProfiles/BaseGuestProfile BIIIG");
         public GuestProfile BaseGuestProfile => Resources.Load<GuestProfile>("GuestProfiles/BaseGuestProfile");
         public GuestProfile TutorialGuestProfile => Resources.Load<GuestProfile>("GuestProfiles/TutorialGuestProfile");
     }
@@ -19,6 +19,7 @@ public class GameResources
     public class LevelConfigs
     {
         public LevelConfig LevelConfig1 => Resources.Load<LevelConfig>("LevelConfigs/LevelConfig1");
+        public LevelConfig LevelConfig2 => Resources.Load<LevelConfig>("LevelConfigs/LevelConfig2");
     }
     public Phys PhysLink;
     public class Phys
@@ -67,13 +68,20 @@ public class GameResources
     public Sounds SoundsLink;
     public class Sounds
     {
+        public AudioClip angry_guest => Resources.Load<AudioClip>("Sounds/angry_guest");
+        public AudioClip background_music => Resources.Load<AudioClip>("Sounds/background_music");
         public AudioClip button_click_clear_soft => Resources.Load<AudioClip>("Sounds/button-click-clear-soft");
+        public AudioClip cooking_done => Resources.Load<AudioClip>("Sounds/cooking_done");
         public AudioClip fonovyy_zvuk_krik_chaek_shum_vody => Resources.Load<AudioClip>("Sounds/fonovyy-zvuk-krik-chaek-shum-vody");
+        public AudioClip pick_place => Resources.Load<AudioClip>("Sounds/pick_place");
+        public AudioClip reputation_loss => Resources.Load<AudioClip>("Sounds/reputation_loss");
+        public AudioClip stove_loop_sfx => Resources.Load<AudioClip>("Sounds/stove_loop_sfx");
     }
     public UIPrefabs UIPrefabsLink;
     public class UIPrefabs
     {
         public CanvasScaler HUD => Resources.Load<CanvasScaler>("UIPrefabs/HUD");
+        public UnityEngine.UI.Image Star => Resources.Load<UnityEngine.UI.Image>("UIPrefabs/Star");
     }
     public Workstations WorkstationsLink;
     public class Workstations

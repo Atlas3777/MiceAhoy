@@ -26,7 +26,7 @@ namespace Game.Scripts.DISystem
             builder.Register<LevelFlowController>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
             builder.Register<LevelRuntimeController>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
             
-            builder.Register<RuntimeLevelState>(Lifetime.Singleton);
+            builder.Register<LevelState>(Lifetime.Singleton);
             
             builder.Register<GameplaySolver>(Lifetime.Singleton);
             builder.Register<EcsPauseSolver>(Lifetime.Singleton);
@@ -59,6 +59,9 @@ namespace Game.Scripts.DISystem
             builder.Register<LevelProgresSystem>(Lifetime.Singleton);
             builder.Register<PlayerInitializeInputSystem>(Lifetime.Singleton);
             builder.Register<GuestSpawnSystem>(Lifetime.Singleton);
+            builder.Register<AngryGuestLeaveSystem>(Lifetime.Singleton);
+            builder.Register<GuestDestroyerSystem>(Lifetime.Singleton);
+            builder.Register<SoundSystem>(Lifetime.Singleton);
         }
     }
 }

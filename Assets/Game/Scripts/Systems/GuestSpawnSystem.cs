@@ -1,7 +1,6 @@
 ﻿using System.Globalization;
 using System.Linq;
 using Game.Script.Aspects;
-using Game.Script.DISystem;
 using Game.Scripts.Aspects;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
@@ -49,6 +48,7 @@ namespace Game.Scripts.Systems
                 guestStateComponent.MaxHunger = profile.MaxHunger;
                 guestStateComponent.Hunger = profile.MaxHunger;
                 guestStateComponent.WaitingSeconds = profile.PatienceSeconds;
+                guestStateComponent.ReputationBlow = profile.ReputationBlow;
                 movementSpeedComponent.Value = profile.MoveSpeed;
                 
                 agent.speed = movementSpeedComponent.Value;

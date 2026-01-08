@@ -1,30 +1,33 @@
 ﻿using Leopotam.EcsProto;
 using UnityEngine;
 
-public class SyncUnityPhysicsToEcsSystem : IProtoInitSystem, IProtoRunSystem
+namespace Game.Scripts.Systems
 {
-    private PhysicsAspect _physics;
-    private ProtoIt _iterator;
-
-    public void Init(IProtoSystems systems)
+    public class SyncUnityPhysicsToEcsSystem : IProtoInitSystem, IProtoRunSystem
     {
-        var world = systems.World();
-        _physics = (PhysicsAspect)world.Aspect(typeof(PhysicsAspect));
+        private PhysicsAspect _physics;
+        private ProtoIt _iterator;
 
-        _iterator = new(new[] { typeof(RigidbodyComponent), typeof(PositionComponent) });
-        _iterator.Init(world);
-    }
-
-    public void Run()
-    {
-        foreach (var entity in _iterator)
+        public void Init(IProtoSystems systems)
         {
-            ref var rb = ref _physics.RigidbodyPool.Get(entity);
-            if (!rb.Rigidbody)
-                continue;
-            ref var pos = ref _physics.PositionPool.Get(entity);
-            
-            pos.Position = rb.Rigidbody.position;
+            var world = systems.World();
+            _physics = (PhysicsAspect)world.Aspect(typeof(PhysicsAspect));
+
+            _iterator = new(new[] { typeof(RigidbodyComponent), typeof(PositionComponent) });
+            _iterator.Init(world);
+        }
+
+        public void Run()
+        {
+            foreach (var entity in _iterator)
+            {
+                ref var rb = ref _physics.RigidbodyPool.Get(entity);
+                if (!rb.Rigidbody)
+                    continue;
+                ref var pos = ref _physics.PositionPool.Get(entity);
+
+                pos.Position = rb.Rigidbody.position;
+            }
         }
     }
 }

@@ -24,6 +24,8 @@ namespace Game.Scripts.Systems
         private ProtoIt _guestGroupServedEventIt;
         private ProtoIt _playerInitializeItEventIt;
         private ProtoIt _selectedByPlayerTagIt;
+        private ProtoIt _aaaaa;
+        
 
         public void Init(IProtoSystems systems)
         {
@@ -38,6 +40,7 @@ namespace Game.Scripts.Systems
             _guestGroupServedEventIt = new(new[] { typeof(GuestServedEvent) });
             _playerInitializeItEventIt = new(new[] { typeof(PlayerInitializeEvent) });
             _selectedByPlayerTagIt = new(new[] { typeof(SelectedByPlayerEvent)});
+            _aaaaa = new(new[] { typeof(StopLoopSound)});
 
             _iteratorPick.Init(_world);
             _iteratorPlace.Init(_world);
@@ -50,6 +53,7 @@ namespace Game.Scripts.Systems
             _guestGroupServedEventIt.Init(_world);
             _playerInitializeItEventIt.Init(_world);
             _selectedByPlayerTagIt.Init(_world);
+            _aaaaa.Init(_world);
         }
 
         public void Run()
@@ -89,6 +93,9 @@ namespace Game.Scripts.Systems
 
             foreach (var item in _selectedByPlayerTagIt)
                 _baseAspect.SelectedByPlayerTagPool.Del(item);
+            
+            foreach (var item in _aaaaa)
+                _baseAspect.StopLoopSoundPool.Del(item);
         }
     }
 }

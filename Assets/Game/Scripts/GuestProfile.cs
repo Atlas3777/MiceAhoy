@@ -13,5 +13,6 @@ namespace Game.Scripts
         public float PatienceSeconds; 
         public float MaxHunger;
         public float MoveSpeed;
+        public int ReputationBlow;
     }
 }

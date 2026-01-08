@@ -5,18 +5,18 @@ namespace Game.Scripts.Infrastructure
 {
     public class LevelProgresSystem : IProtoRunSystem
     {
-        private readonly RuntimeLevelState  _runtimeLevelState;
+        private readonly LevelState  _levelState;
         private readonly LevelProgressUIController  _levelProgressUIController;
 
-        private LevelProgresSystem(RuntimeLevelState runtimeLevelState, LevelProgressUIController levelProgressUIController)
+        private LevelProgresSystem(LevelState levelState, LevelProgressUIController levelProgressUIController)
         {
-            _runtimeLevelState = runtimeLevelState;
+            _levelState = levelState;
             _levelProgressUIController = levelProgressUIController;
         }
 
         public void Run()
         {
-            var progress = _runtimeLevelState.ElapsedTime / _runtimeLevelState.LevelDuration;
+            var progress = _levelState.ElapsedTime / _levelState.LevelDuration;
             _levelProgressUIController.UpdateState(progress);
         }
     }

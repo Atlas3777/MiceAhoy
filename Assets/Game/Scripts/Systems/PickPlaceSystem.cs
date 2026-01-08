@@ -8,10 +8,10 @@ namespace Game.Scripts.Systems
 {
     public class PickPlaceSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySystem
     {
-        [DI] readonly WorkstationsAspect _workstationsAspect = default;
-        [DI] readonly PlayerAspect _playerAspect = default;
-        [DI] readonly BaseAspect _baseAspect = default;
-        [DI] readonly ProtoWorld _world = default;
+        [DI] readonly WorkstationsAspect _workstationsAspect;
+        [DI] readonly PlayerAspect _playerAspect;
+        [DI] private readonly BaseAspect _baseAspect;
+        [DI] private readonly ProtoWorld _world;
 
         private ProtoIt _iterator;
 
@@ -45,6 +45,7 @@ namespace Game.Scripts.Systems
                         break;
 
                     case (false, true):
+                        _world.NewEntityWith<PlaySFXRequest>().SoundType = SoundType.Pick;
                         PlayerPick?.Invoke();
                         if (!_workstationsAspect.ItemSourcePool.Has(interactedEntity))
                         {
@@ -60,6 +61,7 @@ namespace Game.Scripts.Systems
                         break;
 
                     case (true, false):
+                        _world.NewEntityWith<PlaySFXRequest>().SoundType = SoundType.Place;
                         //Debug.Log("Кладем на стол!");
                         _workstationsAspect.ItemPlaceEventPool.GetOrAdd(interactedEntity);
 
