@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Recipes_DB
   m_EditorClassIdentifier: Assembly-CSharp::Game.Script.RecipesDB
   processors:
+  - {fileID: 11400000, guid: b4ef00e25d5f18d48bb11fe961d5170d, type: 2}
   - {fileID: 11400000, guid: 91b07e8f4baf4034ea2dfeeea9c48518, type: 2}
   - {fileID: 11400000, guid: 256409b3db22ac94cb7f1a3d2492d636, type: 2}
-  - {fileID: 11400000, guid: 9465daab477e67a47bed29063da762a4, type: 2}
   - {fileID: 11400000, guid: 070f6befb4f497441bdb98c124c19a03, type: 2}

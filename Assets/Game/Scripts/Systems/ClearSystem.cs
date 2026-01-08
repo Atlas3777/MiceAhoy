@@ -20,12 +20,14 @@ namespace Game.Scripts.Systems
         private ProtoIt _placeWorkstationIt;
         private ProtoIt _interactedEventIt;
         private ProtoIt _reachedTargetPositionEventIt;
-        private ProtoIt _groupArrivedEventIt;
         private ProtoIt _guestGroupServedEventIt;
         private ProtoIt _playerInitializeItEventIt;
         private ProtoIt _selectedByPlayerTagIt;
         private ProtoIt _aaaaa;
         
+        private ProtoIt _updateQueueEventIt;
+        private ProtoIt _guestLeavingQueueEventIt;
+        private ProtoIt _guestEnteringQueueEventIt;
 
         public void Init(IProtoSystems systems)
         {
@@ -36,10 +38,12 @@ namespace Game.Scripts.Systems
             _placeWorkstationIt = new(new[] { typeof(PlaceWorkstationEvent) });
             _interactedEventIt = new(new[] { typeof(InteractedEvent) });
             _reachedTargetPositionEventIt = new(new[] { typeof(ReachedTargetPositionEvent) });
-            _groupArrivedEventIt = new(new[] { typeof(GuestDidArriveTag) });
             _guestGroupServedEventIt = new(new[] { typeof(GuestServedEvent) });
             _playerInitializeItEventIt = new(new[] { typeof(PlayerInitializeEvent) });
             _selectedByPlayerTagIt = new(new[] { typeof(SelectedByPlayerEvent)});
+            _updateQueueEventIt = new(new[] { typeof(UpdateQueueEvent) });
+            _guestLeavingQueueEventIt = new(new[] { typeof(GuestLeavingQueueEvent) });
+            _guestEnteringQueueEventIt = new(new[] { typeof(GuestEnteringQueueEvent) });
             _aaaaa = new(new[] { typeof(StopLoopSound)});
 
             _iteratorPick.Init(_world);
@@ -49,11 +53,13 @@ namespace Game.Scripts.Systems
             _placeWorkstationIt.Init(_world);
             _interactedEventIt.Init(_world);
             _reachedTargetPositionEventIt.Init(_world);
-            _groupArrivedEventIt.Init(_world);
             _guestGroupServedEventIt.Init(_world);
             _playerInitializeItEventIt.Init(_world);
             _selectedByPlayerTagIt.Init(_world);
             _aaaaa.Init(_world);
+            _updateQueueEventIt.Init(_world);
+            _guestLeavingQueueEventIt.Init(_world);
+            _guestEnteringQueueEventIt.Init(_world);
         }
 
         public void Run()
@@ -82,9 +88,6 @@ namespace Game.Scripts.Systems
             foreach (var item in _reachedTargetPositionEventIt)
                 _guestAspect.ReachedTargetPositionEventPool.Del(item);
 
-            foreach (var item in _groupArrivedEventIt)
-                _guestAspect.GuestDidArriveTagPool.Del(item);
-
             foreach (var item in _guestGroupServedEventIt)
                 _guestAspect.GuestServedEventPool.Del(item);
 
@@ -93,6 +96,15 @@ namespace Game.Scripts.Systems
 
             foreach (var item in _selectedByPlayerTagIt)
                 _baseAspect.SelectedByPlayerTagPool.Del(item);
+            
+            foreach (var item in _updateQueueEventIt)
+                _guestAspect.UpdateQueueEventPool.Del(item);
+            
+            foreach (var item in _guestLeavingQueueEventIt)
+                _guestAspect.GuestLeavingQueueEventPool.Del(item);
+            
+            foreach (var item in _guestEnteringQueueEventIt)
+                _guestAspect.GuestEnteringQueueEventPool.Del(item);
             
             foreach (var item in _aaaaa)
                 _baseAspect.StopLoopSoundPool.Del(item);

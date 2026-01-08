@@ -12,9 +12,9 @@ public class GuestNavigateToDestroySystem : IProtoInitSystem, IProtoRunSystem
 
     private ProtoIt _leavingGroupsIterator;
 
-    public GuestNavigateToDestroySystem(SpawnRegistry spawnRegistry)
+    public GuestNavigateToDestroySystem(PositionsRegistry positionsRegistry)
     {
-        _exit = spawnRegistry.GuestDestroy;
+        _exit = positionsRegistry.GuestDestroy;
     }
 
     public void Init(IProtoSystems systems)

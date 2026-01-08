@@ -31,7 +31,7 @@ namespace Game.Scripts.Infrastructure
             _targetGroup.AddMember(_context.levelCenter, 4, 4);
 
             _levelFlowController.Start(_levelConfig.LevelStates);
-            _playerSpawner.SetSpawnPoint(_context.spawnRegistry.PlayerSpawn);
+            _playerSpawner.SetSpawnPoint(_context.positionsRegistry.PlayerSpawn);
             _levelRuntimeController.Start();
         }
     }

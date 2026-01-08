@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Game.Scripts;
 using Game.Scripts.Aspects;
 using Leopotam.EcsProto;
@@ -22,18 +23,25 @@ namespace Game.Script.Aspects
         public ProtoPool<GuestStateComponent> GuestStateComponentPool;
         public ProtoPool<GuestSpawnerComponent> GuestSpawnerComponentPool;
         public ProtoPool<GuestViewComponent> GuestViewComponentPool;
+        public ProtoPool<GuestInQueueTag> GuestInQueueTagPool;
+        public ProtoPool<QueueIsNotEmptyTag> QueueIsNotEmptyTagPool;
         
         public ProtoPool<ReachedTargetPositionEvent> ReachedTargetPositionEventPool;
         public ProtoPool<GotTableEvent> GotTableEventPool;
         public ProtoPool<GuestServedEvent> GuestServedEventPool;
+        public ProtoPool<UpdateQueueEvent> UpdateQueueEventPool;
+        public ProtoPool<GuestLeavingQueueEvent> GuestLeavingQueueEventPool;
+        public ProtoPool<GuestEnteringQueueEvent> GuestEnteringQueueEventPool;
+        public ProtoPool<QueueNeedsUpdateTag> QueueNeedsUpdateTagPool;
         
         public ProtoPool<GuestTag> GuestTagPool;
         public ProtoPool<GuestServicedTag> GuestServicedTagPool;
         public ProtoPool<GuestTableIsFreeTag> GuestTableIsFreeTagPool;
         public ProtoPool<GuestIsWalkingTag> GuestIsWalkingTagPool;
         public ProtoPool<NeedsTableTag> NeedsTableTagPool;
-        public ProtoPool<GuestDidArriveTag>  GuestDidArriveTagPool;
         public ProtoPool<WaitingOrderTag> WaitingOrderTagPool;
+        public ProtoPool<QueueComponent> QueueComponentPool;
+        public ProtoPool<QueueWaitingTimeComponent> QueueWaitingTimeComponentPool;
     }
 
     [Serializable]
@@ -78,11 +86,33 @@ namespace Game.Script.Aspects
     {
     }
 
+    [Serializable]
     public struct GuestServicedTag :IComponent
     {
     }
 
+    [Serializable]
     public struct GuestDidArriveTag :IComponent
+    {
+    }
+
+    [Serializable]
+    public struct GuestInQueueTag : IComponent
+    {
+    }
+
+    [Serializable]
+    public struct GuestEnteringQueueEvent : IComponent
+    {
+    }
+
+    [Serializable]
+    public struct QueueIsNotEmptyTag : IComponent
+    {
+    }
+
+    [Serializable]
+    public struct QueueNeedsUpdateTag : IComponent
     {
     }
 
@@ -97,6 +127,16 @@ namespace Game.Script.Aspects
 
     [Serializable]
     public struct GuestServedEvent : IComponent
+    {
+    }
+
+    [Serializable]
+    public struct UpdateQueueEvent : IComponent
+    {
+    }
+
+    [Serializable]
+    public struct GuestLeavingQueueEvent : IComponent
     {
     }
 
@@ -140,5 +180,17 @@ namespace Game.Script.Aspects
     [Serializable]
     public struct GuestSpawnerComponent : IComponent
     {
+    }
+
+    [Serializable]
+    public struct QueueComponent : IComponent
+    {
+        public Queue<ProtoPackedEntityWithWorld> Queue;
+    }
+
+    [Serializable]
+    public struct QueueWaitingTimeComponent : IComponent
+    {
+        public float WaitingTime;
     }
 }
