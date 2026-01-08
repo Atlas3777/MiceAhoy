@@ -79,8 +79,8 @@ MonoBehaviour:
   SpawnIntervalMin: 1
   SpawnIntervalMax: 5
   LevelStates:
-  - rid: 1239606066662342729
   - rid: 1239606066662342728
+  - rid: 1239606066662342729
   - rid: 1239606075664629832
   EcsSystemFactory:
     rid: 1239606066662342744
