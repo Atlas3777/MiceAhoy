@@ -27,4 +27,9 @@ namespace Game.Scripts.DISystem
                 .AsSelf();
         }
     }
+
+    public class SaveService
+    {
+        public int LevelIndex { get; set; } = 1;
+    }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Game.Script;
+using Game.Scripts;
 using Game.Scripts.ResourceManagers;
 using UnityEngine;
 
@@ -43,6 +45,19 @@ public class RecipeService
     public bool TryGetRecipe(Type inputItemType, Type workstationType, out Recipe processor)
     {
         var key = (inputItem: inputItemType, workstation: workstationType);
-        return _recipes.TryGetValue(key, out processor);
+        if (_recipes.TryGetValue(key, out processor) && inputItemType != typeof(Trash))
+        {
+            Debug.Log($"Получим {processor.outputItemType}");
+            return true;
+        }
+
+        if (inputItemType is not null && inputItemType.GetCustomAttribute<BurnableAttribute>() != null)
+        {
+            Debug.Log("Сжигаем");
+            processor = _recipes[(inputItemType: typeof(Trash), workstation: workstationType)];
+            return true;
+        }
+            
+        return false;
     }
 }

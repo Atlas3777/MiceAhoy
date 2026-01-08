@@ -69,7 +69,8 @@ public class StoveSystem : IProtoInitSystem, IProtoRunSystem
                 continue;
             }
 
-            if (!_recipeService.TryGetRecipe(holder.Item, works.type.GetType(), out var recipe))
+            if (!_recipeService.TryGetRecipe(holder.Item, works.type.GetType(), out var recipe)
+                && recipe.outputItemType.GetType() != typeof(Trash))
             {
                 Debug.Log("Recipe not found");
                 continue;
@@ -95,6 +96,8 @@ public class StoveSystem : IProtoInitSystem, IProtoRunSystem
                     
                     _world.NewEntityWith<PlaySFXRequest>().SoundType = SoundType.CookingComplete;
                     
+                    if (recipe.outputItemType is not Trash)
+                        _workstationsAspect.ItemCookedTagPool.Add(stoveEntity);
                     Debug.Log("Приготовили!");
                 }
                 else

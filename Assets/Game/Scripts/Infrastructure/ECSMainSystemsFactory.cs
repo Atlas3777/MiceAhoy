@@ -46,7 +46,7 @@ namespace Game.Scripts.Infrastructure
                     new TimerSystem(),
                     new ProgressBarSystem(),
                     _r.Resolve<SyncGridPositionSystem>(),
-                    
+
                     _r.Resolve<PlayerInitializeInputSystem>(),
                     _r.Resolve<UpdateInputSystem>(),
                     _r.Resolve<PlayerMovementSystem>(),
@@ -56,17 +56,20 @@ namespace Game.Scripts.Infrastructure
                     
                     new CookingProceedSystem(),
                     _r.Resolve<StoveSystem>(),
-                    
+
                     _r.Resolve<ItemSourceGeneratorSystem>(),
-                    
+
                     new ConditionalSystem(_r.Resolve<GameplaySolver>(), true,
                         _r.Resolve<LevelDirectorSystem>()
                     ),
                     _r.Resolve<GuestSpawnSystem>(),
-                    
-                    
+
+
                     new GuestBookTableSystem(),
+                    new GuestNavigateToQueueSystem(_r.Resolve<LevelContext>().positionsRegistry.GuestsQueueHead),
                     new GuestNavigateToTableSystem(),
+                    new MoveQueueSystem(_r.Resolve<LevelContext>().positionsRegistry.GuestsQueueHead),
+                    new QueueWaitingVisualizationSystem(),
                     new GuestMovementSystem(),
                     
                     new GuestWaitingSystem(),

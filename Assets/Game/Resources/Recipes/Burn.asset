@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b82b15923f6b438a862559f58c05689e, type: 3}
-  m_Name: fish2-trash
+  m_Name: Burn
   m_EditorClassIdentifier: Assembly-CSharp::ItemProcessor
   inputItemType:
-    rid: 1239606071790665805
+    rid: 5252179199914410058
   outputItemType:
-    rid: 1239606071790665807
+    rid: 5252179199914410056
   workstationType:
     rid: 6709886309644107851
   Duration: 3
   references:
     version: 2
     RefIds:
-    - rid: 1239606071790665805
-      type: {class: Fish2, ns: Game.Scripts, asm: Assembly-CSharp}
+    - rid: 5252179199914410056
+      type: {class: Trash, ns: Game.Scripts, asm: Assembly-CSharp}
       data:
         pickableItemGo: {fileID: 0}
         satietyRestoration: 0
-    - rid: 1239606071790665807
+    - rid: 5252179199914410058
       type: {class: Trash, ns: Game.Scripts, asm: Assembly-CSharp}
       data:
         pickableItemGo: {fileID: 0}

@@ -30,7 +30,7 @@ namespace Game.Scripts
     {
     }
 
-    [Serializable]
+    [Serializable, Burnable]
     public class Fish2 : PickableItem
     {
     }
@@ -52,6 +52,10 @@ namespace Game.Scripts
 
     [Serializable]
     public class Trash : PickableItem
+    {
+    }
+
+    public class BurnableAttribute : Attribute
     {
     }
 }
