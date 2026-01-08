@@ -13,10 +13,11 @@ namespace Game.Scripts.Infrastructure
         private readonly CinemachineTargetGroup _targetGroup;
         private readonly LevelConfig _levelConfig;
         private readonly LevelContext _context;
-
+        private readonly LevelDisplayUI _levelDisplayUI;
+        private readonly SaveService _saveService;
         public LevelBootstrap(LevelFlowController levelFlowController, PlayerSpawner playerSpawner,
             LevelRuntimeController levelRuntimeController, CinemachineTargetGroup targetGroup, LevelConfig levelConfig,
-            LevelContext context)
+            LevelContext context, LevelDisplayUI levelDisplayUI, SaveService saveService)
         {
             _levelFlowController = levelFlowController;
             _playerSpawner = playerSpawner;
@@ -24,11 +25,16 @@ namespace Game.Scripts.Infrastructure
             _targetGroup = targetGroup;
             _levelConfig = levelConfig;
             _context = context;
+            _saveService = saveService;
+            _levelDisplayUI = levelDisplayUI;
         }
 
         public void Initialize()
         {
+            _context.navMeshSurface.BuildNavMesh();
             _targetGroup.AddMember(_context.levelCenter, 4, 4);
+            
+            _levelDisplayUI.Show(_saveService.Data.LevelIndex);
 
 
             _levelFlowController.Start(_levelConfig.LevelStates);

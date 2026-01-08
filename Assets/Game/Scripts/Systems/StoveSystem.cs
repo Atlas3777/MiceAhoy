@@ -106,7 +106,7 @@ public class StoveSystem : IProtoInitSystem, IProtoRunSystem
                 }
             }
             stoveEntity.Add<StopLoopSound>();
-            _workstationsAspect.ItemCookedTagPool.Add(stoveEntity);
+            _workstationsAspect.ItemCookedTagPool.GetOrAdd(stoveEntity);
         }
 
         foreach (var stoveEntity in _abortIt)

@@ -1,11 +1,12 @@
-﻿using UnityEngine;
-using UnityEngine.Serialization;
+﻿using Unity.AI.Navigation;
+using UnityEngine;
 
 namespace Game.Scripts
 {
     public class LevelContext : MonoBehaviour
-    {
-        [FormerlySerializedAs("spawnRegistry")] public PositionsRegistry positionsRegistry;
+    { 
+        public PositionsRegistry positionsRegistry;
         public Transform levelCenter;
+        public NavMeshSurface navMeshSurface;
     }
 }

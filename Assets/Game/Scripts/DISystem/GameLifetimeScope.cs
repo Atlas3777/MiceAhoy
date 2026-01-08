@@ -27,6 +27,8 @@ namespace Game.Scripts.DISystem
         [SerializeField] private LoseUIController loseUIController;
         [SerializeField] private ReputationUIController reputationUIController;
         [SerializeField] private RewardUIController rewardUIController;
+        [SerializeField] private LevelDisplayUI levelDisplayUI;
+        
 
         [Header("Camera Configuration")] 
         [SerializeField] private CinemachineTargetGroup cinemachineTargetGroup;
@@ -66,6 +68,7 @@ namespace Game.Scripts.DISystem
             builder.RegisterComponent(pauseView);
             builder.RegisterComponent(reputationUIController);
             builder.RegisterComponent(rewardUIController);
+            builder.RegisterComponent(levelDisplayUI);
         }
     }
 

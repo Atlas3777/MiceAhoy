@@ -35,13 +35,13 @@ namespace Game.Scripts.Systems
                 ref var profile = ref _baseAspect.SpawnGuestRequestPool.Get(requestEntity).Profile;
                 
                 var go = Object.Instantiate(profile.Guest, _spawnPoint.position, Quaternion.identity);
-                var agent = go.GetComponent<NavMeshAgent>();
                 var r = go.GetComponent<CustomAuthoring>();
                 r.ProcessAuthoring();
                 var e = r.Entity();
                 
                 ref var guestStateComponent = ref e.GetOrAdd<GuestStateComponent>();
                 ref var movementSpeedComponent = ref e.GetOrAdd<MovementSpeedComponent>();
+                ref var navMeshAgent = ref e.Get<NavMeshAgentComponent>().Agent;
 
                 SetupView(e, profile);
                 
@@ -51,10 +51,10 @@ namespace Game.Scripts.Systems
                 guestStateComponent.ReputationBlow = profile.ReputationBlow;
                 movementSpeedComponent.Value = profile.MoveSpeed;
                 
-                agent.speed = movementSpeedComponent.Value;
+                navMeshAgent.speed = movementSpeedComponent.Value;
                 
-                agent.updateRotation = false;
-                agent.updateUpAxis = false;
+                navMeshAgent.updateRotation = false;
+                navMeshAgent.updateUpAxis = false;
                 
                 _baseAspect.SpawnGuestRequestPool.Del(requestEntity);
             }

@@ -4718,10 +4718,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a423090d96c481e9136de562038d089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.LevelContext
-  spawnRegistry:
+  positionsRegistry:
     PlayerSpawn: {fileID: 1830163965739325161}
     GuestSpawn: {fileID: 5169203076645719887}
     GuestDestroy: {fileID: 3565183528415550352}
+    GuestsQueueHead: {fileID: 0}
   levelCenter: {fileID: 7143241299529672498}
 --- !u!1 &1662794673613689230
 GameObject:
@@ -20045,6 +20046,14 @@ PrefabInstance:
     - target: {fileID: 3678745316733051204, guid: c38aa5c1de3d13a4aaa3d09243cb2f22, type: 3}
       propertyPath: m_Name
       value: Door (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5740228343357054995, guid: c38aa5c1de3d13a4aaa3d09243cb2f22, type: 3}
+      propertyPath: m_Size.z
+      value: 0.7823726
+      objectReference: {fileID: 0}
+    - target: {fileID: 5740228343357054995, guid: c38aa5c1de3d13a4aaa3d09243cb2f22, type: 3}
+      propertyPath: m_Center.z
+      value: -0.36777306
       objectReference: {fileID: 0}
     - target: {fileID: 6541535719034927051, guid: c38aa5c1de3d13a4aaa3d09243cb2f22, type: 3}
       propertyPath: m_LocalPosition.x

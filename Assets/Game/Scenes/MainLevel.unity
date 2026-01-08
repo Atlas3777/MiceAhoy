@@ -158,6 +158,7 @@ MonoBehaviour:
   loseUIController: {fileID: 815536116}
   reputationUIController: {fileID: 815536119}
   rewardUIController: {fileID: 815536121}
+  levelDisplayUI: {fileID: 815536123}
   cinemachineTargetGroup: {fileID: 1278852000}
   introCamera: {fileID: 1558734470}
   gameplayCamera: {fileID: 1945308459}
@@ -639,6 +640,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8157663873249370111, guid: 0712a29a232c81341b639a0153cd1ab2, type: 3}
+      propertyPath: m_text
+      value: "\u0423\u0440\u043E\u0432\u0435\u043D\u044C \u0445"
+      objectReference: {fileID: 0}
     - target: {fileID: 9093108680450921125, guid: 0712a29a232c81341b639a0153cd1ab2, type: 3}
       propertyPath: m_Name
       value: HUD
@@ -714,6 +719,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfacc0f4dc004bba964e1df20f03ef8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseView
+--- !u!114 &815536123 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8939038020925789146, guid: 0712a29a232c81341b639a0153cd1ab2, type: 3}
+  m_PrefabInstance: {fileID: 571789301}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5778ecd0b6f4404bbaa7fd77bc0079b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -927,7 +943,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1043528822
 MonoBehaviour:
   m_ObjectHideFlags: 0
