@@ -32,7 +32,16 @@ namespace Game.Scripts.Systems
         {
             foreach (var requestEntity in _it)
             {
-                ref var profile = ref _baseAspect.SpawnGuestRequestPool.Get(requestEntity).Profile;
+                ref var request = ref _baseAspect.SpawnGuestRequestPool.Get(requestEntity);
+
+                if (request.Profile == null)
+                {
+                    Debug.LogError("SpawnGuestRequest with NULL Profile detected. Entity will be removed.");
+                    _baseAspect.SpawnGuestRequestPool.Del(requestEntity);
+                    continue;
+                }
+                var profile = request.Profile;
+
                 
                 var go = Object.Instantiate(profile.Guest, _spawnPoint.position, Quaternion.identity);
                 var r = go.GetComponent<CustomAuthoring>();
@@ -48,7 +57,7 @@ namespace Game.Scripts.Systems
                 guestStateComponent.MaxHunger = profile.MaxHunger;
                 guestStateComponent.Hunger = profile.MaxHunger;
                 guestStateComponent.WaitingSeconds = profile.PatienceSeconds;
-                guestStateComponent.ReputationBlow = profile.ReputationBlow;
+                guestStateComponent.ReputationLoss = profile.ReputationLoss;
                 movementSpeedComponent.Value = profile.MoveSpeed;
                 
                 navMeshAgent.speed = movementSpeedComponent.Value;

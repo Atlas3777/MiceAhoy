@@ -58,7 +58,7 @@ namespace Game.Script.Aspects
         public float Hunger;
         public float WaitingSeconds;
         
-        public int ReputationBlow;
+        public int ReputationLoss;
     }
     
     [Serializable]

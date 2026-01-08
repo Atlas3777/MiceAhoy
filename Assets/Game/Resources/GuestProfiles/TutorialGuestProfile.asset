@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a97272518604b30b0537eecb01fb499, type: 3}
   m_Name: TutorialGuestProfile
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.GuestProfile
-  Guest: {fileID: 9168951379536319562, guid: dac2a25ab68fd8445987c4f78401872a, type: 3}
+  Guest: {fileID: 2147267069227112002, guid: 5543cfd22ef876a4b9c72197c6f9df09, type: 3}
   Cost: 6
   Weight: 0
   PatienceSeconds: 10
   MaxHunger: 40
   MoveSpeed: 5
+  ReputationBlow: 0

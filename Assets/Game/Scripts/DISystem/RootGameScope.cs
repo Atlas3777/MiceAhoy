@@ -1,4 +1,5 @@
 ﻿using Game.Scripts.Infrastructure;
+using Game.Scripts.Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -19,6 +20,7 @@ namespace Game.Scripts.DISystem
             builder.Register<SceneController>(Lifetime.Singleton);
             builder.Register<GameResources>(Lifetime.Singleton);
             builder.Register<SaveService>(Lifetime.Singleton);
+            builder.Register<PlayerSessionService>(Lifetime.Singleton);
             
             builder.RegisterInstance(actions).AsSelf();
             

@@ -1,19 +1,20 @@
-﻿using Game.Scripts.Input;
+﻿using Game.Scripts.Infrastructure;
 using UnityEngine.InputSystem;
 
-namespace Game.Scripts
+namespace Game.Scripts.Input
 {
     public class JoinListener
     {
         private InputActionAsset _actions;
-
         private InputAction _join;
         private PlayerSpawner _spawner;
+        private PlayerSessionService _sessionService;
 
-        public JoinListener(PlayerSpawner spawner, InputActionAsset actions)
+        public JoinListener(PlayerSpawner spawner, InputActionAsset actions, PlayerSessionService sessionService)
         {
             _spawner = spawner;
             _actions = actions;
+            _sessionService = sessionService;
             _join = _actions.FindActionMap("Join").FindAction("Join");
         }
 
@@ -31,7 +32,11 @@ namespace Game.Scripts
 
         private void OnJoin(InputAction.CallbackContext ctx)
         {
-            _spawner.TrySpawn(ctx.control.device);
+            var device = ctx.control.device;
+            
+            _sessionService.Join(device);
+            
+            _spawner.TrySpawn(device);
         }
     }
 }

@@ -710,7 +710,7 @@ GameObject:
   - component: {fileID: 7837051385413714890}
   - component: {fileID: 98452934317104792}
   m_Layer: 0
-  m_Name: Guest
+  m_Name: BaseGuest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -814,6 +814,7 @@ MonoBehaviour:
     - rid: 8223375694890532956
       type: {class: ProgressBarComponent, ns: , asm: Assembly-CSharp}
       data:
+        isDecreasing: 1
         Image: {fileID: 1569934592480604029}
         IsActive: 0
         Gradient:

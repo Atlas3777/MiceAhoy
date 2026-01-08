@@ -36,6 +36,7 @@ namespace Game.Scripts.Systems
                 if (!packed.TryUnpack(out _, out var guest))
                     continue;
                 
+                Debug.Log("Мы тут");
                 _guestAspect.WaitingOrderTagPool.Add(guest);
                 _guestAspect.GuestServicedTagPool.Add(guest);
                 _guestAspect.GuestServedEventPool.Add(guest);

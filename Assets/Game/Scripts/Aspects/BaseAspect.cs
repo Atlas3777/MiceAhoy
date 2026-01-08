@@ -1,12 +1,10 @@
 ﻿using System;
-using Game.Script;
 using Game.Script.Aspects;
 using Game.Scripts.Systems;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using TMPro;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace Game.Scripts.Aspects
 {

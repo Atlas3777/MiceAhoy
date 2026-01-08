@@ -6,13 +6,13 @@ namespace Game.Scripts
     public class GuestProfile : ScriptableObject
     {
         public GameObject Guest;
-        public int Cost; // Сколько "стоит" заспавнить (например, 5)
-        public float Weight; // Вероятность выбора (если хватает денег)
+        public int Cost; 
+        public float Weight;
     
         // Характеристики для компонента Guest
         public float PatienceSeconds; 
         public float MaxHunger;
         public float MoveSpeed;
-        public int ReputationBlow;
+        public int ReputationLoss;
     }
 }

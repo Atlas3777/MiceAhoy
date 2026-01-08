@@ -82,7 +82,6 @@ public class InputService : IPostFixedTickable
             return state;
         }
 
-        // Возвращаем пустые данные, если игрок не найден
         return new PlayerInputData();
     }
 
@@ -95,12 +94,6 @@ public class InputService : IPostFixedTickable
         foreach (var playerIndex in keys)
         {
             var state = _playerInputs[playerIndex];
-            //
-            // // Если флаг был true, а сейчас мы его стираем - залогируем это
-            // if (state.InteractPressed || state.PickPlacePressed)
-            // {
-            //     Debug.Log($"[INPUT-SERVICE] Clearing flags for Player {playerIndex} in FixedTick");
-            // }
 
             state.InteractPressed = false;
             state.PickPlacePressed = false;

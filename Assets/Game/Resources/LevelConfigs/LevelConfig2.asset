@@ -63,20 +63,31 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  BaseCreditsPerSecond: 1
+  IntensityCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   LevelDuration: 60
-  AvailableGuests:
-  - {fileID: 11400000, guid: 55a7a849cc270aa4484496f489e3322f, type: 2}
-  - {fileID: 11400000, guid: cee4a779291cc8c4f9954438b7c8fc4d, type: 2}
+  AvailableGuests: []
   BaseCreditWallet: 4
+  MinBudgetReserveFraction: 0.15
   SpawnIntervalMin: 1
   SpawnIntervalMax: 5
+  MinSpawnRetryInterval: 0.5
+  MaxConcurrentGuests: 6
+  SpawnStrategy:
+    rid: 1239606094426013778
   LevelStates:
-  - rid: 1239606066662342729
   - rid: 1239606066662342728
+  - rid: 1239606066662342729
   - rid: 1239606075664629833
   EcsSystemFactory:
     rid: 1239606066662342744
-  LevelLayout: {fileID: 1632987616714677642, guid: 30073ec0e72a7ec4598db7f055cb4d1d, type: 3}
+  ForcedSpawnAfterNoSpawnSeconds: 10
+  LevelLayout: {fileID: 1632987616714677642, guid: 49e967e3d5869c54a849235aea656ef2, type: 3}
   references:
     version: 2
     RefIds:
@@ -92,3 +103,11 @@ MonoBehaviour:
     - rid: 1239606075664629833
       type: {class: RewardStep, ns: Game.Scripts.LevelSteps, asm: Assembly-CSharp}
       data: 
+    - rid: 1239606094426013778
+      type: {class: CostAwareWeightedSpawnStrategy, ns: Game.Scripts.LevelSettings, asm: Assembly-CSharp}
+      data:
+        SaveChance: 0.45
+        MaxCostBias: 1.2
+        RecentSpawnCooldown: 8
+        RecentSpawnPenalty: 0.3
+        ExpensiveBiasFactor: 1.2

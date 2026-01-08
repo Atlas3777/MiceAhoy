@@ -30,6 +30,7 @@ namespace Game.Scripts.Systems
                 {
                     Debug.Log("Гость наелся, уходит");
                     
+                    
                     _guestAspect.WaitingOrderTagPool.Del(guestEntity);
                     _guestAspect.GuestServedEventPool.Add(guestEntity);
                     _guestAspect.GuestServicedTagPool.Add(guestEntity);

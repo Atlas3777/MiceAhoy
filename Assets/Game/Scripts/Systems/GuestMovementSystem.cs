@@ -1,54 +1,49 @@
 using Game.Script.Aspects;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
-using UnityEngine;
 
-public class GuestMovementSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySystem
+namespace Game.Scripts.Systems
 {
-    [DI] private readonly GuestAspect _guestAspect;
-    [DI] private readonly PhysicsAspect _physicsAspect;
-
-    private ProtoWorld _world;
-
-    private ProtoIt _moveIterator;
-
-    public void Init(IProtoSystems systems)
+    public class GuestMovementSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySystem
     {
-        _world = systems.World();
+        [DI] private readonly GuestAspect _guestAspect;
+        [DI] private readonly PhysicsAspect _physicsAspect;
 
-        _moveIterator = new(new[]
+        [DI] private ProtoWorld _world;
+        private ProtoIt _moveIterator;
+
+        public void Init(IProtoSystems systems)
         {
-            typeof(GuestTag), typeof(PositionComponent), typeof(GuestIsWalkingTag),
-            typeof(TargetPositionComponent), typeof(MovementSpeedComponent)
-        });
-        _moveIterator.Init(_world);
-    }
+            _moveIterator = new(new[]
+            {
+                typeof(GuestTag), typeof(PositionComponent), typeof(GuestIsWalkingTag),
+                typeof(TargetPositionComponent), typeof(MovementSpeedComponent)
+            });
+            _moveIterator.Init(_world);
+        }
 
-    public void Run()
-    {
-        foreach (var guestEntity in _moveIterator)
+        public void Run()
         {
-            ref var agent = ref _guestAspect.NavMeshAgentComponentPool.Get(guestEntity).Agent;
-            // ref var rb = ref _physicsAspect.RigidbodyPool.Get(guestEntity);
+            foreach (var guestEntity in _moveIterator)
+            {
+                ref var agent = ref _guestAspect.NavMeshAgentComponentPool.Get(guestEntity).Agent;
 
-            if (!agent.pathPending && agent.remainingDistance < 0.3f)
-            {
-                _guestAspect.ReachedTargetPositionEventPool.Add(guestEntity);
-                _guestAspect.GuestIsWalkingTagPool.Del(guestEntity);
-                agent.isStopped = true;
-                // rb.Rigidbody.isKinematic = true;
-                //Debug.Log("ало мы тут да");
-            }
-            else
-            {
-                agent.isStopped = false;
-                // rb.Rigidbody.isKinematic = false;
+                if (!agent.pathPending && agent.remainingDistance < 0.3f)
+                {
+                    _guestAspect.ReachedTargetPositionEventPool.Add(guestEntity);
+                    _guestAspect.GuestIsWalkingTagPool.Del(guestEntity);
+                    agent.isStopped = true;
+                }
+                else
+                {
+                    agent.isStopped = false;
+                }
             }
         }
-    }
 
-    public void Destroy()
-    {
-        _moveIterator = null;
+        public void Destroy()
+        {
+            _moveIterator = null;
+        }
     }
 }

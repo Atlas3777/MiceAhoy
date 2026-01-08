@@ -1,6 +1,8 @@
-﻿using Game.Scripts.Input;
+﻿using System.Linq;
+using Game.Scripts.Input;
 using Game.Scripts.LevelSteps;
 using Unity.Cinemachine;
+using UnityEngine.InputSystem;
 using VContainer.Unity;
 
 namespace Game.Scripts.Infrastructure
@@ -15,9 +17,10 @@ namespace Game.Scripts.Infrastructure
         private readonly LevelContext _context;
         private readonly LevelDisplayUI _levelDisplayUI;
         private readonly SaveService _saveService;
+        private readonly PlayerSessionService _sessionService;
         public LevelBootstrap(LevelFlowController levelFlowController, PlayerSpawner playerSpawner,
             LevelRuntimeController levelRuntimeController, CinemachineTargetGroup targetGroup, LevelConfig levelConfig,
-            LevelContext context, LevelDisplayUI levelDisplayUI, SaveService saveService)
+            LevelContext context, LevelDisplayUI levelDisplayUI, SaveService saveService, PlayerSessionService  sessionService)
         {
             _levelFlowController = levelFlowController;
             _playerSpawner = playerSpawner;
@@ -27,18 +30,22 @@ namespace Game.Scripts.Infrastructure
             _context = context;
             _saveService = saveService;
             _levelDisplayUI = levelDisplayUI;
+            _sessionService = sessionService;
         }
 
         public void Initialize()
         {
             _context.navMeshSurface.BuildNavMesh();
             _targetGroup.AddMember(_context.levelCenter, 4, 4);
-            
+    
             _levelDisplayUI.Show(_saveService.Data.LevelIndex);
 
+            _playerSpawner.SetSpawnPoint(_context.positionsRegistry.PlayerSpawn);
+            
+
+            _playerSpawner.SpawnExistingPlayers();
 
             _levelFlowController.Start(_levelConfig.LevelStates);
-            _playerSpawner.SetSpawnPoint(_context.positionsRegistry.PlayerSpawn);
             _levelRuntimeController.Start();
         }
     }

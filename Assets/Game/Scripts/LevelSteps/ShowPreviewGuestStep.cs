@@ -2,6 +2,7 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using Game.Scripts.DISystem;
+using Game.Scripts.Infrastructure;
 using PrimeTween;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -13,8 +14,9 @@ namespace Game.Scripts.LevelSteps
     public class ShowPreviewGuestStep : LevelStep
     {
         public override string Description => "Пролет камеры (Intro)";
+        public override GameplayPhase? Phase => GameplayPhase.EcsPause;
 
-        private Vector3 _startPoint; // Центр
+        private Vector3 _startPoint;
         private Vector3 _leftPoint;
 
         public override async UniTask Execute(IObjectResolver resolver, CancellationToken ct)
@@ -24,6 +26,7 @@ namespace Game.Scripts.LevelSteps
 
             _startPoint = gameplayCam.transform.position;
             _leftPoint = _startPoint + Vector3.left*4;
+            
             introCam.transform.position = _startPoint;
             introCam.Priority = 20;
             gameplayCam.Priority = 10;

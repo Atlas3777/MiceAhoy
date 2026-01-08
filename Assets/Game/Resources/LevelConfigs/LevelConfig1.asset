@@ -11,60 +11,60 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c91aab533e574495a8a7d72786068a82, type: 3}
   m_Name: LevelConfig1
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.Systems.LevelConfig
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.LevelConfig
   DifficultyCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: -0.004814148
-      value: 0.5015869
-      inSlope: 1.0191346
-      outSlope: 1.0191346
-      tangentMode: 0
+      time: 0
+      value: 1
+      inSlope: 2.4508917
+      outSlope: 2.4508917
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.7794159
-    - serializedVersion: 3
-      time: 0.2984706
-      value: 1.1541156
-      inSlope: 4.8550572
-      outSlope: 4.8550572
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.15596567
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.49977276
-      value: 1.0040042
-      inSlope: 0.8180121
-      outSlope: 0.8180121
+      time: 0.1146829
+      value: 1.2810754
+      inSlope: 0.9457116
+      outSlope: 0.9457116
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.37924975
+      value: 1.1330585
+      inSlope: -0.17390965
+      outSlope: -0.17390965
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.32994056
+      outWeight: 0.0661732
+    - serializedVersion: 3
+      time: 1.0939476
+      value: 1.1988412
+      inSlope: 0.6109359
+      outSlope: 0.6109359
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.74944717
-      value: 1.4967475
-      inSlope: 0.0017122763
-      outSlope: 0.0017122763
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 1
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.8255702
-      value: 1.2225144
-      inSlope: -5.767027
-      outSlope: -5.767027
+      time: 1.384258
+      value: 1.4868437
+      inSlope: -0.0002160672
+      outSlope: -0.0002160672
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1.0136108
-      value: 0.4772339
-      inSlope: -3.9634018
-      outSlope: -3.9634018
+      time: 1.9318848
+      value: 1.0265198
+      inSlope: -0.84057975
+      outSlope: -0.84057975
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -72,31 +72,73 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  BaseCreditsPerSecond: 3
+  IntensityCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.25213903
+      value: 0.5257617
+      inSlope: 1.4306092
+      outSlope: 1.4306092
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   LevelDuration: 40
   AvailableGuests:
   - {fileID: 11400000, guid: 55a7a849cc270aa4484496f489e3322f, type: 2}
-  BaseCreditWallet: 4
-  SpawnIntervalMin: 1
+  - {fileID: 11400000, guid: dfaade5aeaef447449ab50174aec86be, type: 2}
+  - {fileID: 11400000, guid: cee4a779291cc8c4f9954438b7c8fc4d, type: 2}
+  BaseCreditWallet: 0
+  MinBudgetReserveFraction: 0.15
+  SpawnIntervalMin: 0.5
   SpawnIntervalMax: 5
+  MinSpawnRetryInterval: 0.5
+  MaxConcurrentGuests: 30
+  SpawnStrategy:
+    rid: 1239606099834830922
   LevelStates:
-  - rid: 1239606066662342729
-  - rid: 1239606066662342728
-  - rid: 1239606075664629832
+  - rid: 1239606099834830923
   EcsSystemFactory:
-    rid: 1239606066662342744
+    rid: 1239606099834830924
+  ForcedSpawnAfterNoSpawnSeconds: 10
   LevelLayout: {fileID: 1632987616714677642, guid: 49e967e3d5869c54a849235aea656ef2, type: 3}
   references:
     version: 2
     RefIds:
-    - rid: 1239606066662342728
-      type: {class: ShowPreviewGuestStep, ns: Game.Scripts.LevelSteps, asm: Assembly-CSharp}
-      data: 
-    - rid: 1239606066662342729
+    - rid: 1239606099834830922
+      type: {class: CostAwareWeightedSpawnStrategy, ns: Game.Scripts.LevelSettings, asm: Assembly-CSharp}
+      data:
+        SaveChance: 0.955
+        MaxCostBias: 1.2
+        RecentSpawnCooldown: 8
+        RecentSpawnPenalty: 0.3
+        ExpensiveBiasFactor: 1.2
+    - rid: 1239606099834830923
       type: {class: GameplayStep, ns: , asm: Assembly-CSharp}
       data: 
-    - rid: 1239606066662342744
+    - rid: 1239606099834830924
       type: {class: ECSMainSystemsFactory, ns: Game.Scripts.Infrastructure, asm: Assembly-CSharp}
-      data: 
-    - rid: 1239606075664629832
-      type: {class: RewardStep, ns: Game.Scripts.LevelSteps, asm: Assembly-CSharp}
       data: 

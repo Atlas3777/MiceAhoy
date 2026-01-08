@@ -14,6 +14,7 @@ public class ViewAspect : ProtoAspectInject
 [Serializable]
 public struct ProgressBarComponent : IComponent
 {
+    public bool isDecreasing;
     public Image Image;
     public bool IsActive;
     public Gradient Gradient;

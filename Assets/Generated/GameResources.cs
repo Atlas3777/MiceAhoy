@@ -1,6 +1,5 @@
 using UnityEngine.UI;
 using Game.Scripts;
-using Game.Scripts.DISystem;
 using Game.Scripts.ResourceManagers;
 using UnityEngine;
 
@@ -11,14 +10,34 @@ public class GameResources
     public GuestProfiles GuestProfilesLink;
     public class GuestProfiles
     {
-        public GuestProfile BaseGuestProfile_BIIIG => Resources.Load<GuestProfile>("GuestProfiles/BaseGuestProfile BIIIG");
         public GuestProfile BaseGuestProfile => Resources.Load<GuestProfile>("GuestProfiles/BaseGuestProfile");
+        public GuestProfile BeerGuest => Resources.Load<GuestProfile>("GuestProfiles/BeerGuest");
+        public GuestProfile CatProfile => Resources.Load<GuestProfile>("GuestProfiles/CatProfile");
+        public GuestProfile PigProfile => Resources.Load<GuestProfile>("GuestProfiles/PigProfile");
+        public GuestProfile SheepProfile => Resources.Load<GuestProfile>("GuestProfiles/SheepProfile");
         public GuestProfile TutorialGuestProfile => Resources.Load<GuestProfile>("GuestProfiles/TutorialGuestProfile");
+    }
+    public Guests GuestsLink;
+    public class Guests
+    {
+        public CustomAuthoring BaseGuest => Resources.Load<CustomAuthoring>("Guests/BaseGuest");
+        public CustomAuthoring BeerGuest => Resources.Load<CustomAuthoring>("Guests/BeerGuest");
+        public CustomAuthoring CatGuest => Resources.Load<CustomAuthoring>("Guests/CatGuest");
+        public CustomAuthoring DefaultGuest => Resources.Load<CustomAuthoring>("Guests/DefaultGuest");
+        public CustomAuthoring PigGuest => Resources.Load<CustomAuthoring>("Guests/PigGuest");
+        public CustomAuthoring SheepGuest => Resources.Load<CustomAuthoring>("Guests/SheepGuest");
+    }
+    public Layouts LayoutsLink;
+    public class Layouts
+    {
+        public LevelContext level => Resources.Load<LevelContext>("Layouts/level");
+        public LevelContext levelWithQueue => Resources.Load<LevelContext>("Layouts/levelWithQueue");
     }
     public LevelConfigs LevelConfigsLink;
     public class LevelConfigs
     {
         public LevelConfig LevelConfig1 => Resources.Load<LevelConfig>("LevelConfigs/LevelConfig1");
+        public LevelConfig LevelConfig100 => Resources.Load<LevelConfig>("LevelConfigs/LevelConfig100");
         public LevelConfig LevelConfig2 => Resources.Load<LevelConfig>("LevelConfigs/LevelConfig2");
     }
     public Phys PhysLink;
@@ -99,10 +118,6 @@ public class GameResources
         public CustomAuthoring TableOld => Resources.Load<CustomAuthoring>("Workstations/TableOld");
     }
     public Sprite box => Resources.Load<Sprite>("box");
-    public CustomAuthoring Guest => Resources.Load<CustomAuthoring>("Guest");
-    public LevelContext level => Resources.Load<LevelContext>("level");
-    public LevelLifetimeScope LevelLifetimeScope => Resources.Load<LevelLifetimeScope>("LevelLifetimeScope");
-    public LevelContext levelWithQueue => Resources.Load<LevelContext>("levelWithQueue");
     public PickableItemsDB Pickable_Items_DB => Resources.Load<PickableItemsDB>("Pickable_Items_DB");
     public PlacementObjectsDB PlacementObjects_DB => Resources.Load<PlacementObjectsDB>("PlacementObjects_DB");
     public CustomAuthoring Player => Resources.Load<CustomAuthoring>("Player");
@@ -113,6 +128,8 @@ public class GameResources
     public GameResources()
     {
         GuestProfilesLink = new GuestProfiles();
+        GuestsLink = new Guests();
+        LayoutsLink = new Layouts();
         LevelConfigsLink = new LevelConfigs();
         PhysLink = new Phys();
         PickableItemsLink = new PickableItems();
