@@ -16,6 +16,7 @@ public class InputService : IPostFixedTickable
         public bool OpenScrollPressed;
         public bool LeftPressed;
         public bool RightPressed;
+        public bool BackToPoolPressed;
     }
 
     private Dictionary<int, PlayerInput> _playerComponents = new();

@@ -53,7 +53,6 @@ namespace Game.Scripts.DISystem
             builder.Register<StoveSystem>(Lifetime.Singleton);
             builder.Register<ClearSystem>(Lifetime.Singleton);
             builder.Register<PlayerMovementSystem>(Lifetime.Singleton);
-            builder.Register<SyncGridPositionSystem>(Lifetime.Singleton);
             builder.Register<GuestEatingSystem>(Lifetime.Singleton);
             builder.Register<LevelDirectorSystem>(Lifetime.Singleton);
             builder.Register<ReputationSystem>(Lifetime.Singleton);
@@ -65,6 +64,14 @@ namespace Game.Scripts.DISystem
             builder.Register<AngryGuestLeaveSystem>(Lifetime.Singleton);
             builder.Register<GuestDestroyerSystem>(Lifetime.Singleton);
             builder.Register<SoundSystem>(Lifetime.Singleton);
+            builder.Register<MoveScrollMenuSystem>(Lifetime.Singleton);
+            builder.Register<DestroySpawnersSystem>(Lifetime.Singleton);
+            builder.Register<RandomSpawnerPositionSystem>(Lifetime.Singleton);
+            builder.Register<SyncGridPositionSystem>(Lifetime.Singleton);
+            builder.Register<PlayerSpawnFurnitureSystem>(Lifetime.Singleton);
+            builder.Register<CreateGameObjectsSystem>(Lifetime.Singleton);
+            builder.Register<MoveFurnitureSystem>(Lifetime.Singleton);
+            builder.Register<MoveGameObjectSystem>(Lifetime.Singleton);
         }
     }
 }

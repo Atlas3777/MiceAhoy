@@ -7,9 +7,9 @@ using UnityEngine;
 
 public class PlacementGrid
 {
-    public Vector3Int PlacementZoneSize { get; } = new Vector3Int(7, 0, 5);
+    public Vector3Int PlacementZoneSize { get; } = new Vector3Int(9, 0, 7);
     public Vector3 PlacementZoneWorldStart { get; private set; }
-    public Vector3Int PlacementZoneIndexStart { get; } = new Vector3Int(-3, 0, -3);
+    public Vector3Int PlacementZoneIndexStart { get; } = new Vector3Int(-4, 0, -4);
     public Vector3 PlacementZoneCellSize { get; private set; }
     private HashSet<Vector3Int> worldGrid = new();
     private GameResources gameResources;

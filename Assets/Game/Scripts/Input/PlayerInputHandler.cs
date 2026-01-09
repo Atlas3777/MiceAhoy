@@ -59,6 +59,9 @@ public class PlayerInputHandler : MonoBehaviour
             case "GoLeft":
                 OnLeftPressed(context, ref state);
                 break;
+            case "BackToPool":
+                OnBackPressed(context, ref state);
+                break;
         }
 
         _inputService.UpdateState(_playerIndex, state);
@@ -108,6 +111,14 @@ public class PlayerInputHandler : MonoBehaviour
         if (context.performed)
         {
             state.PlacementModePressed = true;
+        }
+    }
+
+    private void OnBackPressed(InputAction.CallbackContext context, ref InputService.PlayerInputData state)
+    {
+        if (context.performed)
+        {
+            state.BackToPoolPressed = true;
         }
     }
 
