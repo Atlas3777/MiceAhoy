@@ -126,7 +126,6 @@ MonoBehaviour:
   Components:
   - rid: 5252179199914410059
   - rid: 5252179199914410060
-  - rid: 5252179205579866186
   references:
     version: 2
     RefIds:
@@ -136,7 +135,10 @@ MonoBehaviour:
     - rid: 5252179199914410060
       type: {class: ProgressBarComponent, ns: , asm: Assembly-CSharp}
       data:
+        isDecreasing: 0
+        useGradient: 0
         Image: {fileID: 5062394312321746594}
+        canvasGroup: {fileID: 0}
         IsActive: 0
         Gradient:
           serializedVersion: 2
@@ -168,10 +170,6 @@ MonoBehaviour:
           m_ColorSpace: 0
           m_NumColorKeys: 2
           m_NumAlphaKeys: 2
-    - rid: 5252179205579866186
-      type: {class: QueueWaitingTimeComponent, ns: Game.Script.Aspects, asm: Assembly-CSharp}
-      data:
-        WaitingTime: 10
 --- !u!1 &5306278815535954909
 GameObject:
   m_ObjectHideFlags: 0

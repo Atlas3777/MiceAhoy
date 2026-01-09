@@ -23,16 +23,14 @@ namespace Game.Script.Aspects
         public ProtoPool<GuestStateComponent> GuestStateComponentPool;
         public ProtoPool<GuestSpawnerComponent> GuestSpawnerComponentPool;
         public ProtoPool<GuestViewComponent> GuestViewComponentPool;
-        public ProtoPool<GuestInQueueTag> GuestInQueueTagPool;
-        public ProtoPool<QueueIsNotEmptyTag> QueueIsNotEmptyTagPool;
+        public ProtoPool<QueueComponent> QueueComponentPool;
         
         public ProtoPool<ReachedTargetPositionEvent> ReachedTargetPositionEventPool;
         public ProtoPool<GotTableEvent> GotTableEventPool;
         public ProtoPool<GuestServedEvent> GuestServedEventPool;
-        public ProtoPool<UpdateQueueEvent> UpdateQueueEventPool;
+        public ProtoPool<UpdateQueueVisualEvent> UpdateQueueVisualEventPool;
         public ProtoPool<GuestLeavingQueueEvent> GuestLeavingQueueEventPool;
         public ProtoPool<GuestEnteringQueueEvent> GuestEnteringQueueEventPool;
-        public ProtoPool<QueueNeedsUpdateTag> QueueNeedsUpdateTagPool;
         
         public ProtoPool<GuestTag> GuestTagPool;
         public ProtoPool<GuestServicedTag> GuestServicedTagPool;
@@ -40,8 +38,10 @@ namespace Game.Script.Aspects
         public ProtoPool<GuestIsWalkingTag> GuestIsWalkingTagPool;
         public ProtoPool<NeedsTableTag> NeedsTableTagPool;
         public ProtoPool<WaitingOrderTag> WaitingOrderTagPool;
-        public ProtoPool<QueueComponent> QueueComponentPool;
-        public ProtoPool<QueueWaitingTimeComponent> QueueWaitingTimeComponentPool;
+        public ProtoPool<GuestInQueueTag> GuestInQueueTagPool;
+        public ProtoPool<QueueIsNotEmptyTag> QueueIsNotEmptyTagPool;
+        public ProtoPool<QueueNeedsUpdateTag> QueueNeedsUpdateTagPool;
+        public ProtoPool<GuestIsWaitingInQueue> GuestIsWaitingInQueuePool;
     }
     
 
@@ -116,6 +116,11 @@ namespace Game.Script.Aspects
     {
     }
 
+    [Serializable]
+    public struct GuestIsWaitingInQueue : IComponent
+    {
+    }
+
     public struct ReachedTargetPositionEvent
     {
     }
@@ -131,7 +136,7 @@ namespace Game.Script.Aspects
     }
 
     [Serializable]
-    public struct UpdateQueueEvent : IComponent
+    public struct UpdateQueueVisualEvent : IComponent
     {
     }
 
@@ -186,11 +191,5 @@ namespace Game.Script.Aspects
     public struct QueueComponent : IComponent
     {
         public Queue<ProtoPackedEntityWithWorld> Queue;
-    }
-
-    [Serializable]
-    public struct QueueWaitingTimeComponent : IComponent
-    {
-        public float WaitingTime;
     }
 }

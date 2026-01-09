@@ -1,5 +1,6 @@
 using System.Linq;
 using Game.Script.Aspects;
+using Game.Scripts.Aspects;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace Game.Scripts.Systems
         [DI] private GuestAspect _guestAspect;
         [DI] private WorkstationsAspect _workstationsAspect;
         [DI] private PhysicsAspect _physicsAspect;
+        [DI] private BaseAspect _baseAspect;
 
         private ProtoIt _guestIterator;
         private ProtoIt _freeTablesIterator;
@@ -39,23 +41,23 @@ namespace Game.Scripts.Systems
                 {
                     if (!_guestAspect.GuestInQueueTagPool.Has(guestEntity))
                     {
-                        _guestAspect.GuestEnteringQueueEventPool.Add(guestEntity);
+                        _guestAspect.GuestEnteringQueueEventPool.GetOrAdd(guestEntity);
                         Debug.Log($"Гость {guestEntity} отправлен в очередь");
                     }
                 }
-                else
-                {
-                    foreach (var queueEntity in _queueIterator)
-                    {
-                        var queue = _guestAspect.QueueComponentPool.Get(queueEntity).Queue;
-                        if (queue.Count > 0 && queue.First() == _world.PackEntityWithWorld(guestEntity))
-                        {
-                            _guestAspect.QueueNeedsUpdateTagPool.Add(queueEntity);
-                            _guestAspect.UpdateQueueEventPool.Add(queueEntity);
-                            Debug.Log("Первый из очереди идёт к столу");
-                        }
-                    }
-                }
+                // else
+                // {
+                //     foreach (var queueEntity in _queueIterator)
+                //     {
+                //         var queue = _guestAspect.QueueComponentPool.Get(queueEntity).Queue;
+                //         if (queue.Count > 0 && queue.First() == _world.PackEntityWithWorld(guestEntity))
+                //         {
+                //             _guestAspect.QueueNeedsUpdateTagPool.Add(queueEntity);
+                //             _guestAspect.UpdateQueueVisualEventPool.Add(queueEntity);
+                //             Debug.Log("Первый из очереди идёт к столу");
+                //         }
+                //     }
+                // }
             }
         }
         
@@ -71,8 +73,7 @@ namespace Game.Scripts.Systems
                 {
                     if (!_guestAspect.GuestInQueueTagPool.Has(guestEntity))
                     {
-                        _guestAspect.GuestEnteringQueueEventPool.Add(guestEntity);
-                        // _guestAspect.GuestInQueueTagPool.Add(guestEntity);
+                        _guestAspect.GuestEnteringQueueEventPool.GetOrAdd(guestEntity);
                         Debug.Log($"Гость {guestEntity} отправлен в очередь");
                     }
 
@@ -101,6 +102,22 @@ namespace Game.Scripts.Systems
                 guestPos.Position = _physicsAspect.PositionPool.Get(tableEntity).Position;
 
                 Debug.Log($"Guest {guestEntity} получил стол {tableEntity}");
+
+                foreach (var queueEntity in _queueIterator)
+                {
+                    var queue = _guestAspect.QueueComponentPool.Get(queueEntity).Queue;
+                    if (queue.Count == 0) continue;
+                    var firstInQueue = queue.First();
+                    if (firstInQueue == _world.PackEntityWithWorld(guestEntity))
+                    {
+                        _guestAspect.GuestInQueueTagPool.Del(guestEntity);
+                        _guestAspect.GuestViewComponentPool.Get(guestEntity).view.canvasGroup.alpha = 0;
+                        _baseAspect.TimerPool.Del(guestEntity);
+                        _guestAspect.GuestIsWaitingInQueuePool.Del(guestEntity);
+                        _guestAspect.QueueNeedsUpdateTagPool.Add(queueEntity);
+                    }
+                }
+
                 return true;
             }
             return false;

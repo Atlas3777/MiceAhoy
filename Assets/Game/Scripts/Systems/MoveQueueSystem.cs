@@ -45,7 +45,6 @@ namespace Game.Scripts.Systems
                 Debug.LogWarning(prevGuestPlace);
                 _guestAspect.GuestLeavingQueueEventPool.Add(firstGuest);
                 _guestAspect.GuestInQueueTagPool.Del(firstGuest);
-                _baseAspect.TimerPool.DelIfExists(queueEntity);
                 foreach (var packedGuest in queue)
                 {
                     if (!packedGuest.TryUnpack(out _, out var guest))
@@ -57,9 +56,10 @@ namespace Game.Scripts.Systems
                     ref var agent = ref _guestAspect.NavMeshAgentComponentPool.Get(guest).Agent;
                     agent.SetDestination(prevGuestPlace);
                     prevGuestPlace = _physicsAspect.PositionPool.Get(guest).Position;
+                    _guestAspect.GuestIsWalkingTagPool.GetOrAdd(guest);
                 }
                 _guestAspect.QueueNeedsUpdateTagPool.Del(queueEntity);
-                _guestAspect.UpdateQueueEventPool.GetOrAdd(queueEntity);
+                _guestAspect.UpdateQueueVisualEventPool.GetOrAdd(queueEntity);
                 Debug.Log("Очередь продвинулась");
             }
         }
