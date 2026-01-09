@@ -5,6 +5,7 @@ using Game.Scripts.Infrastructure;
 using Game.Scripts.Input;
 using Game.Scripts.LevelSteps;
 using Game.Scripts.Systems;
+using TMPro;
 using VContainer;
 
 [Serializable]
@@ -20,8 +21,13 @@ public class BuildStep : LevelStep
         var rr = resolver.Resolve<JoinListener>();
         var tcs = new UniTaskCompletionSource();
         
+        var text = resolver.Resolve<TMP_Text>("status");
+        text.text = "Статус: Строительство(нажмите[E] чтобы поднять и поставить объект) \n Чтобы начать день откройте входную дверь [E]";
+        
         playerPressedPSystem.StartPlacementMode();
-        rr.Enable();
+
+        rr.Enable(playerPressedPSystem);
+        
 
         Action onStartAction = null;
         onStartAction = () =>

@@ -44,7 +44,7 @@ namespace Game.Scripts.Systems
                 var prevGuestPlace = _queueHead.position;
                 Debug.LogWarning(prevGuestPlace);
                 _guestAspect.GuestLeavingQueueEventPool.Add(firstGuest);
-                _guestAspect.GuestInQueueTagPool.Del(firstGuest);
+                _guestAspect.GuestInQueueTagPool.DelIfExists(firstGuest);
                 foreach (var packedGuest in queue)
                 {
                     if (!packedGuest.TryUnpack(out _, out var guest))

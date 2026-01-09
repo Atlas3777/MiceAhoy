@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c91aab533e574495a8a7d72786068a82, type: 3}
-  m_Name: LevelConfig1
+  m_Name: LevelConfig2
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.LevelConfig
   DifficultyCurve:
     serializedVersion: 2
@@ -18,17 +18,35 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0.5
-      inSlope: 0.5
-      outSlope: 0.5
+      inSlope: 2.11952
+      outSlope: 2.11952
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
+      time: 0.105383456
+      value: 0.7233623
+      inSlope: 0.9010737
+      outSlope: 0.9010737
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.68219614
+      value: 0.5402978
+      inSlope: 0.564562
+      outSlope: 0.564562
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0.5
-      outSlope: 0.5
+      inSlope: 1.4464966
+      outSlope: 1.4464966
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -36,7 +54,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  BaseCreditsPerSecond: 1
+  BaseCreditsPerSecond: 2
   IntensityCurve:
     serializedVersion: 2
     m_Curve:
@@ -61,9 +79,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  LevelDuration: 15
+  LevelDuration: 60
   AvailableGuests:
+  - {fileID: 11400000, guid: d25b08f2d91e6c145a7abce72165f26b, type: 2}
   - {fileID: 11400000, guid: dfaade5aeaef447449ab50174aec86be, type: 2}
+  - {fileID: 11400000, guid: cee4a779291cc8c4f9954438b7c8fc4d, type: 2}
   - {fileID: 11400000, guid: 9e4aee26c2030b648ab43f38e3218005, type: 2}
   BaseCreditWallet: 3
   MinBudgetReserveFraction: 0.15
@@ -81,7 +101,7 @@ MonoBehaviour:
   EcsSystemFactory:
     rid: 1239606099834830941
   ForcedSpawnAfterNoSpawnSeconds: 10
-  LevelLayout: {fileID: 1632987616714677642, guid: 49e967e3d5869c54a849235aea656ef2, type: 3}
+  LevelLayout: {fileID: 1632987616714677642, guid: d8fc211fb2e4c6b4c8507f7a5ca9a9d1, type: 3}
   references:
     version: 2
     RefIds:

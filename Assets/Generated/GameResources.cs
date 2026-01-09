@@ -33,11 +33,13 @@ public class GameResources
     {
         public LevelContext level => Resources.Load<LevelContext>("Layouts/level");
         public LevelContext levelWithQueue => Resources.Load<LevelContext>("Layouts/levelWithQueue");
+        public LevelContext levelWithQueue2 => Resources.Load<LevelContext>("Layouts/levelWithQueue2");
     }
     public LevelConfigs LevelConfigsLink;
     public class LevelConfigs
     {
         public LevelConfig LevelConfig1 => Resources.Load<LevelConfig>("LevelConfigs/LevelConfig1");
+        public LevelConfig LevelConfig2 => Resources.Load<LevelConfig>("LevelConfigs/LevelConfig2");
     }
     public Phys PhysLink;
     public class Phys
@@ -139,6 +141,7 @@ public class GameResources
     public CustomAuthoring Player => Resources.Load<CustomAuthoring>("Player");
     public CustomAuthoring QueueHead => Resources.Load<CustomAuthoring>("QueueHead");
     public RecipesDB Recipes_DB => Resources.Load<RecipesDB>("Recipes_DB");
+    public Sprite stove_top => Resources.Load<Sprite>("stove_top");
     public Sprite Безымянный => Resources.Load<Sprite>("Безымянный");
 
     public GameResources()

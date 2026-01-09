@@ -15,7 +15,7 @@ MonoBehaviour:
   Guest: {fileID: 7168879973199887490, guid: efb94299d18b85d479e5b54b2abf7fa4, type: 3}
   Cost: 20
   Weight: 40
-  PatienceSeconds: 50
-  MaxHunger: 160
+  PatienceSeconds: 80
+  MaxHunger: 90
   MoveSpeed: 1.5
   ReputationLoss: 1

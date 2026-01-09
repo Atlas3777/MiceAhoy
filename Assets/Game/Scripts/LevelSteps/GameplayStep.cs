@@ -5,6 +5,7 @@ using Game.Scripts.Infrastructure;
 using Game.Scripts.LevelSteps;
 using Game.Scripts.Systems;
 using Game.Scripts.UIControllers;
+using TMPro;
 using UnityEngine;
 using VContainer;
 
@@ -21,7 +22,9 @@ public class GameplayStep : LevelStep
         var winLoseSystem = resolver.Resolve<WinLoseSystem>();
 
         var resultSource = new UniTaskCompletionSource<GameResult>();
-
+        
+        var text = resolver.Resolve<TMP_Text>("status");
+        text.text = "Статус: Обслуживание";
 
         Action<GameResult> onFinish = (result) => resultSource.TrySetResult(result);
 

@@ -27,7 +27,15 @@ namespace Game.Scripts.Systems
         {
             foreach (var queueEntity in _queueIt)
             {
-                ref var queue = ref _guestAspect.QueueComponentPool.Get(queueEntity).Queue;
+                ref var queueComp = ref _guestAspect.QueueComponentPool.Get(queueEntity);
+                var queue = queueComp.Queue;
+
+                if (queue.Count == 0) 
+                {
+                    _guestAspect.QueueIsNotEmptyTagPool.Del(queueEntity);
+                    continue;
+                }
+                
                 var firstGuestPacked = queue.Peek();
                 if (!firstGuestPacked.TryUnpack(out _, out var unpackedGuest))
                 {

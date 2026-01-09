@@ -1,13 +1,11 @@
 using Game.Scripts.Aspects;
 using Game.Scripts.Infrastructure;
 using Game.Scripts.Input;
-using Game.Scripts.LevelSteps;
 using Game.Scripts.UIControllers;
 using Leopotam.EcsProto;
 using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using VContainer;
 using VContainer.Unity;
@@ -32,6 +30,7 @@ namespace Game.Scripts.DISystem
         [SerializeField] private LevelDisplayUI levelDisplayUI;
         
         [SerializeField] private TMP_Text co;
+        [SerializeField] private TMP_Text status;
         
 
         [Header("Camera Configuration")] 
@@ -78,6 +77,7 @@ namespace Game.Scripts.DISystem
             builder.RegisterComponent(levelDisplayUI);
             builder.RegisterComponent(furnitureScrollRect);
             builder.RegisterComponent(co);
+            builder.RegisterComponent(status).Keyed("status");
         }
     }
 
