@@ -44,11 +44,23 @@ public class PlayerInputHandler : MonoBehaviour
             case "Interact":
                 OnInteract(context, ref state);
                 break;
-            case "Edit":
-                OnEdit(context, ref state);
+            case "OpenScrollMenu":
+                OnOpenScroll(context, ref state);
+                break;
+            case "TogglePlaceMode":
+                OnPlacement(context, ref state);
                 break;
             case "Pause":
                 OnPause(context, ref state);
+                break;
+            case "GoRight":
+                OnRightPressed(context, ref state);
+                break;
+            case "GoLeft":
+                OnLeftPressed(context, ref state);
+                break;
+            case "BackToPool":
+                OnBackPressed(context, ref state);
                 break;
         }
 
@@ -86,11 +98,43 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
-    private void OnEdit(InputAction.CallbackContext context, ref InputService.PlayerInputData state)
+    private void OnOpenScroll(InputAction.CallbackContext context, ref InputService.PlayerInputData state)
     {
         if (context.performed)
         {
-            state.RandomSpawnFurniturePressed = true;
+            state.OpenScrollPressed = true;
+        }
+    }
+
+    private void OnPlacement(InputAction.CallbackContext context, ref InputService.PlayerInputData state)
+    {
+        if (context.performed)
+        {
+            state.PlacementModePressed = true;
+        }
+    }
+
+    private void OnBackPressed(InputAction.CallbackContext context, ref InputService.PlayerInputData state)
+    {
+        if (context.performed)
+        {
+            state.BackToPoolPressed = true;
+        }
+    }
+
+    private void OnRightPressed(InputAction.CallbackContext context, ref InputService.PlayerInputData state)
+    {
+        if (context.performed)
+        {
+            state.RightPressed = true;
+        }
+    }
+
+    private void OnLeftPressed(InputAction.CallbackContext context, ref InputService.PlayerInputData state)
+    {
+        if (context.performed)
+        {
+            state.LeftPressed = true;
         }
     }
 

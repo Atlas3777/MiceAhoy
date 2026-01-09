@@ -36,6 +36,10 @@ class UpdateInputSystem : IProtoInitSystem, IProtoRunSystem
             
             input.InteractPressed = data.InteractPressed;
             input.PickPlacePressed = data.PickPlacePressed;
+            input.PlacementModePressed = data.PlacementModePressed;
+            input.IsRightPressed = data.RightPressed;
+            input.IsLeftPressed = data.LeftPressed;
+            input.OpenScrollPressed = data.OpenScrollPressed;
         }
     }
 }

@@ -10,11 +10,15 @@ public class SyncGridPositionSystem : IProtoInitSystem, IProtoRunSystem, IProtoD
     [DI] readonly PhysicsAspect _physicsAspect;
     [DI] readonly ProtoWorld _world;
 
+    private PlacementGrid worldGrid;
     private ProtoIt _iteratorEvent;
+
+    public SyncGridPositionSystem(PlacementGrid placementGrid) =>
+        worldGrid = placementGrid;
 
     public void Init(IProtoSystems systems)
     {
-        _iteratorEvent = new(new[] { typeof(SyncGridPositionEvent), typeof(GridPositionComponent), typeof(PositionComponent), typeof(FurnitureComponent)});
+        _iteratorEvent = new(new[] { typeof(SyncGridPositionEvent), typeof(GridPositionComponent), typeof(PositionComponent)});
         _iteratorEvent.Init(_world);
     }
 
@@ -22,13 +26,17 @@ public class SyncGridPositionSystem : IProtoInitSystem, IProtoRunSystem, IProtoD
     {
         foreach (var eventEntity in _iteratorEvent)
         {
-            ref var  syncGridPositionEvent = ref _placementAspect.SyncGridPositionEventPool.Get(eventEntity);
-            ref var  positionComponent = ref _physicsAspect.PositionPool.Get(eventEntity);
-            ref var  gridPositionComponent = ref _physicsAspect.GridPositionPool.Get(eventEntity);
+            ref var syncComponent = ref _placementAspect.SyncGridPositionEventPool.Get(eventEntity);
+            var posInGrid = new Vector3Int(Mathf.RoundToInt(syncComponent.transform.position.x / worldGrid.PlacementZoneCellSize.x),0,
+                Mathf.RoundToInt(syncComponent.transform.position.z / worldGrid.PlacementZoneCellSize.z))
+                - worldGrid.PlacementZoneIndexStart;
+            worldGrid.AddElement(posInGrid);
+            ref var gridPositionComponent = ref _physicsAspect.GridPositionPool.Get(eventEntity);
+            gridPositionComponent.Position = posInGrid;
+            ref var pos = ref _physicsAspect.PositionPool.Get(eventEntity);
+            pos.Position = syncComponent.transform.position;
 
-            var t = syncGridPositionEvent.Transform.position;
-            positionComponent.Position = t;
-            gridPositionComponent.Position = Vector3Int.RoundToInt(t);
+            _placementAspect.SyncGridPositionEventPool.DelIfExists(eventEntity);
         }
     }
 

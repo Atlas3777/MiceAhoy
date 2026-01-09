@@ -10,6 +10,7 @@ internal class PlayerTargetSystem : IProtoInitSystem, IProtoRunSystem
     [DI] private BaseAspect _baseAspect;
     [DI] private PhysicsAspect _physicsAspect;
     [DI] private WorkstationsAspect _workstationsAspect;
+    [DI] private PlacementAspect _placementAspect;
 
     private ProtoIt _iteratorInteractable;
     private ProtoIt _iteratorPlayer;
@@ -72,14 +73,33 @@ internal class PlayerTargetSystem : IProtoInitSystem, IProtoRunSystem
                 _baseAspect.SelectedByPlayerTagPool.GetOrAdd(bestTarget);
 
             if (targetFound && playerInput.InteractPressed) {
-                HandleInteraction(entityPlayer, bestTarget);
+                HandleInteraction(entityPlayer, bestTarget, playerInput);
             }
         }
     }
 
-    private void HandleInteraction(ProtoEntity player, ProtoEntity target) {
-        if (!_workstationsAspect.PickPlaceEventPool.Has(target)) {
+    private void HandleInteraction(ProtoEntity player, ProtoEntity target, PlayerInputComponent input) 
+    {
+        if (input.IsInPlacementMode)
+            MoveFurnitureInteract(player, target);
+        else
+            PickPlaceInteract(player, target);
+    }
+
+    private void PickPlaceInteract(ProtoEntity player, ProtoEntity target)
+    {
+        if (!_workstationsAspect.PickPlaceEventPool.Has(target))
+        {
             ref var evt = ref _workstationsAspect.PickPlaceEventPool.Add(target);
+            evt.Invoker = _world.PackEntityWithWorld(player);
+        }
+    }
+
+    private void MoveFurnitureInteract(ProtoEntity player, ProtoEntity target)
+    {
+        if (!_placementAspect.MoveThisFurnitureTagPool.Has(target))
+        {
+            ref var evt = ref _placementAspect.MoveThisFurnitureTagPool.Add(target);
             evt.Invoker = _world.PackEntityWithWorld(player);
         }
     }

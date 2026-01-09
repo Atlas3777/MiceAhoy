@@ -19,7 +19,7 @@ public class SpawnerInteractSystem : IProtoInitSystem, IProtoRunSystem, IProtoDe
 
     public void Run()
     {
-        foreach (var spawner in _iteratorSpawner) 
+        foreach (var spawner in _iteratorSpawner)
         {
             ref var spawnerTag = ref _placementAspect.SpawnerTagPool.Get(spawner);
             ref var gridPosition = ref _physicsAspect.GridPositionPool.Get(spawner);
@@ -27,11 +27,11 @@ public class SpawnerInteractSystem : IProtoInitSystem, IProtoRunSystem, IProtoDe
             if (!_placementAspect.CreateGameObjectEventPool.Has(spawner))
                 _placementAspect.CreateGameObjectEventPool.Add(spawner);
             ref var createComponent = ref _placementAspect.CreateGameObjectEventPool.Get(spawner);
-            // createComponent.objects = new()
-            // {
-            //     (spawnerTag.spawnObjectType.GetType(), gridPosition.Position)
-            // };
-            // createComponent.destroyInvoker = true;
+            createComponent.objects = new()
+             {
+                 (spawnerTag.spawnObjectType.GetType(), gridPosition.Position)
+             };
+            createComponent.destroyInvoker = true;
 
             _placementAspect.SpawnFurnitureEventPool.DelIfExists(spawner);
         }

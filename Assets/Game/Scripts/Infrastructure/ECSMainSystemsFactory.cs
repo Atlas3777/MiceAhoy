@@ -1,5 +1,4 @@
-﻿using Game.Script.Systems;
-using Game.Scripts.Systems;
+﻿using Game.Scripts.Systems;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.ConditionalSystems;
 using Leopotam.EcsProto.QoL;
@@ -82,7 +81,18 @@ namespace Game.Scripts.Infrastructure
                     _r.Resolve<SoundSystem>(),
                     _r.Resolve<WinLoseSystem>(),
                     
-                    _r.Resolve<ClearSystem>())
+                    _r.Resolve<ClearSystem>(),
+
+                    new PlayerPressedPSystem(),
+                    _r.Resolve<MoveScrollMenuSystem>(),
+                    _r.Resolve<PlayerSpawnFurnitureSystem>(),
+                    _r.Resolve<CreateGameObjectsSystem>(),
+                    _r.Resolve<MoveFurnitureSystem>(),
+                    _r.Resolve<MoveGameObjectSystem>(),
+                    _r.Resolve<SyncGridPositionSystem>(),
+                    _r.Resolve<RandomSpawnerPositionSystem>(),
+                    new SpawnerInteractSystem(),
+                    _r.Resolve<DestroySpawnersSystem>())
                 );
 
             return systems;

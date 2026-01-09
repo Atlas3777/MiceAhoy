@@ -1,6 +1,7 @@
 using UnityEngine.UI;
 using Game.Scripts;
 using Game.Scripts.ResourceManagers;
+using Image = UnityEngine.UI.Image;
 using UnityEngine;
 
 // This file is auto-generated. Do not modify manually.
@@ -115,8 +116,11 @@ public class GameResources
         public CustomAuthoring Table => Resources.Load<CustomAuthoring>("Workstations/Table");
         public CustomAuthoring TableOld => Resources.Load<CustomAuthoring>("Workstations/TableOld");
     }
+    public UnityEngine.UI.Image baseFurnitureCard => Resources.Load<UnityEngine.UI.Image>("baseFurnitureCard");
     public Sprite box => Resources.Load<Sprite>("box");
+    public CustomAuthoring FridgeSpawner => Resources.Load<CustomAuthoring>("FridgeSpawner");
     public PickableItemsDB Pickable_Items_DB => Resources.Load<PickableItemsDB>("Pickable_Items_DB");
+    public PivotToRealPositionDifferences PivotToRealPositionDifferences => Resources.Load<PivotToRealPositionDifferences>("PivotToRealPositionDifferences");
     public PlacementObjectsDB PlacementObjects_DB => Resources.Load<PlacementObjectsDB>("PlacementObjects_DB");
     public CustomAuthoring Player => Resources.Load<CustomAuthoring>("Player");
     public CustomAuthoring QueueHead => Resources.Load<CustomAuthoring>("QueueHead");

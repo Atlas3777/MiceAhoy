@@ -1,6 +1,7 @@
 // using Game.Script.Factories;
 // using Leopotam.EcsProto;
 // using System;
+// using Game.Scripts.Systems.PlacementSystems;
 // using UnityEngine;
 //
 // public class PlacementModule : IProtoModule
@@ -12,6 +13,7 @@
 //     private SyncGridPositionSystem syncGridPositionSystem;
 //     private RandomSpawnerPositionSystem randomSpawnerPositionSystem;
 //     private DestroySpawnersSystem destroySpawnersSystem;
+//     private MoveScrollMenuSystem moveScrollMenuSystem;
 //
 //     public PlacementModule(PlayerSpawnFurnitureSystemFactory playerSpawnFurnitureSystem,
 //         CreateGameObjectsSystemFactory createGameObjectsSystem,
@@ -19,7 +21,8 @@
 //         MoveFurnitureSystemFactory moveFurnitureSystem,
 //         SyncGridPositionSystemFactory syncGridPositionSystem,
 //         RandomSpawnerPositionSystemFactory randomSpawnerPositionSystem,
-//         DestroySpawnersSystemFactory destroySpawnersSystem)
+//         DestroySpawnersSystemFactory destroySpawnersSystem,
+//         MoveScrollMenuSystemFactory moveScrollMenuSystem)
 //     {
 //         this.playerSpawnFurnitureSystem = playerSpawnFurnitureSystem.CreateProtoSystem();
 //         this.createGameObjectsSystem = createGameObjectsSystem.CreateProtoSystem();
@@ -28,11 +31,14 @@
 //         this.syncGridPositionSystem = syncGridPositionSystem.CreateProtoSystem();
 //         this.randomSpawnerPositionSystem = randomSpawnerPositionSystem.CreateProtoSystem();
 //         this.destroySpawnersSystem = destroySpawnersSystem.CreateProtoSystem();
+//         this.moveScrollMenuSystem = moveScrollMenuSystem.CreateProtoSystem();
 //     }
 //
 //     public void Init(IProtoSystems systems)
 //     {
 //         systems
+//             .AddSystem(new PlayerPressedPSystem())
+//             .AddSystem(moveScrollMenuSystem)
 //             .AddSystem(playerSpawnFurnitureSystem)
 //             .AddSystem(createGameObjectsSystem)
 //             .AddSystem(moveFurnitureSystem)
@@ -40,7 +46,7 @@
 //             .AddSystem(syncGridPositionSystem)
 //             .AddSystem(randomSpawnerPositionSystem)
 //             .AddSystem(new SpawnerInteractSystem())
-//             .AddSystem(destroySpawnersSystem);
+//             .AddSystem(destroySpawnersSystem);        
 //     }
 //
 //     public IProtoAspect[] Aspects()

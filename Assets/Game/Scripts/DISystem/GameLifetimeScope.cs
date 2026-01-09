@@ -8,6 +8,7 @@ using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using VContainer;
 using VContainer.Unity;
 
@@ -41,6 +42,7 @@ namespace Game.Scripts.DISystem
 
         [Header("LevelScopePrefab")] 
         [SerializeField] private LevelLifetimeScope levelScopePrefab;
+        [SerializeField] private ScrollRect furnitureScrollRect;
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -63,6 +65,8 @@ namespace Game.Scripts.DISystem
             builder.RegisterInstance(introCamera).Keyed(GameCameraType.Intro);
             builder.RegisterInstance(gameplayCamera).Keyed(GameCameraType.Gameplay);
 
+            builder.Register<PlacementGrid>(Lifetime.Singleton);
+            builder.Register<ScrollMenuManager>(Lifetime.Singleton);
 
             builder.RegisterComponent(cinemachineTargetGroup);
             builder.RegisterComponent(tutorialUIController);
@@ -72,6 +76,7 @@ namespace Game.Scripts.DISystem
             builder.RegisterComponent(reputationUIController);
             builder.RegisterComponent(rewardUIController);
             builder.RegisterComponent(levelDisplayUI);
+            builder.RegisterComponent(furnitureScrollRect);
             builder.RegisterComponent(co);
         }
     }

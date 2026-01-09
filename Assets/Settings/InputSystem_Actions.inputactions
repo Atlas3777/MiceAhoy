@@ -34,7 +34,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "RandomSpawnFurniture",
+                    "name": "TogglePlaceMode",
                     "type": "Value",
                     "id": "b55f47ad-9807-4da7-b804-02dc0e222fcf",
                     "expectedControlType": "",
@@ -43,7 +43,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "MoveFurniture",
+                    "name": "OpenScrollMenu",
                     "type": "Value",
                     "id": "4bfccaf7-ff2f-4ec8-83b2-262c5af83285",
                     "expectedControlType": "",
@@ -55,6 +55,33 @@
                     "name": "Pause",
                     "type": "Button",
                     "id": "0d18cf28-75bf-4100-99cc-46d7f2733c7c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "GoRight",
+                    "type": "Value",
+                    "id": "1c4be065-2d22-4722-b2fc-d2939a23c9b7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "GoLeft",
+                    "type": "Value",
+                    "id": "affa8a69-7c0d-498b-a7a0-aadeebdfc169",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "BackToPool",
+                    "type": "Value",
+                    "id": "be680b3c-e61f-499d-b276-c37979f9d131",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -179,7 +206,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RandomSpawnFurniture",
+                    "action": "TogglePlaceMode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -190,7 +217,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MoveFurniture",
+                    "action": "OpenScrollMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -235,6 +262,39 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f1c8c3f0-7aeb-40c7-acbf-6435ea72652c",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GoRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "37ced747-545e-4eae-8ce0-b75c1ce6fdb6",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GoLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5aa53520-eb58-4826-a43c-0f5a9a5b0df0",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BackToPool",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

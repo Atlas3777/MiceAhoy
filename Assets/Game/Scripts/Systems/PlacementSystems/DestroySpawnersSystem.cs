@@ -18,8 +18,8 @@ public class DestroySpawnersSystem : IProtoInitSystem, IProtoRunSystem, IProtoDe
     public void Init(IProtoSystems systems)
     {
         _world = systems.World();
-        _iteratorEvent = new(new[] { typeof(DestroyAllSpawnersEvent)});
-        _iteratorSpawners = new(new[] { typeof(SpawnerTag), typeof(GridPositionComponent), typeof(RigidbodyComponent) });
+        _iteratorEvent = new(new[] { typeof(ActivateAllSpawnersEvent)});
+        _iteratorSpawners = new(new[] { typeof(SpawnerTag) });
         _iteratorEvent.Init(_world);
         _iteratorSpawners.Init(_world);
     }
@@ -32,11 +32,10 @@ public class DestroySpawnersSystem : IProtoInitSystem, IProtoRunSystem, IProtoDe
             {
                 ref var gridPos = ref _physicsAspect.GridPositionPool.Get(spawner);
                 ref var rig2D = ref _physicsAspect.RigidbodyPool.Get(spawner);
-                // GameObject.Destroy(rig2D.Rigidbody.gameObject);
-                // worldGrid.DeleteElement(gridPos.Position);
-                _world.DelEntity(spawner);
+                if (!_placementAspect.SpawnFurnitureEventPool.Has(spawner))
+                    _placementAspect.SpawnFurnitureEventPool.Add(spawner);
             }
-            _placementAspect.DestroyAllSpawnersEventPool.DelIfExists(entityEvent);
+            _placementAspect.ActivateAllSpawnersEventPool.DelIfExists(entityEvent);
         }
     }
 
