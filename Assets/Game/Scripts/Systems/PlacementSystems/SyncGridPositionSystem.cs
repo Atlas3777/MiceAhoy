@@ -10,7 +10,11 @@ public class SyncGridPositionSystem : IProtoInitSystem, IProtoRunSystem, IProtoD
     [DI] readonly PhysicsAspect _physicsAspect;
     [DI] readonly ProtoWorld _world;
 
+    private PlacementGrid worldGrid;
     private ProtoIt _iteratorEvent;
+
+    public SyncGridPositionSystem(PlacementGrid placementGrid) =>
+        worldGrid = placementGrid;
 
     public void Init(IProtoSystems systems)
     {

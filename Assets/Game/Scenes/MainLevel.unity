@@ -163,6 +163,13 @@ MonoBehaviour:
   introCamera: {fileID: 1558734470}
   gameplayCamera: {fileID: 1945308459}
   levelScopePrefab: {fileID: 6137545338429237792, guid: 426abb10b679be24e996cfd096cbb946, type: 3}
+  furnitureScrollRect: {fileID: 571789304}
+  _animationCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &100294198
 Transform:
   m_ObjectHideFlags: 0
@@ -271,7 +278,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 100
-  field of view: 11
+  field of view: 24.45
   orthographic: 1
   orthographic size: 5.2
   m_Depth: -1
@@ -675,6 +682,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62c07704242e485aa47b184501f9368a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutorialUIController
+--- !u!114 &571789304 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8320477002104932188, guid: 0712a29a232c81341b639a0153cd1ab2, type: 3}
+  m_PrefabInstance: {fileID: 571789301}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ScrollRect
 --- !u!114 &815536116 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3628900065505564982, guid: 0712a29a232c81341b639a0153cd1ab2, type: 3}
