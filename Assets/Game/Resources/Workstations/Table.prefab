@@ -223,6 +223,7 @@ MonoBehaviour:
   - rid: 7346997658554204247
   - rid: 7346997658554204248
   - rid: 1239605930776854804
+  - rid: 2522187526242041933
   references:
     version: 2
     RefIds:
@@ -236,6 +237,10 @@ MonoBehaviour:
       data:
         HolderRootGO: {fileID: 5640227963405745337}
         PickableItemGO: {fileID: 0}
+    - rid: 2522187526242041933
+      type: {class: TransformComponent, ns: , asm: Assembly-CSharp}
+      data:
+        transform: {fileID: 5025365851142115424}
     - rid: 7346997658554204235
       type: {class: PositionComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -248,7 +253,7 @@ MonoBehaviour:
     - rid: 7346997658554204246
       type: {class: SyncGridPositionEvent, ns: , asm: Assembly-CSharp}
       data:
-        Transform: {fileID: 5025365851142115424}
+        transform: {fileID: 5025365851142115424}
     - rid: 7346997658554204247
       type: {class: GridPositionComponent, ns: , asm: Assembly-CSharp}
       data:

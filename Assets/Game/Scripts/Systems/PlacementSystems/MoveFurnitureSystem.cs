@@ -31,6 +31,7 @@ public class MoveFurnitureSystem : IProtoInitSystem, IProtoRunSystem, IProtoDest
             moveEvent.Invoker.TryUnpack(out _, out var playerEntity);
             ref var playerInput = ref _playerAspect.InputRawPool.Get(playerEntity);
 
+            
             if (playerInput.InteractPressed)
             {
                 if (playerInput.IsMoveFurnitureNow)

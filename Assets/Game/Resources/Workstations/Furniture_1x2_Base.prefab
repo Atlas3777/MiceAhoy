@@ -346,15 +346,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3284733630429262879, guid: ae9d23c0e53149046bd27288a7259649, type: 3}
       propertyPath: Components.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3284733630429262879, guid: ae9d23c0e53149046bd27288a7259649, type: 3}
       propertyPath: 'Components.Array.data[2]'
       value: 1239605930776854810
       objectReference: {fileID: 0}
     - target: {fileID: 3284733630429262879, guid: ae9d23c0e53149046bd27288a7259649, type: 3}
+      propertyPath: 'Components.Array.data[3]'
+      value: 2522187526242041931
+      objectReference: {fileID: 0}
+    - target: {fileID: 3284733630429262879, guid: ae9d23c0e53149046bd27288a7259649, type: 3}
       propertyPath: 'managedReferences[1239605930776854810]'
       value: Assembly-CSharp Game.Scripts.Aspects.InteractableComponent
+      objectReference: {fileID: 0}
+    - target: {fileID: 3284733630429262879, guid: ae9d23c0e53149046bd27288a7259649, type: 3}
+      propertyPath: 'managedReferences[2522187526242041931]'
+      value: Assembly-CSharp TransformComponent
       objectReference: {fileID: 0}
     - target: {fileID: 3284733630429262879, guid: ae9d23c0e53149046bd27288a7259649, type: 3}
       propertyPath: managedReferences[1239605930776854810].Outline
@@ -364,6 +372,10 @@ PrefabInstance:
       propertyPath: managedReferences[1239605930776854810].IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3284733630429262879, guid: ae9d23c0e53149046bd27288a7259649, type: 3}
+      propertyPath: managedReferences[2522187526242041931].transform
+      value: 
+      objectReference: {fileID: 6481781234270847423}
     - target: {fileID: 4006171853315836514, guid: ae9d23c0e53149046bd27288a7259649, type: 3}
       propertyPath: m_Name
       value: Furniture_1x2_Base

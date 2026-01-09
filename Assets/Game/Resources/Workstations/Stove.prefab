@@ -518,7 +518,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8485599304948974929, guid: 75310bcf90aa6a4498bed35da17aae78, type: 3}
       propertyPath: Components.Array.size
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8485599304948974929, guid: 75310bcf90aa6a4498bed35da17aae78, type: 3}
       propertyPath: 'Components.Array.data[3]'
@@ -543,6 +543,10 @@ PrefabInstance:
     - target: {fileID: 8485599304948974929, guid: 75310bcf90aa6a4498bed35da17aae78, type: 3}
       propertyPath: 'Components.Array.data[8]'
       value: 1239606024941600847
+      objectReference: {fileID: 0}
+    - target: {fileID: 8485599304948974929, guid: 75310bcf90aa6a4498bed35da17aae78, type: 3}
+      propertyPath: 'Components.Array.data[9]'
+      value: 2522187526242041934
       objectReference: {fileID: 0}
     - target: {fileID: 8485599304948974929, guid: 75310bcf90aa6a4498bed35da17aae78, type: 3}
       propertyPath: 'managedReferences[1239606024941600841]'
@@ -573,6 +577,10 @@ PrefabInstance:
       value: Assembly-CSharp SyncGridPositionEvent
       objectReference: {fileID: 0}
     - target: {fileID: 8485599304948974929, guid: 75310bcf90aa6a4498bed35da17aae78, type: 3}
+      propertyPath: 'managedReferences[2522187526242041934]'
+      value: Assembly-CSharp TransformComponent
+      objectReference: {fileID: 0}
+    - target: {fileID: 8485599304948974929, guid: 75310bcf90aa6a4498bed35da17aae78, type: 3}
       propertyPath: managedReferences[1239606024941600842].type
       value: 1239606024941600843
       objectReference: {fileID: 0}
@@ -594,6 +602,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8485599304948974929, guid: 75310bcf90aa6a4498bed35da17aae78, type: 3}
       propertyPath: managedReferences[1239606024941600847].Transform
+      value: 
+      objectReference: {fileID: 676055299415930988}
+    - target: {fileID: 8485599304948974929, guid: 75310bcf90aa6a4498bed35da17aae78, type: 3}
+      propertyPath: managedReferences[1239606024941600847].transform
+      value: 
+      objectReference: {fileID: 676055299415930988}
+    - target: {fileID: 8485599304948974929, guid: 75310bcf90aa6a4498bed35da17aae78, type: 3}
+      propertyPath: managedReferences[2522187526242041934].transform
       value: 
       objectReference: {fileID: 676055299415930988}
     - target: {fileID: 8485599304948974929, guid: 75310bcf90aa6a4498bed35da17aae78, type: 3}

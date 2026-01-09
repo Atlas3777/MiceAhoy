@@ -99,7 +99,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
       propertyPath: Components.Array.size
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
       propertyPath: 'Components.Array.data[3]'
@@ -120,6 +120,10 @@ PrefabInstance:
     - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
       propertyPath: 'Components.Array.data[7]'
       value: 1239605930776854817
+      objectReference: {fileID: 0}
+    - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: 'Components.Array.data[8]'
+      value: 2522187526242041932
       objectReference: {fileID: 0}
     - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
       propertyPath: 'managedReferences[1239605930776854811]'
@@ -158,6 +162,10 @@ PrefabInstance:
       value: Assembly-CSharp Game.Scripts.Fish0
       objectReference: {fileID: 0}
     - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: 'managedReferences[2522187526242041932]'
+      value: Assembly-CSharp TransformComponent
+      objectReference: {fileID: 0}
+    - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
       propertyPath: managedReferences[1239605930776854814].type
       value: 1239605930776854815
       objectReference: {fileID: 0}
@@ -171,6 +179,14 @@ PrefabInstance:
       objectReference: {fileID: 4591927906797565240}
     - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
       propertyPath: managedReferences[1239605930776854817].Transform
+      value: 
+      objectReference: {fileID: 8814449994966506331}
+    - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: managedReferences[1239605930776854817].transform
+      value: 
+      objectReference: {fileID: 8814449994966506331}
+    - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
+      propertyPath: managedReferences[2522187526242041932].transform
       value: 
       objectReference: {fileID: 8814449994966506331}
     - target: {fileID: 438098198188134817, guid: dbd5444861dbc9643a0f1ca0643e7b0d, type: 3}
