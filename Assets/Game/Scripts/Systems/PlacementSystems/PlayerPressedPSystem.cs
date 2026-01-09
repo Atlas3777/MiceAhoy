@@ -1,14 +1,22 @@
 ﻿using Leopotam.EcsProto.QoL;
 using Leopotam.EcsProto;
 using UnityEngine;
+using UnityEngine.LightTransport;
 
-public class PlayerPressedPSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySystem
+public class PlayerPressedPSystem : IProtoRunSystem
 {
     [DI] readonly PlayerAspect _playerAspect;
     [DI] readonly PlacementAspect _placementAspect;
 
     private ProtoIt _iterator;
     private ProtoWorld _world;
+
+    private bool isPlacementStarted = false;
+    private bool isPlacementFinished = false;
+
+    public void StartPlacementMode() => isPlacementStarted = true;
+
+    public void EndPlacementMode() => isPlacementFinished = true;
 
     public void Init(IProtoSystems systems)
     {
@@ -19,31 +27,29 @@ public class PlayerPressedPSystem : IProtoInitSystem, IProtoRunSystem, IProtoDes
 
     public void Run()
     {
-        foreach (var entityPlayer in _iterator)
+        if (isPlacementStarted)
         {
-            ref var playerInput = ref _playerAspect.InputRawPool.Get(entityPlayer);
-            if (!playerInput.PlacementModePressed) continue;
-
-            Debug.Log("P ���� ������");
-
-            if (playerInput.IsInPlacementMode)
+            foreach (var entityPlayer in _iterator)
             {
+                ref var playerInput = ref _playerAspect.InputRawPool.Get(entityPlayer);
+                if (playerInput.IsInPlacementMode) continue;
+                playerInput.IsInPlacementMode = true;
+                if (!_placementAspect.PlacementModeTagPool.Has(entityPlayer))
+                    _placementAspect.PlacementModeTagPool.Add(entityPlayer);
+            }
+            isPlacementStarted = false;
+        }
+        if (isPlacementFinished)
+        {
+            foreach (var entityPlayer in _iterator)
+            {
+                ref var playerInput = ref _playerAspect.InputRawPool.Get(entityPlayer);
+                if (!playerInput.IsInPlacementMode) continue;
                 playerInput.IsInPlacementMode = false;
                 if (!_placementAspect.ActivateAllSpawnersEventPool.Has(entityPlayer))
                     _placementAspect.ActivateAllSpawnersEventPool.Add(entityPlayer);
-                continue;
             }
-
-            playerInput.IsInPlacementMode = true;
-
-            //�������� tag �� ������
-            if (!_placementAspect.PlacementModeTagPool.Has(entityPlayer))
-                _placementAspect.PlacementModeTagPool.Add(entityPlayer);
+            isPlacementFinished = false;
         }
-    }
-
-    public void Destroy()
-    {
-        _iterator = null;
     }
 }
