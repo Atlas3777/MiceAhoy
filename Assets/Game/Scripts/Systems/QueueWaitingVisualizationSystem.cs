@@ -40,6 +40,7 @@ namespace Game.Scripts.Systems
                 _guestAspect.WaitingOrderTagPool.Add(guest);
                 _guestAspect.GuestServicedTagPool.Add(guest);
                 _guestAspect.GuestServedEventPool.Add(guest);
+                _baseAspect.TimerCompletedPool.Add(guest);
                 _guestAspect.NeedsTableTagPool.Del(guest);
                 _guestAspect.QueueNeedsUpdateTagPool.Add(queueEntity);
                 _guestAspect.UpdateQueueEventPool.Add(queueEntity);
