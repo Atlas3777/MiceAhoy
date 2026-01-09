@@ -155,7 +155,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 5662ccf30ad44fd4d85af0832d9ab154, type: 2}
     - target: {fileID: 6711824874435919185, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
       propertyPath: Components.Array.size
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6711824874435919185, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
       propertyPath: 'Components.Array.data[6]'
@@ -168,6 +168,10 @@ PrefabInstance:
     - target: {fileID: 6711824874435919185, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
       propertyPath: 'Components.Array.data[8]'
       value: 1239605943781032009
+      objectReference: {fileID: 0}
+    - target: {fileID: 6711824874435919185, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
+      propertyPath: 'Components.Array.data[9]'
+      value: 2522187526242041936
       objectReference: {fileID: 0}
     - target: {fileID: 6711824874435919185, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
       propertyPath: 'managedReferences[1239605930776854799]'
@@ -186,6 +190,10 @@ PrefabInstance:
       value: Assembly-CSharp GuestTable
       objectReference: {fileID: 0}
     - target: {fileID: 6711824874435919185, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
+      propertyPath: 'managedReferences[2522187526242041936]'
+      value: Assembly-CSharp TransformComponent
+      objectReference: {fileID: 0}
+    - target: {fileID: 6711824874435919185, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
       propertyPath: managedReferences[7346997658554204244].type
       value: 1239605962581475606
       objectReference: {fileID: 0}
@@ -197,6 +205,10 @@ PrefabInstance:
       propertyPath: managedReferences[1239605930776854803].IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6711824874435919185, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
+      propertyPath: managedReferences[2522187526242041936].transform
+      value: 
+      objectReference: {fileID: 1886367725258414672}
     - target: {fileID: 6711824874435919185, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
       propertyPath: managedReferences[7346997658554204246].Transform
       value: 

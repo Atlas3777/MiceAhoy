@@ -50,6 +50,7 @@ MonoBehaviour:
   Components:
   - rid: 1239605930776854800
   - rid: 1239605930776854808
+  - rid: 2522187526242041929
   references:
     version: 2
     RefIds:
@@ -61,3 +62,7 @@ MonoBehaviour:
       type: {class: GridPositionComponent, ns: , asm: Assembly-CSharp}
       data:
         Position: {x: 0, y: 0, z: 0}
+    - rid: 2522187526242041929
+      type: {class: TransformComponent, ns: , asm: Assembly-CSharp}
+      data:
+        transform: {fileID: 8246708400276907009}

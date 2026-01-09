@@ -81,7 +81,10 @@ internal class PlayerTargetSystem : IProtoInitSystem, IProtoRunSystem
     private void HandleInteraction(ProtoEntity player, ProtoEntity target, PlayerInputComponent input) 
     {
         if (input.IsInPlacementMode)
-            MoveFurnitureInteract(player, target);
+        {
+            if (!input.IsMoveFurnitureNow)
+                MoveFurnitureInteract(player, target);
+        }
         else
             PickPlaceInteract(player, target);
     }

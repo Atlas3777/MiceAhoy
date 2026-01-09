@@ -78,6 +78,7 @@ public class InputService : IPostFixedTickable
         if (newData.OpenScrollPressed) currentData.OpenScrollPressed = true;
         if (newData.LeftPressed) currentData.LeftPressed = true;
         if (newData.RightPressed) currentData.RightPressed = true;
+        if (newData.BackToPoolPressed) currentData.BackToPoolPressed = true;
 
         currentData.MoveDirection = newData.MoveDirection;
 

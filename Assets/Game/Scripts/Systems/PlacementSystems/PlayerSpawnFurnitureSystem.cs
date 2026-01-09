@@ -31,7 +31,7 @@ public class PlayerSpawnFurnitureSystem : IProtoInitSystem, IProtoRunSystem, IPr
             ref var playerInput = ref _playerAspect.InputRawPool.Get(entityPlayer);
             if (!playerInput.OpenScrollPressed || !playerInput.IsInPlacementMode) continue;
 
-            Debug.Log("O ���� ������");
+            Debug.Log("O pressed");
 
             if (playerInput.IsScrollMenuOpened)
             {
