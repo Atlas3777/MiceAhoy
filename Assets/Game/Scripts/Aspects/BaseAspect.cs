@@ -26,6 +26,7 @@ namespace Game.Scripts.Aspects
         public ProtoPool<StartLoopSound> StartLoopSoundPool;
         public ProtoPool<StopLoopSound> StopLoopSoundPool;
         public ProtoPool<ActiveLoopSound> ActiveLoopSoundPool;
+        public ProtoPool<DoorTag> DoorTagPool;
         
         public GuestAspect GuestAspect;
         public WorkstationsAspect WorkstationsAspect;
@@ -34,6 +35,7 @@ namespace Game.Scripts.Aspects
         public PlacementAspect PlacementAspect;
         public PhysicsAspect PhysicsAspect;
     }
+    [Serializable] public struct DoorTag : IComponent {public DoorStaticController doorStaticController; }  
     public struct StartLoopSound { public SoundType SoundType; }
     public struct StopLoopSound { }
     public struct ActiveLoopSound 

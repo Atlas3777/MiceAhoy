@@ -1,8 +1,5 @@
-using Leopotam.EcsProto.QoL;
 using Leopotam.EcsProto;
-using UnityEngine;
-using System.Collections.Generic;
-using System.Linq;
+using Leopotam.EcsProto.QoL;
 
 public class SyncGridPositionSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySystem
 {
@@ -10,15 +7,15 @@ public class SyncGridPositionSystem : IProtoInitSystem, IProtoRunSystem, IProtoD
     [DI] readonly PhysicsAspect _physicsAspect;
     [DI] readonly ProtoWorld _world;
 
-    private PlacementGrid worldGrid;
+    private readonly PlacementGrid _worldGrid;
     private ProtoIt _iteratorEvent;
 
     public SyncGridPositionSystem(PlacementGrid placementGrid) =>
-        worldGrid = placementGrid;
+        _worldGrid = placementGrid;
 
     public void Init(IProtoSystems systems)
     {
-        _iteratorEvent = new(new[] { typeof(SyncGridPositionEvent), typeof(GridPositionComponent), typeof(PositionComponent)});
+        _iteratorEvent = new ProtoIt(new[] { typeof(SyncGridPositionEvent), typeof(GridPositionComponent), typeof(PositionComponent) });
         _iteratorEvent.Init(_world);
     }
 
@@ -26,22 +23,23 @@ public class SyncGridPositionSystem : IProtoInitSystem, IProtoRunSystem, IProtoD
     {
         foreach (var eventEntity in _iteratorEvent)
         {
-            ref var syncComponent = ref _placementAspect.SyncGridPositionEventPool.Get(eventEntity);
-            var posInGrid = new Vector3Int(Mathf.RoundToInt(syncComponent.transform.position.x / worldGrid.PlacementZoneCellSize.x),0,
-                Mathf.RoundToInt(syncComponent.transform.position.z / worldGrid.PlacementZoneCellSize.z))
-                - worldGrid.PlacementZoneIndexStart;
-            worldGrid.AddElement(posInGrid);
-            ref var gridPositionComponent = ref _physicsAspect.GridPositionPool.Get(eventEntity);
-            gridPositionComponent.Position = posInGrid;
+            ref var syncEvent = ref _placementAspect.SyncGridPositionEventPool.Get(eventEntity);
+            var worldPos = syncEvent.transform.position;
+            
+            var posInGrid = _worldGrid.WorldToGrid(worldPos);
+
+            _worldGrid.AddElement(posInGrid);
+
+            ref var gridPos = ref _physicsAspect.GridPositionPool.Get(eventEntity);
+            gridPos.Position = posInGrid;
+
             ref var pos = ref _physicsAspect.PositionPool.Get(eventEntity);
-            pos.Position = syncComponent.transform.position;
+            pos.Position = worldPos;
 
             _placementAspect.SyncGridPositionEventPool.DelIfExists(eventEntity);
         }
     }
 
-    public void Destroy()
-    {
+    public void Destroy() => 
         _iteratorEvent = null;
-    }
 }

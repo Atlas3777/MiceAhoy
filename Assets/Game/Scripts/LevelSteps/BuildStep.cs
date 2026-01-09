@@ -5,8 +5,6 @@ using Game.Scripts.Infrastructure;
 using Game.Scripts.Input;
 using Game.Scripts.LevelSteps;
 using Game.Scripts.Systems;
-using Game.Scripts.UIControllers;
-using UnityEngine;
 using VContainer;
 
 [Serializable]
@@ -17,52 +15,32 @@ public class BuildStep : LevelStep
 
     public override async UniTask Execute(IObjectResolver resolver, CancellationToken ct)
     {
-        var levelFlowController = resolver.Resolve<LevelFlowController>();
-        var winLoseSystem = resolver.Resolve<WinLoseSystem>();
+        var startDaySystem = resolver.Resolve<StartDaySystem>();
+        var playerPressedPSystem = resolver.Resolve<PlayerPressedPSystem>();
         var rr = resolver.Resolve<JoinListener>();
+        var tcs = new UniTaskCompletionSource();
         
-        var resultSource = new UniTaskCompletionSource<GameResult>();
+        playerPressedPSystem.StartPlacementMode();
         rr.Enable();
 
-        
-        Action<GameResult> onFinish = (result) => resultSource.TrySetResult(result);
+        Action onStartAction = null;
+        onStartAction = () =>
+        {
+            startDaySystem.OnStart -= onStartAction;
+            tcs.TrySetResult(); 
+        };
 
-        winLoseSystem.OnGameFinished += onFinish;
+        startDaySystem.OnStart += onStartAction;
 
-        GameResult result;
         try
         {
-            result = await resultSource.Task.AttachExternalCancellation(ct);
+            await tcs.Task.AttachExternalCancellation(ct);
         }
         finally
         {
-            winLoseSystem.OnGameFinished -= onFinish;
-        }
-
-        if (result == GameResult.Lose)
-        {
-            levelFlowController.SetCurrentLevelPhase(GameplayPhase.EcsPause);
-            await HandleLose(resolver, ct); 
-        }
-        
-        levelFlowController.SetCurrentLevelPhase(GameplayPhase.EcsPause);
-        Debug.Log("Gameplay finished with Win. Moving to next step.");
-    }
-
-    private async UniTask HandleLose(IObjectResolver resolver, CancellationToken ct)
-    {
-        var view = resolver.Resolve<LoseUIController>();
-        var sceneManager = resolver.Resolve<SceneController>();
-    
-        var choice = await view.WaitForChoice(ct);
-
-        if (choice == LoseButtonResult.Retry)
-        {
-            await sceneManager.ReloadSceneAsync();
-        }
-        else
-        {
-            await sceneManager.LoadMainGameSceneAsync();
+            startDaySystem.OnStart -= onStartAction;
+            rr.Disable();
+            playerPressedPSystem.EndPlacementMode();
         }
     }
 }

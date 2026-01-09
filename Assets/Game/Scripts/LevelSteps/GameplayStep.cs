@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Game.Scripts;
-using Game.Scripts.DISystem;
 using Game.Scripts.Infrastructure;
-using Game.Scripts.Input;
 using Game.Scripts.LevelSteps;
 using Game.Scripts.Systems;
 using Game.Scripts.UIControllers;
@@ -22,12 +19,10 @@ public class GameplayStep : LevelStep
     {
         var levelFlowController = resolver.Resolve<LevelFlowController>();
         var winLoseSystem = resolver.Resolve<WinLoseSystem>();
-        var rr = resolver.Resolve<JoinListener>();
-        
-        var resultSource = new UniTaskCompletionSource<GameResult>();
-        rr.Enable();
 
-        
+        var resultSource = new UniTaskCompletionSource<GameResult>();
+
+
         Action<GameResult> onFinish = (result) => resultSource.TrySetResult(result);
 
         winLoseSystem.OnGameFinished += onFinish;
@@ -42,13 +37,13 @@ public class GameplayStep : LevelStep
             winLoseSystem.OnGameFinished -= onFinish;
         }
 
+        levelFlowController.SetCurrentLevelPhase(GameplayPhase.EcsPause);
+
         if (result == GameResult.Lose)
         {
-            levelFlowController.SetCurrentLevelPhase(GameplayPhase.EcsPause);
-            await HandleLose(resolver, ct); 
+            await HandleLose(resolver, ct);
         }
-        
-        levelFlowController.SetCurrentLevelPhase(GameplayPhase.EcsPause);
+
         Debug.Log("Gameplay finished with Win. Moving to next step.");
     }
 
@@ -56,7 +51,7 @@ public class GameplayStep : LevelStep
     {
         var view = resolver.Resolve<LoseUIController>();
         var sceneManager = resolver.Resolve<SceneController>();
-    
+
         var choice = await view.WaitForChoice(ct);
 
         if (choice == LoseButtonResult.Retry)

@@ -47,6 +47,7 @@ namespace Game.Scripts.Infrastructure
                     new PlayerTargetSystem(),
                     new OutlineSystem(),
                     _r.Resolve<PickPlaceSystem>(),
+                    _r.Resolve<StartDaySystem>(),
                     
                     new CookingProceedSystem(),
                     _r.Resolve<StoveSystem>(),
@@ -83,7 +84,7 @@ namespace Game.Scripts.Infrastructure
                     
                     _r.Resolve<ClearSystem>(),
 
-                    new PlayerPressedPSystem(),
+                    _r.Resolve<PlayerPressedPSystem>(),
                     _r.Resolve<MoveScrollMenuSystem>(),
                     _r.Resolve<PlayerSpawnFurnitureSystem>(),
                     _r.Resolve<CreateGameObjectsSystem>(),

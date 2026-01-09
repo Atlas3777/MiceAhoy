@@ -106,6 +106,7 @@ public class GameResources
     {
         public CustomAuthoring Base_Furniture => Resources.Load<CustomAuthoring>("Workstations/Base_Furniture");
         public GameObject Door => Resources.Load<GameObject>("Workstations/Door");
+        public CustomAuthoring DoorStart => Resources.Load<CustomAuthoring>("Workstations/DoorStart");
         public CustomAuthoring Fridge => Resources.Load<CustomAuthoring>("Workstations/Fridge");
         public CustomAuthoring Fridge_OLD => Resources.Load<CustomAuthoring>("Workstations/Fridge_OLD");
         public CustomAuthoring Furniture_1x1_Base => Resources.Load<CustomAuthoring>("Workstations/Furniture_1x1_Base");

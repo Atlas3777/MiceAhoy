@@ -23,6 +23,14 @@ public class PlacementGrid
         workstationItems = GetWorkstationDict();
         pivotDifferences = GetPivotDifferenceDict();
     }
+    
+    public Vector3Int WorldToGrid(Vector3 worldPosition) {
+        return new Vector3Int(
+            Mathf.RoundToInt(worldPosition.x / PlacementZoneCellSize.x),
+            0,
+            Mathf.RoundToInt(worldPosition.z / PlacementZoneCellSize.z)
+        ) - PlacementZoneIndexStart;
+    }
 
     public bool IsContains(Vector3Int v) => worldGrid.Contains(v);
 
