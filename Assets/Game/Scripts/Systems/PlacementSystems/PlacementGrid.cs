@@ -7,41 +7,38 @@ using UnityEngine;
 
 public class PlacementGrid
 {
-    public Vector2Int PlacementZoneSize { get; } = new Vector2Int(14, 8);
-    public Vector2 PlacementZoneWorldStart { get; private set; }
-    public Vector2Int PlacementZoneIndexStart { get; } = new Vector2Int(-7, -4);
-    public Vector2 PlacementZoneCellSize { get; private set; }
-    private HashSet<Vector2Int> worldGrid = new();
+    public Vector3Int PlacementZoneSize { get; } = new Vector3Int(7, 0, 5);
+    public Vector3 PlacementZoneWorldStart { get; private set; }
+    public Vector3Int PlacementZoneIndexStart { get; } = new Vector3Int(-3, 0, -3);
+    public Vector3 PlacementZoneCellSize { get; private set; }
+    private HashSet<Vector3Int> worldGrid = new();
     private GameResources gameResources;
     private Dictionary<Type, GameObject> workstationItems;
-    private Dictionary<Type, Vector2> pivotDifferences;
+    private Dictionary<Type, Vector3> pivotDifferences;
 
-    public PlacementGrid(/*Grid grid,*/ GameResources gameResources)
+    public PlacementGrid(GameResources gameResources)
     {
-        // PlacementZoneCellSize = new Vector2(grid.cellSize.x, grid.cellSize.y);
-        // PlacementZoneWorldStart = new Vector2(PlacementZoneIndexStart.x * PlacementZoneCellSize.x + grid.transform.position.x,
-        //     PlacementZoneIndexStart.y * PlacementZoneCellSize.y + grid.transform.position.y);
-        PlacementZoneCellSize = new Vector2(1, 1);
-        PlacementZoneWorldStart = new Vector2(PlacementZoneIndexStart.x * PlacementZoneCellSize.x ,
-            PlacementZoneIndexStart.y * PlacementZoneCellSize.y);
-        
+        PlacementZoneCellSize = new Vector3(1, 0, 1);
+        PlacementZoneWorldStart = new Vector3(PlacementZoneIndexStart.x * PlacementZoneCellSize.x, 0,
+            PlacementZoneIndexStart.z * PlacementZoneCellSize.z);
+
         this.gameResources = gameResources;
         workstationItems = GetWorkstationDict();
         pivotDifferences = GetPivotDifferenceDict();
     }
 
-    public bool IsContains(Vector2Int v) => worldGrid.Contains(v);
+    public bool IsContains(Vector3Int v) => worldGrid.Contains(v);
 
-    public bool IsValidEmptyCell(Vector2Int v)
+    public bool IsValidEmptyCell(Vector3Int v)
     {
         if (v.x >= 0 && v.x < PlacementZoneSize.x)
-            if (v.y >= 0 && v.y < PlacementZoneSize.y)
+            if (v.z >= 0 && v.z < PlacementZoneSize.z)
                 if (!IsContains(v))
                     return true;
         return false;
     }
 
-    public void DeleteElement(Vector2Int v)
+    public void DeleteElement(Vector3Int v)
     {
         if (worldGrid.Contains(v))
         {
@@ -49,10 +46,10 @@ public class PlacementGrid
         }
     }
 
-    public void AddElement(Vector2Int v) =>
+    public void AddElement(Vector3Int v) =>
         worldGrid.Add(v);
 
-    public void SwitchElement(Vector2Int lastPos, Vector2Int newPos)
+    public void SwitchElement(Vector3Int lastPos, Vector3Int newPos)
     {
         AddElement(newPos);
         DeleteElement(lastPos);
@@ -70,7 +67,7 @@ public class PlacementGrid
         return false;
     }
 
-    public bool TryGetPivotDifference(Type type, out Vector3 pivotDifference) 
+    public bool TryGetPivotDifference(Type type, out Vector3 pivotDifference)
     {
         if (pivotDifferences.ContainsKey(type))
         {
@@ -84,9 +81,9 @@ public class PlacementGrid
 
     public IEnumerable<Type> GetWorkStationTypes()
     {
-        foreach (Type type in workstationItems.Keys) 
-        { 
-            yield return type; 
+        foreach (Type type in workstationItems.Keys)
+        {
+            yield return type;
         }
     }
 
@@ -98,6 +95,27 @@ public class PlacementGrid
             var type = placementObject.workstationType.GetType();
             if (type is null)
             {
+                Debug.LogError("workstationType null");
+                continue;
+            }
+            if (res.ContainsKey(type))
+            {
+                Debug.LogError($"dublicate in list: {type}");
+                continue;
+            }
+            res[type] = placementObject.prefab;
+        }
+        return res;
+    }
+
+    private Dictionary<Type, Vector3> GetPivotDifferenceDict()
+    {
+        Dictionary<Type, Vector3> res = new();
+        foreach (var diff in gameResources.PivotToRealPositionDifferences.differenceList)
+        {
+            var type = diff.item.GetType();
+            if (type is null)
+            {
                 Debug.LogError("� ������ ������� workstationType null");
                 continue;
             }
@@ -106,29 +124,8 @@ public class PlacementGrid
                 Debug.LogError($"������ ����� ���� ����������� ������: {type}");
                 continue;
             }
-            res[type] = placementObject.prefab;
+            res[type] = diff.pivotToRealPositionDifference;
         }
-        return res;
-    }
-
-    private Dictionary<Type, Vector2> GetPivotDifferenceDict()
-    {
-        Dictionary<Type, Vector2> res = new();
-        // foreach (var diff in gameResources.PivotToRealPositionDifferences.differenceList)
-        // {
-        //     var type = diff.item.GetType();
-        //     if (type is null)
-        //     {
-        //         Debug.LogError("� ������ ������� workstationType null");
-        //         continue;
-        //     }
-        //     if (res.ContainsKey(type))
-        //     {
-        //         Debug.LogError($"������ ����� ���� ����������� ������: {type}");
-        //         continue;
-        //     }
-        //     res[type] = diff.pivotToRealPositionDifference;
-        // }
         return res;
     }
 }

@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1f08660bcf7d1147821e0d59cb88923, type: 3}
+  m_Name: PivotToRealPositionDifferences
+  m_EditorClassIdentifier: Assembly-CSharp::PivotToRealPositionDifferences
+  differenceList:
+  - item:
+      rid: 6222298054940950604
+    pivotToRealPositionDifference: {x: 0, y: 0, z: 0}
+  - item:
+      rid: 6222298054940950605
+    pivotToRealPositionDifference: {x: 0, y: 0.22, z: 0}
+  - item:
+      rid: 6222298054940950606
+    pivotToRealPositionDifference: {x: 0, y: 0.22, z: 0}
+  - item:
+      rid: 6222298054940950626
+    pivotToRealPositionDifference: {x: 0, y: 0.3, z: 0}
+  - item:
+      rid: 6222298215309639763
+    pivotToRealPositionDifference: {x: 0, y: 0.3, z: 0}
+  - item:
+      rid: 6222298215309639764
+    pivotToRealPositionDifference: {x: 0, y: 0.3, z: 0}
+  - item:
+      rid: 6222298218394812501
+    pivotToRealPositionDifference: {x: 0, y: 0.22, z: 0}
+  - item:
+      rid: 6222298218394812502
+    pivotToRealPositionDifference: {x: 0, y: 0.3, z: 0}
+  references:
+    version: 2
+    RefIds:
+    - rid: 6222298054940950604
+      type: {class: Fridge, ns: , asm: Assembly-CSharp}
+      data:
+        workstationSprite: {fileID: 0}
+    - rid: 6222298054940950605
+      type: {class: Stove, ns: , asm: Assembly-CSharp}
+      data:
+        workstationSprite: {fileID: 0}
+    - rid: 6222298054940950606
+      type: {class: Table, ns: , asm: Assembly-CSharp}
+      data:
+        workstationSprite: {fileID: 0}
+    - rid: 6222298054940950626
+      type: {class: FridgeSpawner, ns: , asm: Assembly-CSharp}
+      data:
+        workstationSprite: {fileID: 0}
+    - rid: 6222298215309639763
+      type: {class: StoveSpawner, ns: , asm: Assembly-CSharp}
+      data:
+        workstationSprite: {fileID: 0}
+    - rid: 6222298215309639764
+      type: {class: TableSpawner, ns: , asm: Assembly-CSharp}
+      data:
+        workstationSprite: {fileID: 0}
+    - rid: 6222298218394812501
+      type: {class: GuestTable, ns: , asm: Assembly-CSharp}
+      data:
+        workstationSprite: {fileID: 0}
+    - rid: 6222298218394812502
+      type: {class: GuestTableSpawner, ns: , asm: Assembly-CSharp}
+      data:
+        workstationSprite: {fileID: 0}

@@ -2,14 +2,14 @@ namespace Game.Script.Factories
 {
     public class PlayerSpawnFurnitureSystemFactory
     {
-        private PlacementGrid worldGrid;
+        private ScrollMenuManager scrollMenuManager;
 
-        public PlayerSpawnFurnitureSystemFactory(PlacementGrid placementGrid) =>
-            worldGrid = placementGrid;
+        public PlayerSpawnFurnitureSystemFactory(ScrollMenuManager scrollMenuManager) =>
+            this.scrollMenuManager = scrollMenuManager;
 
         public PlayerSpawnFurnitureSystem CreateProtoSystem()
         {
-            return new PlayerSpawnFurnitureSystem(worldGrid);
+            return new PlayerSpawnFurnitureSystem(scrollMenuManager);
         }
     }
 }

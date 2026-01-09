@@ -19,7 +19,7 @@ public class MoveGameObjectSystem : IProtoInitSystem, IProtoRunSystem, IProtoDes
     {
         _world = systems.World();
         _iterator = new(new[] { typeof(MoveThisGameObjectEvent), typeof(GridPositionComponent),
-        typeof(FurnitureComponent)});
+        typeof(FurnitureComponent), typeof(TransformComponent)});
         _iterator.Init(_world);
     }
 
@@ -27,21 +27,21 @@ public class MoveGameObjectSystem : IProtoInitSystem, IProtoRunSystem, IProtoDes
     {
         foreach (var entity in _iterator)
         {
-            // ref var moveComponent = ref _placementAspect.MoveThisGameObjectEventPool.Get(entity);
-            // ref var transform = ref _placementAspect.PlacementTransformPool.Get(entity);
-            // ref var gridPosition = ref _physicsAspect.GridPositionPool.Get(entity);
-            // ref var furnComponent = ref _placementAspect.FurniturePool.Get(entity);
-            //
-            // // gridPosition.Position = moveComponent.newPositionInGrid;
-            // var scaledPosition = new Vector2(gridPosition.Position.x*worldGrid.PlacementZoneCellSize.x,
-            //     gridPosition.Position.y*worldGrid.PlacementZoneCellSize.y);
-            // var pivotDiff = Vector3.zero;
-            // worldGrid.TryGetPivotDifference(furnComponent.type.GetType(), out pivotDiff);
-            // var worldPosition = worldGrid.PlacementZoneWorldStart + scaledPosition + worldGrid.PlacementZoneCellSize / 2 
-            //     + pivotDiff;
-            // transform.transform.position = new Vector3(worldPosition.x, worldPosition.y, 0);
-            //
-            // _placementAspect.MoveThisGameObjectEventPool.DelIfExists(entity);
+            ref var moveComponent = ref _placementAspect.MoveThisGameObjectEventPool.Get(entity);
+            ref var transform = ref _placementAspect.PlacementTransformPool.Get(entity);
+            ref var gridPosition = ref _physicsAspect.GridPositionPool.Get(entity);
+            ref var furnComponent = ref _placementAspect.FurniturePool.Get(entity);
+
+            gridPosition.Position = moveComponent.newPositionInGrid;
+            var scaledPosition = new Vector2(gridPosition.Position.x * worldGrid.PlacementZoneCellSize.x,
+                gridPosition.Position.z * worldGrid.PlacementZoneCellSize.z);
+            var pivotDiff = Vector3.zero;
+            worldGrid.TryGetPivotDifference(furnComponent.type.GetType(), out pivotDiff);
+            var worldPosition = worldGrid.PlacementZoneWorldStart + new Vector3(scaledPosition.x,0,scaledPosition.y)// + worldGrid.PlacementZoneCellSize / 2
+                + pivotDiff;
+            transform.transform.position = worldPosition;
+
+            _placementAspect.MoveThisGameObjectEventPool.DelIfExists(entity);
         }
     }
 
