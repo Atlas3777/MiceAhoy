@@ -31,19 +31,6 @@ public class PlayerPressedPSystem : IProtoRunSystem, IProtoInitSystem, IProtoDes
 
     public void Run()
     {
-        //delete this --> 
-        if (!isPlacementFinished && !isPlacementStarted)
-        {
-            foreach (var entityPlayer in _iterator)
-            {
-                ref var playerInput = ref _playerAspect.InputRawPool.Get(entityPlayer);
-                if (playerInput.start) { StartPlacementMode(); playerInput.start = false; }
-                if (playerInput.end) { EndPlacementMode(); playerInput.end = false; }
-
-            }
-        }
-        // <--
-
         if (isPlacementStarted)
         {
             foreach (var entityPlayer in _iterator)

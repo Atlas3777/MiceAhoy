@@ -55,8 +55,4 @@ public struct PlayerInputComponent : IComponent
     public bool IsInPlacementMode;
     public bool IsRightPressed;
     public bool IsLeftPressed;
-
-    // delete this
-    public bool start;
-    public bool end;
 }
