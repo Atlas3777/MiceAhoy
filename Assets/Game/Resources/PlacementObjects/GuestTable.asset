@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlacementObject
   workstationType:
     rid: 6222298218394812500
-  prefab: {fileID: 7483289833465234307, guid: 5e02571656fc7254196e7996e33940d9, type: 3}
+  prefab: {fileID: 6901556389164430387, guid: 4767440edce991748b86ad16847bbe77, type: 3}
   UIVisualisation: {fileID: 21300000, guid: 0262b1353b59f6049b252f5a91376e07, type: 3}
   references:
     version: 2
