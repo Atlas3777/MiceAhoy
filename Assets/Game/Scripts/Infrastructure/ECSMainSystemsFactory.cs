@@ -83,7 +83,7 @@ namespace Game.Scripts.Infrastructure
                     
                     _r.Resolve<ClearSystem>(),
 
-                    new PlayerPressedPSystem(),
+                    _r.Resolve<PlayerPressedPSystem>(),
                     _r.Resolve<MoveScrollMenuSystem>(),
                     _r.Resolve<PlayerSpawnFurnitureSystem>(),
                     _r.Resolve<CreateGameObjectsSystem>(),

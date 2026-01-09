@@ -72,7 +72,7 @@ namespace Game.Scripts.DISystem
             builder.Register<CreateGameObjectsSystem>(Lifetime.Singleton);
             builder.Register<MoveFurnitureSystem>(Lifetime.Singleton);
             builder.Register<MoveGameObjectSystem>(Lifetime.Singleton);
-            
+            builder.Register<PlayerPressedPSystem>(Lifetime.Singleton);
         }
     }
 }
