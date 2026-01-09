@@ -3,7 +3,7 @@ using Leopotam.EcsProto;
 using UnityEngine;
 using UnityEngine.LightTransport;
 
-public class PlayerPressedPSystem : IProtoRunSystem
+public class PlayerPressedPSystem : IProtoRunSystem, IProtoInitSystem, IProtoDestroySystem
 {
     [DI] readonly PlayerAspect _playerAspect;
     [DI] readonly PlacementAspect _placementAspect;

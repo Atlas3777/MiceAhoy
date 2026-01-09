@@ -41,6 +41,13 @@ public class MoveGameObjectSystem : IProtoInitSystem, IProtoRunSystem, IProtoDes
                 + pivotDiff;
             transform.transform.position = worldPosition;
 
+            if (_physicsAspect.PositionPool.Has(entity))
+            {
+                ref var posComp = ref _physicsAspect.PositionPool.Get(entity);
+                posComp.Position = transform.transform.position;
+            }    
+
+
             _placementAspect.MoveThisGameObjectEventPool.DelIfExists(entity);
         }
     }
