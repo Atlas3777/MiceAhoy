@@ -104,6 +104,15 @@ public class GameResources
     public Workstations WorkstationsLink;
     public class Workstations
     {
+        public Spawners SpawnersLink;
+        public class Spawners
+        {
+            public CustomAuthoring baseSpawner => Resources.Load<CustomAuthoring>("Workstations/Spawners/baseSpawner");
+            public CustomAuthoring fridgeSpawner => Resources.Load<CustomAuthoring>("Workstations/Spawners/fridgeSpawner");
+            public CustomAuthoring guestTableSpawner => Resources.Load<CustomAuthoring>("Workstations/Spawners/guestTableSpawner");
+            public CustomAuthoring stoveSpawner => Resources.Load<CustomAuthoring>("Workstations/Spawners/stoveSpawner");
+            public CustomAuthoring tableSpawner => Resources.Load<CustomAuthoring>("Workstations/Spawners/tableSpawner");
+        }
         public CustomAuthoring Base_Furniture => Resources.Load<CustomAuthoring>("Workstations/Base_Furniture");
         public GameObject Door => Resources.Load<GameObject>("Workstations/Door");
         public CustomAuthoring DoorStart => Resources.Load<CustomAuthoring>("Workstations/DoorStart");
@@ -116,10 +125,14 @@ public class GameResources
         public CustomAuthoring Stove => Resources.Load<CustomAuthoring>("Workstations/Stove");
         public CustomAuthoring Table => Resources.Load<CustomAuthoring>("Workstations/Table");
         public CustomAuthoring TableOld => Resources.Load<CustomAuthoring>("Workstations/TableOld");
+
+        public Workstations()
+        {
+            SpawnersLink = new Spawners();
+        }
     }
     public UnityEngine.UI.Image baseFurnitureCard => Resources.Load<UnityEngine.UI.Image>("baseFurnitureCard");
     public Sprite box => Resources.Load<Sprite>("box");
-    public CustomAuthoring FridgeSpawner => Resources.Load<CustomAuthoring>("FridgeSpawner");
     public PickableItemsDB Pickable_Items_DB => Resources.Load<PickableItemsDB>("Pickable_Items_DB");
     public PivotToRealPositionDifferences PivotToRealPositionDifferences => Resources.Load<PivotToRealPositionDifferences>("PivotToRealPositionDifferences");
     public PlacementObjectsDB PlacementObjects_DB => Resources.Load<PlacementObjectsDB>("PlacementObjects_DB");

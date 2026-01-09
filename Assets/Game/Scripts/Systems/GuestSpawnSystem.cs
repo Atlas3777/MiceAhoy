@@ -1,11 +1,8 @@
-﻿using System.Globalization;
-using System.Linq;
-using Game.Script.Aspects;
+﻿using Game.Script.Aspects;
 using Game.Scripts.Aspects;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Game.Scripts.Systems
 {

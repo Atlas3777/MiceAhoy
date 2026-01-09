@@ -16,15 +16,27 @@ namespace Game.Scripts.Systems
         [DI] readonly WorkstationsAspect _workstationsAspect;
 
         private ProtoItExc _startWaitingOrderIt;
+        private ProtoItExc _startWaitingInQueueIt;
+        private ProtoItExc _queueIt;
 
         public void Init(IProtoSystems systems)
         {
             _startWaitingOrderIt = new(new[]
             {
                 typeof(GuestTag), typeof(ReachedTargetPositionEvent)
-            }, new[] { typeof(WaitingOrderTag), typeof(GuestServicedTag) });
+            }, new[] { typeof(WaitingOrderTag), typeof(GuestServicedTag), typeof(GuestInQueueTag) });
+            _startWaitingInQueueIt = new(new[]
+            {
+                typeof(GuestTag), typeof(ReachedTargetPositionEvent), typeof(GuestInQueueTag)
+            }, new[] { typeof(GuestIsWaitingInQueue), typeof(GuestServicedTag) });
+            _queueIt = new(new[]
+            {
+                typeof(QueueComponent), typeof(QueueIsNotEmptyTag)
+            }, new[] { typeof(TimerComponent) });
 
             _startWaitingOrderIt.Init(_world);
+            _startWaitingInQueueIt.Init(_world);
+            _queueIt.Init(_world);
         }
 
         public void Run()
@@ -37,12 +49,37 @@ namespace Game.Scripts.Systems
                 
                 _guestAspect.GuestViewComponentPool.Get(guestEntity).view.canvasGroup.alpha = 1;
                 
-                
                 _guestAspect.WaitingOrderTagPool.Add(guestEntity);
                 ref var timer = ref _baseAspect.TimerPool.GetOrAdd(guestEntity);
                 ref var guestState = ref _guestAspect.GuestStateComponentPool.GetOrAdd(guestEntity);
                 
                 timer.Duration = guestState.WaitingSeconds;
+            }
+
+            foreach (var guestEntity in _startWaitingInQueueIt)
+            {
+                Debug.Log("Старт ожидания в очереди");
+                foreach (var queueEntity in _queueIt)
+                {
+                    ref var queue = ref _guestAspect.QueueComponentPool.Get(queueEntity).Queue;
+                    if (!queue.Peek().TryUnpack(out _, out var firstGuest))
+                    {
+                        Debug.LogWarning("Гость мёртв");
+                        continue;
+                    }
+
+                    if (guestEntity == firstGuest)
+                    {
+                        _guestAspect.GuestIsWaitingInQueuePool.Add(guestEntity);
+                        _guestAspect.GuestViewComponentPool.Get(guestEntity).view.canvasGroup.alpha = 1;
+                        _guestAspect.GuestIsWalkingTagPool.DelIfExists(guestEntity);
+                        ref var timer = ref _baseAspect.TimerPool.GetOrAdd(guestEntity);
+                        ref var guestState = ref _guestAspect.GuestStateComponentPool.GetOrAdd(guestEntity);
+                
+                        timer.Duration = guestState.WaitingSeconds;
+                        //timer.Duration = 5; // Debug
+                    }
+                }
             }
         }
 

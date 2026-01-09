@@ -55,10 +55,11 @@ namespace Game.Scripts.Systems
                     if (indexInQueue == 0)
                     {
                         _guestAspect.QueueIsNotEmptyTagPool.GetOrAdd(queueEntity);
-                        _guestAspect.UpdateQueueEventPool.GetOrAdd(queueEntity);
+                        _guestAspect.UpdateQueueVisualEventPool.GetOrAdd(queueEntity);
                     }
 
                     Debug.Log($"Гость {guestEntity} встал в очередь на позицию {indexInQueue}");
+                    _guestAspect.GuestIsWalkingTagPool.GetOrAdd(guestEntity);
                 }
             }
         }

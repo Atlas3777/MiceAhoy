@@ -41,7 +41,7 @@ namespace Game.Scripts.Systems
             _guestGroupServedEventIt = new(new[] { typeof(GuestServedEvent) });
             _playerInitializeItEventIt = new(new[] { typeof(PlayerInitializeEvent) });
             _selectedByPlayerTagIt = new(new[] { typeof(SelectedByPlayerEvent)});
-            _updateQueueEventIt = new(new[] { typeof(UpdateQueueEvent) });
+            _updateQueueEventIt = new(new[] { typeof(UpdateQueueVisualEvent) });
             _guestLeavingQueueEventIt = new(new[] { typeof(GuestLeavingQueueEvent) });
             _guestEnteringQueueEventIt = new(new[] { typeof(GuestEnteringQueueEvent) });
             _aaaaa = new(new[] { typeof(StopLoopSound)});
@@ -98,7 +98,7 @@ namespace Game.Scripts.Systems
                 _baseAspect.SelectedByPlayerTagPool.Del(item);
             
             foreach (var item in _updateQueueEventIt)
-                _guestAspect.UpdateQueueEventPool.Del(item);
+                _guestAspect.UpdateQueueVisualEventPool.Del(item);
             
             foreach (var item in _guestLeavingQueueEventIt)
                 _guestAspect.GuestLeavingQueueEventPool.Del(item);

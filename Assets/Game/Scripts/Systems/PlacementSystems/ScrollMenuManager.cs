@@ -83,7 +83,7 @@ public class ScrollMenuManager
 
     public void ClearScrollMenu()
     {
-        currentFurnitures.Clear();
+        currentFurnitures = null;
         DestroyCards();
     }
 

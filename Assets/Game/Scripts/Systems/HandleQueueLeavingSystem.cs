@@ -16,7 +16,7 @@ namespace Game.Scripts.Systems
         public void Init(IProtoSystems systems)
         {
             _leavingGuestsIt = new(new[] { typeof(GuestLeavingQueueEvent) });
-            _updatingQueueIt = new(new[] { typeof(QueueComponent), typeof(QueueIsNotEmptyTag), typeof(UpdateQueueEvent) });
+            _updatingQueueIt = new(new[] { typeof(QueueComponent), typeof(QueueIsNotEmptyTag), typeof(UpdateQueueVisualEvent) });
             _leavingGuestsIt.Init(_world);
             _updatingQueueIt.Init(_world);
         }

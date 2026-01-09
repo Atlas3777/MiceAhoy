@@ -63,11 +63,12 @@ namespace Game.Scripts.Infrastructure
                     new GuestBookTableSystem(),
                     new GuestNavigateToQueueSystem(_r.Resolve<LevelContext>().positionsRegistry.GuestsQueueHead),
                     new GuestNavigateToTableSystem(),
+                    new GuestQueueTimeoutSystem(),
                     new MoveQueueSystem(_r.Resolve<LevelContext>().positionsRegistry.GuestsQueueHead),
-                    new QueueWaitingVisualizationSystem(),
                     new GuestMovementSystem(),
                     
                     new GuestWaitingSystem(),
+                    //new QueueWaitingVisualizationSystem(),
                     _r.Resolve<GuestEatingSystem>(),
                     
                     new HappyGuestLeaveSystem(),
