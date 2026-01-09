@@ -52,7 +52,7 @@ namespace Game.Scripts.Systems
                 ref var movementSpeedComponent = ref e.GetOrAdd<MovementSpeedComponent>();
                 ref var navMeshAgent = ref e.Get<NavMeshAgentComponent>().Agent;
 
-                SetupView(e, profile);
+                SetupView(e);
                 
                 guestStateComponent.MaxHunger = profile.MaxHunger;
                 guestStateComponent.Hunger = profile.MaxHunger;
@@ -69,10 +69,10 @@ namespace Game.Scripts.Systems
             }
         }
 
-        public void SetupView(ProtoPackedEntityWithWorld e, GuestProfile guestProfile)
+        public void SetupView(ProtoPackedEntityWithWorld e)
         {
-            ref var vis = ref e.Get<GuestViewComponent>();
-            vis.CurrentHunger.text = guestProfile.MaxHunger.ToString(CultureInfo.InvariantCulture);
+            ref var vis = ref e.Get<GuestViewComponent>().view;
+            vis.HungerBarImage.fillAmount = 1f;
         }
     }
 }

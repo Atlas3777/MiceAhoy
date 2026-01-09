@@ -1,8 +1,10 @@
-﻿using System.Linq;
+﻿using System.Globalization;
+using System.Linq;
 using Game.Scripts.Aspects;
 using Game.Scripts.Infrastructure;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
+using TMPro;
 using UnityEngine;
 
 namespace Game.Scripts.Systems
@@ -14,13 +16,15 @@ namespace Game.Scripts.Systems
 
         private readonly LevelConfig _config;
         private readonly LevelState _levelState;
+        private readonly TMP_Text _text;
 
         private int PlayerCount = 1;
 
-        public LevelDirectorSystem(LevelState levelState, LevelConfig config)
+        public LevelDirectorSystem(LevelState levelState, LevelConfig config, TMP_Text text)
         {
             _config = config;
             _levelState = levelState;
+            _text = text;
         }
 
         public void Init(IProtoSystems systems)
@@ -40,6 +44,8 @@ namespace Game.Scripts.Systems
                 state.TimedOut = true;
                 return;
             }
+
+            _text.text = state.AccumulatedCredits.ToString(CultureInfo.InvariantCulture);
 
             state.ElapsedTime += Time.fixedDeltaTime;
             float progress = Mathf.Clamp01(state.ElapsedTime / state.LevelDuration);

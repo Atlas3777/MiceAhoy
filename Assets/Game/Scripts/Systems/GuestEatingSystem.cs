@@ -1,4 +1,3 @@
-using System.Globalization;
 using Game.Script.Aspects;
 using Game.Scripts.Aspects;
 using Leopotam.EcsProto;
@@ -68,23 +67,20 @@ namespace Game.Scripts.Systems
 
                 guestState.Hunger -= item.satietyRestoration;
 
-                ref var view = ref guestEntity.Get<GuestViewComponent>();
-                if (view.CurrentHunger != null)
-                {
-                    view.CurrentHunger.text = guestState.Hunger.ToString(CultureInfo.InvariantCulture);
-                    view.HungerBarImage.fillAmount = guestState.Hunger / guestState.MaxHunger;
-                }
+                ref var view = ref guestEntity.Get<GuestViewComponent>().view;
+
+                view.HungerBarImage.fillAmount = guestState.Hunger / guestState.MaxHunger;
 
                 Debug.Log($"Гость поел. Текущий голод: {guestState.Hunger}");
 
                 Helper.EatItem(tableEntity, ref holder, _playerAspect);
-                
+
                 if (guestState.Hunger <= 0)
                 {
                     guestState.Hunger = 0;
                     _guestAspect.GuestTableIsFreeTagPool.Add(tableEntity);
                 }
-                
+
                 if (eatType == typeof(Trash))
                 {
                     Debug.Log("Сам свои угольки хавай");

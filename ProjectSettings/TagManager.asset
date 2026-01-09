@@ -13,9 +13,9 @@ TagManager:
   - UI
   - Doors
   - Wall
-  - 
-  - 
-  - 
+  - Player
+  - Guest
+  - GhostWall
   - 
   - 
   - 

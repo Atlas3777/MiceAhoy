@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2424256545186246219}
   - component: {fileID: 4758961523261290494}
   - component: {fileID: 1269709820235219348}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SatietyRestorationText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 6130618373860877934}
   - component: {fileID: 1654787013045530509}
   - component: {fileID: 3190425593524289116}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HoldingItemInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 3351321716150167701}
   - component: {fileID: 8701768910501360851}
   - component: {fileID: 7461618499024242777}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -328,7 +328,7 @@ GameObject:
   - component: {fileID: 6596835160687744025}
   - component: {fileID: 5995746045589069020}
   - component: {fileID: 7388365791891845617}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -584,7 +584,7 @@ GameObject:
   - component: {fileID: 5386724084893822737}
   - component: {fileID: 1914705484069680814}
   - component: {fileID: 152966972940914259}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -671,7 +671,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 265113631180259755}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HolderRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -702,7 +702,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6905700394245461369}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}

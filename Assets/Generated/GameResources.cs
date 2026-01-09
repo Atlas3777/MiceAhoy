@@ -37,8 +37,6 @@ public class GameResources
     public class LevelConfigs
     {
         public LevelConfig LevelConfig1 => Resources.Load<LevelConfig>("LevelConfigs/LevelConfig1");
-        public LevelConfig LevelConfig100 => Resources.Load<LevelConfig>("LevelConfigs/LevelConfig100");
-        public LevelConfig LevelConfig2 => Resources.Load<LevelConfig>("LevelConfigs/LevelConfig2");
     }
     public Phys PhysLink;
     public class Phys

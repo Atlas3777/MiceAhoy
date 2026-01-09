@@ -33,7 +33,7 @@ namespace Game.Scripts.Systems
 
         public void Run()
         {
-            var offset = new Vector3(0, 0, 1);
+            var offset = new Vector3(-1.2f, 0, 0);
 
             foreach (var queueEntity in _queueIt)
             {

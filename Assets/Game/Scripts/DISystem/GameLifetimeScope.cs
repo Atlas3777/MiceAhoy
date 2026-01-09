@@ -4,6 +4,7 @@ using Game.Scripts.Input;
 using Game.Scripts.LevelSteps;
 using Game.Scripts.UIControllers;
 using Leopotam.EcsProto;
+using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -28,6 +29,8 @@ namespace Game.Scripts.DISystem
         [SerializeField] private ReputationUIController reputationUIController;
         [SerializeField] private RewardUIController rewardUIController;
         [SerializeField] private LevelDisplayUI levelDisplayUI;
+        
+        [SerializeField] private TMP_Text co;
         
 
         [Header("Camera Configuration")] 
@@ -69,6 +72,7 @@ namespace Game.Scripts.DISystem
             builder.RegisterComponent(reputationUIController);
             builder.RegisterComponent(rewardUIController);
             builder.RegisterComponent(levelDisplayUI);
+            builder.RegisterComponent(co);
         }
     }
 

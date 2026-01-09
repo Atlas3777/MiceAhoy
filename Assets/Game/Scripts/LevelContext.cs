@@ -7,6 +7,8 @@ namespace Game.Scripts
     { 
         public PositionsRegistry positionsRegistry;
         public Transform levelCenter;
+        public Transform enemyPreview;
+        public BoxCollider enemyBox;
         public NavMeshSurface navMeshSurface;
     }
 }

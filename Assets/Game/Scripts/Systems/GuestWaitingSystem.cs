@@ -35,6 +35,9 @@ namespace Game.Scripts.Systems
                 _guestAspect.GuestIsWalkingTagPool.DelIfExists(guestEntity);
                 _guestAspect.NeedsTableTagPool.DelIfExists(guestEntity);
                 
+                _guestAspect.GuestViewComponentPool.Get(guestEntity).view.canvasGroup.alpha = 1;
+                
+                
                 _guestAspect.WaitingOrderTagPool.Add(guestEntity);
                 ref var timer = ref _baseAspect.TimerPool.GetOrAdd(guestEntity);
                 ref var guestState = ref _guestAspect.GuestStateComponentPool.GetOrAdd(guestEntity);

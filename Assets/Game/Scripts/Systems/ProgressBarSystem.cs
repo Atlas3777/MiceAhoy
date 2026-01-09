@@ -38,7 +38,8 @@ namespace Game.Scripts.Systems
                         progressValue = timer.Elapsed / timer.Duration;
 
                     progressBar.Image.fillAmount = progressValue;
-                    progressBar.Image.color = progressBar.Gradient.Evaluate(progressValue);
+                    if(progressBar.useGradient)
+                        progressBar.Image.color = progressBar.Gradient.Evaluate(progressValue);
                 }
                 else
                 {

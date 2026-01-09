@@ -43,12 +43,12 @@ namespace Game.Script.Aspects
         public ProtoPool<QueueComponent> QueueComponentPool;
         public ProtoPool<QueueWaitingTimeComponent> QueueWaitingTimeComponentPool;
     }
+    
 
     [Serializable]
     public struct GuestViewComponent : IComponent
     {
-        public Image HungerBarImage;
-        public TMP_Text CurrentHunger;
+        public GuestView view;
     }
 
     [Serializable]

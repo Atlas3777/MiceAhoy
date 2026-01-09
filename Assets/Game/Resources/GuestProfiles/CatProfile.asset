@@ -17,5 +17,5 @@ MonoBehaviour:
   Weight: 4
   PatienceSeconds: 15
   MaxHunger: 30
-  MoveSpeed: 1.5
+  MoveSpeed: 4
   ReputationLoss: 1

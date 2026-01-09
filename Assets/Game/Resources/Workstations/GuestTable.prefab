@@ -111,7 +111,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5025365851142115424, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2
+      value: 3.34384
       objectReference: {fileID: 0}
     - target: {fileID: 5025365851142115424, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -119,7 +119,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5025365851142115424, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1
+      value: 1.31346
       objectReference: {fileID: 0}
     - target: {fileID: 5025365851142115424, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -192,7 +192,7 @@ PrefabInstance:
     - target: {fileID: 6711824874435919185, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
       propertyPath: managedReferences[1239605930776854803].Outline
       value: 
-      objectReference: {fileID: 5173222594521170149}
+      objectReference: {fileID: 4785861376468136210}
     - target: {fileID: 6711824874435919185, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
       propertyPath: managedReferences[1239605930776854803].IsActive
       value: 0
@@ -231,8 +231,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5025365851142115424, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
   m_PrefabInstance: {fileID: 6886029042051336752}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &5173222594521170149 stripped
+--- !u!1 &4785861376468136210 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 1754974920767163093, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
+  m_CorrespondingSourceObject: {fileID: 2160282507413256994, guid: 5fceb0501569c744da73f1c2806f80e2, type: 3}
   m_PrefabInstance: {fileID: 6886029042051336752}
   m_PrefabAsset: {fileID: 0}
