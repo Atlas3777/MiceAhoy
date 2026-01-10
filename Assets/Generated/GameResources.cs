@@ -32,12 +32,14 @@ public class GameResources
     public class Layouts
     {
         public LevelContext level => Resources.Load<LevelContext>("Layouts/level");
+        public LevelContext level2 => Resources.Load<LevelContext>("Layouts/level2");
         public LevelContext levelWithQueue => Resources.Load<LevelContext>("Layouts/levelWithQueue");
     }
     public LevelConfigs LevelConfigsLink;
     public class LevelConfigs
     {
         public LevelConfig LevelConfig1 => Resources.Load<LevelConfig>("LevelConfigs/LevelConfig1");
+        public LevelConfig LevelConfig2 => Resources.Load<LevelConfig>("LevelConfigs/LevelConfig2");
     }
     public Phys PhysLink;
     public class Phys

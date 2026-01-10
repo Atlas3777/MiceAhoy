@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c91aab533e574495a8a7d72786068a82, type: 3}
+  m_Name: LevelConfig2
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.LevelConfig
+  DifficultyCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.5
+      inSlope: 0.5
+      outSlope: 0.5
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.5
+      outSlope: 0.5
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  BaseCreditsPerSecond: 1
+  IntensityCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  LevelDuration: 15
+  AvailableGuests:
+  - {fileID: 11400000, guid: dfaade5aeaef447449ab50174aec86be, type: 2}
+  BaseCreditWallet: 3
+  MinBudgetReserveFraction: 0.15
+  SpawnIntervalMin: 2
+  SpawnIntervalMax: 5
+  MinSpawnRetryInterval: 0.5
+  MaxConcurrentGuests: 6
+  SpawnStrategy:
+    rid: 1239606099834830940
+  LevelStates:
+  - rid: 1239606099834830942
+  - rid: 1239606117473189960
+  - rid: 1239606099834830943
+  - rid: 1239606099834830944
+  EcsSystemFactory:
+    rid: 1239606099834830941
+  ForcedSpawnAfterNoSpawnSeconds: 10
+  LevelLayout: {fileID: 1632987616714677642, guid: 49e967e3d5869c54a849235aea656ef2, type: 3}
+  references:
+    version: 2
+    RefIds:
+    - rid: 1239606099834830940
+      type: {class: CostAwareWeightedSpawnStrategy, ns: Game.Scripts.LevelSettings, asm: Assembly-CSharp}
+      data:
+        SaveChance: 0.45
+        MaxCostBias: 1.2
+        RecentSpawnCooldown: 8
+        RecentSpawnPenalty: 0.3
+        ExpensiveBiasFactor: 1.2
+    - rid: 1239606099834830941
+      type: {class: ECSMainSystemsFactory, ns: Game.Scripts.Infrastructure, asm: Assembly-CSharp}
+      data: 
+    - rid: 1239606099834830942
+      type: {class: GuestPreviewStep, ns: Game.Scripts.LevelSteps, asm: Assembly-CSharp}
+      data:
+        _previewCount: 5
+    - rid: 1239606099834830943
+      type: {class: GameplayStep, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 1239606099834830944
+      type: {class: RewardStep, ns: Game.Scripts.LevelSteps, asm: Assembly-CSharp}
+      data: 
+    - rid: 1239606117473189960
+      type: {class: BuildStep, ns: , asm: Assembly-CSharp}
+      data: 
