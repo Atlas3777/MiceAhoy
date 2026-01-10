@@ -1,4 +1,5 @@
-﻿using Game.Scripts.Aspects;
+﻿using Game.Scripts;
+using Game.Scripts.Aspects;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using UnityEngine;
@@ -80,6 +81,7 @@ internal class PlayerTargetSystem : IProtoInitSystem, IProtoRunSystem
 
     private void HandleInteraction(ProtoEntity player, ProtoEntity target, PlayerInputComponent input) 
     {
+        target.Add<InteractedEvent>();
         if (input.IsInPlacementMode)
         {
             if (!input.IsMoveFurnitureNow)

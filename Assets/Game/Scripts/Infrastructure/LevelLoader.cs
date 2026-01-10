@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 using VContainer.Unity;
 using Game.Scripts.DISystem;
 using VContainer;
@@ -12,12 +13,14 @@ namespace Game.Scripts.Infrastructure
         private readonly SaveService _saveService;
 
         private LevelLifetimeScope _currentLevelScope;
+        private SceneController _sc;
 
-        public LevelLoader(LifetimeScope parentScope, SaveService service, LevelLifetimeScope levelScopePrefab)
+        public LevelLoader(LifetimeScope parentScope, SaveService service, LevelLifetimeScope levelScopePrefab, SceneController sc)
         {
             _parentScope = parentScope;
             _saveService = service;
             _levelScopePrefab = levelScopePrefab;
+            _sc = sc;
         }
 
         public void Start()
@@ -26,7 +29,12 @@ namespace Game.Scripts.Infrastructure
             var i = _saveService.Data.LevelIndex;
             var config = Resources.Load<LevelConfig>($"LevelConfigs/LevelConfig{i}");
 
-            if (config == null) Debug.LogError($"Не нашел конфиг уровня {i}!");
+            if (config == null)
+            {
+                Debug.Log($"Не нашел конфиг уровня {i}!");
+                _sc.LoadMainGameSceneAsync().Forget();
+                return;
+            }
 
             LoadLevel(config);
         }

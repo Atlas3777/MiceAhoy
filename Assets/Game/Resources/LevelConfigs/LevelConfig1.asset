@@ -64,6 +64,7 @@ MonoBehaviour:
   LevelDuration: 15
   AvailableGuests:
   - {fileID: 11400000, guid: dfaade5aeaef447449ab50174aec86be, type: 2}
+  - {fileID: 11400000, guid: 9e4aee26c2030b648ab43f38e3218005, type: 2}
   BaseCreditWallet: 3
   MinBudgetReserveFraction: 0.15
   SpawnIntervalMin: 2

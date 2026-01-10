@@ -1,9 +1,7 @@
 ﻿using Leopotam.EcsProto.QoL;
 using Leopotam.EcsProto;
-using UnityEngine;
-using UnityEngine.LightTransport;
 
-public class PlayerPressedPSystem : IProtoRunSystem, IProtoInitSystem, IProtoDestroySystem
+public class PlayerPressedPSystem : IProtoInitSystem, IProtoRunSystem
 {
     [DI] readonly PlayerAspect _playerAspect;
     [DI] readonly PlacementAspect _placementAspect;

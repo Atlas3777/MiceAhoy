@@ -17,7 +17,7 @@ namespace Game.Scripts.Systems
         
         public void Init(IProtoSystems systems)
         {
-            _it = new(new []{typeof(InteractableComponent), typeof(DoorTag), typeof(PositionComponent),typeof(PickPlaceEvent) });
+            _it = new(new []{typeof(InteractableComponent), typeof(DoorTag), typeof(PositionComponent),typeof(InteractedEvent) });
             _it.Init(_world);
         }
 

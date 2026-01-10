@@ -16,6 +16,6 @@ MonoBehaviour:
   Cost: 8
   Weight: 10
   PatienceSeconds: 40
-  MaxHunger: 70
+  MaxHunger: 60
   MoveSpeed: 3
   ReputationLoss: 1
