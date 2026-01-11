@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: BoosPigProfile
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.GuestProfile
   Guest: {fileID: 6130027444517350367, guid: 4f8e32e84bcf3b140bf66df8d5608101, type: 3}
-  Cost: 100
-  Weight: 10
+  Cost: 1000000
+  Weight: 1000000
   PatienceSeconds: 180
   MaxHunger: 300
-  MoveSpeed: 2
+  MoveSpeed: 3
   ReputationLoss: 3

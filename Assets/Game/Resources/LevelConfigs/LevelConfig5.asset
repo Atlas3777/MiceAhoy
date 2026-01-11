@@ -86,14 +86,23 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
+      time: 0.0025177002
+      value: 1.3197632
+      inSlope: Infinity
+      outSlope: Infinity
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
+    - serializedVersion: 3
+      time: 0.023366002
+      value: 1
+      inSlope: -0.028071254
+      outSlope: -0.028071254
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.6842721
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
       value: 1
@@ -101,16 +110,16 @@ MonoBehaviour:
       outSlope: 0
       tangentMode: 34
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  LevelDuration: 60
+  LevelDuration: 180
   AvailableGuests:
   - {fileID: 11400000, guid: b79f138af2e232e4f93ac5bd411e74f9, type: 2}
   - {fileID: 11400000, guid: 4e71ad2443b2902418dd82e3bfe22ec5, type: 2}
-  BaseCreditWallet: 3
+  BaseCreditWallet: 1000000
   MinBudgetReserveFraction: 0.15
   SpawnIntervalMin: 2
   SpawnIntervalMax: 5
