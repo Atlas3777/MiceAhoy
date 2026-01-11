@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5564386931087153346}
   - component: {fileID: 1633627025127427960}
   - component: {fileID: 5251567480964469146}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Outline (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,6 +100,14 @@ PrefabInstance:
     - target: {fileID: 3678745316733051204, guid: c38aa5c1de3d13a4aaa3d09243cb2f22, type: 3}
       propertyPath: m_Name
       value: DoorStart
+      objectReference: {fileID: 0}
+    - target: {fileID: 3678745316733051204, guid: c38aa5c1de3d13a4aaa3d09243cb2f22, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5382861942375130185, guid: c38aa5c1de3d13a4aaa3d09243cb2f22, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6541535719034927051, guid: c38aa5c1de3d13a4aaa3d09243cb2f22, type: 3}
       propertyPath: m_LocalScale.z
@@ -209,7 +217,8 @@ MonoBehaviour:
         IsActive: 0
     - rid: 1239606117473189964
       type: {class: DoorTag, ns: Game.Scripts.Aspects, asm: Assembly-CSharp}
-      data: 
+      data:
+        doorStaticController: {fileID: 0}
 --- !u!54 &6192287275790595463 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 3275068800312815123, guid: c38aa5c1de3d13a4aaa3d09243cb2f22, type: 3}

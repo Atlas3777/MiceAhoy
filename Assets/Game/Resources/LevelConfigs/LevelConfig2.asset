@@ -18,17 +18,44 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0.5
-      inSlope: 0.5
-      outSlope: 0.5
+      inSlope: 986.5803
+      outSlope: 986.5803
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
+      time: 0.011901021
+      value: 12.241313
+      inSlope: 450.8358
+      outSlope: 450.8358
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.14521934
+      value: 0.9214176
+      inSlope: -109.096344
+      outSlope: -109.096344
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.20227724
+      value: -6.683482
+      inSlope: -61.82607
+      outSlope: -61.82607
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0.5
-      outSlope: 0.5
+      inSlope: 9.63177
+      outSlope: 9.63177
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -63,7 +90,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   LevelDuration: 15
   AvailableGuests:
-  - {fileID: 11400000, guid: dfaade5aeaef447449ab50174aec86be, type: 2}
+  - {fileID: 11400000, guid: 3d06cf5efa9556241b1be5e0147fa580, type: 2}
+  - {fileID: 11400000, guid: cee4a779291cc8c4f9954438b7c8fc4d, type: 2}
   BaseCreditWallet: 3
   MinBudgetReserveFraction: 0.15
   SpawnIntervalMin: 2
@@ -80,7 +108,7 @@ MonoBehaviour:
   EcsSystemFactory:
     rid: 1239606099834830941
   ForcedSpawnAfterNoSpawnSeconds: 10
-  LevelLayout: {fileID: 1632987616714677642, guid: 49e967e3d5869c54a849235aea656ef2, type: 3}
+  LevelLayout: {fileID: 1632987616714677642, guid: 5d7fd43f0142e6f429906fd95d6edf4f, type: 3}
   references:
     version: 2
     RefIds:

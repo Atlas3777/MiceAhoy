@@ -64,7 +64,6 @@ MonoBehaviour:
   LevelDuration: 15
   AvailableGuests:
   - {fileID: 11400000, guid: dfaade5aeaef447449ab50174aec86be, type: 2}
-  - {fileID: 11400000, guid: 9e4aee26c2030b648ab43f38e3218005, type: 2}
   BaseCreditWallet: 3
   MinBudgetReserveFraction: 0.15
   SpawnIntervalMin: 2
@@ -75,7 +74,6 @@ MonoBehaviour:
     rid: 1239606099834830940
   LevelStates:
   - rid: 1239606099834830942
-  - rid: 1239606117473189960
   - rid: 1239606099834830943
   - rid: 1239606099834830944
   EcsSystemFactory:
@@ -105,7 +103,4 @@ MonoBehaviour:
       data: 
     - rid: 1239606099834830944
       type: {class: RewardStep, ns: Game.Scripts.LevelSteps, asm: Assembly-CSharp}
-      data: 
-    - rid: 1239606117473189960
-      type: {class: BuildStep, ns: , asm: Assembly-CSharp}
       data: 

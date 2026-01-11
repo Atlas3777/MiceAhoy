@@ -14,6 +14,8 @@ public class GameResources
         public GuestProfile BaseGuestProfile => Resources.Load<GuestProfile>("GuestProfiles/BaseGuestProfile");
         public GuestProfile BeerGuest => Resources.Load<GuestProfile>("GuestProfiles/BeerGuest");
         public GuestProfile CatProfile => Resources.Load<GuestProfile>("GuestProfiles/CatProfile");
+        public GuestProfile DogProfile => Resources.Load<GuestProfile>("GuestProfiles/DogProfile");
+        public GuestProfile FrogProfile => Resources.Load<GuestProfile>("GuestProfiles/FrogProfile");
         public GuestProfile PigProfile => Resources.Load<GuestProfile>("GuestProfiles/PigProfile");
         public GuestProfile SheepProfile => Resources.Load<GuestProfile>("GuestProfiles/SheepProfile");
         public GuestProfile TutorialGuestProfile => Resources.Load<GuestProfile>("GuestProfiles/TutorialGuestProfile");
@@ -25,6 +27,8 @@ public class GameResources
         public CustomAuthoring BeerGuest => Resources.Load<CustomAuthoring>("Guests/BeerGuest");
         public CustomAuthoring CatGuest => Resources.Load<CustomAuthoring>("Guests/CatGuest");
         public CustomAuthoring DefaultGuest => Resources.Load<CustomAuthoring>("Guests/DefaultGuest");
+        public CustomAuthoring DogGuest => Resources.Load<CustomAuthoring>("Guests/DogGuest");
+        public CustomAuthoring FrogGuest => Resources.Load<CustomAuthoring>("Guests/FrogGuest");
         public CustomAuthoring PigGuest => Resources.Load<CustomAuthoring>("Guests/PigGuest");
         public CustomAuthoring SheepGuest => Resources.Load<CustomAuthoring>("Guests/SheepGuest");
     }
