@@ -13,8 +13,11 @@ public class GameResources
     {
         public GuestProfile BaseGuestProfile => Resources.Load<GuestProfile>("GuestProfiles/BaseGuestProfile");
         public GuestProfile BeerGuest => Resources.Load<GuestProfile>("GuestProfiles/BeerGuest");
+        public GuestProfile BoosPigProfile => Resources.Load<GuestProfile>("GuestProfiles/BoosPigProfile");
         public GuestProfile CatProfile => Resources.Load<GuestProfile>("GuestProfiles/CatProfile");
+        public GuestProfile DackProfile => Resources.Load<GuestProfile>("GuestProfiles/DackProfile");
         public GuestProfile DogProfile => Resources.Load<GuestProfile>("GuestProfiles/DogProfile");
+        public GuestProfile FoxProfile => Resources.Load<GuestProfile>("GuestProfiles/FoxProfile");
         public GuestProfile FrogProfile => Resources.Load<GuestProfile>("GuestProfiles/FrogProfile");
         public GuestProfile PigProfile => Resources.Load<GuestProfile>("GuestProfiles/PigProfile");
         public GuestProfile SheepProfile => Resources.Load<GuestProfile>("GuestProfiles/SheepProfile");
@@ -25,9 +28,12 @@ public class GameResources
     {
         public CustomAuthoring BaseGuest => Resources.Load<CustomAuthoring>("Guests/BaseGuest");
         public CustomAuthoring BeerGuest => Resources.Load<CustomAuthoring>("Guests/BeerGuest");
+        public CustomAuthoring BossPigGuest => Resources.Load<CustomAuthoring>("Guests/BossPigGuest");
         public CustomAuthoring CatGuest => Resources.Load<CustomAuthoring>("Guests/CatGuest");
+        public CustomAuthoring DackGuest => Resources.Load<CustomAuthoring>("Guests/DackGuest");
         public CustomAuthoring DefaultGuest => Resources.Load<CustomAuthoring>("Guests/DefaultGuest");
         public CustomAuthoring DogGuest => Resources.Load<CustomAuthoring>("Guests/DogGuest");
+        public CustomAuthoring FoxGuest => Resources.Load<CustomAuthoring>("Guests/FoxGuest");
         public CustomAuthoring FrogGuest => Resources.Load<CustomAuthoring>("Guests/FrogGuest");
         public CustomAuthoring PigGuest => Resources.Load<CustomAuthoring>("Guests/PigGuest");
         public CustomAuthoring SheepGuest => Resources.Load<CustomAuthoring>("Guests/SheepGuest");
@@ -37,6 +43,9 @@ public class GameResources
     {
         public LevelContext level => Resources.Load<LevelContext>("Layouts/level");
         public LevelContext level2 => Resources.Load<LevelContext>("Layouts/level2");
+        public LevelContext level3 => Resources.Load<LevelContext>("Layouts/level3");
+        public LevelContext level4 => Resources.Load<LevelContext>("Layouts/level4");
+        public LevelContext level5 => Resources.Load<LevelContext>("Layouts/level5");
         public LevelContext levelWithQueue => Resources.Load<LevelContext>("Layouts/levelWithQueue");
         public LevelContext levelWithQueue2 => Resources.Load<LevelContext>("Layouts/levelWithQueue2");
     }
@@ -45,6 +54,9 @@ public class GameResources
     {
         public LevelConfig LevelConfig1 => Resources.Load<LevelConfig>("LevelConfigs/LevelConfig1");
         public LevelConfig LevelConfig2 => Resources.Load<LevelConfig>("LevelConfigs/LevelConfig2");
+        public LevelConfig LevelConfig3 => Resources.Load<LevelConfig>("LevelConfigs/LevelConfig3");
+        public LevelConfig LevelConfig4 => Resources.Load<LevelConfig>("LevelConfigs/LevelConfig4");
+        public LevelConfig LevelConfig5 => Resources.Load<LevelConfig>("LevelConfigs/LevelConfig5");
     }
     public Phys PhysLink;
     public class Phys

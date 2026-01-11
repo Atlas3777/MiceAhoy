@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a97272518604b30b0537eecb01fb499, type: 3}
-  m_Name: FrogProfile
+  m_Name: FoxProfile
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.GuestProfile
-  Guest: {fileID: 1149982459916702614, guid: e5d87e0435ebf5449b9a391cb423ddd3, type: 3}
-  Cost: 2
-  Weight: 1
+  Guest: {fileID: 7467756821524202640, guid: 3c389d7d67e9b48438f48fcc63248752, type: 3}
+  Cost: 7
+  Weight: 10
   PatienceSeconds: 10
-  MaxHunger: 1
+  MaxHunger: 10
   MoveSpeed: 6
   ReputationLoss: 1

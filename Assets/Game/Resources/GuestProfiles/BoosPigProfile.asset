@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a97272518604b30b0537eecb01fb499, type: 3}
-  m_Name: FrogProfile
+  m_Name: BoosPigProfile
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.GuestProfile
-  Guest: {fileID: 1149982459916702614, guid: e5d87e0435ebf5449b9a391cb423ddd3, type: 3}
-  Cost: 2
-  Weight: 1
-  PatienceSeconds: 10
-  MaxHunger: 1
-  MoveSpeed: 6
-  ReputationLoss: 1
+  Guest: {fileID: 6130027444517350367, guid: 4f8e32e84bcf3b140bf66df8d5608101, type: 3}
+  Cost: 100
+  Weight: 10
+  PatienceSeconds: 180
+  MaxHunger: 300
+  MoveSpeed: 2
+  ReputationLoss: 3

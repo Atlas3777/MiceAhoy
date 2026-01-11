@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c91aab533e574495a8a7d72786068a82, type: 3}
-  m_Name: LevelConfig2
+  m_Name: LevelConfig4
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.LevelConfig
   DifficultyCurve:
     serializedVersion: 2
@@ -18,26 +18,17 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0.5
-      inSlope: 986.5803
-      outSlope: 986.5803
+      inSlope: 2.9019384
+      outSlope: 2.9019384
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.011901021
-      value: 12.241313
-      inSlope: 450.8358
-      outSlope: 450.8358
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
       time: 0.14521934
       value: 0.9214176
-      inSlope: -109.096344
-      outSlope: -109.096344
+      inSlope: -65.19099
+      outSlope: -65.19099
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -45,8 +36,35 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0.20227724
       value: -6.683482
-      inSlope: -61.82607
-      outSlope: -61.82607
+      inSlope: 113.06407
+      outSlope: 113.06407
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.284298
+      value: 22.795765
+      inSlope: -95.22165
+      outSlope: -95.22165
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.3321613
+      value: -3.522129
+      inSlope: -264.2507
+      outSlope: -264.2507
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.6271769
+      value: 2.777617
+      inSlope: 8.292977
+      outSlope: 8.292977
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -54,8 +72,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 9.63177
-      outSlope: 9.63177
+      inSlope: -4.76799
+      outSlope: -4.76799
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -88,10 +106,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  LevelDuration: 45
+  LevelDuration: 60
   AvailableGuests:
-  - {fileID: 11400000, guid: 3d06cf5efa9556241b1be5e0147fa580, type: 2}
-  - {fileID: 11400000, guid: cee4a779291cc8c4f9954438b7c8fc4d, type: 2}
+  - {fileID: 11400000, guid: 4e95ff6759fd0ef48812820a9249a91e, type: 2}
+  - {fileID: 11400000, guid: 962b003c61f29254189b6a96eb284c7f, type: 2}
   BaseCreditWallet: 3
   MinBudgetReserveFraction: 0.15
   SpawnIntervalMin: 2
@@ -108,7 +126,7 @@ MonoBehaviour:
   EcsSystemFactory:
     rid: 1239606099834830941
   ForcedSpawnAfterNoSpawnSeconds: 10
-  LevelLayout: {fileID: 1632987616714677642, guid: 5d7fd43f0142e6f429906fd95d6edf4f, type: 3}
+  LevelLayout: {fileID: 1632987616714677642, guid: 1487af8a92eca5c49aef748a76151fe7, type: 3}
   references:
     version: 2
     RefIds:
