@@ -32,7 +32,7 @@ namespace Game.Scripts.LevelSteps
             var rewardName = "Получите дополнительную печь!";
 
             Debug.Log("Показываем награду...");
-            saveService.Data.LevelIndex++;
+            saveService.Data.CompanyLevelIndex++;
             saveService.Save();
             
             try 

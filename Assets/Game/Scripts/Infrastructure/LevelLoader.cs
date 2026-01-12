@@ -26,7 +26,15 @@ namespace Game.Scripts.Infrastructure
         public void Start()
         {
             Debug.Log("GameLifetimeScope : Start");
-            var i = _saveService.Data.LevelIndex;
+            _saveService.Data.IsFirstLaunch = false;
+            _saveService.Save();
+
+            int i;
+            if (_saveService.Data.ContinueCompany)
+                i = _saveService.Data.CompanyLevelIndex;
+            else
+                i = _saveService.Data.CurrentLevelIndex;
+
             var config = Resources.Load<LevelConfig>($"LevelConfigs/LevelConfig{i}");
 
             if (config == null)

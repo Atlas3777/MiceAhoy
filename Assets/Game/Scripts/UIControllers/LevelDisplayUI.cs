@@ -9,4 +9,8 @@ public class LevelDisplayUI : MonoBehaviour
    {
          levelText.text = $"Уровень {level}";
    }
+   public void Show(string level)
+   {
+       levelText.text = $"Уровень {level}";
+   }
 }

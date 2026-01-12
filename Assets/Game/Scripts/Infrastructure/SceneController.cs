@@ -9,13 +9,10 @@ namespace Game.Scripts.Infrastructure
         private const string MainMenuSceneName = "MainMenu";
         private const string MainScenePath = "MainLevel";
         private const string ShopScenePath = "Shop";
-        private const string TutorialScenePath = "Tutorial";
 
         // Теперь все методы возвращают UniTask
         public async UniTask ReloadSceneAsync() => await LoadSceneAsync(SceneManager.GetActiveScene().name);
         public async UniTask LoadMainGameSceneAsync() => await LoadSceneAsync(MainScenePath);
-        public async UniTask LoadTutorialSceneAsync() => await LoadSceneAsync(TutorialScenePath);
-        public async UniTask LoadShopSceneAsync() => await LoadSceneAsync(ShopScenePath);
         public async UniTask LoadMainMenuSceneAsync() => await LoadSceneAsync(MainMenuSceneName);
 
         public void ExitApplication()

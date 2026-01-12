@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Game.Scripts.Infrastructure;
 using UnityEngine;
+using VContainer;
 
 namespace Game.Scripts
 {
     public class SoundManager : MonoBehaviour
     {
         [Header("Settings")]
-        [Range(0, 1)] [SerializeField] private float musicVolume = 0.6f;
+        [Range(0, 1)] [SerializeField] private float musicVolume = 0.6f; // #TODO БЕРЕТСЯ НЕ ИЗ СЕЙВА!
         [Range(0, 1)] [SerializeField] private float sfxVolume = 0.8f;
         [SerializeField] private float fadeDuration = 1.2f;
 
@@ -23,12 +25,22 @@ namespace Game.Scripts
         
         private bool _isSourceAActive = true;
         private CancellationTokenSource _musicFadeCts;
+        
+        private bool _isPaused;
+        
+
+        [Inject] private SaveService _saveService;
 
         private void Awake()
         {
             SetupSource(musicSourceA, true);
             SetupSource(musicSourceB, true);
             SetupSource(sfxSource, false);
+
+            
+            // musicSourceA.volume = _saveService.Data.MusicVolume;
+            // musicSourceB.volume = _saveService.Data.MusicVolume;
+            
             // Важно: sfxSource всегда на полной громкости, 
             // так как PlayOneShot сам регулирует громкость клипа
             sfxSource.volume = 1f; 
@@ -94,6 +106,36 @@ namespace Game.Scripts
             newSource.playOnAwake = false;
             return newSource;
         }
+        
+
+        /// <summary>
+        /// Ставит на паузу или возобновляет все звуки (музыку и активные цикличные SFX)
+        /// </summary>
+        public void SetPause(bool isPaused)
+        {
+            _isPaused = isPaused;
+
+            // Пауза музыки
+            if (isPaused)
+            {
+                musicSourceA.Pause();
+                musicSourceB.Pause();
+            }
+            else
+            {
+                musicSourceA.UnPause();
+                musicSourceB.UnPause();
+            }
+
+            // Пауза всех активных зацикленных звуков (плиты и т.д.)
+            foreach (var source in _activeLoops.Values)
+            {
+                if (source == null) continue;
+                if (isPaused) source.Pause();
+                else source.UnPause();
+            }
+        }
+        
 
         // --- ONE SHOTS (Дзынь, клики) ---
 
@@ -152,6 +194,61 @@ namespace Game.Scripts
             fadeOut.Stop();
             fadeOut.volume = 0;
             fadeIn.volume = musicVolume;
+        }
+        
+        /// <summary>
+        /// Останавливает текущую музыку.
+        /// </summary>
+        /// <param name="fade">Нужно ли плавное затухание</param>
+        public async UniTask StopMusicAsync(bool fade = true)
+        {
+            // Отменяем любые текущие процессы перехода (Crossfade)
+            _musicFadeCts?.Cancel();
+            _musicFadeCts?.Dispose();
+            _musicFadeCts = new CancellationTokenSource();
+
+            AudioSource active = _isSourceAActive ? musicSourceA : musicSourceB;
+            AudioSource inactive = _isSourceAActive ? musicSourceB : musicSourceA;
+
+            if (fade)
+            {
+                // Плавно выключаем оба источника на случай, если они оба играли во время кроссфейда
+                await UniTask.WhenAll(
+                    FadeOutSourceAsync(active, _musicFadeCts.Token),
+                    FadeOutSourceAsync(inactive, _musicFadeCts.Token)
+                );
+            }
+            else
+            {
+                active.Stop();
+                active.volume = 0;
+                inactive.Stop();
+                inactive.volume = 0;
+            }
+        }
+
+        private async UniTask FadeOutSourceAsync(AudioSource source, CancellationToken ct)
+        {
+            if (source.volume <= 0 || !source.isPlaying) 
+            {
+                source.Stop();
+                source.volume = 0;
+                return;
+            }
+
+            float startVol = source.volume;
+            float timer = 0;
+
+            while (timer < fadeDuration)
+            {
+                if (ct.IsCancellationRequested) return;
+                timer += Time.deltaTime;
+                source.volume = Mathf.Lerp(startVol, 0, timer / fadeDuration);
+                await UniTask.Yield(PlayerLoopTiming.Update, ct);
+            }
+
+            source.Stop();
+            source.volume = 0;
         }
 
         private void OnDestroy()

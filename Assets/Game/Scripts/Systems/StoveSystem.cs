@@ -1,4 +1,5 @@
-﻿using Game.Scripts;
+﻿using System;
+using Game.Scripts;
 using Game.Scripts.Aspects;
 using Game.Scripts.Systems;
 using Leopotam.EcsProto;
@@ -19,6 +20,10 @@ public class StoveSystem : IProtoInitSystem, IProtoRunSystem
     private ProtoIt _abortIt;
     private readonly RecipeService _recipeService;
     private readonly PickableService _pickableService;
+    
+    public event Action OnItemPlacedToStove;
+    public event Action OnItemCooked;
+    public event Action OnItemBurned;
 
     public StoveSystem(RecipeService recipeService, PickableService pickableService)
     {
@@ -75,6 +80,9 @@ public class StoveSystem : IProtoInitSystem, IProtoRunSystem
                 Debug.Log("Recipe not found");
                 continue;
             }
+            
+            OnItemPlacedToStove?.Invoke();
+            
 
             ref var timer = ref _baseAspect.TimerPool.Add(stoveEntity);
             timer.Duration = recipe.Duration;
@@ -95,9 +103,16 @@ public class StoveSystem : IProtoInitSystem, IProtoRunSystem
                     Helper.CreateItem(stoveEntity, ref holder, _playerAspect, _baseAspect, pickableItem);
                     
                     _world.NewEntityWith<PlaySFXRequest>().SoundType = SoundType.CookingComplete;
-                    
+                    OnItemCooked?.Invoke();
+
                     if (recipe.outputItemType is not Trash)
+                    {
                         _workstationsAspect.ItemCookedTagPool.Add(stoveEntity);
+                    }
+                    else
+                    {
+                        OnItemBurned?.Invoke();
+                    }
                     Debug.Log("Приготовили!");
                 }
                 else

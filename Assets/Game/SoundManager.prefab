@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d7f548586dd4869a2f95ee7313122fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.DISystem.SoundManager
-  musicVolume: 0.005
+  musicVolume: 0.45
   sfxVolume: 1
   fadeDuration: 1.2
   musicSourceA: {fileID: 1449006782432208439}

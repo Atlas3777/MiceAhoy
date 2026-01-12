@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Game.Scripts;
 using Game.Scripts.Infrastructure;
 using Game.Scripts.Input;
 using Game.Scripts.LevelSteps;
@@ -17,18 +18,22 @@ public class BuildStep : LevelStep
     public override async UniTask Execute(IObjectResolver resolver, CancellationToken ct)
     {
         var startDaySystem = resolver.Resolve<StartDaySystem>();
-        var playerPressedPSystem = resolver.Resolve<PlayerPressedPSystem>();
-        var rr = resolver.Resolve<JoinListener>();
+        var joinListener = resolver.Resolve<JoinListener>();
+        var buildModeService = resolver.Resolve<BuildModeService>();
+        
+        
         var tcs = new UniTaskCompletionSource();
+        var soundManager = resolver.Resolve<SoundManager>();
+        var gameResources = resolver.Resolve<GameResources>();
         
         var text = resolver.Resolve<TMP_Text>("status");
-        text.text = "Статус: Строительство(нажмите[E] чтобы поднять и поставить объект) \n Чтобы начать день откройте входную дверь [E]";
-        
-        playerPressedPSystem.StartPlacementMode();
+        text.text = "Статус: Строительство \n \nНажмите [E], чтобы поднять и поставить объект \n \nЧтобы начать день откройте входную дверь [E]";
 
-        rr.Enable(playerPressedPSystem);
-        
+        joinListener.Enable();
+        buildModeService.EnterBuildMode();
+        soundManager.PlayMusicAsync(gameResources.SoundsLink.bild).Forget();
 
+        
         Action onStartAction = null;
         onStartAction = () =>
         {
@@ -45,8 +50,8 @@ public class BuildStep : LevelStep
         finally
         {
             startDaySystem.OnStart -= onStartAction;
-            rr.Disable();
-            playerPressedPSystem.EndPlacementMode();
+            joinListener.Disable();
+            buildModeService.ExitBuildMode();
         }
     }
 }

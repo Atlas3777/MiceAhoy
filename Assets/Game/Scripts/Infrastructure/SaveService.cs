@@ -8,8 +8,15 @@ namespace Game.Scripts.Infrastructure
     [Serializable]
     public class SaveData
     {
-        public int LevelIndex = 1;
+        public bool ContinueCompany;
+        public int CurrentLevelIndex;
+        public int CompanyLevelIndex = 1;
         public int TotalMoney = 0;
+
+        public bool IsFirstLaunch = true;
+        
+        public float MusicVolume = 0.45f;
+        
         public List<string> UnlockedUpgrades = new List<string>();
     }
     

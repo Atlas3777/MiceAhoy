@@ -37,9 +37,16 @@ MonoBehaviour:
   - item:
       rid: 6222298218394812502
     pivotToRealPositionDifference: {x: 0, y: 0, z: 0}
+  - item:
+      rid: 1239606172255256648
+    pivotToRealPositionDifference: {x: 0, y: 0, z: 0}
   references:
     version: 2
     RefIds:
+    - rid: 1239606172255256648
+      type: {class: ItemDestroyer, ns: , asm: Assembly-CSharp}
+      data:
+        workstationSprite: {fileID: 0}
     - rid: 6222298054940950604
       type: {class: Fridge, ns: , asm: Assembly-CSharp}
       data:

@@ -46,12 +46,14 @@ public class GameResources
         public LevelContext level3 => Resources.Load<LevelContext>("Layouts/level3");
         public LevelContext level4 => Resources.Load<LevelContext>("Layouts/level4");
         public LevelContext level5 => Resources.Load<LevelContext>("Layouts/level5");
+        public LevelContext LevelTutorial => Resources.Load<LevelContext>("Layouts/LevelTutorial");
         public LevelContext levelWithQueue => Resources.Load<LevelContext>("Layouts/levelWithQueue");
         public LevelContext levelWithQueue2 => Resources.Load<LevelContext>("Layouts/levelWithQueue2");
     }
     public LevelConfigs LevelConfigsLink;
     public class LevelConfigs
     {
+        public LevelConfig LevelConfig0 => Resources.Load<LevelConfig>("LevelConfigs/LevelConfig0");
         public LevelConfig LevelConfig1 => Resources.Load<LevelConfig>("LevelConfigs/LevelConfig1");
         public LevelConfig LevelConfig2 => Resources.Load<LevelConfig>("LevelConfigs/LevelConfig2");
         public LevelConfig LevelConfig3 => Resources.Load<LevelConfig>("LevelConfigs/LevelConfig3");
@@ -89,6 +91,7 @@ public class GameResources
         public PlacementObject FridgeSpawner => Resources.Load<PlacementObject>("PlacementObjects/FridgeSpawner");
         public PlacementObject GuestTable => Resources.Load<PlacementObject>("PlacementObjects/GuestTable");
         public PlacementObject GuestTableSpawner => Resources.Load<PlacementObject>("PlacementObjects/GuestTableSpawner");
+        public PlacementObject ItemDestroyer => Resources.Load<PlacementObject>("PlacementObjects/ItemDestroyer");
         public PlacementObject Stove => Resources.Load<PlacementObject>("PlacementObjects/Stove");
         public PlacementObject StoveSpawner => Resources.Load<PlacementObject>("PlacementObjects/StoveSpawner");
         public PlacementObject Table => Resources.Load<PlacementObject>("PlacementObjects/Table");
@@ -107,12 +110,17 @@ public class GameResources
     {
         public AudioClip angry_guest => Resources.Load<AudioClip>("Sounds/angry_guest");
         public AudioClip background_music => Resources.Load<AudioClip>("Sounds/background_music");
+        public AudioClip bild => Resources.Load<AudioClip>("Sounds/bild");
         public AudioClip button_click_clear_soft => Resources.Load<AudioClip>("Sounds/button-click-clear-soft");
         public AudioClip cooking_done => Resources.Load<AudioClip>("Sounds/cooking_done");
         public AudioClip fonovyy_zvuk_krik_chaek_shum_vody => Resources.Load<AudioClip>("Sounds/fonovyy-zvuk-krik-chaek-shum-vody");
+        public AudioClip menu_game => Resources.Load<AudioClip>("Sounds/menu_game");
         public AudioClip pick_place => Resources.Load<AudioClip>("Sounds/pick_place");
         public AudioClip reputation_loss => Resources.Load<AudioClip>("Sounds/reputation_loss");
         public AudioClip stove_loop_sfx => Resources.Load<AudioClip>("Sounds/stove_loop_sfx");
+        public AudioClip tutorial => Resources.Load<AudioClip>("Sounds/tutorial");
+        public AudioClip whoa => Resources.Load<AudioClip>("Sounds/whoa");
+        public AudioClip whoa2 => Resources.Load<AudioClip>("Sounds/whoa2");
     }
     public UIPrefabs UIPrefabsLink;
     public class UIPrefabs

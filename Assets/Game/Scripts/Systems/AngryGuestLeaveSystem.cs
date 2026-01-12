@@ -1,4 +1,5 @@
-﻿using Game.Script.Aspects;
+﻿using System;
+using Game.Script.Aspects;
 using Game.Scripts.Aspects;
 using Game.Scripts.Infrastructure;
 using Leopotam.EcsProto;
@@ -15,6 +16,8 @@ namespace Game.Scripts.Systems
         [DI] ProtoWorld _world;
         private ProtoIt _it;
         private ProtoItExc _occupiedTablesIt;
+
+        public event Action AngryGuestLeave;
 
     
         public void Init(IProtoSystems systems)
@@ -42,7 +45,7 @@ namespace Game.Scripts.Systems
                 _guestAspect.GuestServicedTagPool.GetOrAdd(guestEntity);
                 _guestAspect.GuestIsWalkingTagPool.Add(guestEntity);
             
-            
+                AngryGuestLeave?.Invoke();
                 _world.NewEntityWith<ReputationRequest>().Diff = guest.ReputationLoss;
                 _world.NewEntityWith<PlaySFXRequest>().SoundType = SoundType.AngryGuest;
             }

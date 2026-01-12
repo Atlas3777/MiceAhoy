@@ -43,6 +43,8 @@ namespace Game.Scripts.Infrastructure
 
                     _r.Resolve<PlayerInitializeInputSystem>(),
                     _r.Resolve<UpdateInputSystem>(),
+                    _r.Resolve<PlayerPlacementSyncSystem>(),
+                    _r.Resolve<PlayerExitPlacementSystem>(),
                     _r.Resolve<PlayerMovementSystem>(),
                     new PlayerTargetSystem(),
                     new OutlineSystem(),
@@ -71,7 +73,7 @@ namespace Game.Scripts.Infrastructure
                     //new QueueWaitingVisualizationSystem(),
                     _r.Resolve<GuestEatingSystem>(),
                     
-                    new HappyGuestLeaveSystem(),
+                    _r.Resolve<HappyGuestLeaveSystem>(),
                     _r.Resolve<AngryGuestLeaveSystem>(),
                     
                     _r.Resolve<GuestNavigateToDestroySystem>(),
@@ -99,5 +101,6 @@ namespace Game.Scripts.Infrastructure
 
             return systems;
         }
+        
     }
 }

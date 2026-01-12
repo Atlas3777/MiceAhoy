@@ -16,6 +16,7 @@ namespace Game.Scripts.Systems
         private ProtoIt _iterator;
 
         public event Action PlayerPick;
+        public event Action DeletedBernedItem;
 
         public void Init(IProtoSystems systems)
         {
@@ -68,6 +69,7 @@ namespace Game.Scripts.Systems
                         if (_workstationsAspect.ItemDestroyerComponentPool.Has(interactedEntity)
                             && playerItem.PickableItemGO)
                         {
+                            DeletedBernedItem?.Invoke();
                             Debug.Log("Убийство на улице вязов");
                             Helper.ReturnItemToGenerator(playerEntity, ref playerHolder, _playerAspect, _baseAspect);
                             continue;

@@ -48,7 +48,7 @@ namespace Game.Scripts.DISystem
             Debug.Log("GameLifetimeScope : Configure");
 
             builder.Register<LevelLoader>(Lifetime.Singleton).WithParameter(levelScopePrefab).AsImplementedInterfaces();
-            builder.Register<PlayerSpawner>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
+            builder.Register<PlayerSpawner>(Lifetime.Singleton);
             builder.Register<InputService>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
             builder.Register<JoinListener>(Lifetime.Singleton);
             

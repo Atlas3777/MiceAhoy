@@ -53,7 +53,6 @@ namespace Game.Scripts.LevelSteps
             CleanupPreviews();
 
             introCam.Priority = 9;
-            await UniTask.Delay(1000, cancellationToken: ct);
         }
 
 

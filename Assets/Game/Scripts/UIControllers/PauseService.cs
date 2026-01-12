@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.Scripts;
 using UnityEngine;
 
 public interface IPauseService
@@ -11,30 +12,33 @@ public interface IPauseService
 public class PauseService : IPauseService
 {
     private readonly InputService _input;
+    private readonly SoundManager _soundManager;
     private float _lastToggleTime;
-    private const float ToggleCooldown = 0.15f; // Задержка в секундах
+    private const float ToggleCooldown = 0.15f;
 
     public bool IsPaused { get; private set; }
     public event Action<bool> OnPauseChanged;
 
-    public PauseService(InputService input) => _input = input;
+    public PauseService(InputService input, SoundManager soundManager)
+    {
+        _input = input;
+        _soundManager = soundManager;
+    }
 
     public void SetPause(bool isPaused)
     {
-        // 1. Проверка на то же самое состояние
         if (IsPaused == isPaused) return;
 
-        // 2. Защита от мгновенного переключения (используем Realtime, так как TimeScale будет 0)
-        if (Time.unscaledTime - _lastToggleTime < ToggleCooldown) 
+        if (Time.unscaledTime - _lastToggleTime < ToggleCooldown)
             return;
 
         _lastToggleTime = Time.unscaledTime;
         IsPaused = isPaused;
 
-        // Логика паузы
         Time.timeScale = isPaused ? 0 : 1;
+        _soundManager.SetPause(isPaused);
         _input.SwitchAllActionMapsTo(isPaused ? "UI" : "Player");
-        
+
         OnPauseChanged?.Invoke(IsPaused);
     }
 }

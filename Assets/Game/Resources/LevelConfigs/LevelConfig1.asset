@@ -74,6 +74,7 @@ MonoBehaviour:
     rid: 1239606099834830940
   LevelStates:
   - rid: 1239606099834830942
+  - rid: 1239606171015839744
   - rid: 1239606099834830943
   - rid: 1239606099834830944
   EcsSystemFactory:
@@ -103,4 +104,7 @@ MonoBehaviour:
       data: 
     - rid: 1239606099834830944
       type: {class: RewardStep, ns: Game.Scripts.LevelSteps, asm: Assembly-CSharp}
+      data: 
+    - rid: 1239606171015839744
+      type: {class: BuildStep, ns: , asm: Assembly-CSharp}
       data: 

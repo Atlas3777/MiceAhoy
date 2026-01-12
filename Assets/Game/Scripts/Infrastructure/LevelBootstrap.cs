@@ -1,8 +1,6 @@
-﻿using System.Linq;
+﻿using Cysharp.Threading.Tasks;
 using Game.Scripts.Input;
-using Game.Scripts.LevelSteps;
 using Unity.Cinemachine;
-using UnityEngine.InputSystem;
 using VContainer.Unity;
 
 namespace Game.Scripts.Infrastructure
@@ -17,10 +15,12 @@ namespace Game.Scripts.Infrastructure
         private readonly LevelContext _context;
         private readonly LevelDisplayUI _levelDisplayUI;
         private readonly SaveService _saveService;
-        private readonly PlayerSessionService _sessionService;
+        private readonly SoundManager _soundManager;
+
         public LevelBootstrap(LevelFlowController levelFlowController, PlayerSpawner playerSpawner,
             LevelRuntimeController levelRuntimeController, CinemachineTargetGroup targetGroup, LevelConfig levelConfig,
-            LevelContext context, LevelDisplayUI levelDisplayUI, SaveService saveService, PlayerSessionService  sessionService)
+            LevelContext context, LevelDisplayUI levelDisplayUI, SaveService saveService,
+            PlayerSessionService sessionService, SoundManager soundManager)
         {
             _levelFlowController = levelFlowController;
             _playerSpawner = playerSpawner;
@@ -30,18 +30,20 @@ namespace Game.Scripts.Infrastructure
             _context = context;
             _saveService = saveService;
             _levelDisplayUI = levelDisplayUI;
-            _sessionService = sessionService;
+            _soundManager = soundManager;
         }
 
         public void Initialize()
         {
+            _soundManager.StopMusicAsync(false).Forget();
+            
             _context.navMeshSurface.BuildNavMesh();
             _targetGroup.AddMember(_context.levelCenter, 4, 4);
-    
-            _levelDisplayUI.Show(_saveService.Data.LevelIndex);
+
+            _levelDisplayUI.Show(_saveService.Data.CurrentLevelIndex);
 
             _playerSpawner.SetSpawnPoint(_context.positionsRegistry.PlayerSpawn);
-            
+
 
             _playerSpawner.SpawnExistingPlayers();
 

@@ -13,6 +13,7 @@ namespace Game.Scripts.Systems
         StoveSound,
         Pick,
         Place,
+        Whoa,
     }
 
     public class SoundSystem : IProtoInitSystem, IProtoRunSystem
@@ -96,7 +97,17 @@ namespace Game.Scripts.Systems
                 SoundType.AngryGuest =>_gameResources.SoundsLink.angry_guest,
                 SoundType.ReputationLoss =>_gameResources.SoundsLink.reputation_loss,
                 SoundType.CookingComplete =>_gameResources.SoundsLink.cooking_done,
+                SoundType.Whoa => GetWhoaClip()
             };
+        }
+        private AudioClip GetWhoaClip()
+        {
+            float chance = Random.value; 
+            if (chance < 0.1f) 
+            {
+                return _gameResources.SoundsLink.whoa2;
+            }
+            return _gameResources.SoundsLink.whoa;
         }
     }
 }

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlacementGrid
 {
-    public Vector3Int PlacementZoneSize { get; } = new Vector3Int(9, 0, 7);
+    public Vector3Int PlacementZoneSize { get; } = new Vector3Int(16, 0, 9);
     public Vector3 PlacementZoneWorldStart { get; private set; }
-    public Vector3Int PlacementZoneIndexStart { get; } = new Vector3Int(-4, 0, -4);
+    public Vector3Int PlacementZoneIndexStart { get; } = new Vector3Int(-8, 0, -4);
     public Vector3 PlacementZoneCellSize { get; private set; }
     private HashSet<Vector3Int> worldGrid = new();
     private GameResources gameResources;
@@ -68,7 +68,7 @@ public class PlacementGrid
             return true;
         }
         prefab = null;
-        Debug.LogError($"��������� PlacementObjects_DB. ������ ���� ������ � ������� ���: {type}");
+        //Debug.LogError($"��������� PlacementObjects_DB. ������ ���� ������ � ������� ���: {type}");
         return false;
     }
 
@@ -80,7 +80,7 @@ public class PlacementGrid
             return true;
         }
         pivotDifference = default;
-        Debug.LogError($"��������� PivotToRealPositionDifferences. ������ ���� ������ � ������� ���: {type}");
+        //Debug.LogError($"��������� PivotToRealPositionDifferences. ������ ���� ������ � ������� ���: {type}");
         return false;
     }
 

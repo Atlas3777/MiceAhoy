@@ -30,6 +30,7 @@ namespace Game.Scripts.DISystem
             builder.Register<PausePresenter>(Lifetime.Singleton).AsImplementedInterfaces();
             
             builder.Register<LevelState>(Lifetime.Singleton);
+            builder.Register<BuildModeService>(Lifetime.Singleton);
             
             builder.Register<GameplaySolver>(Lifetime.Singleton);
             builder.Register<EcsPauseSolver>(Lifetime.Singleton);
@@ -74,6 +75,9 @@ namespace Game.Scripts.DISystem
             builder.Register<MoveGameObjectSystem>(Lifetime.Singleton);
             builder.Register<StartDaySystem>(Lifetime.Singleton);
             builder.Register<PlayerPressedPSystem>(Lifetime.Singleton);
+            builder.Register<PlayerPlacementSyncSystem>(Lifetime.Singleton);
+            builder.Register<PlayerExitPlacementSystem>(Lifetime.Singleton);
+            builder.Register<HappyGuestLeaveSystem>(Lifetime.Singleton);
         }
     }
 }

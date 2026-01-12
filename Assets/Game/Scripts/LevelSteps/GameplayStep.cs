@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
+using Game.Scripts;
 using Game.Scripts.Infrastructure;
 using Game.Scripts.LevelSteps;
 using Game.Scripts.Systems;
@@ -20,11 +22,15 @@ public class GameplayStep : LevelStep
     {
         var levelFlowController = resolver.Resolve<LevelFlowController>();
         var winLoseSystem = resolver.Resolve<WinLoseSystem>();
+        var soundManager = resolver.Resolve<SoundManager>();
+        var gameResources = resolver.Resolve<GameResources>();
 
         var resultSource = new UniTaskCompletionSource<GameResult>();
         
         var text = resolver.Resolve<TMP_Text>("status");
         text.text = "Статус: Обслуживание";
+
+        soundManager.PlayMusicAsync(gameResources.SoundsLink.background_music).Forget();
 
         Action<GameResult> onFinish = (result) => resultSource.TrySetResult(result);
 
@@ -42,12 +48,35 @@ public class GameplayStep : LevelStep
 
         levelFlowController.SetCurrentLevelPhase(GameplayPhase.EcsPause);
 
+        soundManager.StopMusicAsync().Forget();
+        
         if (result == GameResult.Lose)
         {
             await HandleLose(resolver, ct);
         }
+        else
+        {
+            await HandleWin(resolver, ct);
+        }
 
         Debug.Log("Gameplay finished with Win. Moving to next step.");
+    }
+
+    private async UniTask HandleWin(IObjectResolver resolver, CancellationToken ct)
+    {
+        var sceneManager = resolver.Resolve<SceneController>();
+        var saveService = resolver.Resolve<SaveService>();
+
+        if (saveService.Data.ContinueCompany)
+        {
+            saveService.Data.CompanyLevelIndex++;
+            saveService.Data.CurrentLevelIndex++;
+            await sceneManager.LoadMainGameSceneAsync();
+        }
+        else
+        {
+            await sceneManager.LoadMainMenuSceneAsync();
+        }
     }
 
     private async UniTask HandleLose(IObjectResolver resolver, CancellationToken ct)

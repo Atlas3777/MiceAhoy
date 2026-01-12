@@ -9,7 +9,6 @@ namespace Game.Scripts.Input
         private InputAction _join;
         private PlayerSpawner _spawner;
         private PlayerSessionService _sessionService;
-        public PlayerPressedPSystem playerPressedPSystem;
         public JoinListener(PlayerSpawner spawner, InputActionAsset actions, PlayerSessionService sessionService)
         {
             _spawner = spawner;
@@ -18,9 +17,8 @@ namespace Game.Scripts.Input
             _join = _actions.FindActionMap("Join").FindAction("Join");
         }
 
-        public void Enable(PlayerPressedPSystem playerPressedPSystem)
+        public void Enable()
         {
-            this.playerPressedPSystem = playerPressedPSystem;
             _join.performed += OnJoin;
             _join.Enable();
         }
@@ -36,11 +34,7 @@ namespace Game.Scripts.Input
             var device = ctx.control.device;
             
             _sessionService.Join(device);
-            
             _spawner.TrySpawn(device);
-            
-            if(playerPressedPSystem != null)
-                playerPressedPSystem.StartPlacementMode();
         }
     }
 }
